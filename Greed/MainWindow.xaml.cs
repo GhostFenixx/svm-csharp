@@ -446,7 +446,7 @@ namespace Greed
 
         private void InstallPlugin(object sender, RoutedEventArgs e)
         {
-            string gamefolder = Directory.GetParent(Directory.GetCurrentDirectory()).FullName;
+            string gamefolder = Directory.GetCurrentDirectory();
             //string exeFolder = Path.GetFullPath(Path.Combine(modFolder, "..", "..",".."));
             string pluginFolder = (gamefolder + @"\BepInEx\plugins\");
             string pluginname = @"HideSpecialIconGrids.dll";

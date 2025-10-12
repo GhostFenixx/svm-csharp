@@ -18,7 +18,7 @@ namespace ServerValueModifier.Sections
         private readonly string[] Pistol = ["9x19", "9x18pm", "9x21", "762x25tt", "46x30", "57x28", "1143x23", "127x33", "9x33r", "10MM", "40SW", "357SIG", "9MM", "45ACP", "50AE", "380AUTO"];
         private readonly string[] ARifle = ["762x39", "545x39", "556x45", "9x39", "366", "762x35", "300blk", "ATL15", "GRENDEL", "50WLF", "KURZ"];
         private readonly string[] Shotgun = ["12x70", "20x70", "23x75"];
-        private readonly string[] MRifle = ["762x51", "68x51", "762х54R", "762x54r", "86x70", "127x55", "277", "BMG"];
+        private readonly string[] MRifle = ["762x51", "68x51", "762х54R", "762x54", "762x54r", "86x70", "127x55", "277", "BMG"];
         private readonly MongoId[] OddKeys = ["5448ba0b4bdc2d02308b456c", "63a399193901f439517cafb6", "63a39fc0af870e651d58e6ae", "63a39fdf1e21260da44a0256", "6582dbf0b8d7830efc45016f", "664d3db6db5dea2bad286955", "664d3dd590294949fe2d81b7", "664d3ddfdda2e85aca370d75", "664d3de85f2355673b09aed5", "664d4b0103ef2c61246afb56", "6761a6ccd9bbb27ad703c48a", "6761a6f90575f25e020816a4"];
         private readonly MongoId[] MarkedKeys = ["5780cf7f2459777de4559322", "5d80c60f86f77440373c4ece", "5d80c62a86f7744036212b3f", "5ede7a8229445733cb4c18e2", "63a3a93f8a56922e82001f5d", "64ccc25f95763a1ae376e447", "62987dfc402c7f69bf010923"];
         private readonly Globals globals = databaseService.GetGlobals();
