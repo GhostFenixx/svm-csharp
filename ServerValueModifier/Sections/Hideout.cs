@@ -8,10 +8,11 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Hideout(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Hideout(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ICloner _cloner, MainClass.MainConfig svmconfig)
     {
         public void HideoutSection()
         {
@@ -120,7 +121,7 @@ namespace ServerValueModifier.Sections
                 {
                     foreach (Stage stage in area.Stages.Values)
                     {
-                        Rewriter = stage;
+                        Rewriter = _cloner.Clone(stage);
                         Rewriter.Requirements.Clear();
                         foreach (StageRequirement requirements in stage.Requirements)
                         {
@@ -130,7 +131,7 @@ namespace ServerValueModifier.Sections
                                 {
                                     requirements.IsSpawnedInSession = false;
                                 }
-                                if (!svmconfig.Hideout.RemoveConstructionsRequirements && requirements.TemplateId != null)
+                                if (!svmconfig.Hideout.RemoveConstructionsRequirements && !requirements.TemplateId.IsEmpty)
                                 {
                                     Rewriter.Requirements.Add(requirements);
                                 }
@@ -138,7 +139,7 @@ namespace ServerValueModifier.Sections
                                 {
                                     Rewriter.Requirements.Add(requirements);
                                 }
-                                else if (!svmconfig.Hideout.RemoveTraderLevelRequirements && requirements.TraderId != null)
+                                else if (!svmconfig.Hideout.RemoveTraderLevelRequirements && !requirements.TraderId.IsEmpty)
                                 {
                                     Rewriter.Requirements.Add(requirements);
                                 }

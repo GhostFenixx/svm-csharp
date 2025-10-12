@@ -268,7 +268,7 @@ namespace Greed
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = exefolder + @"\SPT\SPT.Server.exe",
-                        WorkingDirectory = exefolder
+                        WorkingDirectory = exefolder + @"\SPT",
                     }
                 };
                 serverProcess.Start();
@@ -278,7 +278,7 @@ namespace Greed
                     StartInfo = new ProcessStartInfo
                     {
                         FileName = exefolder + @"\SPT\SPT.Launcher.exe",
-                        WorkingDirectory = exefolder
+                        WorkingDirectory = exefolder + @"\SPT",
                     }
                 };
                 launcherprocess.Start();
@@ -292,7 +292,7 @@ namespace Greed
 
         private void CloseEverything(object sender, RoutedEventArgs e)
         {
-            string exefolder = Directory.GetCurrentDirectory();
+            string exefolder = Directory.GetCurrentDirectory() + @"\SPT";
 
             Process[] serverProcesses = Process.GetProcessesByName("SPT.Server");
             {

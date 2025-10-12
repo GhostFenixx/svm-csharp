@@ -67,7 +67,7 @@ namespace ServerValueModifier
                 //Initialisation
                 Sections.Items itemLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, svmcfg);
+                Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, _cloner, svmcfg);
                 Sections.Traders tradersLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Services servicesLoad = new(logger, configServer, databaseService, _cloner, localeService, svmcfg);
                 Sections.Loot lootLoad = new(logger, configServer, databaseService, svmcfg);
