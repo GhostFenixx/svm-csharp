@@ -1,0 +1,170 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <Nullable>disable</Nullable>
+    <ImplicitUsings>enable</ImplicitUsings>
+    <UseWPF>true</UseWPF>
+    <ApplicationIcon>SVM.ico</ApplicationIcon>
+    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
+    <Title>Greed</Title>
+    <Authors>GhostFenixx</Authors>
+    <Description>A .Json loader creator with a GUI for SVM (Server Value Modifier) - A mod for SPT</Description>
+    <Copyright>© GhostFenixx 2025</Copyright>
+    <PackageIcon>SVMLOGO.png</PackageIcon>
+    <PlatformTarget>x64</PlatformTarget>
+    <PackageLicenseFile>LICENSE</PackageLicenseFile>
+    <FileVersion>2.0.0</FileVersion>
+    <EnableNETAnalyzers>False</EnableNETAnalyzers>
+    <CETCompat>false</CETCompat>
+    <Version>2.0.0</Version>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <Content Include="SVM.ico" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <EmbeddedResource Include="Resources\Dictionary-es-ES.xaml" />
+    <EmbeddedResource Include="Resources\Dictionary-zh-CN.xaml" />
+    <EmbeddedResource Include="Resources\Dictionary-uk-UA.xaml" />
+    <EmbeddedResource Include="Resources\Dictionary-ko-KR.xaml" />
+    <EmbeddedResource Include="Resources\Dictionary-en-US.xaml" />
+    <EmbeddedResource Include="Resources\Dictionary-ru-RU.xaml" />
+    <EmbeddedResource Include="Resources\faqCN.rtf" />
+    <EmbeddedResource Include="Resources\faqES.rtf" />
+    <EmbeddedResource Include="Resources\faqKR.rtf" />
+    <EmbeddedResource Include="Resources\faqUA.rtf" />
+    <EmbeddedResource Include="Resources\faqEN.rtf" />
+    <EmbeddedResource Include="Resources\faqRU.rtf" />
+    <EmbeddedResource Include="Resources\HelloCN.rtf" />
+    <EmbeddedResource Include="Resources\HelloEN.rtf" />
+    <EmbeddedResource Include="Resources\HelloES.rtf" />
+    <EmbeddedResource Include="Resources\HelloKR.rtf" />
+    <EmbeddedResource Include="Resources\HelloRU.rtf" />
+    <EmbeddedResource Include="Resources\HelloUA.rtf" />
+    <EmbeddedResource Include="Resources\HideSpecialIconGrids.dll" />
+    <Resource Include="Resources\HealthCN.png" />
+    <Resource Include="Resources\HealthUA.png" />
+    <Resource Include="Resources\Icons\icon_button_logout_over.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\HealthKO.png" />
+    <Resource Include="Resources\Factory720R1.png" />
+    <Resource Include="Resources\Forest720.png" />
+    <Resource Include="Resources\HealthEN.png" />
+    <Resource Include="Resources\HealthRU.png" />
+    <Resource Include="Resources\HealthES.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="ModernWpfUI" Version="0.9.6" />
+    <PackageReference Include="System.Text.Json" Version="8.0.5" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Resources\Bender.otf">
+      <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\EFTFONT.png" />
+    <Resource Include="Resources\Icons\extraction_point_icon_human_white.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\hideout_icon_black.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_bear.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_bitcoinfarm.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_Down.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_flea_market.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_itemtype_cont.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_library.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_placeoffame_old.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_profile_big.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_quest.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_random_big.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_requirement_fulfilled.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_requirement_locked.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_scav_case.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_shooting_range.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_stash.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_statscategory_looting.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_survived_big.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_switcher_generator_off.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_switcher_generator_on.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_system_big.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_Up.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_usec.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\icon_workbench.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Trade_BuyTab_Icon_Idle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\Icons\Trade_Sell_Icon_Idle.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Resources\SVMLOGO.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="LICENSE">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+    <None Update="Resources\SVMLOGO.png">
+      <Pack>True</Pack>
+      <PackagePath>\</PackagePath>
+    </None>
+  </ItemGroup>
+
+  <Import Project="..\Models\Models.projitems" Label="Shared" />
+
+</Project>

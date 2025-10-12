@@ -1,0 +1,66 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <MSBuildAllProjects Condition="'$(MSBuildVersion)' == '' Or '$(MSBuildVersion)' &lt; '16.0'">$(MSBuildAllProjects);$(MSBuildThisFileFullPath)</MSBuildAllProjects>
+    <HasSharedItems>true</HasSharedItems>
+    <SharedGUID>ae80397d-73d1-436c-8c77-7b4d776e878e</SharedGUID>
+  </PropertyGroup>
+  <PropertyGroup Label="Configuration">
+    <Import_RootNamespace>Models</Import_RootNamespace>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CaseSpaceManager\Case.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CaseSpaceManager\Cases.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CaseSpaceManager\CSM.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CaseSpaceManager\Pockets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\CaseSpaceManager\SecureContainers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Custom.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Flea\DynamicOffers.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Flea\FleaConditions.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Flea\Fleamarket.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Hideout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Regeneration.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Stash.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemData\AmmoStacks.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemData\Items.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ItemData\Keys.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Looting\AirdropContents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Looting\Airdrops.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Looting\Locations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Looting\Loot.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Looting\LootOnLocations.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\MainClass.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AI\AIChance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AI\BotDurability.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\AI\Bots.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\CharXP.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\DiedHealth.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\Health.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\Player.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\RaidMult.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\Skills.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PlayerData\Stats.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PMCData\AItoPMC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PMCData\PMC.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\PMCData\PMCChance.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Questing\DailyQuests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Questing\LevelRanges.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Questing\Quests.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Raiding\Exfils.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Raiding\RaidEvents.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Raiding\Raids.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Raiding\RaidStartup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ScavData\Scav.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\ScavData\SCAVPockets.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TraderServices\RepairBox.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\TraderServices\Services.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Trading\Fence.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Trading\LightKeeper.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Trading\TraderMarkup.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Trading\Traders.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Models\Trading\TraderSell.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="$(MSBuildThisFileDirectory)Models\AI\" />
+  </ItemGroup>
+</Project>
