@@ -3,6 +3,7 @@ using Greed.Models.Raiding;
 using SPTarkov.Common.Extensions;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Enums.RaidSettings;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
@@ -62,26 +63,26 @@ namespace ServerValueModifier.Sections
                 switch (svmconfig.Raids.RaidStartup.AIDifficulty)
                 {
                     case 0:
-                        inraid.RaidMenuSettings.AiAmount = "AsOnline";
+                        inraid.RaidMenuSettings.AiDifficulty = "AsOnline";
                         break;
                     case 1:
-                        inraid.RaidMenuSettings.AiAmount = "Easy";
+                        inraid.RaidMenuSettings.AiDifficulty = "Easy";
                         break;
                     case 2:
-                        inraid.RaidMenuSettings.AiAmount = "Medium";
+                        inraid.RaidMenuSettings.AiDifficulty = "Medium";
                         break;
                     case 3:
-                        inraid.RaidMenuSettings.AiAmount = "Hard";
+                        inraid.RaidMenuSettings.AiDifficulty = "Hard";
                         break;
                     case 4:
-                        inraid.RaidMenuSettings.AiAmount = "Impossible";
+                        inraid.RaidMenuSettings.AiDifficulty = "Impossible";
                         break;
                     case 5:
-                        inraid.RaidMenuSettings.AiAmount = "Random";
+                        inraid.RaidMenuSettings.AiDifficulty = "Random";
                         break;
                 }
-                globals.Configuration.TimeBeforeDeploy = svmconfig.Raids.RaidStartup.TimeBeforeDeployLocal;
-                globals.Configuration.TimeBeforeDeployLocal = svmconfig.Raids.RaidStartup.TimeBeforeDeployLocal;
+                globals.Configuration.TimeBeforeDeploy = (double)svmconfig.Raids.RaidStartup.TimeBeforeDeployLocal;
+                globals.Configuration.TimeBeforeDeployLocal = (double)svmconfig.Raids.RaidStartup.TimeBeforeDeployLocal;
                 inraid.RaidMenuSettings.BossEnabled = svmconfig.Raids.RaidStartup.EnableBosses;
                 inraid.RaidMenuSettings.ScavWars = svmconfig.Raids.RaidStartup.ScavWars;
                 inraid.RaidMenuSettings.TaggedAndCursed = svmconfig.Raids.RaidStartup.TaggedAndCursed;

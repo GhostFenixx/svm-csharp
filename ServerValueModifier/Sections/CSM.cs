@@ -159,18 +159,19 @@ namespace ServerValueModifier.Sections
                     case 3:
                         break;
                     case 4:
-                        slots[3] = cloner.Clone(slots[2]);
+                        slots.Add(cloner.Clone(slots[2]));
+                        //slots[3] = cloner.Clone(slots[2]);
                         slots[3].Id = "a8edfb0bce53d103d3f62b7b";
                         slots[3].Name = "SpecialSlot4";
                         slots[3].Parent = "a8edfb0bce53d103d3f62b9b";
                         //custompocket.Properties.Slots[3].Properties = custompocket.Properties.Slots[2].Properties; Why is this here? TODO CHECK REMOVE
                         break;
                     case 5://Sadly i can't recreate it the way it was in JS. TODO maybe?
-                        slots[3] = cloner.Clone(slots[2]);
+                        slots.Add(cloner.Clone(slots[2]));
                         slots[3].Id = "a8edfb0bce53d103d3f62b7b";
                         slots[3].Name = "SpecialSlot4";
                         slots[3].Parent = "a8edfb0bce53d103d3f62b9b";
-                        slots[4] = cloner.Clone(slots[2]);
+                        slots.Add(cloner.Clone(slots[2]));
                         slots[4].Id = "a8edfb0bce53d103d3f62b8b";
                         slots[4].Name = "SpecialSlot5";
                         slots[4].Parent = "a8edfb0bce53d103d3f62b9b";
