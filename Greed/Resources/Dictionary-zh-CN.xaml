@@ -1,0 +1,943 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+ <System:String xml:space="preserve" x:Key="LicenseText">Greed - 一个名为“Server Value Modifier”的SPT模组的 .Json 加载器创建工具
+由 GhostFenixx 独立开发
+使用 VS 2022 Tools 在 .NET 6 + ModernWPF（作者 Kinnara）上制作
+https://github.com/Kinnara/ModernWpf
+共享遵循协议： 个人使用源许可证 (PUSL) 
+详情请阅读：https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme 许可协议
+
+
+原文：
+Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
+Independent Application made by GhostFenixx
+Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+https://github.com/Kinnara/ModernWpf
+Shared by Personal Use Source License (PUSL) License
+For more info: read license on -https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
+</System:String>
+ <System:String xml:space="preserve" x:Key="DisclaimerText"> 免责声明
+ 该应用程序使用了电子游戏《逃离塔科夫》的素材/媒体资产，并链接到游戏官方维基百科WIKI，网址为“https://escapefromtarkov.fandom.com/”
+ 《逃离塔科夫》所有的内容和材料是其所有者“Battlestate Games Limited”的知识产权
+ 本应用程序的开发与“Battlestate Games Limited”以及其维基百科 无任何关联
+ 
+ 在AI PMC版块中，PMC名称由多个SPT社区的用户名组成，
+ 若您发现自己的名称在列表中感到不适，或发现某些名称无法接受 - 请报告给模组开发者GhostFenixx 或 中文译者Volcano
+ 
+原文：
+ DISCLAIMER
+This application uses Media and/or Materials from the Video Game "Escape from Tarkov" and links that leads to Game official wiki that can be accessed via `https://escapefromtarkov.fandom.com/`
+Escape from Tarkov content and materials are the intellectual property of their respective owners "Battlestate Games Limited".
+Developer of this application is not affiliated to "Battlestate Games Limited" nor their Wikis, in any way
+  
+In AI PMC Section, PMC Names consist of usernames of multiple SPT communities.
+If you find yourself uncomfortable to be in this list or you find certain name offensive - report to a mod developer.
+</System:String>
+ <System:String xml:space="preserve" x:Key="ThanksToText">关于SVM
+Ereshkigal：主要启发者，许多初始代码来源于Ereshkigal的模组，如AI装备、Aki配置器和AKI-AIO。
+Senko, Chomp 和其他SPT开发人员 DeadLeaves, sptlaggy：以某种方式协助或参与了开发，无论是代码片段的拥有者、积极开发该模组还是提供帮助。
+TheSpartacus：过渡到SPT 3.0.0以及版本之间的一般帮助
+相关UI（GFVE/GREED）：
+SerWolfik - 为GFVE/Greed提供图标。
+Lacyway - 在UI过渡方面提供了重大帮助，使我在WPF方面取得了良好的开端
+SSH_ - 提供带有图标的存档
+BattleStateGames - 创作这些图标。
+杂项：
+KMC - 将模组重新上传到SPT网站。
+Volcano - SVM的Oddba论坛代表
+Nexus4880 - '隐藏特殊图标'插件的创建者，为Case Space Manager提供支持
+Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - 测试人员，反馈
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar - 捐赠者
+本地化：
+韩文 - 루퍼, 고라니
+乌克兰文 - celebrutu
+中文 - Volcano
+所有为项目提供任何形式支持的人，无论是错误报告、与UI相关的反馈还是帮助解决问题。
+
+原文：
+Related to SVM:
+Ereshkigal - Main inspirator, a lot of initial code was used from Ereshkigal's mods, such as Bots loadouts, Aki Configurator and AKI-AIO.
+Senko, Chomp and other SPT Developers, RakTheGoose, Morgan, Assassin, DeadLeaves, sptlaggy - Assisted or is part of the development in one way or another, whether it be being the owner of code snippets used in this mod, to actively developing the mod or providing help.
+TheSpartacus - Transition to SPT 3.0.0 and general help between releases
+Related to UI (GFVE/GREED):
+SerWolfik - for GFVE/Greed icon.
+Lacyway - Major help with UI transition, giving me a head start with WPF
+SSH_ - Archive with Icons
+BattleStateGames - for creating those icons.
+Misc:
+KMC - Reuploading the mod onto the SPT website.
+Volcano - Oddba representative of SVM
+Nexus4880 - Creator of 'Hide Special Icon' Plugin for Case Space Manager
+Fire Hawk, Z3R0, Tabi - Testers, feedback
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains - Donations
+Localisation:
+Korean - 루퍼, 고라니
+Ukrainian - celebrutu
+Chinese - Volcano
+Everyone else who provided any kind of support to the project, whether bug reports, feedback related to UI or helped other to with issues.
+</System:String>
+ <!--MessageBoxes and/or Exception handlers-->
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM安装错误，没有位于“user\mods”路径中
+请按照Oddba论坛的服务器配置修改器帖子中的安装教程进行操作
+您仍然可以通过单击“Ok”继续，但不要指望 SVM 能够正常工作
+单击“Cancel”关闭应用程序。</System:String>
+ <System:String x:Key="FileNotFoundException">您尝试加载的文件不存在</System:String>
+ <System:String x:Key="CorruptedJSON">该文件已损坏或不适合加载为预设</System:String>
+ <System:String x:Key="NoAccess">无法读取文件。请检查是否为Windows权限问题？</System:String>
+ <System:String x:Key="NothingToLoad">无内容加载。未找到预设名。请先创建或选择一个已有预设</System:String>
+ <System:String x:Key="NothingToApply">无预设可应用。请先保存或选择一个已有预设</System:String>
+ <System:String xml:space="preserve" x:Key="OverridePreset">有相同名字的预设已经存在
+你是否需要覆盖？</System:String>
+ <System:String x:Key="PresetNameFail">无法保存预设。预设名中包含特殊字符</System:String>
+ <System:String x:Key="PresetNamedNullError"> 预设名'Null'用于保留未创建预设的情况，请不要将您的预设命名为该名称</System:String>
+ <System:String x:Key="RatioError">应用失败：跳蚤市场->AI报价生成设置->各货币报价的比例(百分比) 中的比例总和不为100。卢布，美元和欧元的总和应正好为100</System:String>
+ <System:String  xml:space="preserve" x:Key="PresetFolderDeleted">未找到预设文件夹
+呃...为什么要删除预设文件夹呢？</System:String>
+ <System:String xml:space="preserve" x:Key="NonameApplied">空预设名 - 无名称预设已应用
+或许您可以为预设设置一个名字来避免出现此消息？</System:String>
+ <System:String xml:space="preserve" x:Key="NonameLoaded">空预设名 - 无名称预设已加载
+要避免此消息 - 保存并选择具有自定义名称的预设。</System:String>
+ <System:String xml:space="preserve" x:Key="RunFailed">发生错误
+服务器和启动器很可能不在与游戏相同的文件夹中。</System:String>
+ <System:String xml:space="preserve" x:Key="ApplyFailedUnknown">操作取消
+发生错误，版块中是否存在不正确的类型或为空？</System:String>
+ <!--Popup Windows responses-->
+    <System:String x:Key="InstallPluginComplete">"HideSpecialIconGrids.dll"已成功安装到您的"\BepInEx\plugins"文件夹中</System:String>
+ <System:String x:Key="InstallPluginFailed">安装失败，找不到"\BepInEx\plugins"文件夹。</System:String>
+    <System:String x:Key="InstallationAlreadyDone">"HideSpecialIconGrids.dll"已经存在于您的"\BepInEx\plugins"文件夹中，已取消安装。</System:String>
+ <System:String xml:space="preserve" x:Key="SPTLink">点击'Ok'访问SPT Hub - 当前SPT的开发网页，
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="KofiLink">点击'Ok'访问Kofi.com - 一个支持开发者的平台，
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="FikaLink">点击'Ok'访问Project Fika Discord - SPT的社区之一，GhostFenixx在其中，
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="SPTWeb">点击'Ok'访问SPT网站 - 所有模组的SPT网页，
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="IDFinder">点击'Ok'访问SPT的物品查找网站 - 易于查询ID的SPT数据库
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="ModPage">点击'Ok'访问SVM模组页面，
+[注意 - 这会打开您的浏览器]</System:String>
+ <System:String xml:space="preserve" x:Key="WikiPage_Link">点击'Ok'访问官方Tarkov Wiki，
+[注意 - 这会打开您的浏览器]</System:String>
+
+ <!--Buttons-->
+ <System:String x:Key="ApplyButton">应用</System:String>
+ <System:String x:Key="Applied">已应用预设！</System:String>
+ <System:String x:Key="LoadButton">加载预设</System:String>
+ <System:String x:Key="Saved">已保存预设！</System:String>
+ <System:String x:Key="SaveButton">保存预设</System:String>
+ <System:String x:Key="Loaded">已加载预设！</System:String>
+ <!--Tab Control-->
+ <System:String x:Key="MainPage">主页</System:String>
+ <System:String x:Key="Items">库存和物品</System:String>
+ <System:String x:Key="AdvFeatures">进阶功能</System:String>
+ <System:String x:Key="faq">常见问题</System:String>
+ <System:String x:Key="Notes">预设笔记</System:String>
+ <System:String x:Key="Hideout">藏身处</System:String>
+ <System:String x:Key="Traders">商人</System:String>
+ <System:String x:Key="Services">商人服务</System:String>
+ <System:String x:Key="Loot">物资</System:String>
+ <System:String x:Key="Player">玩家与技能</System:String>
+ <System:String x:Key="Raid">战局设置</System:String>
+ <System:String x:Key="Fleamarket">跳蚤市场</System:String>
+ <System:String x:Key="Quests">可重复任务</System:String>
+ <System:String x:Key="CSM">容器空间修改</System:String>
+ <System:String x:Key="Bots">Boss 和 Scav</System:String>
+ <System:String x:Key="SCAV">玩家Scav</System:String>
+ <System:String x:Key="PMC">AI PMC</System:String>
+ <!--Menu Control-->
+ <System:String x:Key="Options">选项</System:String>
+ <System:String x:Key="Changelog">更新日志</System:String>
+ <System:String x:Key="Links">相关网站链接</System:String>
+ <System:String x:Key="Info">附加信息</System:String>
+ <System:String x:Key="Language">语言</System:String>
+ <!--Menu Tab Controls-->
+ <System:String x:Key="LoadLast">启动时加载上次加载​​的预设</System:String>
+ <System:String x:Key="RunServerAndLauncher">运行服务器和启动器</System:String>
+ <System:String x:Key="CloseServerAndLauncher">关闭服务器和启动器</System:String>
+ <System:String x:Key="PresetFolder">打开预设文件夹</System:String>
+ <System:String x:Key="Override">覆盖数值限制</System:String>
+ <System:String x:Key="About">关于该应用</System:String>
+ <System:String x:Key="Disclaimer">免责声明</System:String>
+ <System:String x:Key="ThanksTo">致谢:</System:String>
+ <System:String x:Key="License">许可协议</System:String>
+ 
+ <System:String x:Key="SPTHUB">SPT 官方Discord</System:String>
+ <System:String x:Key="SPTWEB">SPT 官网</System:String>
+ <System:String x:Key="ItemIDWeb">物品ID查询网站</System:String>
+ <System:String x:Key="ModWeb">Mod 网页</System:String>
+ <System:String x:Key="KoFi">Ko-Fi捐款链接</System:String>
+ <System:String x:Key="Fika">Project Fika Discord</System:String>
+ <System:String x:Key="WikiPage">塔科夫维基百科Wiki</System:String>
+
+ <!--Preset Notes Initial Text-->
+ <System:String x:Key="PresetInitialText">这是你的临时记事本，你可以随意使用它，它将保存在预设中</System:String>
+ <!--Items Section-->
+ <System:String x:Key="ItemPriceMult">全局物品价格 :</System:String>
+ <System:String x:Key="HeatFactor">武器发热 系数:</System:String>
+ <System:String x:Key="ExamineTime">检视物品 时间:</System:String>
+ <System:String x:Key="AmmoLoadSpeed">弹匣填充/卸下子弹 时间:</System:String>
+ <System:String x:Key="LootExp">拾取物品 经验:</System:String>
+ <System:String x:Key="ExamineExp">检视物品 经验:</System:String>
+ <System:String x:Key="WeightChanger">物品重量 系数:</System:String>
+ <System:String x:Key="MalfunctChanceMult">武器故障 概率:</System:String>
+ <System:String x:Key="MisfireChance">武器卡壳 概率:</System:String>
+ <System:String x:Key="FragmentMult">子弹碎弹 概率:</System:String>
+ <System:String x:Key="ExamineKeys">包括 钥匙</System:String>
+ <System:String x:Key="WeaponHeatOff">武器过热 禁用</System:String>
+ <System:String x:Key="SMGToHolster">允许 冲锋枪 放入 副武器栏</System:String>
+ <System:String x:Key="PistolToMain">允许 手枪 放入 主武器栏</System:String>
+ <System:String x:Key="AllExaminedItems">全物品检视</System:String>
+ <System:String x:Key="EquipRigsWithArmors">允许 同时穿戴 防弹背心 和 防弹胸挂</System:String>
+ <System:String x:Key="RemoveSecureContainerFilters">移除安全箱限制</System:String>
+ <System:String x:Key="AddSignalPistolToSpec">允许 信号枪 放入 特殊装备栏</System:String>
+ <System:String x:Key="SurvCMSToSpec">允许 手术包 放入 特殊装备栏</System:String>
+ <System:String x:Key="SurvCMSSecConBlock">限制 手术包 放入 安全箱</System:String>
+ <System:String x:Key="RemoveRaidRestr">移除 物品带入战局限制</System:String>
+ <System:String x:Key="RaidDrop">移除 "无法在战局中丢弃"限制</System:String>
+ <System:String x:Key="RemoveBackpacksRestrictions">移除 背包限制</System:String>
+ <System:String x:Key="NoGearPenalty">移除 装备负面属性</System:String>
+
+ <!--Keys Section-->
+ <System:String x:Key="Keys">钥匙</System:String>
+ <!--<System:String x:Key="RemoveKeysUsageNumber">钥匙/钥匙卡 无限次使用</System:String>-->
+ <System:String x:Key="InfiniteKeycards">无限使用 钥匙卡</System:String>
+ <System:String x:Key="InfiniteKeys">无限使用 钥匙</System:String>
+ <System:String x:Key="AvoidOddKeys">除奇数次数钥匙</System:String>
+ <System:String x:Key="AvoidResidential">除实验室生活区钥匙卡</System:String>
+ <System:String x:Key="IgnoreAccessKeycard">无需实验室白卡</System:String>
+ <System:String x:Key="AvoidSingleKeyCards">除一次性钥匙卡</System:String>
+ <System:String x:Key="AvoidSingleKeys">除一次性钥匙</System:String>
+ <System:String x:Key="AvoidMarkedKeys">除邪教符号钥匙</System:String>
+ <System:String x:Key="KeyUseMult">钥匙使用次数 倍率:</System:String>
+ <System:String x:Key="KeycardUseMult">钥匙卡使用次数 倍率:</System:String>
+ <System:String x:Key="KeyDurabilityThreshold">使用次数 上限:</System:String>
+ <System:String x:Key="KeyCardDurabilityThreshold">钥匙卡使用次数不得超过:</System:String>
+ <!--Ammo Stack Section-->
+ <System:String x:Key="AmmoStack">弹药堆叠数</System:String>
+ <System:String x:Key="MarksmanRound">精确射手步枪 子弹:</System:String>
+ <System:String x:Key="RifleRound">突击步枪 子弹:</System:String>
+ <System:String x:Key="ShotgunRound">霰弹枪 子弹:</System:String>
+ <System:String x:Key="PistolRound">手枪/冲锋枪 子弹:</System:String>
+ <!--Currency stack Section-->
+    <System:String x:Key="CurrencyStack">货币堆叠数</System:String>
+    <System:String x:Key="Dollars">美刀:</System:String>
+ <System:String x:Key="Euros">欧元:</System:String>
+ <System:String x:Key="GPCoin">GP币:</System:String>
+ <System:String x:Key="RoublesOrDefault">卢布:</System:String>
+ <!--Individual Item Changer Section-->
+ <System:String x:Key="Changer">物品属性修改器 (详见 常见问题)</System:String>
+ <System:String x:Key="IDDefault">默认IIC:</System:String>
+ <System:String x:Key="IDParent">父级IIC:</System:String>
+ <System:String x:Key="IDPrice">价格修改:</System:String>
+ <System:String x:Key="IDFilter">过滤IIC:</System:String>
+
+ <!--Hideout Section-->
+ <System:String x:Key="FuelConsumptionRate">燃料 消耗倍率:</System:String>
+ <System:String x:Key="NoFuelMult">空燃料 效率倍率:</System:String>
+ <System:String x:Key="AirFilterRate">空气过滤单元 消耗倍率:</System:String>
+ <System:String x:Key="GPUBoostRate">显卡挖矿 提升倍率:</System:String>
+ <System:String x:Key="WaterFilterRate">滤水器 消耗倍率:</System:String>
+ <System:String x:Key="WaterFilterTime">纯净水 生产时间(分钟):</System:String>
+ <System:String x:Key="MaxBitcoins">比特币存储数 上限:</System:String>
+ <System:String x:Key="BitcoinTime">比特币 生产时间(分钟):</System:String>
+ <System:String x:Key="RemoveConstructionsRequirements">去除藏身处设施 材料 要求</System:String>
+ <System:String x:Key="RemoveConstructionsFIRRequirements">移除藏身处建材“在战局中找到”要求</System:String>
+ <System:String x:Key="RemoveSkillRequirements">去除藏身处设施 技能 要求</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements">去除藏身处设施 商人等级 要求</System:String>
+ <System:String x:Key="CultistMaxRewards">邪教圈 奖励数量:</System:String>
+ <System:String x:Key="CultistTime">邪教圈 供奉时间:</System:String>
+
+ <!--Hideout Multipliers-->
+ <System:String x:Key="HideoutProdMult">藏身处 生产时间:</System:String>
+ <System:String x:Key="HideoutConstMult">藏身处 建造时间:</System:String>
+ <System:String x:Key="ScavCaseTime">Scav宝箱 收集时间:</System:String>
+ <System:String x:Key="ScavCasePrice">Scav宝箱 报价倍率:</System:String>
+ <!--Offline Regeneration Section-->
+ <System:String x:Key="Regeneration">恢复</System:String>
+ <System:String x:Key="OfflineRegen">移除战局外状态恢复</System:String>
+ <System:String x:Key="HealthRegen">基础健康值 恢复倍率:</System:String>
+ <System:String x:Key="HideoutHealth">健康值</System:String>
+ <System:String x:Key="HideoutEnergy">能量</System:String>
+ <System:String x:Key="HideoutHydration">水分</System:String>
+ <System:String x:Key="HydrationRegen">基础水分 恢复倍率:</System:String>
+ <System:String x:Key="EnergyRegen">基础能量 恢复倍率:</System:String>
+ <System:String x:Key="HideoutRegen">您可以在下方移除藏身处提供的恢复加成</System:String>
+ <!--Stash Section-->
+ <System:String x:Key="Stash">仓库容量</System:String>
+ <System:String x:Key="StashLvl1">仓库 1级(Standard):</System:String>
+ <System:String x:Key="StashLvl2">仓库 2级(Left Behind):</System:String>
+ <System:String x:Key="StashLvl3">仓库 3级(Prepare to Escape):</System:String>
+ <System:String x:Key="StashLvl4">仓库 4级(Edge of Darkness):</System:String>
+ <System:String x:Key="StashTUE">未闻者版(The Unheard Edition):</System:String>
+
+ <!--Traders Section-->
+ <System:String x:Key="TradersMisc">商人杂项</System:String>
+ <System:String x:Key="FIRTrade">商人在售的物品为"在战局中找到"</System:String>
+ <System:String x:Key="UnlockJaeger">解锁 耶格Jaeger</System:String>
+ <System:String x:Key="UnlockRef">解锁 竞技场商人Ref</System:String>
+ <System:String x:Key="AllQuestsAvailable">所有任务可用</System:String>
+ <System:String x:Key="RemoveTimeCondition">移除 新任务时间限制</System:String>
+ <System:String x:Key="TradersLvl4">全商人 4(皇冠)等级</System:String>
+ <System:String x:Key="FIRRestrictsQuests">移除 任务"在战局中找到"要求</System:String>
+ <System:String x:Key="RemoveTradeLimits">移除 所有交易限制</System:String>
+ <System:String x:Key="IncreaseAssort">增加 商人库存数量</System:String>
+ <System:String x:Key="QuestRedeemTime">任务奖励 保存时间 (小时):</System:String>
+ <System:String x:Key="StockTime">商人 补货时间(分钟):</System:String>
+ <System:String x:Key="MinDurabSell">装备出售 耐久度下限:</System:String>
+ <System:String x:Key="PlantingTime">安放任务道具 所需时间（倍率）:</System:String>
+ <System:String x:Key="PriceMarkup">打折出售 (百分比)</System:String>
+ <System:String x:Key="PriceAssort">加价购买 (倍率)</System:String>
+ <System:String x:Key="TraderOffers">商人 总商品库存量（倍率）</System:String>
+ <System:String x:Key="TraderRestrictions">商人 每个商品存货限制（倍率）:</System:String>
+ <System:String x:Key="CurrencyOffers">货币</System:String>
+ <System:String x:Key="BarterOffers">以物易物</System:String>
+ <System:String x:Key="UnlockQuestAssort">商人 显示任务解锁物品</System:String>
+ <!--LightKeeper Section -->
+ <System:String x:Key="LightKeeperEntry">Lightkeeper 可访问时间（分钟）:</System:String>
+ <System:String x:Key="LightKeeperLeave">离开小岛 所需时间（分钟）:</System:String>
+
+ <!--Fence Section-->
+ <System:String x:Key="FenceSettings">黑商Fence 设置</System:String>
+ <System:String x:Key="FenceAmountOnSale">物品 在售数量:</System:String> 
+ <System:String x:Key="FencePremiumAmountOnSale">额外物品(6+声望) 增加数量:</System:String>
+ <System:String x:Key="FencePresetCount">武器 在售数量:</System:String>
+ <System:String x:Key="FencePriceMult">物品 价格倍率:</System:String>
+ <System:String x:Key="FencePresetMult">武器 价格倍率:</System:String>
+ <System:String x:Key="FenceGunDurability">枪支 耐久度:</System:String>
+ <System:String x:Key="FenceArmorDurability">护甲 耐久度:</System:String>
+ <System:String x:Key="FenceBlacklist">黑商Fence 在售黑名单:</System:String>
+
+ <!--Services Section--> 
+ <!--insurance Section-->
+ <System:String x:Key="Insurance">保险</System:String>
+ <System:String x:Key="InsuranceStorageTime">保险物品 保存时间(小时):</System:String>
+ <System:String x:Key="InsuranceTradersTime">商人物品 回保时间(小时):</System:String>
+ <System:String x:Key="InsuranceTradersChance">回保率(百分比):</System:String>
+ <System:String x:Key="InsuranceTradersPriceMult">保险 价格倍率</System:String>
+ <System:String x:Key="InsuranceMinimumTime">保险回保 最短时间(小时):</System:String>
+ <System:String x:Key="InsuranceMaximumTime">保险回保 最长时间(小时):</System:String>
+ <System:String x:Key="InsuranceInterval">检查保险 间隔时间(秒):</System:String>
+ <System:String x:Key="InsuranceTimeOverride">保险 覆盖时间(秒):</System:String>
+ <System:String x:Key="InsuranceAttachmentChance">武器配件保留 概率</System:String>
+ <System:String x:Key="HealMarkup">治疗加价</System:String>
+ <!--Repair Section-->
+ <System:String x:Key="Repair">维修</System:String>
+ <System:String x:Key="RepairMarkup">维修价格 加价倍率:</System:String>
+ <System:String x:Key="ArmorSkillMult">每点维修 获得"轻/重型护甲" 经验</System:String>
+ <System:String x:Key="WeaponMaintenanceSkillMult">每点维修 获得"武器维护" 经验</System:String>
+ <System:String x:Key="IntellectSkillMult">每点维修 获得"智力" 经验</System:String>
+ <System:String x:Key="WeaponRepairKit">武器维修套件:</System:String>
+ <System:String x:Key="ArmorRepairKit">护甲维修套件:</System:String>
+ <System:String x:Key="RepairKit">维修套件:</System:String>
+ <System:String x:Key="IntellectSkillLimit">每次维修 获得“智力” 经验上限</System:String>
+ <System:String x:Key="NoRandomDamageOnRepair">维修 不产生随机损伤</System:String>
+ <System:String x:Key="NoPermDamageWeapon">武器维修 不损耗耐久</System:String>
+ <System:String x:Key="NoPermDamageArmor">护甲维修 不损耗耐久</System:String>
+ <!--Clothing Section-->
+ <System:String x:Key="Clothing">服装</System:String>
+ <System:String x:Key="ClothesAnySide">解锁 双方阵营服装</System:String>
+ <System:String x:Key="ClothesFree">服装免费</System:String>
+ <System:String x:Key="ClothesLevelUnlock">移除 服装等级/声望要求</System:String>
+ <!--Healing Section-->
+ <System:String x:Key="HealthMarkup">治疗价格</System:String>
+ <System:String x:Key="FreeHealLvl">免费治疗 等级限制:</System:String>
+ <System:String x:Key="FreeHealRaids">免费治疗 战局数限制:</System:String>
+ <System:String x:Key="TherapistHealthPrice">Therapist治疗 价格倍率</System:String>
+ <System:String x:Key="Lvl1">1 级信任度:</System:String>
+ <System:String x:Key="Lvl2">2 级信任度:</System:String>
+ <System:String x:Key="Lvl3">3 级信任度:</System:String>
+ <System:String x:Key="Lvl4">4 级信任度:</System:String>
+ <!--Loot Section-->
+ <System:String x:Key="LooseLoot">散落物资</System:String>
+ <System:String x:Key="ContainerLoot">容器物资</System:String>
+ <System:String x:Key="AllContainers">生成所有容器</System:String>
+ <System:String x:Key="LocationsLoot">地图物资倍率</System:String>
+ <!--Airdrop Section-->
+ <System:String x:Key="Airdrops">空投</System:String>
+ <System:String x:Key="AirdropsTimeMinMax">空投 冷却时间(分钟):</System:String>
+ <System:String x:Key="AirdropChance">地图空投 概率(百分比)</System:String>
+
+ <!--Unified names of fields inside crates and expander headers-->
+ <System:String x:Key="Mixed">混合 空投内容</System:String>
+ <System:String x:Key="WepArmor">武器箱补给 空投内容</System:String>
+ <System:String x:Key="Medical">医疗物资补给 空投内容</System:String>
+ <System:String x:Key="BarterCrate">物资补给 空投内容</System:String>
+
+ <System:String x:Key="Guns">枪械:</System:String>
+ <System:String x:Key="BarterLoot">交换用物品:</System:String>
+ <System:String x:Key="Gear">装备:</System:String>
+ <System:String x:Key="WepCrates">封闭武器箱:</System:String>
+
+ <!--Player Section-->
+ <System:String x:Key="SkillProgMult">通用技能 经验倍率:</System:String>
+ <System:String x:Key="WeaponSkillMult">武器技能 经验倍率:</System:String>
+ <System:String x:Key="HydrationLoss">水分 消耗倍率:</System:String>
+ <System:String x:Key="EnergyLoss">能量 消耗倍率:</System:String>
+ <System:String x:Key="BlackStomach">黑胃能量/水分 消耗倍率:</System:String>
+
+ <System:String x:Key="Skills">技能升级效率</System:String>
+ <System:String x:Key="SkillMinEffect">技能疲劳状态 最低经验收益:</System:String>
+ <System:String x:Key="SkillFatiguePerPoint">每点技能 增加疲劳:</System:String>
+ <System:String x:Key="SkillFreshEffect">技能增益状态 经验获取倍率:</System:String>
+ <System:String x:Key="SkillFPoints">技能增益状态 技能点数:</System:String>
+ <System:String x:Key="SkillPointsBeforeFatigue">进入技能疲劳状态 技能点数:</System:String>
+ <System:String x:Key="SkillFatigueReset">技能疲劳状态 重置时间(秒):</System:String>
+
+ <System:String x:Key="DiedHealth">战局结束 健康状态</System:String>
+ <System:String x:Key="Death">死亡后肢体 健康倍率:</System:String>
+ <System:String x:Key="Blacked">肢体黑化 健康倍率:</System:String>
+ <System:String x:Key="Savehealth">战局结束 保存健康状态</System:String>
+ <System:String x:Key="Saveeffects">战局结束 保存效果 (骨折/流血等)</System:String>
+
+ <System:String x:Key="RaidMult">战局结束 经验倍率</System:String>
+ <System:String x:Key="MIA">行动中失踪(MIA):</System:String>
+ <System:String x:Key="Survived">幸存撤离:</System:String>
+ <System:String x:Key="Killed">阵亡:</System:String>
+ <System:String x:Key="Runner">匆匆逃离:</System:String>
+
+ <System:String x:Key="CharXP">战局中角色经验值XP</System:String>
+ <System:String x:Key="ScavKill">击杀Scav:</System:String>
+ <System:String x:Key="PMCKill">击杀PMC:</System:String>
+ <System:String x:Key="ScavHMult">爆头 经验倍率:</System:String>
+ <System:String x:Key="PMCHMult">PMC爆头 经验倍率:</System:String>
+
+ <System:String x:Key="PMCHealth">PMC 健康值</System:String>
+ 
+ <System:String x:Key="PMCStats">PMC 状态</System:String>
+ <System:String x:Key="MaxHydration">水分 最大值:</System:String>
+ <System:String x:Key="MaxEnergy">能量 最大值:</System:String>
+ 
+ <System:String x:Key="Stamina">耐力</System:String>
+ <System:String x:Key="UnlimitedStamina">启动无限耐力</System:String>
+ <System:String x:Key="FallDamage">关闭跌落伤害</System:String>
+ <System:String x:Key="MaxStamina">耐力 最大值:</System:String>
+ 
+ <System:String x:Key="HandsStamina">耐力(上肢)</System:String>
+ <System:String x:Key="LegsStamina">耐力(下肢)</System:String>
+ <System:String x:Key="StaminaRegenRate">耐力 恢复率:</System:String>
+ <System:String x:Key="StaminaStanceConsumption">不同姿态 耐力消耗倍数:</System:String>
+ <System:String x:Key="Standing">站立姿态</System:String>
+ <System:String x:Key="LayingDown">匍匐姿态</System:String>
+ <System:String x:Key="Crouching">半蹲姿态</System:String>
+ <System:String x:Key="JumpConsumption">跳跃 消耗倍率:</System:String>
+ <System:String x:Key="StanceSwitchConsumption">切换姿态 消耗倍率:</System:String>
+ <!--Raid Settings Section-->
+ <System:String x:Key="Removelabkey">移除 实验室白卡限制</System:String>
+ <System:String x:Key="LabInsurance">实验室 保险生效</System:String>
+ <System:String x:Key="SafeExit">安全拔线</System:String>
+ <System:String x:Key="SaveGearAfterDeath">软核模式</System:String>
+ <System:String x:Key="NoRunThrough">移除 '幸存'状态撤离条件</System:String>
+ <System:String x:Key="SaveQuestItems">阵亡保留任务道具</System:String>
+ <System:String x:Key="SandboxAccessLevel">新手"中心区" 等级限制</System:String>
+ <System:String x:Key="ExtractsSettings">撤离 设置</System:String>
+ <System:String x:Key="RaidTime">额外战局时间（分钟）:</System:String>
+ <System:String x:Key="Timeacceleration">战局时间 加速倍率:</System:String>
+ <System:String x:Key="ChanceExtracts">随机撤离点 始终可用</System:String>
+ <System:String x:Key="ExtendedExtracts">撤离点 无视玩家出身点</System:String>
+ <System:String x:Key="GearExtract">移除 撤离点"冰镐和绳索"限制</System:String>
+ <System:String x:Key="ArmorExtract">移除 撤离点"不能穿护甲"限制</System:String>
+ <System:String x:Key="NoBackpack">移除 撤离点"不能穿背包"限制</System:String>
+ <System:String x:Key="ForceTransitStash">转移点仓库 尺寸</System:String>
+ <!--Coop/Car Section-->
+ <System:String x:Key="CarAndCoop">载具/合作撤离点</System:String>
+ <System:String x:Key="FreeCoop">合作撤离点 无条件限制</System:String>
+ <System:String x:Key="CoopPaid">合作撤离点 改为付费撤离</System:String>
+ <System:String x:Key="FenceGift">移除 黑商Fence合作撤离奖励</System:String>
+ <System:String x:Key="CarExtractTime">载具撤离点 等待时间(秒):</System:String>
+ <System:String x:Key="CoopExitPrices">合作撤离点 价格</System:String>
+ <System:String x:Key="CarExitPrices">载具撤离点 价格</System:String>
+
+ <!--BTR Section-->
+ <System:String x:Key="BTR">BTR</System:String>
+ <System:String x:Key="ForceBTRStash">BTR储物空间 尺寸</System:String>
+ <System:String x:Key="ForceBTRFriendly">BTR始终可互动</System:String>
+ <System:String x:Key="BTRTaxiPrice">乘坐 价格(卢布):</System:String>
+ <System:String x:Key="BTRCoverPrice">火力支援 价格(卢布):</System:String>
+ <System:String x:Key="BTRPriceMult">不同阵营 价格倍率:</System:String>
+ <System:String x:Key="BTRTimeMin">最短生成时间窗口（分钟）:</System:String>
+ <System:String x:Key="BTRTimeMax">最久生成时间窗口（分钟）:</System:String>
+ <System:String x:Key="BTRChance">BTR生成概率（百分比）:</System:String>
+ <System:String x:Key="Usec">USEC</System:String>
+ <System:String x:Key="Bear">BEAR</System:String>
+ 
+ <!--Events Section-->
+ <System:String x:Key="Events">活动事件</System:String>
+ <System:String x:Key="RaidersEverywhere">全部Scav变成Raider</System:String>
+    <System:String x:Key="AITypeOverride">将默认SCAV类型覆盖为：</System:String>
+ <System:String x:Key="BossesOnReserve">储备站 全Boss</System:String>
+ <System:String x:Key="IncludeStreetBosses">包括 塔科夫街区Boss</System:String>
+ <System:String x:Key="BossesOnCustoms">海关 全Boss</System:String>
+ <System:String x:Key="BossesOnHealthResort">海岸线疗养院 全Boss</System:String>
+ <System:String x:Key="HealthResortIncludeGuards">包括 Boss保镖</System:String>
+ <System:String x:Key="TagillaInterchange">立交桥 生成Killa+大锤组合</System:String>
+ <System:String x:Key="GoonsFactory">工厂 三狗刷新概率:</System:String>
+ <System:String x:Key="KillaFactory">工厂 Killa刷新概率:</System:String>
+ <System:String x:Key="Halloween">万圣节活动</System:String>
+ <System:String x:Key="DisableZombies">禁用丧尸</System:String>
+ <System:String x:Key="RandomInfectionLevel">全图随机感染等级</System:String>
+ <System:String x:Key="Christmas">圣诞节活动</System:String>
+ <System:String x:Key="DisableEvents">关闭正在进行的活动事件</System:String>
+ <System:String x:Key="GlukharLabs">实验室 生成格鲁哈</System:String>
+ <System:String x:Key="Bloodhounds">寻血猎犬BloodHunter 生成概率</System:String>
+ <System:String x:Key="RedBlueEvent">配件商Skier/美商Peacekeepers 小队 生成概率</System:String>
+ <System:String x:Key="DisableHalloweenAIFriendly">禁用停战状态</System:String>
+ <System:String x:Key="NonSeasonalQuests">禁用季节活动任务</System:String>
+ <System:String x:Key="CultistBosses">邪教徒Boss 及 生成概率:</System:String>
+ <!--Raid Startup Section-->
+ <System:String x:Key="RaidStartup">战局开局 设置</System:String>
+ <System:String x:Key="Cursed">被标记诅咒</System:String>
+ <System:String x:Key="MIARaid">战局结束时行动中消失(MIA)</System:String>
+ <System:String x:Key="LootRaid">练习模式</System:String>
+ <System:String x:Key="AIDifficulty">AI 难度</System:String>
+ <System:String x:Key="AIAmount">AI 数量</System:String>
+ <System:String x:Key="DeployTimer">战局部署倒计时</System:String>
+ <System:String x:Key="EnableBosses">Boss 启动</System:String>
+ <System:String x:Key="ScavWars">Scav 内战</System:String>
+
+ <System:String x:Key="AsOnline">同在线</System:String>
+ <System:String x:Key="High">高</System:String>
+ <System:String x:Key="Horde">排山倒海</System:String>
+ <System:String x:Key="Low">低</System:String>
+ <System:String x:Key="Medium">中等</System:String>
+ <System:String x:Key="Impossible">地狱</System:String>
+ <System:String x:Key="Easy">简单</System:String>
+ <System:String x:Key="NoBots">无</System:String>
+ <System:String x:Key="Hard">困难</System:String>
+ <System:String x:Key="Random">随机</System:String>
+
+ <!--Weather Section-->
+ <System:String x:Key="ForceSeason">强制天气季节</System:String>
+ <System:String x:Key="Season">季节类型:</System:String>
+ <System:String x:Key="Summer">夏季</System:String>
+ <System:String x:Key="Autumn">秋季</System:String>
+ <System:String x:Key="Winter">冬季</System:String>
+ <System:String x:Key="Spring">春季</System:String>
+ <System:String x:Key="Storm">暴雨</System:String>
+ 
+ <!--Fleamarket Section-->
+ <System:String x:Key="PlayerFlea">跳蚤市场 玩家出售/购买</System:String>
+ <System:String x:Key="FleaMarketLevel">跳蚤市场 解锁等级:</System:String>
+ <System:String x:Key="EnableFees">启动 跳蚤税</System:String>
+ <System:String x:Key="Sell_chance">物品 基础出售概率(百分比):</System:String>
+ <System:String x:Key="Sell_mult">出售概率 倍率:</System:String>
+ <System:String x:Key="RepGain">每赚取10万卢布 评价增加:</System:String>
+ <System:String x:Key="RepLoss">每花费10万卢布"跳蚤税" 评价损失:</System:String>
+ <System:String x:Key="Fleatime">物品 到期时间(分钟):</System:String>
+ <System:String x:Key="FleaFIR">跳蚤购买物品为"在战局中找到"</System:String>
+ <System:String x:Key="FleaNoFIRSell">跳蚤只能出售"在战局中找到"的物品</System:String>
+ <System:String x:Key="DisableBSGList">关闭 BSG跳蚤黑名单 (不修复已经在出售的)</System:String>
+ <System:String x:Key="EventOffers">允许 非活动事件时出售活动物品</System:String>
+ <System:String x:Key="OverrideOffers">覆盖 原跳蚤报价系统</System:String>
+ <System:String x:Key="SellOffersAmount">报价数量:</System:String>
+ <System:String x:Key="AIOffers">AI报价 生成设置</System:String>
+ <System:String x:Key="NonStack">报价 非堆叠物品数量:</System:String>
+ <System:String x:Key="Stack">报价 可堆叠物品数量:</System:String>
+ <System:String x:Key="OffersPerItem">每种物品的报价数量:</System:String>
+ <System:String x:Key="PriceRange">价格范围:</System:String>
+ <System:String x:Key="OfferTime">到期时间:</System:String>
+ <System:String x:Key="FleaConditions">报价 磨损状况(百分比)</System:String>
+ <System:String x:Key="OffersRatio">各货币比例(百分比)</System:String>
+ <System:String x:Key="ExpireThreshold">新报价覆盖旧报价 时间(分钟):</System:String>
+    <System:String x:Key="BundleOfferChance">物品打包报价出售 概率(百分比):</System:String>
+
+    <!--CSM Section-->
+ <System:String x:Key="Cases">容器 / 箱子</System:String>
+ <System:String x:Key="RemoveFilters">移除限制</System:String>
+ <System:String x:Key="MoneyCase">钱箱:</System:String>
+ <System:String x:Key="SimpleWallet">简易钱包:</System:String>
+ <System:String x:Key="WZWallet">WZ钱包:</System:String>
+ <System:String x:Key="GrenadeCase">手榴弹箱:</System:String>
+ <System:String x:Key="ItemsCase">物品箱:</System:String>
+ <System:String x:Key="WeaponCase">武器箱:</System:String>
+ <System:String x:Key="LuckyScav">幸运Scav垃圾箱:</System:String>
+ <System:String x:Key="AmmunitionCase">弹药箱:</System:String>
+ <System:String x:Key="MagazineCase">弹匣箱:</System:String>
+ <System:String x:Key="DogtagCase">狗牌包:</System:String>
+ <System:String x:Key="MedicineCase">医疗物品箱:</System:String>
+ <System:String x:Key="ThiccItemsCase">T H I C C物品箱:</System:String>
+ <System:String x:Key="ThiccWeaponCase">T H I C C武器箱:</System:String>
+ <System:String x:Key="SiccCase">小型S I C C包:</System:String>
+ <System:String x:Key="Keytool">钥匙收纳器:</System:String>
+ <System:String x:Key="DocumentsCase">文件包:</System:String>
+ <System:String x:Key="PistolCase">手枪收纳箱:</System:String>
+ <System:String x:Key="Holodilnick">Mr. Holodilnick保温箱:</System:String>
+ <System:String x:Key="InjectorCase">注射器收纳盒:</System:String>
+ <System:String x:Key="KeycardHolderCase">钥匙卡收纳盒:</System:String>
+ <System:String x:Key="GKeychain">Gingy钥匙串:</System:String>
+ <System:String x:Key="KeysCase">钥匙箱:</System:String>
+ <System:String x:Key="StreamerCase">主播物品箱:</System:String>
+ <System:String x:Key="ArmorPlateCase">防弹插板箱:</System:String>
+ <!--Secure case Section-->
+ <System:String x:Key="SecureContainers">安全箱</System:String>
+ <System:String x:Key="Alpha">Alpha:</System:String>
+ <System:String x:Key="Beta">Beta:</System:String>
+ <System:String x:Key="Gamma">Gamma:</System:String>
+ <System:String x:Key="GammaTUE">Gamma（蓝边）:</System:String>
+ <System:String x:Key="Epsilon">Epsilon:</System:String>
+ <System:String x:Key="Kappa">Kappa:</System:String>
+ <System:String x:Key="DesecratedKappa">Kappa（亵渎版）:</System:String>
+ <System:String x:Key="WaistPouch">腰包:</System:String>
+ <System:String x:Key="Dev">开发者Developer:</System:String>
+ <!--PMC Pockets Section-->
+ <System:String x:Key="Pockets">PMC口袋:</System:String>
+ <System:String x:Key="SpecsAmount">特殊装备栏槽位数量:</System:String>
+ <System:String x:Key="Size">大小:</System:String>
+ <System:String x:Key="Width">宽度:</System:String>
+ <System:String x:Key="Height">高度:</System:String>
+ <System:String x:Key="Columns">列:</System:String>
+ <System:String x:Key="FirstCell">1号口袋:</System:String>
+ <System:String x:Key="SecondCell">2号口袋:</System:String>
+ <System:String x:Key="ThirdCell">3号口袋:</System:String>
+ <System:String x:Key="FourthCell">4号口袋:</System:String>
+ <System:String x:Key="CasesInSpec">允许下列容器放入特殊装备栏</System:String>
+ <System:String x:Key="InstallCSMPlugin">点击此处安装'移除特殊装备栏背景图标'</System:String>
+ <System:String xml:space="preserve" x:Key="InstallCSMPlugin_Tooltip">会在'Bepinex/plugins'路径中安装该插件
+  用来隐藏特殊装备栏中的背景图标</System:String>
+
+
+ <!--Quests Section-->
+
+ <System:String x:Key="QuestRepToZero">移除 重置任务声望惩罚</System:String>
+ <System:String x:Key="QuestCostMult">重置任务 费用倍率</System:String>
+ <System:String x:Key="DailyQuests">每日任务</System:String>
+ <System:String x:Key="WeeklyQuests">每周任务</System:String>
+ <System:String x:Key="ScavQuests">Scav任务</System:String>
+ <System:String x:Key="QuestLifespan">任务时限(分钟):</System:String>
+ <System:String x:Key="AmountofQuests">任务数量(每轮):</System:String>
+    <System:String x:Key="QuestLevel">等级要求:</System:String>
+    <System:String x:Key="LR1">[1-15级时]</System:String>
+    <System:String x:Key="LR2">[16-40级时]</System:String>
+    <System:String x:Key="LR3">[41-100级时]</System:String>
+    <System:String x:Key="MinKills">最少要求击杀数:</System:String>
+    <System:String x:Key="MaxKills">最多要求击杀数:</System:String>
+    <System:String x:Key="MinItems">最少物品数量:</System:String>
+    <System:String x:Key="MaxItems">最多物品数量:</System:String>
+    <System:String x:Key="MinExtracts">最少撤离次数:</System:String>
+    <System:String x:Key="MaxExtracts">最多撤离次数:</System:String>
+    <System:String x:Key="MinSpecExits">最少指定出口数量:</System:String>
+    <System:String x:Key="MaxSpecExits">最多指定出口数量:</System:String>
+
+    <System:String x:Key="Types">任务类型:</System:String>
+ <System:String x:Key="Reroll">免费重随:</System:String>
+ <System:String x:Key="RewardScale">基于等级设置任务奖励</System:String>
+ <System:String x:Key="Levels">等级:</System:String>
+ <System:String x:Key="Experience">经验:</System:String>
+ <System:String x:Key="ItemsReward">物品奖励:</System:String>
+ <System:String x:Key="Reputation">声望:</System:String>
+ <System:String x:Key="SkillPoint">技能点数:</System:String>
+ <System:String x:Key="SkillChance">获得技能奖励 概率:</System:String>
+
+
+ <System:String x:Key="Elimination">歼灭</System:String>
+ <System:String x:Key="Exploration">撤离地点</System:String>
+ <System:String x:Key="Completion">寻物上交</System:String>
+ <System:String x:Key="CompElim">寻物上交, 歼灭</System:String>
+ <System:String x:Key="CompExpl">寻物上交, 撤离地点</System:String>
+ <System:String x:Key="ExplElim">撤离地点, 歼灭</System:String>
+ <System:String x:Key="ExplElimComp">寻物上交, 撤离地点, 歼灭</System:String>
+
+ <!--Scav Section-->
+ <System:String x:Key="SCAVHealth">Scav 健康值</System:String>
+ <System:String x:Key="SCAVPockets">Scav 口袋</System:String>
+ <System:String x:Key="ScavLab">允许进入 实验室</System:String>
+ <System:String x:Key="HostileScavs">无条件 敌对Scav</System:String>
+ <System:String x:Key="FriendlyScavs">无条件 友好Scav</System:String>
+ <System:String x:Key="FriendlyBosses">无条件 敌对Boss</System:String>
+ <System:String x:Key="HostileBosses">无条件 友好Boss</System:String>
+ <System:String x:Key="ScavTimer">Scav冷却时间（秒）:</System:String>
+ <System:String x:Key="ScavStats">Scav状态</System:String>
+ <System:String x:Key="CarBaseStanding">载具/合作撤离 基础声望:</System:String>
+
+ <!--Bots Section-->
+ <System:String x:Key="BotsSpawnChance">Boss/精英AI 刷新概率</System:String>
+ <System:String x:Key="BotsArmorDurab">AI护甲装备 耐久度</System:String>
+ <System:String x:Key="BotsWeaponDurab">AI武器 耐久度</System:String>
+ <System:String x:Key="ForcePartisan">修改 Partisan 生成行为</System:String>
+ <!--PMC Section-->
+ <System:String x:Key="AIToPMC">AI PMC  转换概率(百分比)</System:String>
+ <System:String x:Key="PMCRatio">USEC/BEAR 比例:</System:String>
+ <System:String x:Key="LootMelee">近战武器 可拾取</System:String>
+ <System:String x:Key="DisableLowLevelPMC">禁用 低级装备PMC</System:String>
+ <System:String x:Key="ForcePMC">覆盖原版SPT的PMC波次概率</System:String>
+ <System:String x:Key="PMCLevelDownMargin">AI PMC等级低于玩家的范围</System:String>
+ <System:String x:Key="PMCLevelUpMargin">AI PMC等级高于玩家的范围</System:String>
+ <System:String x:Key="Chances">概率设置(百分比)</System:String>
+ <System:String x:Key="WeaponInBackpacks">AI PMC背包中有武器:</System:String>
+ <System:String x:Key="PMCUpgradedWeapon">武器附魔:</System:String>
+ <System:String x:Key="PMCHaveYourName">生成的AI PMC带有玩家名字和前缀 概率:</System:String>
+ <System:String x:Key="AllPMCHaveYourName">所有AI PMC都带有玩家名字和前缀 概率:</System:String>
+ <System:String x:Key="PMCSameHostility">同阵营PMC敌对 概率:</System:String>
+ <System:String x:Key="PMCHostility">不同阵营 PMC 的敌对行为:</System:String>
+ <System:String x:Key="PMCNames">PMC名字</System:String>
+ <System:String x:Key="OverridePMCNames">移除 SPT默认名字</System:String>
+ <System:String x:Key="AIConverter">AI类型转换（百分比）</System:String>
+ <System:String x:Key="PMCToAI">PMC波次 转换为 Scav 概率:</System:String>
+ <System:String x:Key="AItoPMC">Scav波次 转换为 PMC 概率:</System:String>
+    <!--Advanced Features Section-->
+ <System:String x:Key="Debug">调试工具Debug</System:String>
+ <System:String x:Key="LoggerIntoServer">在服务器日志中记录预设</System:String> 
+ <System:String x:Key="CustomFields">自定义版块</System:String>
+ <System:String x:Key="Mailbox">邮箱</System:String>
+ <System:String x:Key="DisableSPTFriend">SPT好友系统 禁用</System:String>
+ <System:String x:Key="DisableCommando">控制台指令(Commando) 禁用</System:String>
+ <System:String x:Key="DisablePMCMessages">PMC邮箱对话 禁用</System:String>
+ <System:String x:Key="FleaMultID">价格倍率调整的商品:</System:String>
+ <System:String x:Key="AddTraderAssort">创建新的商人报价</System:String>
+
+    <!--Unified name of Game objects-->
+ <System:String x:Key="FleaWeapons">武器:</System:String>
+ <System:String x:Key="FleaMedical">医疗物品:</System:String>
+ <System:String x:Key="FleaSpec">特殊物品:</System:String>
+ <System:String x:Key="FleaKeys">钥匙:</System:String>
+ <System:String x:Key="FleaVests">防弹背心:</System:String>
+ <System:String x:Key="FleaArmor">护甲/头盔:</System:String>
+ <System:String x:Key="FleaFood">食品/饮品:</System:String>
+
+ <!--Unified names of multipliers and expander headers-->
+ <System:String x:Key="Misc">杂项</System:String>
+ <System:String x:Key="Multipliers">倍率调整</System:String>
+ <System:String x:Key="Toggles">切换</System:String>
+ <System:String x:Key="Min">最小值</System:String>
+ <System:String x:Key="Max">最大值</System:String>
+
+ <!--Unified names of Editions-->
+ <!--NEEDTRANSLATION, maybe, currently only Default and The Unheard is used in Traders>Quest reward time-->
+ <System:String x:Key="Default">默认</System:String>
+ <System:String x:Key="Standard">白边</System:String>
+ <System:String x:Key="lb">Left Behind</System:String>
+ <System:String x:Key="pfe">Prepare for Escape</System:String>
+ <System:String x:Key="eod">黑边</System:String>
+ <System:String x:Key="Unheard">蓝边</System:String>
+ <!--Unified names of locations-->
+ <System:String x:Key="Shoreline">海岸线:</System:String>
+ <System:String x:Key="FactoryDay">工厂 白天:</System:String>
+ <System:String x:Key="FactoryNight">工厂 夜晚:</System:String>
+ <System:String x:Key="Customs">海关:</System:String>
+ <System:String x:Key="Lighthouse">灯塔:</System:String>
+ <System:String x:Key="Reserve">储备站:</System:String>
+ <System:String x:Key="Woods">森林:</System:String>
+ <System:String x:Key="Streets">塔科夫街区:</System:String>
+ <System:String x:Key="StreetsShort">街区:</System:String>
+ <System:String x:Key="Lab">实验室:</System:String>
+ <System:String x:Key="Interchange">立交桥:</System:String>
+ <System:String x:Key="GroundZero">中心区:</System:String>
+ <System:String x:Key="GroundZeroHard">中心区-困难:</System:String>
+ <!--Unified names of Traders-->
+ <System:String x:Key="TradersGroup">商人:</System:String>
+ <System:String x:Key="Therapist">Therapist:</System:String>
+ <System:String x:Key="Prapor">Prapor:</System:String>
+ <System:String x:Key="Mechanic">Mechanic:</System:String>
+ <System:String x:Key="Skier">Skier:</System:String>
+ <System:String x:Key="Ragman">Ragman:</System:String>
+ <System:String x:Key="Fence">Fence:</System:String>
+ <System:String x:Key="Peacekeeper">Peacekeeper:</System:String>
+ <System:String x:Key="Jaeger">Jaeger:</System:String>
+ <System:String x:Key="Ref">Ref:</System:String>
+ <System:String x:Key="Lightkeeper">Lightkeeper:</System:String>
+ <!--Unified names of Bosses-->
+ <System:String x:Key="Killa">Killa</System:String>
+ <System:String x:Key="Tagilla">Tagilla</System:String>
+ <System:String x:Key="Reshala">Reshala</System:String>
+ <System:String x:Key="Shturman">Shturman</System:String>
+ <System:String x:Key="Glukhar">Glukhar</System:String>
+ <System:String x:Key="Sanitar">Sanitar</System:String>
+ <System:String x:Key="Goons">三狗</System:String>
+ <System:String x:Key="Zryachiy">Zryachiy</System:String>
+ <System:String x:Key="Kaban">Kaban</System:String>
+ <System:String x:Key="Partisan">Partisan</System:String>
+ <System:String x:Key="Kollontay">Kollontay</System:String>
+ <System:String x:Key="Cultist">邪教徒</System:String>
+ <System:String x:Key="Usecs">USECs</System:String>
+ <System:String x:Key="Bears">BEARs</System:String>
+    <!--Unified names of Bots Types-->
+ <System:String x:Key="SCAVAI">Scav</System:String>
+ <!--NEED TRANSLATION (Proper one)-->
+ <System:String x:Key="SCAVAIFactory">Scavs 工厂 白天</System:String>
+ <System:String x:Key="CursedSCAV">诅咒Scav</System:String>
+ <System:String x:Key="Raiders">掠夺者Raider</System:String>
+ <System:String x:Key="SCAVSniper">Scav狙击手</System:String>
+ <System:String x:Key="Rogues">游荡者Rogue</System:String>
+ <System:String x:Key="PMCAI">PMC</System:String>
+ <System:String x:Key="Bosses">Boss</System:String>
+ <System:String x:Key="Followers">Boss保镖</System:String>
+
+
+ <!--Tooltips-->
+ <System:String x:Key="EquipRigsWithArmors_TT">允许将防弹胸挂（如AVS或Tac-Tec）与护甲（如Trooper或Slick）一起装备</System:String>
+ <System:String  xml:space="preserve" x:Key="RemoveBackpacksRestrictions_TT">允许将任何物品放入任何背包
+ 注意：如果您计划放入无法在战局中丢弃的物品，强烈建议使用"移除'无法在战局中丢弃'限制"
+ 否则，如果您死亡，即使已投保或在软核模式下，这些物品也会被删除</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveSecureContainerFilters_TT">允许将任何物品放入安全箱中
+  注意：如果您计划放入无法在战局中丢弃的物品，强烈建议使用"移除'无法在战局中丢弃'限制"
+ 否则，如果您死亡，即使已投保或在软核模式下，这些物品也会被删除
+ </System:String>
+ <System:String x:Key="RemoveRaidRestr_TT">允许在战局中携带任何物品</System:String>
+ <System:String x:Key="NoGearPenalty_TT">移除装备的负面属性，如减少移动速度，鼠标移动速度和武器人机功效</System:String>
+ <System:String x:Key="RaidDrop_TT">允许在战局中丢弃任何物品</System:String>
+ <System:String x:Key="PistolToMain_TT">包括左轮手枪和锯断双管霰弹枪</System:String>
+ <System:String x:Key="SMGToHolster_TT">包括游戏中所有的冲锋枪</System:String>
+ <System:String x:Key="ItemPriceMult_TT">乘以物品的基本价格，会影响跳蚤市场和商人买卖的价格</System:String>
+ <System:String x:Key="ExamineTime_TT">影响鼠标中键点击未检查物品进行检视时间，不影响搜刮动作</System:String>
+ <System:String  xml:space="preserve" x:Key="AmmoLoadSpeed_TT">在战局中乘以子弹装填或卸下到弹匣所需的时间
+值越小，速度越快</System:String>
+ <System:String xml:space="preserve" x:Key="PistolRound_TT">设置单格的最大弹药堆叠数大小
+适用于以下口径：9x18，9x19，9x21，7.65x25，.357(9x33)，.45ACP(11.43x23ACP)，46x30，5.7x28</System:String>
+ <System:String xml:space="preserve" x:Key="ShotgunRound_TT">设置单格的最大弹药堆叠数大小
+适用于以下口径：12x70, 20x70, 23x75</System:String>
+ <System:String xml:space="preserve" x:Key="RifleRound_TT">设置单格的最大弹药堆叠数大小
+适用于以下口径：5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
+    <System:String xml:space="preserve" x:Key="MarksmanRound_TT">设置单格的最大弹药堆叠数大小
+适用于以下口径：6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
+    <System:String x:Key="AvoidResidential_TT">TerraGroup 实验室生活区钥匙卡，默认有 2 次使用次数。</System:String>
+ <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">为了避免奇数使用次数(2,5,10,20)的钥匙，但不包括邪教房钥匙
+ 例如：竞技场藏身处钥匙、工厂出口钥匙、几个街道钥匙（Chek 15）、货物钥匙等。</System:String>
+ <System:String x:Key="IgnoreAccessKeycard_TT">实验室白卡不会变成 无限次数 同时也不会有 多次使用次数</System:String> <!-- MISSING -->
+ <System:String x:Key="AvoidSingleKeyCards_TT">避免单次使用次数的钥匙卡，如蓝色记号钥匙卡、生活区钥匙卡和实验室白卡</System:String> <!-- MISSING -->
+ <System:String x:Key="RemoveConstructionsRequirements_TT">移除藏身处设施所需的材料要求</System:String>
+ <System:String x:Key="RemoveSkillRequirements_TT">移除藏身处设施所需的PMC技能要求</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements_TT">移除藏身处设施所需的商人等级要求</System:String>
+ <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">如果当前的存档中正在进行生产/建造时，不要编辑该版块
+否则会导致所需的时间和材料不一致，请慎重修改</System:String>
+ <System:String xml:space="preserve" x:Key="AirFilterRate_TT">结果为 输入值 乘以"0.0047222222222222"的值
+默认大约211秒左右消耗1点空气过滤吸收器
+值越小，持续时间越长</System:String>
+ <System:String xml:space="preserve" x:Key="GPUBoostRate_TT">结果为 输入值 乘以"0,041225"的值
+值越大，显卡越重要
+若实现每个显卡大致1倍的提升，需设置在24-26左右</System:String>
+ <System:String xml:space="preserve" x:Key="FuelConsumptionRate_TT">结果为 输入值 乘以"0,00131944444444"的值
+默认大约758秒左右消耗1点燃料
+值越小，燃料持续时间越长</System:String>
+ <System:String xml:space="preserve" x:Key="NoFuelMult_TT">结果为 输入值 乘以"0.07"的值
+值越大，无燃料时生产速度越快</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutProdMult_TT">修改每次生产所需的时间
+值越小，生产速度越快</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutConstMult_TT">修改每次升级设施所需的时间
+值越小，升级速度越快</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCaseTime_TT">修改Scav宝箱收集所需的时间
+值越小，收集速度越快</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">修改Scav宝箱所需的价格
+值越小，价格越便宜
+仅影响货币类的选项</System:String> 
+ <System:String x:Key="FIRTrade_TT">从商人处购买的所有东西都为"在战局中找到"状态</System:String>
+ <System:String xml:space="preserve" x:Key="QuestLifespan_TT">设置可重复任务的持续时间以及获得新任务的时间
+注意:只有当前任务结束后才开始生效</System:String>
+ <System:String xml:space="preserve" x:Key="QuestSwitch_TT">注意:这不会改变刚接受的新任务</System:String>
+ <System:String xml:space="preserve" x:Key="RewardSpread_TT">若设置为0，则为删除随机化
+ 设置为1，则为 随机数 乘以 0~2之间
+ 默认为0.5x-1.5x 公式为(1-奖励分配倍率，1+奖励分配倍率)</System:String>
+ <System:String  xml:space="preserve" x:Key="AllContainers_TT">基本上强制生成地图上每个基于概率生成的容器
+并非真正的平衡，会增加电脑负担，影响性能</System:String>
+ <System:String x:Key="RemoveTradeLimits_TT">移除商人报价的限制，即每次购买物品数量的上限</System:String>
+ <System:String x:Key="IncreaseAssort_TT">无平衡性：增加单个商品的数量，商人处购买数量近乎无限</System:String>
+ <System:String x:Key="RemoveCurrencyOffers_TT">不包括黑商Fence和美商peacekeeper</System:String>
+ <System:String xml:space="preserve" x:Key="PriceAssort_TT">影响商人卖给你的物品价格
+值越高，物品越贵</System:String>
+ <System:String xml:space="preserve" x:Key="PriceMarkup_TT">影响卖给商人的物品"打折"。100为全价收购物品
+1为最低价收购</System:String>
+ <System:String x:Key="ClothesAnySide_TT">允许购买Usec和Bear的服装</System:String>
+ <System:String x:Key="ClothesFree_TT">移除购买服装的现金要求</System:String>
+ <System:String x:Key="ClothesLevelUnlock_TT">移除购买服装的PMC等级，商人等级和任务要求</System:String>
+     <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">此数值必须 始终小于 访问时间
+此数值表示在Lightkeeper告知玩家离开岛屿之前剩余的访问时间</System:String> <!-- MISSING -->
+ <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">技术上可以安全使用,但一旦接受未解锁的任务
+则无法还原并且不可逆。</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">服务器检测是否有可用保险的频率(秒)
+设为最小值可能会导致服务器性能下降</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">覆盖每个商人的保险时间，但仍受上述间隔的影响</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">默认情况下，保险费用随着商人等级的提高而增加</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">你知道吗，有些新任务是需要等待24小时(现实)后才会出现
+所以你懂的，就是为了删除这个冷却时间</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">如有自定义商人mod，此功能可能会导致发生错误，有以下2种方式处理
+ 1: 将自定义商人mod在mod加载顺序中排到SVM(Greed)后面
+ 2: 如果所涉及的mod使用了Virtual的Custom Quest Loader，请确保它们都在mod加载顺序中排到SVM(Greed)前面，可能有用。
+ 否则，请都按照步骤1进行操作</System:String>
+ <System:String xml:space="preserve"  x:Key="NoRunThrough_TT">移除获得"幸存"状态撤离的经验需求，约等于移除了"匆匆逃离"状态</System:String>
+ <System:String xml:space="preserve"  x:Key="ChanceExtracts_TT">将 概率撤离点 始终显示
+ 例如:
+ 街区: 院子, Primorsky大道(载具撤离点)
+ 立交桥: 发电站
+ 海关: 宿舍载具撤离点,老加油站,走私者的船,ZB-1012
+ 森林: RUAF路障,ZB-014,ZB-016
+ 海岸线: 码头的船
+ 实验室: 停车场大门,机库大门
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ExtendedExtracts_TT">允许您使用同侧的撤离点进行撤离，无视复活点</System:String>
+ <System:String xml:space="preserve" x:Key="NoBackpack_TT">移除特定撤离点的背包限制
+ 例如:
+  立交桥: 围栏破洞
+  储备站: 下水道检修孔
+  实验室: 通风管道
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ArmorExtract_TT">移除攀岩撤离点的无防弹背心限制
+ 例如:
+  灯塔: 山间小路
+  储备站: 峭壁斜坡
+   </System:String>
+ <System:String xml:space="preserve" x:Key="GearExtract_TT">移除攀岩撤离点的需要冰镐和绳索限制
+ 例如:
+  灯塔: 山间小路
+  储备站: 峭壁斜坡
+ </System:String>
+
+ <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">将覆盖每个初始PMC和Scav的刷新
+但请注意，AI PMC仍然可以由raider转换而来</System:String>
+<System:String xml:space="preserve" x:Key="AITypeOverride_TT">将覆盖所有初始 PMC 和 SCAV 生成修改为下方指定的 AI类型</System:String> <!-- MISSING -->
+ <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">强烈不推荐！这更类似于压力测试而非正常游玩功能
+会导致单个区域内出现超过30个AI，请慎重修改</System:String>
+ <System:String xml:space="preserve" x:Key="Halloween_TT">万圣节活动：启动藏身处的活动专属灯光，
+修改兹利亚奇Zryachiy的行为和刷出，AI将携带活动物品</System:String>
+ <System:String xml:space="preserve" x:Key="DisableZombies_TT">万圣节活动启用同时禁用丧尸，默认情况下它们属于同时开启状态
+如果万圣节活动被禁用，则不会执行任何操作</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">服务器启动后每个地图的随机感染等级</System:String>
+ <System:String xml:space="preserve" x:Key="Christmas_TT">圣诞节活动：启动藏身处的活动专属灯光，并赠送一个圣诞礼物，
+启动下雪天气，启动圣诞老人的概率刷新功能，AI将携带活动物品</System:String>
+ <System:String  xml:space="preserve" x:Key="Types_TT">每日任务分为3种类型：歼灭、寻物上交、撤离地点
+ 歼灭：击杀 PMC, Scav或Boss。且有时需要 远/近距离 针对 指定身体部分 造成击杀/命中。
+ 寻物上交：上交带有"在战局中找到"标签要求的物品。
+ 撤离地点：在"幸存"状态下从指定地图/撤离点进行撤离</System:String>
+ <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">移除某些ID可能会导致服务器启动报错 
+请慎重操作</System:String>
+ <System:String xml:space="preserve" x:Key="SafeExit_TT">允许通过菜单离开以保存装备/物资，
+但会在战局中视为"擅离职守"状态，且不会有"在战局中找到"标记的物资
+与"软核选项"设置冲突</System:String>
+ <System:String xml:space="preserve" x:Key="SaveGearAfterDeath_TT">阵亡，通过菜单离开或者战局迷失将
+会在战局中视为"擅离职守"状态。保存你的物资但不会保留"在战局中找到"标签
+与"安全拔线"设置冲突</System:String>
+ <System:String  xml:space="preserve" x:Key="PMCHealth_TT">允许你编辑PMC的最大健康值
+注意：更改此设置会应用到预设中，因此即使你后续禁用该功能
+健康值仍会保留上一次更改的设置。因此，若需要重置健康值
+你需要在此处输入默认值，保存，运行一次游戏后并关闭该功能。
+健康值不会在 创建新预设 时应用</System:String>
+ <System:String xml:space="preserve" x:Key="PMCStats_TT">允许你编辑PMC的最大状态值
+注意：更改此设置会应用到预设中，因此即使你后续禁用该功能
+状态值仍会保留上一次更改的设置。因此，若需要重置状态值
+你需要在此处输入默认值，保存，运行一次游戏后并关闭该功能。
+状态值不会在 创建新预设 时应用</System:String>
+ <System:String x:Key="Sell_chance_TT">若物品等于预定义价格，则默认的出售概率</System:String>
+ <System:String x:Key="PriceRange_TT">注意：并不会影响 玩家 的出售价格。
+如果您想以类似的价格出售，请使用“出售概率 倍率”功能。</System:String> <!-- MISSING -->
+ <System:String  xml:space="preserve" x:Key="Sell_mult_TT">非线性概率的乘数
+例如：如果你以手册价格低20%的价格出售物品，则乘以（若为默认值）1.24
+最终结果为多25%概率出售，且差异越大，效果越明显</System:String>
+
+ <System:String xml:space="preserve" x:Key="DisableBSGList_TT">注意：这不会影响那些'可能'崩坏的价格，有些物品可能实在太便宜了</System:String>
+ <System:String xml:space="preserve" x:Key="PMCRatio_TT">刷新PMC为Usec和Bear的概率百分比，100则只有Usec，0则只有Bear</System:String>
+ <System:String xml:space="preserve" x:Key="ScavHealth_TT">允许你编辑玩家自己的Scav各身体部位健康值，并不影响其他Scav
+注意：若你在进行更改后禁用此部分
+可能会导致你无法恢复到当前Scav的健康值</System:String>
+ <System:String xml:space="preserve" x:Key="AIToPMC_TT">AI类型转换为PMC是基于概率的
+若Scav生成：有25%概率（默认值）会转换为PMC，与其余版块的工作方式完全相同</System:String>
+ <System:String x:Key="ScavTimer_TT">注意：这不会影响现有的冷却时间</System:String>
+ <System:String xml:space="preserve" x:Key="ScavPockets_TT">注意：若你在进行更改后禁用该功能
+它会使你当前的Scav口袋失效</System:String>
+ <System:String xml:space="preserve" x:Key="ForcePartisan_TT">默认情况下，Partisan 生成需要某些触发条件，可能会影响其生成。
+该选项可将其移除，使 Partisan 像其他任何 Boss 一样正常生成</System:String>
+ <System:String xml:space="preserve" x:Key="DisableHalloweenAIFriendly_TT">默认情况下，如果丧尸出现，就会进入停火状态，SCAV 不会攻击你，PMC 也有一定的几率。
+该选项将禁用停火状态，使 AI 对玩家/其他AI进行正常攻击
+注意！这将覆盖与 AI PMC 版块中与敌意相关的设置。</System:String>
+ <!--<System:String x:Key="Bosses">Boss:</System:String>
+ <System:String x:Key="Followers">Boss保镖:</System:String>-->
+
+</ResourceDictionary>

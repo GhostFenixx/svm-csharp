@@ -1,0 +1,909 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+ <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
+Independent Application made by GhostFenixx
+Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+https://github.com/Kinnara/ModernWpf
+Shared by Personal Use Source License (PUSL) License
+For more info: read license on - https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
+</System:String>
+ <System:String xml:space="preserve" x:Key="DisclaimerText">면책 조항
+이 애플리케이션은 비디오 게임 "Escape from Tarkov"의 미디어 및/또는 자료를 사용하며, https://escapefromtarkov.fandom.com/을 통해 접근할 수 있는 공식 게임 위키로 연결되는 링크를 포함합니다.
+Escape from Tarkov의 콘텐츠와 자료는 해당 소유자인 "Battlestate Games Limited"의 지적 재산입니다.
+이 애플리케이션의 개발자는 "Battlestate Games Limited" 또는 그들의 위키와 어떤 방식으로도 관련되어 있지 않습니다.
+
+AI PMC 섹션에서 PMC 이름은 여러 SPT 커뮤니티 사용자들의 사용자 이름으로 구성되어 있습니다.
+만약 당신이 이 목록에 포함되는 것이 불편하거나 특정 이름이 불쾌하다고 느끼신다면 모드 개발자에게 보고해 주세요.
+</System:String>
+ <System:String xml:space="preserve" x:Key="ThanksToText">SVM 관련:
+Ereshkigal - 주요 영감을 준 사람, Ereshkigal의 모드에서 많은 초기 코드가 사용되었습니다. 예를 들어 봇 장비, Aki 설정기, AKI-AIO 등이 있습니다.
+Senko, Chomp 및 기타 SPT 개발자들, DeadLeaves, sptlaggy - 이 모드에 사용된 코드 스니펫의 소유자이거나, 모드를 적극적으로 개발하거나 도움을 제공하는 등 어떤 식으로든 개발에 참여하거나 도움을 주었습니다.
+TheSpartacus - SPT 3.0.0으로의 전환을 도왔으며 릴리스 사이에 전반적인 도움을 제공했습니다.
+UI(GFVE/GREED) 관련:
+SerWolfik - GFVE/Greed 아이콘 제작.
+Lacyway - UI 전환에 큰 도움을 주었으며, WPF 시작에 도움을 주었습니다.
+SSH_ - 아이콘 아카이브
+BattleStateGames - 해당 아이콘들을 만든 회사.
+기타:
+KMC - SPT 웹사이트에 모드 재업로드.
+Nexus4880 - 케이스 크기 설정용 'Hide Special Icon' 플러그인 제작자
+Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - 테스터, 피드백 제공
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, BiddinWar - Donations - 기부자
+현지화:
+한국어 - 루퍼, 고라니
+우크라이나어 - celebrutu
+중국어 - Volcano
+버그 리포트, UI 관련 피드백 제공, 다른 사용자들의 문제 해결 지원 등 어떤 형태로든 프로젝트에 도움을 주신 모든 분들께 감사드립니다.
+</System:String>
+ <!--MessageBoxes and/or Exception handlers-->
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM이 올바르게 설치되지 않았습니다. "user\mods" 경로에 위치해 있지 않습니다.
+Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요.
+`확인`을 클릭하여 계속 진행할 수 있지만, 모드가 제대로 작동하지 않을 수 있습니다.
+'취소'를 클릭하면 앱이 닫힙니다.</System:String>
+ <System:String x:Key="FileNotFoundException">로드하려는 파일이 존재하지 않습니다.</System:String>
+ <System:String x:Key="CorruptedJSON">이 파일이 손상되었거나 프리셋으로 로드할 수 없습니다.</System:String>
+ <System:String x:Key="NoAccess">파일을 읽을 수 없습니다. Windows 권한 문제인가요?</System:String>
+ <System:String x:Key="NothingToLoad">로드할 내용이 없습니다. 무명 프리셋도 찾을 수 없습니다. 먼저 프리셋을 생성하거나 선택하세요.</System:String>
+ <System:String x:Key="NothingToApply">적용할 프리셋이 없습니다. 먼저 프리셋을 저장하고 선택하세요.</System:String>
+ <System:String x:Key="PresetNameFail">프리셋을 저장할 수 없습니다. 프리셋 이름에 특수 문자가 포함되어 있습니다.</System:String>
+ <System:String x:Key="PresetNamedNullError"> 프리셋 이름 'Null'은 프리셋이 생성되지 않은 경우를 위해 예약되어 있습니다. 프리셋 이름을 이렇게 지정하지 마세요.</System:String>
+ <System:String x:Key="RatioError">적용 실패 - 플리 마켓 > AI 매물 생성 설정 >매물 판매에 사용될 통화 비율의 합이 100이 되지 않습니다. 루블, 유로, 달러의 합이 정확히 100이어야 합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="PresetFolderDeleted">프리셋 폴더를 찾을 수 없습니다.
+음... 왜 프리셋 폴더를 삭제하셨나요?</System:String>
+ <System:String xml:space="preserve" x:Key="NonameApplied">프리셋 필드가 비어 있어 무명 프리셋이 적용되었습니다.
+앞으로 이 메시지를 피하려면 프리셋에 고유한 이름을 지정하는 것이 어떨까요?</System:String>
+ <System:String xml:space="preserve" x:Key="NonameLoaded">프리셋 필드가 비어 있어 무명 프리셋이 로드되었습니다.
+이 메시지를 피하려면 사용자 지정 이름으로 프리셋을 저장하고 선택하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="OverridePreset">해당 이름의 프리셋이 이미 존재합니다.
+덮어쓰시겠습니까?</System:String>
+ <System:String xml:space="preserve" x:Key="RunFailed">문제가 발생했습니다.
+서버와 런처가 게임과 같은 폴더에 위치하지 않은 것 같습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ApplyFailedUnknown">작업이 취소되었습니다.
+문제가 발생했습니다. 필드에 잘못된 유형이 있거나 비어 있나요?</System:String>
+ <!--Popup Windows responses-->
+    <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll이 \BepInEx\plugins 폴더에 성공적으로 설치되었습니다.</System:String>
+ <System:String x:Key="InstallPluginFailed">설치 실패, \BepInEx\plugins 폴더를 찾을 수 없습니다.</System:String>
+    <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll이 이미 \BepInEx\plugins 폴더에 존재합니다. 설치가 취소되었습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="SPTLink">'OK'버튼을 눌러 SPT Hub(현재 SPT 개발 허브)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="KofiLink">'OK'버튼을 눌러 Kofi.com(개발자를 후원할 수 있는 곳)을 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="GitHubLink">'OK'버튼을 눌러 Github.com을 방문하세요. - 발견한 문제를 보고할 수 있습니다.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="FikaLink">'OK'버튼을 눌러 Project Fika Discord(GhostFenixx가 속한 SPT 커뮤니티 중 하나)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="SPTWeb">'OK'버튼을 눌러 SPT 웹사이트(모든 모드가 있는 SPT 커뮤니티 사이트)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="IDFinder">'OK'버튼을 눌러 SPT의 Item Finder 웹사이트(SPT 아이템 DB)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="ModPage">'OK'버튼을 눌러 SVM 모드 페이지를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+ <System:String xml:space="preserve" x:Key="WikiPage_Link">'OK'버튼을 눌러 공식 타르코프 위키를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+
+ <!--Buttons-->
+ <System:String x:Key="ApplyButton">적용</System:String>
+ <System:String x:Key="Applied">적용되었습니다!</System:String>
+ <System:String x:Key="LoadButton">프리셋 불러오기</System:String>
+ <System:String x:Key="Saved">저장되었습니다!</System:String>
+ <System:String x:Key="SaveButton">프리셋 저장하기</System:String>
+ <System:String x:Key="Loaded">불러왔습니다!</System:String>
+ <!--Tab Control-->
+ <System:String x:Key="MainPage">메인 화면</System:String>
+ <System:String x:Key="Items">인벤토리 및 아이템</System:String>
+ <System:String x:Key="AdvFeatures">고급 기능</System:String>
+ <System:String x:Key="faq">자주 묻는 질문</System:String>
+ <System:String x:Key="Notes">프리셋 노트</System:String>
+ <System:String x:Key="Hideout">은신처</System:String>
+ <System:String x:Key="Traders">상인</System:String>
+ <System:String x:Key="Services">상인 서비스</System:String>
+ <System:String x:Key="Loot">전리품</System:String>
+ <System:String x:Key="Player">플레이어 및 스킬</System:String>
+ <System:String x:Key="Raid">레이드 설정</System:String>
+ <System:String x:Key="Fleamarket">플리 마켓</System:String>
+ <System:String x:Key="Quests">반복 가능한 퀘스트</System:String>
+ <System:String x:Key="CSM">케이스 크기 설정</System:String>
+ <System:String x:Key="SCAV">플레이어 스캐브</System:String>
+ <System:String x:Key="Bots">스캐브 및 보스</System:String>
+ <System:String x:Key="PMC">AI PMC</System:String>
+ <!--Menu Control-->
+ <System:String x:Key="Options">옵션</System:String>
+ <System:String x:Key="Changelog">패치 내역</System:String>
+ <System:String x:Key="Links">디스코드 및 사이트 링크</System:String>
+ <System:String x:Key="Info">추가 정보</System:String>
+ <System:String x:Key="Language">언어</System:String>
+ <!--Menu Tab Controls-->
+ <System:String x:Key="LoadLast">실행 시 마지막으로 로드된 프리셋을 불러옵니다</System:String>
+ <System:String x:Key="RunServerAndLauncher">서버 및 런처 실행</System:String>
+ <System:String x:Key="CloseServerAndLauncher">서버 및 런처 닫기</System:String>
+ <System:String x:Key="PresetFolder">프리셋 폴더 열기</System:String>
+ <System:String x:Key="Override">숫자 제한 무시</System:String>
+ <System:String x:Key="About">프로그램 소개</System:String>
+ <System:String x:Key="Disclaimer">서명</System:String>
+ <System:String x:Key="ThanksTo">고마운분들</System:String>
+ <System:String x:Key="License">라이센스 정보</System:String>
+ 
+ <System:String x:Key="SPTHUB">SPT HUB 디스코드</System:String>
+ <System:String x:Key="SPTWEB">SPT 사이트</System:String>
+ <System:String x:Key="ItemIDWeb">ID Item Finder 사이트</System:String>
+ <System:String x:Key="ModWeb">모드 페이지</System:String>
+ <System:String x:Key="KoFi">Ko-Fi 기부 링크</System:String>
+ <System:String x:Key="GitHub">GitHub 이슈(issue) 보고하기</System:String>
+ <System:String x:Key="EmuRC">EmutarkovRC 디스코드</System:String>
+  <System:String x:Key="Fika">Project Fika 디스코드</System:String>
+ <System:String x:Key="WikiPage">타르코프 위키</System:String>
+
+ <!--Preset Notes Initial Text-->
+ <System:String x:Key="PresetInitialText">이곳은 당신이 메모를 작성할 수 있는 공간입니다. 원하는 대로 사용하세요. 작성한 내용은 미리 설정된 형식으로 저장됩니다.</System:String>
+ <!--Items Section-->
+ <System:String x:Key="ItemPriceMult">전역 아이템 가격 :</System:String>
+ <System:String x:Key="HeatFactor">과열 계수 :</System:String>
+ <System:String x:Key="ExamineTime">아이템 조사하는 시간 :</System:String>
+ <System:String x:Key="AmmoLoadSpeed">레이드에서 탄창 삽탄 시간 :</System:String>
+ <System:String x:Key="LootExp">아이템 획득을 통해 얻는 경험치 :</System:String>
+ <System:String x:Key="ExamineExp">아이템 조사로 얻는 경험치 :</System:String>
+ <System:String x:Key="WeightChanger">아이템 무게 :</System:String>
+ <System:String x:Key="MalfunctChanceMult">무기 오작동 확률 :</System:String>
+ <System:String x:Key="MisfireChance">무기 불발 확률 :</System:String>
+ <System:String x:Key="FragmentMult">탄환 파편화 확률:</System:String>
+ <System:String x:Key="ExamineKeys">모든 열쇠(키) 조사 완료</System:String>
+ <System:String x:Key="WeaponHeatOff">무기 과열 기능 끄기</System:String>
+ <System:String x:Key="SMGToHolster">권총 슬롯에 기관단총(SMG) 장착 허용</System:String>
+ <System:String x:Key="PistolToMain">주무장 슬롯에 권총 장착 허용</System:String>
+ <System:String x:Key="AllExaminedItems">모든 아이템 조사 완료</System:String>
+ <System:String x:Key="EquipRigsWithArmors">방탄 착용 시 방탄 리그 장착 허용</System:String>
+ <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
+ <System:String x:Key="AddSignalPistolToSpec">신호탄 권총 특수 슬롯 장착 허용</System:String>
+ <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 허용</System:String>
+ <System:String x:Key="SurvCMSSecConBlock">보안 컨테이너에 Surv/CMS 수술킷 보관 제한</System:String>
+ <System:String x:Key="RemoveRaidRestr">레이드 진입 전 레이드 소지 아이템 제한 제거</System:String>
+ <System:String x:Key="RaidDrop">'레이드 도중 버리기 불가' 태그 제거</System:String>
+ <System:String x:Key="RemoveBackpacksRestrictions">배낭 중첩 수납 제한 해제</System:String>
+ <System:String x:Key="NoGearPenalty">장비 이동 페널티 제거</System:String>
+
+ <!--Keys Section-->
+ <System:String x:Key="Keys">열쇠(키) 설정 :</System:String>
+ <System:String x:Key="InfiniteKeycards">키카드 무제한 사용</System:String>
+ <System:String x:Key="InfiniteKeys">열쇠(키) 무제한 사용</System:String>
+ <System:String x:Key="AvoidOddKeys">홀수 키 제외</System:String>
+ <System:String x:Key="AvoidResidential">주거 구역 키카드 제외</System:String>
+ <System:String x:Key="IgnoreAccessKeycard">연구실(Lab) 입장 카드 무시</System:String>
+ <System:String x:Key="AvoidSingleKeyCards">일회용 키카드 사용 회피</System:String>
+ <System:String x:Key="AvoidSingleKeys">1회용 열쇠(키) 제외</System:String>
+ <System:String x:Key="AvoidMarkedKeys">마크방 열쇠(키) 제외</System:String>
+ <System:String x:Key="KeyUseMult">열쇠(키) 사용 횟수 배수 :</System:String>
+ <System:String x:Key="KeycardUseMult">키카드 사용 횟수 배수 :</System:String>
+ <System:String x:Key="KeyDurabilityThreshold">총 사용 횟수 제한 :</System:String>
+ <System:String x:Key="KeyCardDurabilityThreshold">키카드 최대 사용 횟수:</System:String>
+    <!--Ammo Stack Section-->
+ <System:String x:Key="AmmoStack">탄약 칸당 최대 스택 수</System:String>
+ <System:String x:Key="MarksmanRound">지정사수소총(DMR) 탄창 탄 수 :</System:String>
+ <System:String x:Key="RifleRound">돌격소총 탄창 탄 수 :</System:String>
+ <System:String x:Key="ShotgunRound">산탄총(샷건) 탄창 탄 수 :</System:String>
+ <System:String x:Key="PistolRound">권총/기관단총(SMG) 탄창 탄 수 :</System:String>
+ <!--Currency stack Section-->
+ <System:String x:Key="CurrencyStack">칸 당 화폐 스택 수도</System:String>
+ <System:String x:Key="Dollars">달러 :</System:String>
+ <System:String x:Key="GPCoin">GP 코인:</System:String>
+ <System:String x:Key="Euros">유로 :</System:String>
+ <System:String x:Key="RoublesOrDefault">루블 :</System:String>
+    
+    <!--Hideout Section-->
+ <System:String x:Key="FuelConsumptionRate">연료 소비율 :</System:String>
+ <System:String x:Key="NoFuelMult">무연료 시 작업 효율 :</System:String>
+ <System:String x:Key="AirFilterRate">시간당 공기 필터 사용량 :</System:String>
+ <System:String x:Key="GPUBoostRate">GPU 부스트 속도 배율 값 :</System:String>
+ <System:String x:Key="WaterFilterRate">정제수 생성 당 정수 필터 사용량 (내구도) :</System:String>
+ <System:String x:Key="WaterFilterTime">정제수 생성 시간 (단위:분) :</System:String>
+ <System:String x:Key="MaxBitcoins">저장된 비트코인 최대 수량 :</System:String>
+ <System:String x:Key="BitcoinTime">비트코인 생성 시간 (단위:분) :</System:String>
+ <System:String x:Key="RemoveConstructionsRequirements">시설 건설 재료 요구사항 제거</System:String>
+ <System:String x:Key="RemoveConstructionsFIRRequirements">인레이드(FIR) 재료에 대한 요구 사항 제거</System:String>
+ <System:String x:Key="RemoveSkillRequirements">시설 건설 스킬 요구사항 제거</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements">시설 건설 상인 레벨 요구사항 제거</System:String>
+ <System:String x:Key="CultistMaxRewards">컬티스트 서클 보상 횟수:</System:String>
+ <System:String x:Key="CultistTime">컬티스트 서클 진행 시간:</System:String>
+
+ <!--Hideout Multipliers-->
+ <System:String x:Key="HideoutProdMult">은신처 제작 시간 :</System:String>
+ <System:String x:Key="HideoutConstMult">은신처 건설 시간 :</System:String>
+ <System:String x:Key="ScavCaseTime">스캐브(Scav) 케이스 시간 :</System:String>
+ <System:String x:Key="ScavCasePrice">스캐브(Scav) 케이스 제공 가격 :</System:String>
+ <!--Offline Regeneration Section-->
+ <System:String x:Key="Regeneration">로비 케릭터 회복 설정</System:String>
+ <System:String x:Key="OfflineRegen">로비 대기 시 회복 효과 완전 제거</System:String>
+ <System:String x:Key="HealthRegen">체력 재생 배율 :</System:String>
+ <System:String x:Key="HideoutHealth">체력</System:String>
+ <System:String x:Key="HideoutEnergy">에너지</System:String>
+ <System:String x:Key="HideoutHydration">수분량</System:String>
+ <System:String x:Key="HydrationRegen">수분량 재생 배율 :</System:String>
+ <System:String x:Key="EnergyRegen">에너지 재생 배율 :</System:String>
+ <System:String x:Key="HideoutRegen">아래에서 은신처 보너스를 제거할 수 있습니다.</System:String>
+ <!--Stash Section-->
+ <System:String x:Key="Stash">창고 크기 설정</System:String>
+ <System:String x:Key="StashLvl1">창고 레벨 1(스탠다드 에디션) :</System:String>
+ <System:String x:Key="StashLvl2">창고 레벨 2(레프트 비하인드 에디션) :</System:String>
+ <System:String x:Key="StashLvl3">창고 레벨 3(프레퍼어 포 이스케이프 에디션) :</System:String>
+ <System:String x:Key="StashLvl4">창고 레벨 4(엣지 오브 다크니스 에디션 - EOD) :</System:String>
+ <System:String x:Key="StashTUE">언허드 에디션:</System:String>
+
+ <!--Traders Section-->
+ <System:String x:Key="TradersMisc">상인 기타 설정</System:String>
+ <System:String x:Key="FIRTrade">상인이 판매하는 아이템 "인 레이드" 표시</System:String>
+ <System:String x:Key="UnlockJaeger">예거 잠금 해제</System:String>
+ <System:String x:Key="UnlockRef">레프 잠금 해제</System:String>
+ <System:String x:Key="AllQuestsAvailable">모든 퀘스트 활성화</System:String>
+ <System:String x:Key="RemoveTimeCondition">신규 퀘스트 생성 시간 설정(24시간)제거</System:String>
+ <System:String x:Key="TradersLvl4">모든 상인 레벨 4 등급</System:String>
+ <System:String x:Key="FIRRestrictsQuests">퀘스트 "인 레이드" 조건 삭제</System:String>
+ <System:String x:Key="RemoveTradeLimits">모든 거래 한도 삭제</System:String>
+ <System:String x:Key="IncreaseAssort">거래 재고량 대폭 증가</System:String>
+ <System:String x:Key="QuestRedeemTime">퀘스트 보상 교환 시간 (단위:시간) :</System:String>
+ <System:String x:Key="StockTime">새로운 재고 들어오는 시간 (단위:분) :</System:String>
+ <System:String x:Key="MinDurabSell">판매 가능한 최소 장비 내구성 :</System:String>
+ <System:String x:Key="PlantingTime">퀘스트 아이템 배치 소요 시간 배율:</System:String>
+ <System:String x:Key="PriceMarkup">플레이어 판매 아이템 매입가 설정</System:String>
+ <System:String x:Key="PriceAssort">상인 구성 아이템 가격 배율</System:String>
+ <System:String x:Key="TraderOffers">상인 총 재고 배율:</System:String>
+ <System:String x:Key="TraderRestrictions">상인 개인 구매 제한 배율:</System:String>
+ <System:String x:Key="CurrencyOffers">화폐</System:String>
+ <System:String x:Key="BarterOffers">물물교환</System:String>
+ <System:String x:Key="UnlockQuestAssort">퀘스트에 잠긴 상인 잠금 해제</System:String>
+ <!--LightKeeper Section -->
+ <System:String x:Key="LightKeeperEntry">등대지기 방문 시간 (분):</System:String>
+ <System:String x:Key="LightKeeperLeave">등대 반도 탈출 제한 시간:</System:String>
+
+    <!--Fence Section-->
+ <System:String x:Key="FenceSettings">펜스 설정</System:String>
+ <System:String x:Key="FenceAmountOnSale">판매 중인 아이템 :</System:String> 
+ <System:String x:Key="FencePremiumAmountOnSale">평판 6+ 레벨 이상에서 판매 중인 추가 아이템 :</System:String>
+ <System:String x:Key="FencePresetCount">판매 중인 총기 수량 :</System:String>
+ <System:String x:Key="FencePriceMult">아이템 가격 배율 :</System:String>
+ <System:String x:Key="FencePresetMult">총기 가격 배율 :</System:String>
+ <System:String x:Key="FenceGunDurability">총기 내구도 :</System:String>
+ <System:String x:Key="FenceArmorDurability">방어구 내구도 :</System:String>
+ <System:String x:Key="FenceBlacklist">펜스 판매 금지 목록 :</System:String>
+
+ <!--Services Section--> 
+ <!--insurance Section-->
+ <System:String x:Key="Insurance">보험 설정</System:String>
+ <System:String x:Key="InsuranceStorageTime">보험 임시 보관함 유지 시간 (단위:시간) :</System:String>
+ <System:String x:Key="InsuranceTradersTime">상인별 보험 반환 시간 (단위:시간):</System:String>
+ <System:String x:Key="InsuranceTradersChance">보험 반환 확률 (%) :</System:String>
+ <System:String x:Key="InsuranceTradersPriceMult">보험 가입 가격 배율</System:String>
+ <System:String x:Key="InsuranceMinimumTime">보험 반환 최소 시간 (단위:시간) :</System:String>
+ <System:String x:Key="InsuranceMaximumTime">보험 반환 최대 시간 (단위:시간) :</System:String>
+ <System:String x:Key="InsuranceInterval">서버가 프로필에서 보험을 확인하는 시간 간격 (단위:초) :</System:String>
+ <System:String x:Key="InsuranceTimeOverride">보험이 다시 돌아오는 시간 (단위:초) :</System:String>
+ <System:String x:Key="InsuranceAttachmentChance">부착물이 분실되지 않을 확률 (단위:%):</System:String>
+ <System:String x:Key="HealMarkup">힐 마크업</System:String>
+ <!--Repair Section-->
+ <System:String x:Key="Repair">수리 설정</System:String>
+ <System:String x:Key="RepairMarkup">수리 가격 배율 :</System:String>
+ <System:String x:Key="ArmorSkillMult">수리 포인트 당 '방어구 (경장갑, 중장갑) 스킬' 획득량</System:String>
+ <System:String x:Key="WeaponMaintenanceSkillMult">수리 포인트 당 '무기 유지보수 스킬' 획득량</System:String>
+ <System:String x:Key="IntellectSkillMult">수리 포인트당 '지력 스킬' 획득량</System:String>
+ <System:String x:Key="WeaponRepairKit">무기 수리키트 :</System:String>
+ <System:String x:Key="ArmorRepairKit">방어구 수리키트 :</System:String>
+ <System:String x:Key="RepairKit">수리 키트 :</System:String>
+ <System:String x:Key="IntellectSkillLimit">수리 한 번당 최대 '지력 스킬' 획득량</System:String>
+ <System:String x:Key="NoRandomDamageOnRepair">더 이상 수리 시 무작위 손상 없음</System:String>
+ <System:String x:Key="NoPermDamageWeapon">무기 수리 시 내구도가 소모되지 않음</System:String>
+ <System:String x:Key="NoPermDamageArmor">방어구 수리 시 내구도가 마모되지 않음</System:String>
+ <!--Clothing Section-->
+ <System:String x:Key="Clothing">의상 설정</System:String>
+ <System:String x:Key="ClothesAnySide">각 진영 의상 잠금 해제</System:String>
+ <System:String x:Key="ClothesFree">모든 의상 무료</System:String>
+ <System:String x:Key="ClothesLevelUnlock">의상의 레벨 및 평판 요구 사항 삭제</System:String>
+ <!--Healing Section-->
+ <System:String x:Key="HealthMarkup">치료 가격 설정</System:String>
+ <System:String x:Key="FreeHealLvl">해당 레벨에 도달할 때까지 무료 치료 :</System:String>
+ <System:String x:Key="FreeHealRaids">해당 레이드 수 완료 때까지 무료 치료 :</System:String>
+ <System:String x:Key="TherapistHealthPrice">테라피스트 치료비용 가격 배율</System:String>
+ <System:String x:Key="Lvl1">레벨 1:</System:String>
+ <System:String x:Key="Lvl2">레벨 2:</System:String>
+ <System:String x:Key="Lvl3">레벨 3:</System:String>
+ <System:String x:Key="Lvl4">레벨 4:</System:String>
+ <!--Loot Section-->
+ <System:String x:Key="LooseLoot">떨어진 아이템</System:String>
+ <System:String x:Key="ContainerLoot">컨테이너 안</System:String>
+ <System:String x:Key="AllContainers">각 지역 파밍 가능한 전리품 컨테이너 모두 생성</System:String>
+ <System:String x:Key="LocationsLoot">각 지역 전리품 획득 배수 설정</System:String>
+ <!--Airdrop Section-->
+ <System:String x:Key="Airdrops">에어드랍(공중보급) 설정</System:String>
+ <System:String x:Key="AirdropsTimeMinMax">에어드랍 시간 (단위:분) :</System:String>
+ <System:String x:Key="AirdropChance">각 지역 당 에어드랍 출현 확률 (%)</System:String>
+
+ <!--Unified names of fields inside crates and expander headers-->
+ <System:String x:Key="Mixed">혼합 보급 상자 내용물</System:String>
+ <System:String x:Key="WepArmor">무기 상자 보급 상자 내용물</System:String>
+ <System:String x:Key="Medical">의료용 보급 상자 내용물</System:String>
+ <System:String x:Key="BarterCrate">물물교환 보급 상자 내용물</System:String>
+
+ <System:String x:Key="Guns">총기 :</System:String>
+ <System:String x:Key="BarterLoot">물물교환 아이템 :</System:String>
+ <System:String x:Key="Gear">장비 :</System:String>
+ <System:String x:Key="WepCrates">닫힌 무기 상자 :</System:String>
+
+ <!--Player Section-->
+ <System:String x:Key="SkillProgMult">일반 스킬 획득 경험치 :</System:String>
+ <System:String x:Key="WeaponSkillMult">무기 스킬 :</System:String>
+ <System:String x:Key="HydrationLoss">수분량 소모량 :</System:String>
+ <System:String x:Key="EnergyLoss">에너지 소모량 :</System:String>
+ <System:String x:Key="BlackStomach">흉부 블랙아웃 상태 시 에너지/수분 소모량 :</System:String>
+
+ <System:String x:Key="Skills">스킬 레벨링 효율성 설정</System:String>
+ <System:String x:Key="SkillMinEffect">피로 상태 시 얻는 최소 스킬 경험치 :</System:String>
+ <System:String x:Key="SkillFatiguePerPoint">피로 상태 시 얻는 스킬 경험치 :</System:String>
+ <System:String x:Key="SkillFreshEffect">신규 스킬 경험치 획득 배율 :</System:String>
+ <System:String x:Key="SkillFPoints">신규 스킬 경험치 획득량 :</System:String>
+ <System:String x:Key="SkillPointsBeforeFatigue">피로 시작 전 스킬 경험치 획득량 :</System:String>
+ <System:String x:Key="SkillFatigueReset">스킬 피로도 초기화 시간 (단위:초) :</System:String>
+
+ <System:String x:Key="DiedHealth">레이드 후 체력 상태 설정</System:String>
+ <System:String x:Key="Death">사망 후 사지 체력 배율 :</System:String>
+ <System:String x:Key="Blacked">블랙아웃 후 사지 체력 배율 :</System:String>
+ <System:String x:Key="Savehealth">레이드 후 체력 보존</System:String>
+ <System:String x:Key="Saveeffects">레이드 후 상태(골절, 출혈 등..) 보존</System:String>
+
+ <System:String x:Key="RaidMult">레이드 종료 후 경험치 배율 설정</System:String>
+ <System:String x:Key="MIA">실종(미아) :</System:String>
+ <System:String x:Key="Survived">생존 :</System:String>
+ <System:String x:Key="Killed">사살 :</System:String>
+ <System:String x:Key="Runner">도주(런쓰루) :</System:String>
+
+ <System:String x:Key="CharXP">행동 당 캐릭터 경험치</System:String>
+ <System:String x:Key="ScavKill">스캐브(Scav) 사살 :</System:String>
+ <System:String x:Key="PMCKill">PMC 사살 :</System:String>
+ <System:String x:Key="ScavHMult">헤드샷 배율 :</System:String>
+ <System:String x:Key="PMCHMult">PMC 헤드샷 배율 :</System:String>
+
+ <System:String x:Key="PMCHealth">PMC 체력 편집기</System:String>
+ 
+ <System:String x:Key="PMCStats">PMC 스탯 편집기</System:String>
+ <System:String x:Key="MaxHydration">최대 수분량 :</System:String>
+ <System:String x:Key="MaxEnergy">최대 에너지 :</System:String>
+ 
+<System:String x:Key="HandsStamina">스태미나 (손)</System:String>
+ <System:String x:Key="LegsStamina">스태미나 (다리)</System:String>
+ <System:String x:Key="MaxStamina">최대 지구력(스테미나) :</System:String>
+ <System:String x:Key="StaminaRegenRate">스태미나 회복 속도:</System:String>
+ <System:String x:Key="StaminaStanceConsumption">자세별 스태미나 소모 배율</System:String>
+ <System:String x:Key="Standing">서 있기</System:String>
+ <System:String x:Key="LayingDown">엎드리기</System:String>
+<System:String x:Key="Crouching">앉기</System:String>
+ <System:String x:Key="JumpConsumption">점프 시 소모량:</System:String>
+ <System:String x:Key="StanceSwitchConsumption">다른 자세에서 일어설 때 소모량</System:String>
+
+ <System:String x:Key="Stamina">지구력(스테미나)</System:String>
+ <System:String x:Key="UnlimitedStamina">무제한 지구력(스테미나) 활성화</System:String>
+ <System:String x:Key="FallDamage">낙하 피해 비활성화</System:String>
+ <!--Raid Settings Section-->
+ <System:String x:Key="Removelabkey">랩(연구실) 레이드 시 키 카드 요구 사항 제거</System:String>
+ <System:String x:Key="LabInsurance">랩(연구실) 보험 가능</System:String>
+ <System:String x:Key="SafeExit">접속 끊기 시 아이템 보존</System:String>
+ <System:String x:Key="SaveGearAfterDeath">사망, 접속 끊기 시 아이템 보존</System:String>
+ <System:String x:Key="NoRunThrough">'도주(런쓰루)' 탈출 조건 삭제</System:String>
+ <System:String x:Key="SaveQuestItems">퀘스트 아이템 소지 중 사망 시 보존</System:String>
+ <System:String x:Key="SandboxAccessLevel">뉴비들을 위한 그라운드 제로 입장 최대 레벨 값</System:String>
+ <System:String x:Key="ExtractsSettings">탈출 설정</System:String>
+ <System:String x:Key="RaidTime">추가 레이드 시간 (단위:분) :</System:String>
+ <System:String x:Key="Timeacceleration">레이드 시간 가속 배수 :</System:String>
+ <System:String x:Key="ChanceExtracts">모든 확률 탈출구 항상 사용 가능</System:String>
+ <System:String x:Key="ExtendedExtracts">레이드 시작 위치 상관없이 모든 탈출구 사용 가능</System:String>
+ <System:String x:Key="GearExtract">RR 및 파라코드 필요 탈출구 요구 조건 제거</System:String>
+ <System:String x:Key="ArmorExtract">방어구 관련 탈출구 조건 제한 제거</System:String>
+ <System:String x:Key="NoBackpack">배낭 관련 탈출구 조건 제한 제거</System:String>
+ <System:String x:Key="ForceTransitStash">Transit 인벤토리 크기 강제 설정</System:String>
+  <!--Coop/Car Section-->
+ <System:String x:Key="FreeCoop">협동 탈출구 제한 없음</System:String>
+ <System:String x:Key="CoopPaid">협동 탈출구 화폐 지불</System:String>
+ <System:String x:Key="FenceGift">협동 탈출구 탈출 시 펜스 선물 비활성화</System:String>
+ <System:String x:Key="CarExitPrices">택시 탈출 지불 가격</System:String>
+ <System:String x:Key="CarExtractTime">택시 탈출 대기 시간 (단위:초)</System:String>
+ <System:String x:Key="CoopExitPrices">협동 탈출 지불 가격</System:String>
+ <System:String x:Key="CarAndCoop">택시/협동 탈출구 설정</System:String>
+
+ <!--BTR Section-->
+ <System:String x:Key="BTR">BTR 설정</System:String>
+ <System:String x:Key="ForceBTRStash">BTR 인벤토리 강제 크기</System:String>
+ <System:String x:Key="ForceBTRFriendly">BTR 항상 상호 작용 가능</System:String>
+ <System:String x:Key="BTRTaxiPrice">기본 택시(이동) 가격(루블):</System:String>
+ <System:String x:Key="BTRCoverPrice">기본 지원 사격 가격(루블):</System:String>
+ <System:String x:Key="BTRPriceMult">진영별 가격 배율:</System:String>
+ <System:String x:Key="BTRTimeMin">BTR 최소 출현 시간 (분):</System:String>
+ <System:String x:Key="BTRTimeMax">BTR 최대 출현 시간 (분):</System:String>
+ <System:String x:Key="BTRChance">BTR 출현 확률 (%):</System:String>
+ <System:String x:Key="Usec">USEC:</System:String>
+ <System:String x:Key="Bear">BEAR:</System:String>
+
+ <!--Events Section-->
+ <System:String x:Key="Events">이벤트 설정</System:String>
+ <System:String x:Key="AITypeOverride">기본 SCAV 유형을 다음으로 재정의:</System:String>
+ <System:String x:Key="RaidersEverywhere">모든 스캐브가 레이더로 변경 (보스포함)</System:String>
+ <System:String x:Key="BossesOnReserve">모든 보스들 리저브에 생성</System:String>
+ <System:String x:Key="IncludeStreetBosses">타르코프 시내(스오타) 보스 포함</System:String>
+ <System:String x:Key="BossesOnCustoms">모든 보스들 커스텀(세관)에 생성</System:String>
+ <System:String x:Key="BossesOnHealthResort">모든 보스들 쇼어라인(해안선) 리조트에 생성</System:String>
+ <System:String x:Key="HealthResortIncludeGuards">경비원들 포함</System:String>
+ <System:String x:Key="GoonsFactory">군즈 팩토리(공장) 생성 확률 :</System:String>
+ <System:String x:Key="KillaFactory">킬라 팩토리(공장) 생성 확률 :</System:String>
+ <System:String x:Key="CultistBosses">컬티스트 보스 및 생성 확률 활성화:</System:String>
+ <System:String x:Key="Halloween">할로윈</System:String>
+ <System:String x:Key="DisableZombies">좀비 이벤트 비활성화</System:String>
+ <System:String x:Key="RandomInfectionLevel">좀비 감염 수준 랜덤 설정</System:String>
+ <System:String x:Key="DisableHalloweenAIFriendly">휴전 비활성화</System:String>
+ <System:String x:Key="Christmas">크리스마스</System:String>
+ <System:String x:Key="NonSeasonalQuests">비시즌 이벤트 퀘스트 활성화</System:String>
+ <System:String x:Key="DisableEvents">진행 중인 이벤트 비활성화</System:String>
+ <System:String x:Key="TagillaInterchange">인터체인지에서 타길라와 함께 킬라 생성</System:String>
+ <System:String x:Key="GlukharLabs">랩(연구실)에 글루하 생성</System:String>
+ <System:String x:Key="Bloodhounds">블러드하운드 생성 확률</System:String>
+ <System:String x:Key="RedBlueEvent">스키어/피스키퍼 분대 스폰 확률</System:String>
+ <!--Raid Startup Section-->
+ <System:String x:Key="RaidStartup">레이드 시작 설정</System:String>
+ <System:String x:Key="Cursed">태그 및 저주</System:String>
+ <System:String x:Key="MIARaid">레이드 종료 시 실종</System:String>
+ <System:String x:Key="LootRaid">연습 모드</System:String>
+ <System:String x:Key="DurabRaid">레이드 후 내구도 저장</System:String>
+ <System:String x:Key="AIDifficulty">AI 난이도</System:String>
+ <System:String x:Key="AIAmount">AI 규모</System:String>
+ <System:String x:Key="DeployTimer">레이드 진입 전 준비 시간</System:String>
+ <System:String x:Key="EnableBosses">보스 활성화</System:String>
+ <System:String x:Key="ScavWars">스캐브(Scav) 전쟁</System:String>
+
+ <System:String x:Key="AsOnline">온라인과 같게</System:String>
+ <System:String x:Key="High">많음</System:String>
+ <System:String x:Key="Horde">넘쳐남</System:String>
+ <System:String x:Key="Low">적음</System:String>
+ <System:String x:Key="Medium">보통</System:String>
+ <System:String x:Key="Impossible">불가능한</System:String>
+ <System:String x:Key="Easy">쉬움</System:String>
+ <System:String x:Key="NoBots">없음</System:String>
+ <System:String x:Key="Hard">어려움</System:String>
+ <System:String x:Key="Random">무작위</System:String>
+
+<!--Raid Startup Section (Season)-->
+<System:String x:Key="ForceSeason">계절별 날씨 강제 설정</System:String>
+<System:String x:Key="Season">계절 유형:</System:String>
+<System:String x:Key="Summer">여름</System:String>
+<System:String x:Key="Autumn">가을</System:String>
+<System:String x:Key="Winter">겨울</System:String>
+<System:String x:Key="Spring">봄</System:String>
+<System:String x:Key="Storm">폭풍우</System:String>
+ 
+ <!--Fleamarket Section-->
+ <System:String x:Key="PlayerFlea">플레이어 판매/구매</System:String>
+ <System:String x:Key="FleaMarketLevel">플리마켓 활성화 레벨</System:String>
+ <System:String x:Key="EnableFees">수수료 활성화</System:String>
+ <System:String x:Key="Sell_chance">아이템 기본 판매 확률 :</System:String>
+ <System:String x:Key="Sell_mult">판매 확률 배율 :</System:String>
+ <System:String x:Key="RepGain">10만 루블 이익당 명성 증가율 :</System:String>
+ <System:String x:Key="RepLoss">10만 루블 수수료당 명성 손실률 :</System:String>
+ <System:String x:Key="Fleatime">아이템 판매 시간 (단위:분) :</System:String>
+ <System:String x:Key="FleaFIR">플리마켓에서 구입한 아이템 "인 레이드"로 표시</System:String>
+ <System:String x:Key="FleaNoFIRSell">"인 레이드" 표시가 있는 아이템만 판매 허용</System:String>
+ <System:String x:Key="DisableBSGList">BSG 플리마켓 블랙리스트 비활성화 (판매 수정 불가)</System:String>
+ <System:String x:Key="EventOffers">이벤트 없이 이벤트 아이템 매물 생성 허용</System:String>
+ <System:String x:Key="OverrideOffers">물건 등록 시스템 설정</System:String>
+ <System:String x:Key="SellOffersAmount">물건 등록 가능 수량 :</System:String>
+ <System:String x:Key="AIOffers">AI 매물 생성 설정</System:String>
+ <System:String x:Key="NonStack">매물 당 중첩할 수 없는 아이템 수량 :</System:String>
+ <System:String x:Key="Stack">매물 당 중첩 가능한 아이템 수량 :</System:String>
+ <System:String x:Key="OffersPerItem">각 아이템별 매물 수 :</System:String>
+ <System:String x:Key="PriceRange">가격 범위 :</System:String>
+ <System:String x:Key="OfferTime">매물 갱신 시간 (단위:분) :</System:String>
+ <System:String x:Key="FleaConditions">매물 내구도 설정 (단위:%)</System:String>
+ <System:String x:Key="OffersRatio">매물 판매에 사용될 통화 비율 (단위:%)</System:String>
+ <System:String x:Key="ExpireThreshold">만료된 매물이 n개 이상일 경우 새 매물 생성 :</System:String>
+ <System:String x:Key="BundleOfferChance">아이템이 묶음으로 등장할 확률 (%):</System:String>
+
+
+ <!--CSM Section-->
+ <System:String x:Key="Cases">보관함 크기 설정</System:String>
+ <System:String x:Key="RemoveFilters">필터 제거</System:String>
+ <System:String x:Key="MoneyCase">돈 가방(머니케이스) :</System:String>
+ <System:String x:Key="SimpleWallet">지갑 :</System:String>
+ <System:String x:Key="WZWallet">WZ 지갑 :</System:String>
+ <System:String x:Key="GrenadeCase">수류탄 보관함 :</System:String>
+ <System:String x:Key="ItemsCase">물품 보관함 :</System:String>
+ <System:String x:Key="WeaponCase">무기 보관함 :</System:String>
+ <System:String x:Key="LuckyScav">럭키 스캐브의 고물상자 :</System:String>
+ <System:String x:Key="AmmunitionCase">탄약 보관함 :</System:String>
+ <System:String x:Key="MagazineCase">탄창 보관함 :</System:String>
+ <System:String x:Key="DogtagCase">인식표(독택) 보관함 :</System:String>
+ <System:String x:Key="MedicineCase">의약품 보관함 :</System:String>
+ <System:String x:Key="ThiccItemsCase">T H I C C 아이템 보관함 :</System:String>
+ <System:String x:Key="ThiccWeaponCase">T H I C C 무기 보관함 :</System:String>
+ <System:String x:Key="SiccCase">S I C C 다용도 파우치 :</System:String>
+ <System:String x:Key="Keytool">키툴 :</System:String>
+ <System:String x:Key="DocumentsCase">서류 가방 :</System:String>
+ <System:String x:Key="PistolCase">권총 보관함 :</System:String>
+ <System:String x:Key="Holodilnick">보온 가방 (냉장고) :</System:String>
+ <System:String x:Key="InjectorCase">주사기 보관함 :</System:String>
+ <System:String x:Key="KeycardHolderCase">키카드 홀더 보관함 :</System:String>
+ <System:String x:Key="GKeychain">Gingy 열쇠고리 :</System:String>
+ <System:String x:Key="KeysCase">열쇠 보관함:</System:String>
+ <System:String x:Key="StreamerCase">스트리머 아이템 케이스:</System:String>
+ <System:String x:Key="ArmorPlateCase">방탄판 케이스:</System:String>
+
+ <!--Secure case Section-->
+ <System:String x:Key="SecureContainers">보안 컨테이너 크기 설정</System:String>
+ <System:String x:Key="Alpha">알파 :</System:String>
+ <System:String x:Key="Beta">베타 :</System:String>
+ <System:String x:Key="Gamma">감마 :</System:String>
+ <System:String x:Key="GammaTUE">TUE 감마 :</System:String>
+ <System:String x:Key="Epsilon">엡실론 :</System:String>
+ <System:String x:Key="Kappa">카파 :</System:String>
+ <System:String x:Key="DesecratedKappa">카파 (모독됨):</System:String>
+ <System:String x:Key="WaistPouch">허리 주머니 :</System:String>
+ <System:String x:Key="Dev">개발자용 :</System:String>
+ <!--PMC Pockets Section-->
+ <System:String x:Key="Pockets">PMC 주머니 크기 설정 :</System:String>
+ <System:String x:Key="SpecsAmount">스페셜(spec) 슬롯 개수 :</System:String>
+ <System:String x:Key="Size">Size:</System:String>
+ <!--<System:String x:Key="Rows">열(세로) :</System:String>
+ <System:String x:Key="Columns">행(가로) :</System:String>-->
+ <System:String x:Key="Width">가로:</System:String>
+ <System:String x:Key="Height">세로:</System:String>
+ <System:String x:Key="FirstCell">첫 번째 칸 :</System:String>
+ <System:String x:Key="SecondCell">두 번째 칸 :</System:String>
+ <System:String x:Key="ThirdCell">세 번째 칸 :</System:String>
+ <System:String x:Key="FourthCell">네 번째 칸 :</System:String>
+ <System:String x:Key="CasesInSpec">스페셜(spec) 슬롯에 보관함 삽입 가능</System:String>
+ <System:String x:Key="InstallCSMPlugin">'HideSpecialIcon'을 설치하려면 여기를 클릭하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="InstallCSMPlugin_Tooltip">'Bepinex/plugins' 폴더에 스페셜(spec) 슬롯에 보관함을 삽입하는 플러그인이 설치됩니다.</System:String>
+
+
+ <!--Quests Section-->
+
+ <System:String x:Key="QuestRepToZero">퀘스트 갱신 시 평판 패널티 제거</System:String>
+ <System:String x:Key="QuestCostMult">퀘스트 재시작 비용 배율</System:String>
+ <System:String x:Key="DailyQuests">일일 퀘스트 설정</System:String>
+ <System:String x:Key="WeeklyQuests">주간 퀘스트 설정</System:String>
+ <System:String x:Key="ScavQuests">펜스(스캐브) 퀘스트 설정</System:String>
+ <System:String x:Key="QuestLifespan">퀘스트 주기 (단위:분) :</System:String>
+ <System:String x:Key="AmountofQuests">주기당 퀘스트 수 :</System:String>
+    <System:String x:Key="QuestLevel">퀘스트 해금 레벨 :</System:String>
+    <System:String x:Key="LR1">[1-15레벨]</System:String>
+    <System:String x:Key="LR2">[16-40레벨]</System:String>
+    <System:String x:Key="LR3">[41-100레벨]</System:String>
+    <System:String x:Key="MinKills">최소 요구 사살 수:</System:String>
+    <System:String x:Key="MaxKills">최대 요구 사살 수:</System:String>
+    <System:String x:Key="MinItems">최소 아이템 수:</System:String>
+    <System:String x:Key="MaxItems">최대 아이템 수:</System:String>
+    <System:String x:Key="MinExtracts">최소 탈출 횟수:</System:String>
+    <System:String x:Key="MaxExtracts">최대 탈출 횟수:</System:String>
+    <System:String x:Key="MinSpecExits">최소 지정 출구 수:</System:String>
+    <System:String x:Key="MaxSpecExits">최대 지정 출구 수:</System:String>
+
+    <System:String x:Key="Elimination">사살 임무</System:String>
+ <System:String x:Key="Exploration">지역 탈출 임무</System:String>
+ <System:String x:Key="Completion">물건 전달 임무</System:String>
+ <System:String x:Key="CompElim">물건 전달 임무, 사살 임무</System:String>
+ <System:String x:Key="CompExpl">물건 전달 임무, 지역 탈출 임무</System:String>
+ <System:String x:Key="ExplElim">지역 탈출 임무, 사살 임무</System:String>
+ <System:String x:Key="ExplElimComp">물건 전달 임무, 지역 탈출 임무, 사살 임무</System:String>
+
+ <System:String x:Key="RewardScale">레벨 기반 보상 비율</System:String>
+ <System:String x:Key="Levels">레벨:</System:String>
+ <System:String x:Key="Experience">경험치:</System:String>
+ <System:String x:Key="ItemsReward">아이템:</System:String>
+ <System:String x:Key="Reputation">평판:</System:String>
+ <System:String x:Key="SkillPoint">스킬 포인트 수량:</System:String>
+ <System:String x:Key="SkillChance">스킬 포인트 획득 확률:</System:String>
+ <System:String x:Key="Types">퀘스트 임무 종류 :</System:String>
+ <System:String x:Key="Reroll">무료 임무 갱신:</System:String>
+
+ <!--Scav Section-->
+ <System:String x:Key="SCAVHealth">스캐브(Scav) 체력 편집기</System:String>
+ <System:String x:Key="SCAVPockets">스캐브(Scav) 주머니 크기 설정</System:String>
+ <System:String x:Key="ScavLab">랩(연구실) 레이드 활성화</System:String>
+ <System:String x:Key="HostileScavs">다른 스캐브(Scav)를 항상 적대적으로 만들기</System:String>
+ <System:String x:Key="FriendlyScavs">다른 스캐브(Scav)를 평화롭게 만들기</System:String>
+ <System:String x:Key="FriendlyBosses">스캐브(Scav) 보스를 항상 적대적으로 만들기</System:String>
+ <System:String x:Key="HostileBosses">스캐브(Scav) 보스를 평화롭게 만들기</System:String>
+ <System:String x:Key="ScavTimer">스캐브(Scav) 재사용 대기시간(단위:초) :</System:String>
+ <System:String x:Key="ScavStats">스캐브(Scav) 스탯 편집기</System:String>
+ <System:String x:Key="CarBaseStanding">택시 / 협동 탈출 시 펜스 우호도 :</System:String>
+
+  <!--<System:String x:Key="Levels">Alpha:</System:String>
+ <System:String x:Key="Levels">Alpha:</System:String>
+ <System:String x:Key="Levels">Alpha:</System:String>-->
+
+ <!--Bots Section-->
+ <System:String x:Key="BotsSpawnChance">보스 및 특수 유형 생성 확률</System:String>
+ <System:String x:Key="BotsArmorDurab">AI 방어구 장비 내구도</System:String>
+ <System:String x:Key="BotsWeaponDurab">AI 무기 내구도</System:String>
+ <System:String x:Key="ForcePartisan">파르티잔의 스폰 행동 변경</System:String>
+ <!--PMC Section-->
+ <System:String x:Key="AIToPMC">AI PMC 생성 시 변경될 유형 설정 (단위:%)</System:String>
+ <System:String x:Key="PMCRatio">AI PMC USEC/BEAR 진영 생성 비율 :</System:String>
+ <System:String x:Key="LootMelee">근접무기 획득 가능</System:String>
+ <System:String x:Key="DisableLowLevelPMC">저레벨 장비 PMC 비활성화</System:String>
+ <System:String x:Key="ForcePMC">SPT PMC 기본 생성 확률 덮어쓰기</System:String>
+ <System:String x:Key="PMCLevelDownMargin">AI PMC 랜덤 레벨 최소 값 (자신 레벨 - 최소 값 = 그 이상부터 랜덤 적용)</System:String>
+ <System:String x:Key="PMCLevelUpMargin">AI PMC 랜덤 레벨 최대 값 (자신 레벨 + 최대 값 = 그 이하로 랜덤 적용)</System:String>
+ <System:String x:Key="Chances">확률 설정 (단위:%)</System:String>
+ <System:String x:Key="WeaponInBackpacks">AI PMC 배낭에 무기가 있을 확률 :</System:String>
+ <System:String x:Key="PMCUpgradedWeapon">무기 인챈트 부여 확률 :</System:String>
+ <System:String x:Key="PMCHaveYourName">AI PMC가 접두사가 붙은 플레이어의 이름 사용 확률 :</System:String>
+ <System:String x:Key="AllPMCHaveYourName">모든 AI PMC가 접두사가 붙은 플레이어 이름 사용 확률 :</System:String>
+ <System:String x:Key="PMCSameHostility">같은 진영의 PMC 적대 행위 확률 :</System:String>
+ <System:String x:Key="PMCHostility">다른 진영 PMC에 대한 적대 행위:</System:String>
+ <System:String x:Key="PMCNames">PMC 이름 설정</System:String>
+ <System:String x:Key="OverridePMCNames">기본 SPT 이름 제거</System:String>
+ <System:String x:Key="AIConverter">AI 유형 변환 확률 (%)</System:String>
+ <System:String x:Key="PMCToAI">PMC 웨이브를 스캐브로 전환할 확률:</System:String>
+ <System:String x:Key="AItoPMC">스캐브 웨이브를 PMC로 전환할 확률:</System:String>
+    <!--Advanced Features Section-->
+ <System:String x:Key="Debug">디버그 설정</System:String>
+ <System:String x:Key="CustomFields">사용자 필드</System:String>
+ <System:String x:Key="Mailbox">메신저</System:String>
+ <System:String x:Key="LoggerIntoServer">서버 로그에 프리셋 기록</System:String>
+ <System:String x:Key="DisableSPTFriend">SPT 친구 기능 비활성화</System:String>
+ <System:String x:Key="DisableCommando">Commando 비활성화</System:String>
+ <System:String x:Key="DisablePMCMessages">메신저에서 PMC 응답 비활성화</System:String>
+ <System:String x:Key="AddTraderAssort">신규 상인 거래 추가'는 </System:String>
+  <!--Individual Item Changer Section-->
+<System:String x:Key="Changer">개별 아이템 편집기 (FAQ를 읽어주세요.)</System:String>
+<System:String x:Key="IDDefault">기본 IIC:</System:String>
+<System:String x:Key="IDParent">부모 ID로 모든 항목 변경:</System:String>
+<System:String x:Key="IDPrice">핸드북에서 가격 변경/추가:</System:String>
+<System:String x:Key="IDFilter">필터에 ID 추가:</System:String>
+<System:String x:Key="FleaMultID">아이템 가격에 배수를 추가:</System:String>
+    <!--Unified name of Game objects-->
+ <System:String x:Key="FleaWeapons">무기 :</System:String>
+ <System:String x:Key="FleaMedical">의약품 :</System:String>
+ <System:String x:Key="FleaSpec">특수 아이템 :</System:String>
+ <System:String x:Key="FleaKeys">열쇠(키) :</System:String>
+ <System:String x:Key="FleaVests">조끼 :</System:String>
+ <System:String x:Key="FleaArmor">방어구 / 헬맷 :</System:String>
+ <System:String x:Key="FleaFood">음식 / 음료 :</System:String>
+
+ <!--Unified names of multipliers and expander headers-->
+ <System:String x:Key="Misc">기타 설정</System:String>
+ <System:String x:Key="Multipliers">배율 설정</System:String>
+ <System:String x:Key="Toggles">토글</System:String>
+ <System:String x:Key="Min">최소</System:String>
+ <System:String x:Key="Max">최대</System:String>
+ 
+ <!--Unified names of Editions-->
+ <System:String x:Key="Default">기본</System:String>
+ <System:String x:Key="Standard">스탠다드 에디션</System:String>
+ <System:String x:Key="lb">레프트 비하인드 에디션</System:String>
+ <System:String x:Key="pfe">프레퍼어 포 이스케이프 에디션</System:String>
+ <System:String x:Key="eod">EOD 에디션</System:String>
+ <System:String x:Key="Unheard">언허드 에디션</System:String>
+
+ <!--Unified names of locations-->
+ <System:String x:Key="Shoreline">쇼어라인 :</System:String>
+ <System:String x:Key="FactoryDay">주간 팩토리(공장) :</System:String>
+ <System:String x:Key="FactoryNight">야간 팩토리(공장) :</System:String>
+ <System:String x:Key="Customs">커스텀 :</System:String>
+ <System:String x:Key="Lighthouse">라이트하우스 :</System:String>
+ <System:String x:Key="Reserve">리저브 :</System:String>
+ <System:String x:Key="Woods">우드 :</System:String>
+ <System:String x:Key="Streets">스오타 :</System:String>
+ <System:String x:Key="StreetsShort">스오타 :</System:String>
+ <System:String x:Key="Lab">랩 :</System:String>
+ <System:String x:Key="Interchange">인터체인지 :</System:String>
+ <System:String x:Key="GroundZero">그라운드 제로 :</System:String>
+ <System:String x:Key="GroundZeroHard">그라운드 제로 - 어려움 :</System:String>
+ <!--Unified names of Traders-->
+ <System:String x:Key="TradersGroup">상인 :</System:String>
+ <System:String x:Key="Therapist">테라피스트 :</System:String>
+ <System:String x:Key="Prapor">프라퍼 :</System:String>
+ <System:String x:Key="Mechanic">메카닉 :</System:String>
+ <System:String x:Key="Skier">스키어 :</System:String>
+ <System:String x:Key="Ragman">래그맨 :</System:String>
+ <System:String x:Key="Fence">펜스 :</System:String>
+ <System:String x:Key="Peacekeeper">피스키퍼 :</System:String>
+ <System:String x:Key="Jaeger">예거 :</System:String>
+ <System:String x:Key="Ref">레프 :</System:String>
+ <System:String x:Key="Lightkeeper">등대지기 :</System:String>
+ <!--Unified names of Bosses-->
+ <System:String x:Key="Killa">킬라</System:String>
+ <System:String x:Key="Tagilla">타길라</System:String>
+ <System:String x:Key="Reshala">르샬라</System:String>
+ <System:String x:Key="Shturman">샤따맨</System:String>
+ <System:String x:Key="Glukhar">글루하</System:String>
+ <System:String x:Key="Sanitar">세니타</System:String>
+ <System:String x:Key="Goons">군즈</System:String>
+ <System:String x:Key="Zryachiy">지라치</System:String>
+ <System:String x:Key="Kaban">카반</System:String>
+ <System:String x:Key="Kollontay">콜론테이</System:String>
+ <System:String x:Key="Cultist">컬티스트</System:String>
+ <System:String x:Key="Partisan">파르티잔</System:String>
+ <!--Unified names of Bots Types-->
+ <System:String x:Key="SCAVAI">스캐브</System:String>
+ <System:String x:Key="SCAVAIFactory">스캐브 주간 팩토리:</System:String>
+ <System:String x:Key="CursedSCAV">배신자 스캐브</System:String>
+ <System:String x:Key="Raiders">레이더</System:String>
+ <System:String x:Key="SCAVSniper">저격 스캐브</System:String>
+ <System:String x:Key="Rogues">로그</System:String>
+ <System:String x:Key="PMCAI">PMC:</System:String>
+ <System:String x:Key="Bosses">보스</System:String>
+ <System:String x:Key="Followers">보스 경비대</System:String>
+ <System:String x:Key="Usecs">USECs</System:String>
+ <System:String x:Key="Bears">BEARs</System:String>
+
+    <!--Tooltips-->
+ <System:String x:Key="EquipRigsWithArmors_TT">AVS나 Tac-Tec 같은 방탄 조끼를 Trooper나 Slick 같은 방탄복과 함께 착용할 수 있게 합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveBackpacksRestrictions_TT">모든 종류의 아이템을 어떤 백팩에나 넣을 수 있게 합니다.
+주의: 레이드 중 버릴 수 없는 아이템을 넣으려면 '레이드 도중 버리기 불가' 태그 제거 기능을 사용하는 것이 강력히 권장됩니다.
+그렇지 않으면 보험에 들었거나 '사망, 접속 끊기 시 아이템 보존' 기능 활성화 시에도 사망 시 해당 아이템들이 삭제됩니다.</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveSecureContainerFilters_TT">모든 종류의 아이템을 어떤 보안 컨테이너에나 넣을 수 있게 합니다.
+주의: 레이드 중 버릴 수 없는 아이템을 넣으려면 '레이드 도중 버리기 불가' 태그 제거 기능을 사용하는 것이 강력히 권장됩니다.
+그렇지 않으면 보험에 들었거나 '사망, 접속 끊기 시 아이템 보존' 기능 활성화시에도 사망 시 해당 아이템들이 삭제됩니다.</System:String>
+ <System:String x:Key="RemoveRaidRestr_TT">모든 아이템을 레이드에 가져갈 수 있게 합니다.</System:String>
+ <System:String x:Key="NoGearPenalty_TT">장비로 인한 이동 속도 감소, 마우스 움직임 제한, 무기 인체공학 저하 등의 페널티를 제거합니다.</System:String>
+ <System:String x:Key="RaidDrop_TT">레이드 중 어떤 아이템이든 버릴 수 있게 합니다.</System:String>
+ <System:String x:Key="PistolToMain_TT">리볼버와 소드-오프 산탄총(샷건) 포함</System:String>
+ <System:String x:Key="SMGToHolster_TT">게임 내 모든 SMG 포함</System:String>
+ <System:String xml:space="preserve" x:Key="ItemPriceMult_TT">아이템의 기본 가격을 곱합니다.
+  이는 플리 마켓에서의 구매/판매와 상인에게 판매하는 가격에 영향을 줍니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ExamineTime_TT">검사되지 않은 아이템에 조사를 했을 때 진행되는 과정의 시간에 영향을 줍니다.
+  아이템 확인 속도에는 영향을 주지 않습니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="AmmoLoadSpeed_TT">탄약을 탄창에 넣거나 빼는 데 필요한 시간을 곱합니다.
+값이 작을수록 과정이 빨라집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="PistolRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
+9x18, 9x19, 9x21, 7.62x25, .357(9x33), .45ACP(11.43x23ACP), 46x30, 5.7x28</System:String>
+ <System:String xml:space="preserve" x:Key="ShotgunRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
+12x70, 20x70, 23x75</System:String>
+ <System:String xml:space="preserve" x:Key="RifleRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
+5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
+ <System:String xml:space="preserve" x:Key="MarksmanRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
+6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
+ <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">활성화 시 달러와 유로는 루블 스택의 1:100 비율로 조정됩니다.
+달러와 유로 설정은 비활성화됩니다</System:String>
+ <System:String x:Key="AvoidResidential_TT">기본적으로 2회 사용 가능한 테라그룹 연구소 주거 구역 키카드</System:String>
+ <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">특별 표시된 방(마크방)을 제외하고 홀수 사용 횟수(2,5,10,20)를 가진 키는 제외
+예: 레프의 은신처 열쇠, 공장 출구 열쇠, 일부 타르코프 시내 열쇠(체크 15), 화물 열쇠 등</System:String>
+ <System:String x:Key="RemoveConstructionsRequirements_TT">시설 건설에 필요한 재료 요구사항을 제거합니다.</System:String>
+ <System:String x:Key="RemoveSkillRequirements_TT">시설 건설에 필요한 PMC 스킬 레벨 요구사항을 제거합니다.</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements_TT">시설 건설에 필요한 상인 평판 레벨 요구사항을 제거합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">프로필에 진행 중인 생산/건설이 있다면 이 기능을 편집하지 마세요.
+시간이나 필요한 재료에 문제가 발생할 수 있습니다. 경고했습니다!</System:String>
+ <System:String xml:space="preserve" x:Key="AirFilterRate_TT">곱해지는 값은 "0.0047222222222222"입니다.
+기본적으로 공기 필터 1개를 소비하는 데 약 211초가 걸립니다.
+값이 작을수록 소비 시간이 길어집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="GPUBoostRate_TT">곱해지는 값은 "0.041225"입니다.
+값이 클수록 각 GPU의 효율이 커집니다.
+GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="FuelConsumptionRate_TT">곱해지는 값은 "0.00131944444444"입니다.
+연료통 1개를 소비하는 데 758초가 걸립니다.
+값이 작을수록 연료가 더 오래 지속됩니다.</System:String>
+ <System:String xml:space="preserve" x:Key="NoFuelMult_TT">T곱해지는 값은 "0.07"입니다.
+값이 클수록 연료통 없이 생산하는 속도가 더 빨라집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutProdMult_TT">각 생산에 필요한 시간을 수정합니다.
+값이 작을수록 생산이 빨라집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutConstMult_TT">각 건설에 필요한 시간을 수정합니다.
+값이 작을수록 건설이 빨라집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCaseTime_TT">스캐브 케이스 재사용 시간을 수정합니다.
+값이 작을수록 과정이 빨라집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">스캐브 케이스 사용 시 필요한 가격을 수정합니다.
+값이 작을수록 과정이 저렴해집니다.
+통화가 필요한 제안에만 영향을 줍니다.</System:String> 
+ <System:String x:Key="FIRTrade_TT">상인에게서 구매하는 모든 물품에 '인 레이드' 태그가 붙습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="QuestLifespan_TT">반복 가능한 퀘스트가 활성화되고 새로운 퀘스트를 받을 때까지의 시간을 설정합니다.
+현재 퀘스트가 만료된 후에만 효과가 적용됩니다.</System:String>
+ <System:String xml:space="preserve" x:Key="QuestSwitch_TT">주의: 새로 수락한 퀘스트에는 변경사항이 적용되지 않습니다!</System:String>
+ <System:String xml:space="preserve" x:Key="RewardSpread_TT">0으로 설정하면 무작위화가 제거됩니다.
+1로 설정하면 0에서 2 사이의 무작위 곱셈이 설정됩니다.
+기본값은 0.5x-1.5x입니다. 공식은 (1-Spread, 1+Spread)입니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="AllContainers_TT">기본적으로 모든 확률 기반 전리품 컨테이너가 맵에 생성되도록 강제합니다.
+밸런스가 맞지 않으며 PC에 부하가 증가할 수 있습니다.</System:String>
+ <System:String x:Key="RemoveTradeLimits_TT">재고당 구매할 수 있는 아이템 수량 제한을 제거합니다.</System:String>
+ <System:String x:Key="IncreaseAssort_TT">밸런스를 고려하지 않고 만들어짐: 상인에게서 구매할 수 있는 단일 아이템의 수량을 백만 이상으로 증가시킵니다.</System:String>
+ <System:String x:Key="RemoveCurrencyOffers_TT">펜스와 피스키퍼 제외</System:String>
+ <System:String xml:space="preserve" x:Key="PriceAssort_TT">상인이 판매하는 아이템 가격에 영향을 줍니다.
+값이 높을수록 아이템이 더 비싸집니다.</System:String>
+ <System:String xml:space="preserve" x:Key="PriceMarkup_TT">상인의 '할인'에 영향을 줍니다. 100은 아이템을 정가로 판매하는 것을 의미합니다.
+1은 최소 가능한 가격으로 구매하게 만듭니다.</System:String>
+ <System:String x:Key="ClothesAnySide_TT">USEC와 BEAR 복장 모두 구매할 수 있게 합니다.</System:String>
+ <System:String x:Key="ClothesFree_TT">복장 구매에 필요한 현금 요구사항을 제거합니다.</System:String>
+ <System:String x:Key="ClothesLevelUnlock_TT">PMC 레벨, 상인 레벨, 퀘스트 요구사항을 제거합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">기술적으로 사용해도 안전하지만, 주의하세요: 잠금 해제된 퀘스트를 한 번 수락하면, 
+그 퀘스트는 당신의 프로필에 영구적으로 저장됩니다.
+이 행동은 되돌릴 수 없으며, 게임 진행에 영향을 줄 수 있습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">서버가 사용 가능한 보험을 확인하는 간격(단위:초)입니다.
+최소값으로 설정하면 서버 성능이 저하될 수 있습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">보험 가능한 모든 상인의 시간을 덮어씁니다. 여전히 위 설정 간격의 영향을 받습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">기본적으로 상인 레벨이 높을수록 보험 비용이 더 비쌉니다.</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">24시간 실제 시간이 지나야 나타나는 퀘스트들 알죠?
+네, 이 시간 요구사항을 제거합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">이 기능은 커스텀 상인 모드가 있을 경우 오류를 발생시킬 수 있습니다. 해결 방법은 두 가지입니다:
+1) 모드 로드 순서에서 커스텀 상인 모드를 SVM 아래로 이동시키세요.
+2) 해당 모드가 Virtual의 Custom Quest Loader를 사용한다면, 둘 다 모드 로드 순서에서 SVM 위에 있어야 합니다.
+이렇게 해도 해결되지 않으면, 두 모드 모두에 대해 1번 단계를 수행하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="NoRunThrough_TT">'생존' 태그를 얻기 위한 XP 요구사항을 제거합니다. 즉, '도주(런쓰루)' 기능을 비활성화합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ChanceExtracts_TT">확률적으로 나타나는 출구들이 항상 나타나게 됩니다.
+해당 출구들:
+ 스오타: Courtyard, Primotsky Ave Taxi V-Ex
+ 인터체인지: Power Station V-Ex
+ 커스텀: Dorms V-Ex,Old Gas Station,Smuggler's Boat,ZB-1012
+ 우드: RUAF Gate,ZB-014,ZB-016
+ 쇼어라인: Pier Boat
+ 랩: Parking Gate,Hangar Gate
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ExtendedExtracts_TT">레이드 시작 시 생성 위치에 상관 없이 모든 탈출구 구역 사용이 가능합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="NoBackpack_TT">배낭이 없어야 하는 특정 출구 요구사항을 제거합니다.
+해당 출구들:
+  인터체인지: Hole in the Fence
+  리저브: Sewer Manhole
+  랩: Ventilation Shaft
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ArmorExtract_TT">방탄복을 입지 않아야 하는 등반 출구 요구사항을 제거합니다.
+해당 출구들:
+  라이트하우스: Mountain Pass
+  리저브: Cliff Descent
+   </System:String>
+ <System:String xml:space="preserve" x:Key="GearExtract_TT">아이스 픽(RR)과 파라코드가 필요한 등반 출구 요구사항을 제거합니다.
+해당 출구들:
+  라이트하우스: Mountain Pass
+  리저브: Cliff Descent
+ </System:String>
+
+ <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">모든 초기 PMC와 SCAV 스폰을 덮어씁니다.
+AI PMC는 여전히 레이더에서 변환될 수 있으므로 주의하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">매우 권장하지 않습니다. 이는 기능이라기보다는 스트레스 테스트에 가깝습니다.
+단일 지역에 30명 이상의 AI가 생성되니 주의하세요. 이 점을 명심하시기 바랍니다!</System:String>
+ <System:String xml:space="preserve" x:Key="Halloween_TT">은신처에 이벤트 전용 조명을 활성화하고, 
+지라치의 생성과 행동을 변경하며, AI에 이벤트 전리품을 추가합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="DisableZombies_TT">할로윈 이벤트가 활성화된 경우 좀비모드를 비활성화합니다. 기본적으로 좀비모드는 활성화되어 있습니다.
+할로윈 이벤트가 비활성화된 경우 이 설정은 아무런 영향을 미치지 않습니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">서버 시작 시 각 위치의 감염 수준을 무작위로 설정합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="Christmas_TT">은신처에 이벤트 전용 조명을 활성화하고, 크리스마스 선물을 제공하며, 
+눈을 활성화하고, 산타클로스가 생성될 수 있도록 하며, AI에 이벤트 전리품을 추가합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="Types_TT">일일 미션은 3가지 유형으로 나뉩니다: 섬멸, 완료, 탐험
+섬멸 - PMC, SCAV 또는 보스 처치. 때로는 특정 신체 부위나 근거리/원거리에서 처치해야 합니다.
+완료 - '인 레이드' 태그가 있는 아이템 제공
+탐험 - '생존' 태그를 가지고 특정 위치에서 탈출. 때로는 특정 출구를 통해 탈출해야 합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">특정 ID를 제거하면 서버 실행 시 오류가 발생할 수 있습니다.
+ 주의해서 진행하세요.</System:String>
+ <System:String xml:space="preserve" x:Key="SafeExit_TT">접속 끊기 시 장비/전리품을 저장할 수 있지만,
+레이드 상태는 '도주(런쓰루)'로 간주되며 '인 레이드' 태그가 있는 아이템은 얻을 수 없습니다.
+"사망, 접속 끊기 시 아이템 보존" 기능과 충돌합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="SaveGearAfterDeath_TT">사망, 접속 끊기를 통한 퇴장 또는 실종 시
+레이드 상태는 '도주(런쓰루)'로 간주되며 '인 레이드' 태그가 있는 아이템은 얻을 수 없습니다.
+"접속 끊기 시 아이템 보존" 기능과 충돌합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="PMCHealth_TT">PMC의 최대 체력을 편집할 수 있습니다.
+주의: 변경사항은 프로필에 적용되므로, 이 기능을 비활성화해도 마지막으로 변경한 체력이 유지됩니다. 
+체력을 원래대로 되돌리려면 여기에 기본값을 입력하고, 저장한 뒤, 게임을 실행했다가 종료해야 합니다.
+새 프로필 생성 시에는 체력이 적용되지 않습니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="PMCStats_TT">PMC의 최대 스탯 편집할 수 있습니다.
+주의: 변경사항은 프로필에 적용되므로, 이 기능을 비활성화해도 마지막으로 변경한 체력이 유지됩니다. 
+스탯 원래대로 되돌리려면 여기에 기본값을 입력하고, 저장한 뒤, 게임을 실행했다가 종료해야 합니다.
+새 프로필 생성 시에는 체력이 적용되지 않습니다.</System:String>
+ <System:String x:Key="Sell_chance_TT">아이템이 미리 정의된 가격과 동일할 때 판매될 기본 확률입니다.</System:String>
+ <System:String xml:space="preserve" x:Key="Sell_mult_TT">이 설정은 아이템 가격에 따른 판매 확률을 더 현실적으로 만들어줍니다.
+아이템을 싸게 팔수록 빨리 팔릴 확률이 높아지고, 비싸게 팔수록 팔리기 어려워집니다.
+단순히 비례하는 게 아니라, 가격 차이가 클수록 그 효과가 더 극적으로 나타납니다.
+예시: 핸드북 가격보다 20% 낮은 가격으로 아이템을 판매하면 (기본값 기준) 1.24를 곱합니다.
+이는 판매 확률이 24% 더 높아짐을 의미합니다.
+가격 차이가 클수록 이 승수의 효과가 더 극단적으로 나타납니다.
+이 설정값을 높게 조절할수록 가격 변화에 따른 판매 확률 변동이 더 극적으로 나타납니다.</System:String>
+
+ <System:String xml:space="preserve" x:Key="DisableBSGList_TT">주의: BSG의 '아마도' 잘못된 가격에는 영향을 미치지 않습니다. 
+일부 아이템이 너무 저렴할 수 있습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="PMCRatio_TT">생성된 PMC가 USEC 또는 BEAR가 될 확률을 %로 나타냅니다. 100은 USEC만, 0은 BEAR만을 의미합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavHealth_TT">SCAV의 신체 부위 체력을 편집할 수 있습니다. 다른 SCAV에는 영향을 미치지 않습니다.
+주의: 변경 후 이 기능을 비활성화하면 현재 SCAV의 체력이 원래대로 돌아가지 않을 수 있습니다.
+</System:String>
+ <System:String xml:space="preserve" x:Key="AIToPMC_TT">AI 유형을 PMC로 변환하는 것은 확률 기반입니다.
+SCAV가 스폰되면 25%(기본값) 확률로 PMC로 변환됩니다.
+  다른 필드에도 정확히 동일하게 적용됩니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavPockets_TT">주의: 변경 후 이 섹션을 비활성화하면 
+ 현재 SCAV의 주머니가 무효화될 수 있습니다.</System:String>
+ <System:String x:Key="ScavTimer_TT">주의: 기존 타이머에는 영향을 미치지 않습니다.</System:String>
+ <System:String xml:space="preserve" x:Key="ForcePartisan_TT">기본적으로 파르티잔은 스폰에 영향을 줄 수 있는 특정 트리거 이벤트를 가지고 있습니다.
+이 옵션은 해당 이벤트를 제거하여 파르티잔이 다른 보스처럼 스폰되게 합니다.</System:String>
+ <System:String xml:space="preserve" x:Key="DisableHalloweenAIFriendly_TT">기본적으로 좀비가 활성화되어 있으면 스캐브가 당신을 공격하지 않는 휴전 상태가 되며, PMC도 특정 확률로 마찬가지입니다.
+이 옵션은 해당 동작을 비활성화하여 궁극적으로 AI가 평소처럼 행동하게 만듭니다.
+주의: 이는 적대 행위와 관련된 AI PMC 설정을 덮어씁니다.</System:String>
+ <!--<System:String x:Key="Bosses">Bosses:</System:String>
+ <System:String x:Key="Followers">Boss guards:</System:String>-->
+
+</ResourceDictionary>

@@ -1,0 +1,923 @@
+﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+                    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+                    xmlns:System="clr-namespace:System;assembly=mscorlib">
+ <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
+Independent Application made by GhostFenixx
+Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+https://github.com/Kinnara/ModernWpf
+Shared by Personal Use Source License (PUSL) License
+For more info: read license on - https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
+</System:String>
+ <System:String xml:space="preserve" x:Key="DisclaimerText">DISCLAIMER
+This application uses Media and/or Materials from the Video Game "Escape from Tarkov" and links that leads to Game official wiki that can be accessed via `https://escapefromtarkov.fandom.com/`
+Escape from Tarkov content and materials are the intellectual property of their respective owners "Battlestate Games Limited".
+Developer of this application is not affiliated to "Battlestate Games Limited" nor their Wikis, in any way
+  
+In AI PMC Section, PMC Names consist of usernames of multiple SPT communities.
+If you find yourself uncomfortable to be in this list or you find certain name offensive - report to a mod developer.
+</System:String>
+ <System:String xml:space="preserve" x:Key="ThanksToText">Related to SVM:
+Ereshkigal - Main inspirator, a lot of initial code was used from Ereshkigal's mods, such as Bots loadouts, Aki Configurator and AKI-AIO.
+Senko, Chomp and other SPT Developers, DeadLeaves, sptlaggy - Assisted or is part of the development in one way or another, whether it be being the owner of code snippets used in this mod, to actively developing the mod or providing help.
+TheSpartacus - Transition to SPT 3.0.0 and general help between releases
+Related to UI (GFVE/GREED):
+SerWolfik - for GFVE/Greed icon.
+Lacyway - Major help with UI transition, giving me a head start with WPF
+SSH_ - Archive with Icons
+BattleStateGames - for creating those icons.
+Misc:
+KMC - Reuploading the mod onto the SPT website.
+Volcano - Oddba representative of SVM
+Nexus4880 - Creator of 'Hide Special Icon' Plugin for Case Space Manager
+Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - Testers, feedback
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, BiddinWar - Donations
+Localisation:
+Korean - 루퍼, 고라니
+Ukrainian - celebrutu
+Chinese - Volcano
+Everyone else who provided any kind of support to the project, whether bug reports, feedback related to UI or helped other to with issues.
+</System:String>
+ <System:String xml:space="preserve" x:Key="ChangelogText">I Will not include logs from previous versions on major releases.
+  2.0.0 For SPT 4.0.0
+  Added: 
+  Complete rework of backend code to accomodate switch to C#
+  New Fields in Inventory and Items and Keys Section
+  Rework for Assort fields in Traders - Multipliers instead of 'on-off'
+  Lightkeeper and more BTR settings
+  Advanced Features - a section that will contain options that
+ requires basic knowledge of SPT database, IIC and blacklist was moved there
+  Missing and new fields, Desecrated kappa and Keys Case
+  Clothing from BattlePass and Scavs are now added by default
+  Reworked:
+  Quest requirements for Repeatable quests
+  Several UI changes
+  Custom Pocket system - to support fixing deleted pockets
+  
+  WIP Features: AI Converter in PMC AI and SCAV overrider in Events
+  
+ </System:String>
+ <!--MessageBoxes and/or Exception handlers-->
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">You've incorrectly installed SVM, it is not located under "user\mods"
+Please, follow the installation guide in the Server Value Modifier mod webpage
+You can still proceed by clicking `Ok` but do not expect a mod to work
+Click 'Cancel' to close the app.</System:String>
+ <System:String x:Key="FileNotFoundException">File you're trying to load does not exist.</System:String>
+ <System:String x:Key="CorruptedJSON">This file is either corrupted or not applicable to load as a preset</System:String>
+ <System:String x:Key="NoAccess">No access to read the file. Windows permissions issue?</System:String>
+ <System:String x:Key="NothingToLoad">Nothing to load. Noname preset wasn't found either. Create or select a preset first.</System:String>
+ <System:String x:Key="NothingToApply">No preset to apply. Save and select a preset first</System:String>
+ <System:String x:Key="PresetNameFail">Cannot save a preset. Your preset have explicit symbols</System:String>
+ <System:String x:Key="PresetNamedNullError"> Preset name 'Null' is reserved for cases when you have no preset created, do not name your preset like that</System:String>
+ <System:String x:Key="RatioError">Apply failed - Fleamarket> AI Generated offers > Offers ratio in between currencies doesn't sum to 100. The sum of Roubles, Euros and Dollars should be exactly 100</System:String>
+ <System:String  xml:space="preserve" x:Key="PresetFolderDeleted">Preset folder is not found. 
+Uh...Why would you delete preset folder for?</System:String>
+ <System:String xml:space="preserve" x:Key="NonameApplied">Preset field is empty - Noname preset applied. 
+Maybe you would select your own name for the preset to avoid this message in the future?</System:String>
+ <System:String xml:space="preserve" x:Key="NonameLoaded">Preset field is empty - Noname preset has been loaded.
+To avoid this message - save and select the preset with custom name.</System:String>
+ <System:String xml:space="preserve" x:Key="OverridePreset">A preset with this name already exist
+Do you want to override it?</System:String>
+ <System:String xml:space="preserve" x:Key="RunFailed">Something went wrong. 
+Most likely Server and Launcher are not located within same folder as the game</System:String>
+ <System:String xml:space="preserve" x:Key="ApplyFailedUnknown">Action is canceled.
+Something went wrong, is there incorrect type in the field or it is empty?</System:String>
+ <!--Popup Windows responses-->
+    <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll was successfully installed in your \BepInEx\plugins folder.</System:String>
+ <System:String x:Key="InstallPluginFailed">Installation failed, couldn't find \BepInEx\plugins folder.</System:String>
+    <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll already exist in your \BepInEx\plugins folder, installation cancelled.</System:String>
+ <System:String xml:space="preserve" x:Key="SPTLink">Press 'Ok' To visit SPT Hub - current SPT development hub,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="KofiLink">Press 'Ok' To visit Kofi.com - A place where you can support the developer,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="GitHubLink">Press 'Ok' To visit Github.com - There you can report any issues you've encountered,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="FikaLink">Press 'Ok' To visit Project Fika Discord - One of communities of SPT where GhostFenixx happen to be in,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="SPTWeb">Press 'Ok' To visit SPT Website - SPT Domain with all the mods,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="IDFinder">Press 'Ok' To visit SPT's Item Finder website - an SPT DB that is easy to navigate
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="ModPage">Press 'Ok' To visit SVM Modpage,
+[Be advised - it will launch your browser]</System:String>
+ <System:String xml:space="preserve" x:Key="WikiPage_Link">Press 'Ok' To visit Official Tarkov Wiki,
+[Be advised - it will launch your browser]</System:String>
+
+ <!--Buttons-->
+ <System:String x:Key="ApplyButton">Apply</System:String>
+ <System:String x:Key="Applied">Preset Applied!</System:String>
+ <System:String x:Key="LoadButton">Load Preset</System:String>
+ <System:String x:Key="Saved">Preset Saved!</System:String>
+ <System:String x:Key="SaveButton">Save Preset</System:String>
+ <System:String x:Key="Loaded">Preset Loaded!</System:String>
+ <!--Tab Control-->
+ <System:String x:Key="MainPage">Main Page</System:String>
+ <System:String x:Key="Items">Inventory and Items</System:String>
+ <System:String x:Key="AdvFeatures">Advanced features</System:String>
+ <System:String x:Key="faq">F.A.Q</System:String>
+ <System:String x:Key="Notes">Preset Notes</System:String>
+ <System:String x:Key="Hideout">Hideout</System:String>
+ <System:String x:Key="Traders">Traders</System:String>
+ <System:String x:Key="Services">Trader services</System:String>
+ <System:String x:Key="Loot">Loot</System:String>
+ <System:String x:Key="Player">Player and Skills</System:String>
+ <System:String x:Key="Raid">Raid Settings</System:String>
+ <System:String x:Key="Fleamarket">Flea Market</System:String>
+ <System:String x:Key="Quests">Repeatable Quests</System:String>
+ <System:String x:Key="CSM">Case Space Manager</System:String>
+ <System:String x:Key="SCAV">Player SCAV</System:String>
+ <System:String x:Key="Bots">SCAV and Bosses</System:String>
+ <System:String x:Key="PMC">AI PMC</System:String>
+ <!--Menu Control-->
+ <System:String x:Key="Options">Options</System:String>
+ <System:String x:Key="Changelog">Changelog</System:String>
+ <System:String x:Key="Links">Discord and Website links</System:String>
+ <System:String x:Key="Info">Additional Info</System:String>
+ <System:String x:Key="Language">Language</System:String>
+ <!--Menu Tab Controls-->
+ <System:String x:Key="LoadLast">Load last loaded Preset on launch</System:String>
+ <System:String x:Key="RunServerAndLauncher">Run Server and Launcher</System:String>
+ <System:String x:Key="CloseServerAndLauncher">Close Server and Launcher</System:String>
+ <System:String x:Key="PresetFolder">Open Preset folder</System:String>
+ <System:String x:Key="Override">Override numerical limits</System:String>
+ <System:String x:Key="About">About the Program</System:String>
+ <System:String x:Key="Disclaimer">Disclaimer</System:String>
+ <System:String x:Key="ThanksTo">Thanks to:</System:String>
+ <System:String x:Key="License">License Info</System:String>
+ 
+ <System:String x:Key="SPTHUB">SPT HUB Discord</System:String>
+ <System:String x:Key="SPTWEB">SPT Website</System:String>
+ <System:String x:Key="ItemIDWeb">ID Item Finder Website</System:String>
+ <System:String x:Key="ModWeb">Mod's Webpage</System:String>
+ <System:String x:Key="KoFi">Ko-Fi Donation link</System:String>
+ <System:String x:Key="GitHub">Report an issue on GitHub</System:String>
+ <System:String x:Key="EmuRC">EmutarkovRC Discord</System:String>
+ <System:String x:Key="Fika">Project Fika Discord</System:String>
+ <System:String x:Key="WikiPage">Tarkov Wiki</System:String>
+
+ <!--Preset Notes Initial Text-->
+ <System:String x:Key="PresetInitialText">This is your canvas for notes, use it however you want and it will be saved in the preset</System:String>
+ <!--Items Section-->
+ <System:String x:Key="ItemPriceMult">Global price of items:</System:String>
+ <System:String x:Key="HeatFactor">Heat Factor:</System:String>
+ <System:String x:Key="ExamineTime">Time to examine an item:</System:String>
+ <System:String x:Key="AmmoLoadSpeed">Time to load/unload magazines in the raid:</System:String>
+ <System:String x:Key="LootExp">EXP Acquired for picking up items:</System:String>
+ <System:String x:Key="ExamineExp">EXP Acquired for examining items:</System:String>
+ <System:String x:Key="WeightChanger">Items Weight:</System:String>
+ <System:String x:Key="MalfunctChanceMult">Weapon malfunction chance:</System:String>
+ <System:String x:Key="MisfireChance">Weapon misfire chance:</System:String>
+ <System:String x:Key="FragmentMult">Bullet fragmentation chance:</System:String>
+ <System:String x:Key="ExamineKeys">Including keys</System:String>
+ <System:String x:Key="WeaponHeatOff">Turn off weapon overheat</System:String>
+ <System:String x:Key="SMGToHolster">Allow SMGs in the holster slot</System:String>
+ <System:String x:Key="PistolToMain">Allow pistols in the primary slot</System:String>
+ <System:String x:Key="AllExaminedItems">All items examined</System:String>
+ <System:String x:Key="EquipRigsWithArmors">Allow armored rigs with armors</System:String>
+ <System:String x:Key="RemoveSecureContainerFilters">Remove secure container filters</System:String>
+ <System:String x:Key="AddSignalPistolToSpec">Allow Signal pistol in the Special slots</System:String>
+ <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
+ <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
+ <System:String x:Key="RemoveRaidRestr">Remove In-raid restrictions</System:String>
+ <System:String x:Key="RaidDrop">Remove `Can't be dropped in raid` tag</System:String>
+ <System:String x:Key="RemoveBackpacksRestrictions">Remove backpack restrictions</System:String>
+ <System:String x:Key="NoGearPenalty">Remove movement penalty from gear</System:String>
+
+ <!--Keys Section-->
+ <System:String x:Key="Keys">Keys and Keycards:</System:String>
+    <System:String x:Key="InfiniteKeycards">Infinite uses for keycards</System:String>
+    <System:String x:Key="AvoidResidential">Except the Residential keycard</System:String>
+    <System:String x:Key="IgnoreAccessKeycard">Ignore Labs Access Card</System:String>
+    <System:String x:Key="AvoidSingleKeyCards">Avoid single-use keycards</System:String>
+ <System:String x:Key="InfiniteKeys">Infinite uses for keys</System:String>
+ <System:String x:Key="AvoidOddKeys">Except odd keys</System:String>
+ <System:String x:Key="AvoidSingleKeys">Except single-use keys</System:String>
+ <System:String x:Key="AvoidMarkedKeys">Except for marked room keys</System:String>
+ <System:String x:Key="KeyUseMult">Multiplier for key uses:</System:String>
+ <System:String x:Key="KeycardUseMult">Multiplier for keycard uses:</System:String>
+ <System:String x:Key="KeyDurabilityThreshold">Key uses can't go over:</System:String>
+ <System:String x:Key="KeyCardDurabilityThreshold">Keycard uses can't go over:</System:String>
+    <!--Ammo Stack Section-->
+ <System:String x:Key="AmmoStack">Ammo stacks</System:String>
+ <System:String x:Key="MarksmanRound">Marksman Rifle Rounds:</System:String>
+ <System:String x:Key="RifleRound">Assault Rifle Rounds:</System:String>
+ <System:String x:Key="ShotgunRound">Shotgun Rounds:</System:String>
+ <System:String x:Key="PistolRound">Pistol/SMG Rounds:</System:String>
+ <!--Currency stack Section-->
+ <System:String x:Key="CurrencyStack">Currency stacks</System:String>
+ <System:String x:Key="DisableDefaultCashStack">Follow EFT default cash stack design</System:String>
+ <System:String x:Key="Dollars">Dollars:</System:String>
+ <System:String x:Key="Euros">Euros:</System:String>
+ <System:String x:Key="GPCoin">GP Coin:</System:String>
+    <System:String x:Key="RoublesOrDefault">Roubles:</System:String>
+    <!--Hideout Section-->
+ <System:String x:Key="FuelConsumptionRate">Fuel consumption rate:</System:String>
+ <System:String x:Key="NoFuelMult">Efficiency multiplier with no fuel:</System:String>
+ <System:String x:Key="AirFilterRate">Air filter consumption rate:</System:String>
+ <System:String x:Key="GPUBoostRate">GPU efficiency per unit:</System:String>
+ <System:String x:Key="WaterFilterRate">Water filter spent for each purified water created:</System:String>
+ <System:String x:Key="WaterFilterTime">Time spent (in minutes) to create purified water:</System:String>
+ <System:String x:Key="MaxBitcoins">Maximum amount of stored bitcoins:</System:String>
+ <System:String x:Key="BitcoinTime">Time required to generate a bitcoin in minutes:</System:String>
+ <System:String x:Key="RemoveConstructionsRequirements">Remove construction item requirements</System:String>
+ <System:String x:Key="RemoveConstructionsFIRRequirements">Remove the FiR requirement</System:String>
+ <System:String x:Key="RemoveSkillRequirements">Remove the character skill requirement</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements">Remove trader standing construction requirement</System:String>
+ <System:String x:Key="CultistMaxRewards">Number of rewards from the cultist circle:</System:String>
+ <System:String x:Key="CultistTime">Cultist Circle cycle time:</System:String>
+
+ <!--Hideout Multipliers-->
+ <System:String x:Key="HideoutProdMult">Hideout production time:</System:String>
+ <System:String x:Key="HideoutConstMult">Hideout construction time:</System:String>
+ <System:String x:Key="ScavCaseTime">Scav Case cycle time:</System:String>
+ <System:String x:Key="ScavCasePrice">Scav Case offer price:</System:String>
+ <!--Offline Regeneration Section-->
+ <System:String x:Key="Regeneration">Regeneration</System:String>
+ <System:String x:Key="OfflineRegen">Completely Remove Offline Regen</System:String>
+ <System:String x:Key="HealthRegen">Innate Health Regen multiplier:</System:String>
+ <System:String x:Key="HideoutHealth">Health</System:String>
+ <System:String x:Key="HideoutEnergy">Energy</System:String>
+ <System:String x:Key="HideoutHydration">Hydration</System:String>
+ <System:String x:Key="HydrationRegen">Innate Hydration Regen:</System:String>
+ <System:String x:Key="EnergyRegen">Innate Energy Regen:</System:String>
+ <System:String x:Key="HideoutRegen">You can remove hideout bonuses below</System:String>
+ <!--Stash Section-->
+ <System:String x:Key="Stash">Stash size</System:String>
+ <System:String x:Key="StashLvl1">Level one stash (Standard):</System:String>
+ <System:String x:Key="StashLvl2">Level two stash (Left Behind):</System:String>
+ <System:String x:Key="StashLvl3">Level three stash (Prepare to Escape):</System:String>
+ <System:String x:Key="StashLvl4">Level four stash (Edge of Darkness):</System:String>
+ <System:String x:Key="StashTUE">The Unheard Edition:</System:String>
+
+ <!--Traders Section-->
+ <System:String x:Key="TradersMisc">Traders miscellaneous</System:String>
+ <System:String x:Key="UnlockJaeger">Unlock Jaeger by default</System:String>
+ <System:String x:Key="UnlockRef">Unlock Ref by default</System:String>
+ <System:String x:Key="FIRTrade">Items sold by traders are "Found in Raid"</System:String>
+ <System:String x:Key="AllQuestsAvailable">All quests available</System:String>
+ <System:String x:Key="RemoveTimeCondition">Remove timer for new quests</System:String>
+ <System:String x:Key="TradersLvl4">All traders are LV4</System:String>
+ <System:String x:Key="FIRRestrictsQuests">No "Found in Raid" requirements in quests</System:String>
+ <System:String x:Key="RemoveTradeLimits">Remove all trade limits</System:String>
+ <System:String x:Key="QuestRedeemTime">Quest reward redeem time in hours:</System:String>
+ <System:String x:Key="StockTime">New stock time in minutes:</System:String>
+ <System:String x:Key="MinDurabSell">Minimum gear durability to sell:</System:String>
+ <System:String x:Key="PlantingTime">Time required to plant quest item multiplier:</System:String>
+ <System:String x:Key="PriceMarkup">Price Markup (Selling)</System:String>
+ <System:String x:Key="PriceAssort">Price Multiplier (Trader Assort)</System:String>
+ <System:String x:Key="TraderOffers">Trader total item stock multiplier:</System:String>
+ <System:String x:Key="TraderRestrictions">Trader 'per stock' items limit multiplier:</System:String>
+ <System:String x:Key="CurrencyOffers">Currency</System:String>
+ <System:String x:Key="BarterOffers">Barter</System:String>
+ <System:String x:Key="UnlockQuestAssort">Unlock quest-gated trader offers</System:String>
+ <!--LightKeeper Section -->
+    <System:String x:Key="LightKeeperEntry">Lightkeeper's visit time in minutes:</System:String>
+    <System:String x:Key="LightKeeperLeave">Time given to leave peninsula:</System:String>
+
+    <!--Fence Section-->
+ <System:String x:Key="FenceSettings">Fence Settings</System:String>
+ <System:String x:Key="FenceAmountOnSale">Number of items on sale:</System:String> 
+ <System:String x:Key="FencePremiumAmountOnSale">Additional items on sale with 6+ Rep:</System:String>
+ <System:String x:Key="FencePresetCount">Number of gun builds on sale:</System:String>
+ <System:String x:Key="FencePriceMult">Item price multiplier:</System:String>
+ <System:String x:Key="FencePresetMult">Gun builds price multiplier:</System:String>
+ <System:String x:Key="FenceGunDurability">Durability of guns on offer:</System:String>
+ <System:String x:Key="FenceArmorDurability">Durability of armors on offer:</System:String>
+ <System:String x:Key="FenceBlacklist">Fence Blacklist:</System:String>
+
+ <!--Services Section--> 
+ <!--insurance Section-->
+ <System:String x:Key="Insurance">Insurance</System:String>
+ <System:String x:Key="InsuranceStorageTime">Insurance storage lifespan (in hours):</System:String>
+ <System:String x:Key="InsuranceTradersTime">Insurance return time (in hours):</System:String>
+ <System:String x:Key="InsuranceTradersChance">Return chance (in %) :</System:String>
+ <System:String x:Key="InsuranceTradersPriceMult">Price multiplier for insurance</System:String>
+ <System:String x:Key="InsuranceMinimumTime">Minimum return time for insurance (hours):</System:String>
+ <System:String x:Key="InsuranceMaximumTime">Maximum return time for insurance (hours):</System:String>
+ <System:String x:Key="InsuranceInterval">Frequency of insurance checks (in seconds):</System:String>
+ <System:String x:Key="InsuranceTimeOverride">Override insurance time to the following (in seconds):</System:String>
+ <System:String x:Key="InsuranceAttachmentChance">Chance your attachments won't be stripped (in %) </System:String>
+ <System:String x:Key="HealMarkup">Heal Markup</System:String>
+ <!--Repair Section-->
+ <System:String x:Key="Repair">Repair</System:String>
+ <System:String x:Key="RepairMarkup">Repair Price markup:</System:String>
+ <System:String x:Key="ArmorSkillMult">'Light/Heavy Armor' skill gained per point repaired</System:String>
+ <System:String x:Key="WeaponMaintenanceSkillMult">'Weapon Maintenance' skill gained per point repaired</System:String>
+ <System:String x:Key="IntellectSkillMult">'Intellect' skill gained for each point repaired by</System:String>
+ <System:String x:Key="WeaponRepairKit">Weapon repair kit:</System:String>
+ <System:String x:Key="ArmorRepairKit">Armor repair kit:</System:String>
+ <System:String x:Key="RepairKit">Repair kits:</System:String>
+ <System:String x:Key="IntellectSkillLimit">Maximum amount of 'Intellect' given per one repair</System:String>
+ <System:String x:Key="NoRandomDamageOnRepair">No more random damage on repair</System:String>
+ <System:String x:Key="NoPermDamageWeapon">Weapon repair won't degrade durability</System:String>
+ <System:String x:Key="NoPermDamageArmor">Armor repair won't degrade durability</System:String>
+ <!--Clothing Section-->
+ <System:String x:Key="Clothing">Clothing</System:String>
+ <System:String x:Key="ClothesAnySide">Unlock apparel from both factions</System:String>
+ <System:String x:Key="ClothesFree">All apparel is free</System:String>
+ <System:String x:Key="ClothesLevelUnlock">Remove all prerequisites to buy apparel</System:String>
+ <!--Healing Section-->
+ <System:String x:Key="HealthMarkup">Health Markup</System:String>
+ <System:String x:Key="FreeHealLvl">Free healing until you reach level:</System:String>
+ <System:String x:Key="FreeHealRaids">Free healing for up to this many raids:</System:String>
+ <System:String x:Key="TherapistHealthPrice">Therapist healing price multiplier</System:String>
+ <System:String x:Key="Lvl1">Level 1:</System:String>
+ <System:String x:Key="Lvl2">Level 2:</System:String>
+ <System:String x:Key="Lvl3">Level 3:</System:String>
+ <System:String x:Key="Lvl4">Level 4:</System:String>
+ <!--Loot Section-->
+ <System:String x:Key="LooseLoot">Loose</System:String>
+ <System:String x:Key="ContainerLoot">In containers</System:String>
+ <System:String x:Key="AllContainers">Spawn all containers</System:String>
+ <System:String x:Key="LocationsLoot">Location-specific loot multipliers</System:String>
+ <!--Airdrop Section-->
+ <System:String x:Key="Airdrops">Airdrops</System:String>
+ <System:String x:Key="AirdropsTimeMinMax">Airdrop time window (in minutes):</System:String>
+ <System:String x:Key="AirdropChance">Per-location airdrop spawn chance (%)</System:String>
+
+ <!--Unified names of fields inside crates and expander headers-->
+ <System:String x:Key="Mixed">Contents of the mixed supply crate</System:String>
+ <System:String x:Key="WepArmor">Contents of the military supply crate</System:String>
+ <System:String x:Key="Medical">Contents of the humanitarian supply crate</System:String>
+ <System:String x:Key="BarterCrate">Contents of the miscellaneous supply crate</System:String>
+
+ <System:String x:Key="Guns">Guns:</System:String>
+ <System:String x:Key="BarterLoot">Barter items:</System:String>
+ <System:String x:Key="Gear">Equipment:</System:String>
+ <System:String x:Key="WepCrates">Closed weapon crates:</System:String>
+
+ <!--Player Section-->
+ <System:String x:Key="SkillProgMult">General skill progress:</System:String>
+ <System:String x:Key="WeaponSkillMult">Weapon skill:</System:String>
+ <System:String x:Key="HydrationLoss">Hydration loss rate:</System:String>
+ <System:String x:Key="EnergyLoss">Energy loss rate:</System:String>
+ <System:String x:Key="BlackStomach">Energy/Hydration rate with a blacked out stomach:</System:String>
+
+ <System:String x:Key="Skills">Skill leveling effeciency</System:String>
+ <System:String x:Key="SkillMinEffect">Minimum skill XP gain while fatigued:</System:String>
+ <System:String x:Key="SkillFatiguePerPoint">Skill fatigue added per point:</System:String>
+ <System:String x:Key="SkillFreshEffect">XP gain multiplier while fresh:</System:String>
+ <System:String x:Key="SkillFPoints">Number of fresh skill points:</System:String>
+ <System:String x:Key="SkillPointsBeforeFatigue">Skill points before the fatigue sets in:</System:String>
+ <System:String x:Key="SkillFatigueReset">Skill fatigue reset time (in seconds):</System:String>
+
+ <System:String x:Key="DiedHealth">Post-Raid Health status</System:String>
+ <System:String x:Key="Death">Limb health multiplier after death:</System:String>
+ <System:String x:Key="Blacked">Limb health multiplier after getting blacked out:</System:String>
+ <System:String x:Key="Savehealth">Save health after raid</System:String>
+ <System:String x:Key="Saveeffects">Save effects after raid</System:String>
+
+ <System:String x:Key="RaidMult">End-of-raid profile XP multipliers</System:String>
+ <System:String x:Key="MIA">MIA:</System:String>
+ <System:String x:Key="Survived">Survived:</System:String>
+ <System:String x:Key="Killed">Killed:</System:String>
+ <System:String x:Key="Runner">Run Through:</System:String>
+
+ <System:String x:Key="CharXP">Character XP per action</System:String>
+ <System:String x:Key="ScavKill">Scav Kills:</System:String>
+ <System:String x:Key="PMCKill">PMC kills:</System:String>
+ <System:String x:Key="ScavHMult">Scav Headshot multiplier:</System:String>
+ <System:String x:Key="PMCHMult">PMC Headshot multiplier:</System:String>
+
+ <System:String x:Key="PMCHealth">PMC Health</System:String>
+ 
+ <System:String x:Key="PMCStats">PMC Stats</System:String>
+ <System:String x:Key="MaxHydration">Maximum Hydration:</System:String>
+ <System:String x:Key="MaxEnergy">Maximum Energy:</System:String>
+
+ <System:String x:Key="HandsStamina">Stamina (Hands)</System:String>
+ <System:String x:Key="LegsStamina">Stamina (Legs)</System:String>
+ <System:String x:Key="MaxStamina">Max Stamina:</System:String>
+ <System:String x:Key="StaminaRegenRate">Stamina regeneration rate:</System:String>
+ <System:String x:Key="StaminaStanceConsumption">Stamina consumption multiplier by stance</System:String>
+ <System:String x:Key="Standing">Standing</System:String>
+ <System:String x:Key="LayingDown">Lying down</System:String>
+ <System:String x:Key="Crouching">Crouching</System:String>
+ <System:String x:Key="JumpConsumption">Consumption per jump:</System:String>
+ <System:String x:Key="StanceSwitchConsumption">Stamina consumption while:</System:String>
+
+ <System:String x:Key="Stamina">Stamina</System:String>
+ <System:String x:Key="UnlimitedStamina">Enable Unlimited Stamina</System:String>
+ <System:String x:Key="FallDamage">Disable fall damage</System:String>
+ <!--Raid Settings Section-->
+ <System:String x:Key="Removelabkey">Remove the Laboratory access keycard requirement</System:String>
+ <System:String x:Key="LabInsurance">Working insurance inside Laboratory</System:String>
+ <System:String x:Key="SafeExit">Safe Exit</System:String>
+ <System:String x:Key="SaveGearAfterDeath">Softcore</System:String>
+ <System:String x:Key="NoRunThrough">No 'Survived' run requirements</System:String>
+ <System:String x:Key="SaveQuestItems">Save quest items on death</System:String>
+ <System:String x:Key="SandboxAccessLevel">Maximum PMC level for newbie Ground Zero access</System:String>
+ <System:String x:Key="ExtractsSettings">Extracts Settings</System:String>
+ <System:String x:Key="RaidTime">Additional raid time (in minutes):</System:String>
+ <System:String x:Key="Timeacceleration">Raid time acceleration multiplier:</System:String>
+ <System:String x:Key="ChanceExtracts">All chance based extracts always available</System:String>
+ <System:String x:Key="ExtendedExtracts">Default extracts available from any side</System:String>
+ <System:String x:Key="GearExtract">No RR and Paracord required on climbing extracts</System:String>
+ <System:String x:Key="ArmorExtract">Allow armor on climbing extracts</System:String>
+ <System:String x:Key="NoBackpack">Remove restrictions for backpack related extracts</System:String>
+ <System:String x:Key="ForceTransitStash">Force size of Transit Inventory</System:String>
+ <!--Coop/Car Section-->
+ <System:String x:Key="FreeCoop">No Co-op exit restrictions</System:String>
+ <System:String x:Key="CoopPaid">Make Co-op extracts - paid extracts</System:String>
+ <System:String x:Key="FenceGift">Disable Fence's gift for Co-op extracts</System:String>
+ <System:String x:Key="CarExitPrices">Car exit Prices</System:String>
+ <System:String x:Key="CarExtractTime">Car extraction time in seconds:</System:String>
+ <System:String x:Key="CoopExitPrices">Co-op exit prices</System:String>
+ <System:String x:Key="CarAndCoop">Car/Co-op extracts</System:String>
+
+ <!--BTR Section-->
+ <System:String x:Key="BTR">BTR</System:String>
+ <System:String x:Key="ForceBTRStash">Force size of BTR Inventory</System:String>
+ <System:String x:Key="ForceBTRFriendly">BTR is always interactable</System:String>
+ <System:String x:Key="BTRTaxiPrice">Base taxi price in roubles:</System:String>
+ <System:String x:Key="BTRCoverPrice">Base fire support price in roubles:</System:String>
+ <System:String x:Key="BTRPriceMult">Price multiplier by faction:</System:String>
+ <System:String x:Key="BTRTimeMin">Minimum spawn time window (in minutes):</System:String>
+ <System:String x:Key="BTRTimeMax">Maximum spawn time window (in minutes):</System:String>
+ <System:String x:Key="BTRChance">BTR Spawn Chance (in %):</System:String>
+ <System:String x:Key="Usec">USEC</System:String>
+ <System:String x:Key="Bear">BEAR</System:String>
+
+ <!--Events Section-->
+ <System:String x:Key="Events">Events</System:String>
+    <System:String x:Key="AITypeOverride">Override default SCAV types to:</System:String>
+ <System:String x:Key="BossesOnReserve">All bosses on Reserve</System:String>
+ <System:String x:Key="IncludeStreetBosses">Include Tarkov Streets bosses</System:String>
+ <System:String x:Key="BossesOnCustoms">All bosses on Customs</System:String>
+ <System:String x:Key="BossesOnHealthResort">All bosses in Health Resort</System:String>
+ <System:String x:Key="HealthResortIncludeGuards">Including guards</System:String>
+    <System:String x:Key="GoonsFactory">Goons on Factory, with their spawn chance (in %):</System:String>
+    <System:String x:Key="KillaFactory">Killa on Factory, with his spawn chance (in %):</System:String>
+    <System:String x:Key="CultistBosses">Cultists bosses, with their spawn chance (in %):</System:String>
+ <System:String x:Key="Halloween">Halloween</System:String>
+ <System:String x:Key="DisableZombies">Disable zombies</System:String>
+ <System:String x:Key="RandomInfectionLevel">Randomise infection level</System:String>
+ <System:String x:Key="DisableHalloweenAIFriendly">Disable ceasefire</System:String>
+ <System:String x:Key="Christmas">Christmas</System:String>
+ <System:String x:Key="NonSeasonalQuests">Enable Non-Seasonal event quests</System:String>
+ <System:String x:Key="DisableEvents">Disable ongoing events</System:String>
+ <System:String x:Key="TagillaInterchange">Killa spawns with Tagilla on Interchange</System:String>
+ <System:String x:Key="GlukharLabs">Glukhar on Laboratory</System:String>
+ <System:String x:Key="Bloodhounds">Smugglers spawn chance</System:String>
+ <System:String x:Key="RedBlueEvent">Skier/Peacekeeper squads spawn chance</System:String>
+ <!--Raid Startup Section-->
+ <System:String x:Key="RaidStartup">Raid startup settings</System:String>
+ <System:String x:Key="Cursed">Tagged and Cursed</System:String>
+ <System:String x:Key="MIARaid">MIA at the end of the raid</System:String>
+ <System:String x:Key="LootRaid">Practice Mode</System:String>
+ <System:String x:Key="AIDifficulty">AI Difficulty</System:String>
+ <System:String x:Key="AIAmount">Number of AI</System:String>
+ <System:String x:Key="DeployTimer">Deploy timer in the raid</System:String>
+ <System:String x:Key="EnableBosses">Enable Bosses</System:String>
+ <System:String x:Key="ScavWars">Scav Wars</System:String>
+
+ <System:String x:Key="AsOnline">As online</System:String>
+ <System:String x:Key="High">High</System:String>
+ <System:String x:Key="Horde">Horde</System:String>
+ <System:String x:Key="Low">Low</System:String>
+ <System:String x:Key="Medium">Medium</System:String>
+ <System:String x:Key="Impossible">Impossible</System:String>
+ <System:String x:Key="Easy">Easy</System:String>
+ <System:String x:Key="NoBots">None</System:String>
+ <System:String x:Key="Hard">Hard</System:String>
+ <System:String x:Key="Random">Random</System:String>
+
+ <!--Raid Startup Section-->
+ <System:String x:Key="ForceSeason">Force seasonal weather</System:String>
+ <System:String x:Key="Season">Type of season:</System:String>
+ <System:String x:Key="Summer">Summer</System:String>
+ <System:String x:Key="Autumn">Autumn</System:String>
+ <System:String x:Key="Winter">Winter</System:String>
+ <System:String x:Key="Spring">Spring</System:String>
+ <System:String x:Key="Storm">Storm</System:String>
+ <!--Fleamarket Section-->
+ <System:String x:Key="PlayerFlea">Player Selling/Buying</System:String>
+ <System:String x:Key="FleaMarketLevel">Level to access the Flea market:</System:String>
+ <System:String x:Key="EnableFees">Enable fees</System:String>
+ <System:String x:Key="Sell_chance">Base Sell chance:</System:String>
+ <System:String x:Key="Sell_mult">Sell chance multiplier:</System:String>
+ <System:String x:Key="RepGain">Reputation gain per 100k roubles of profit:</System:String>
+ <System:String x:Key="RepLoss">Reputation loss per 100k roubles of fees:</System:String>
+ <System:String x:Key="Fleatime">Offer time (in minutes):</System:String>
+ <System:String x:Key="FleaFIR">Purchased items are marked as "Found in Raid"</System:String>
+ <System:String x:Key="FleaNoFIRSell">Can only sell items with 'Found in Raid' tag</System:String>
+ <System:String x:Key="DisableBSGList">Disable BSG Flea market blacklist (Will not fix selling)</System:String>
+ <System:String x:Key="EventOffers">Allow event item offers to generate w/o event</System:String>
+ <System:String x:Key="OverrideOffers">Override the sell offers system</System:String>
+ <System:String x:Key="SellOffersAmount">Amount of offers:</System:String>
+ <System:String x:Key="AIOffers">AI generated offers</System:String>
+ <System:String x:Key="NonStack">Amount of non-stackable items per offer:</System:String>
+ <System:String x:Key="Stack">Amount of stackable items per offer:</System:String>
+ <System:String x:Key="OffersPerItem">Offers per item:</System:String>
+ <System:String x:Key="PriceRange">Price range:</System:String>
+ <System:String x:Key="OfferTime">Offer lifespan (in minutes):</System:String>
+ <System:String x:Key="FleaConditions">Offer condition (in %)</System:String>
+ <System:String x:Key="OffersRatio">Offer ratio by currency (in %)</System:String>
+ <System:String x:Key="ExpireThreshold">Generate new offers if the expired offers are more than:</System:String>
+    <System:String x:Key="BundleOfferChance">Chance for items to appear as a bundle (in %):</System:String>
+    <!--CSM Section-->
+ <System:String x:Key="Cases">Cases</System:String>
+ <System:String x:Key="RemoveFilters">Remove Filters</System:String>
+ <System:String x:Key="MoneyCase">Money Case:</System:String>
+ <System:String x:Key="SimpleWallet">Simple Wallet:</System:String>
+ <System:String x:Key="WZWallet">WZ Wallet:</System:String>
+ <System:String x:Key="GrenadeCase">Grenade Case:</System:String>
+ <System:String x:Key="ItemsCase">Items Case:</System:String>
+ <System:String x:Key="WeaponCase">Weapon Case:</System:String>
+ <System:String x:Key="LuckyScav">Lucky Scav:</System:String>
+ <System:String x:Key="AmmunitionCase">Ammunition Case:</System:String>
+ <System:String x:Key="MagazineCase">Magazine Case:</System:String>
+ <System:String x:Key="DogtagCase">Dogtag Case:</System:String>
+ <System:String x:Key="MedicineCase">Medicine Case:</System:String>
+ <System:String x:Key="ThiccItemsCase">T H I C C Items Case:</System:String>
+ <System:String x:Key="ThiccWeaponCase">T H I C C Weapon Case:</System:String>
+ <System:String x:Key="SiccCase">S I C C Case:</System:String>
+ <System:String x:Key="Keytool">Keytool:</System:String>
+ <System:String x:Key="DocumentsCase">Documents Case:</System:String>
+ <System:String x:Key="PistolCase">Pistol Case:</System:String>
+ <System:String x:Key="Holodilnick">Mr. Holodilnick:</System:String>
+ <System:String x:Key="InjectorCase">Injector case:</System:String>
+ <System:String x:Key="KeycardHolderCase">Keycard holder case:</System:String>
+ <System:String x:Key="GKeychain">Gingy keychain:</System:String>
+ <System:String x:Key="KeysCase">Keys Case:</System:String>
+ <System:String x:Key="StreamerCase">Streamer item case:</System:String>
+ <System:String x:Key="ArmorPlateCase">Armor plate case:</System:String>
+
+ <!--Secure case Section-->
+ <System:String x:Key="SecureContainers">Secure Containers</System:String>
+ <System:String x:Key="Alpha">Alpha:</System:String>
+ <System:String x:Key="Beta">Beta:</System:String>
+ <System:String x:Key="Gamma">Gamma:</System:String>
+ <System:String x:Key="GammaTUE">Unheard Gamma:</System:String>
+ <System:String x:Key="Epsilon">Epsilon:</System:String>
+ <System:String x:Key="Kappa">Kappa:</System:String>
+ <System:String x:Key="DesecratedKappa">Desecrated Kappa:</System:String>
+ <System:String x:Key="WaistPouch">Waist Pouch:</System:String>
+ <System:String x:Key="Dev">Developer:</System:String>
+ <!--PMC Pockets Section-->
+ <System:String x:Key="Pockets">PMC Pockets:</System:String>
+ <System:String x:Key="SpecsAmount">Number of special slots:</System:String>
+ <System:String x:Key="Size">Size:</System:String>
+ <!--<System:String x:Key="Rows">Rows:</System:String>
+ <System:String x:Key="Columns">Columns:</System:String>-->
+ <System:String x:Key="Width">Width:</System:String>
+ <System:String x:Key="Height">Height:</System:String>
+ <System:String x:Key="FirstCell">1st Cell:</System:String>
+ <System:String x:Key="SecondCell">2nd  Cell:</System:String>
+ <System:String x:Key="ThirdCell">3rd  Cell:</System:String>
+ <System:String x:Key="FourthCell">4th  Cell:</System:String>
+ <System:String x:Key="CasesInSpec">Allow these cases in special slots</System:String>
+ <System:String x:Key="InstallCSMPlugin">Click here to install 'HideSpecialIcon'</System:String>
+ <System:String xml:space="preserve" x:Key="InstallCSMPlugin_Tooltip">This will install a plugin inside 'Bepinex/plugins' that will
+  hide inventories of cases inside special slots</System:String>
+
+
+ <!--Quests Section-->
+
+ <System:String x:Key="QuestRepToZero">Remove reputation penalty for quest reroll</System:String>
+ <System:String x:Key="QuestCostMult">Quest reroll cost multiplier</System:String>
+ <System:String x:Key="DailyQuests">Daily Quests</System:String>
+ <System:String x:Key="WeeklyQuests">Weekly Quests</System:String>
+ <System:String x:Key="ScavQuests">Scav Quests</System:String>
+ <System:String x:Key="QuestLifespan">Quest lifespan in minutes:</System:String>
+ <System:String x:Key="AmountofQuests">Number of quests per cycle:</System:String>
+ <System:String x:Key="QuestLevel">Level to access:</System:String>
+    <System:String x:Key="LR1">[Lvl range 1-15]</System:String>
+    <System:String x:Key="LR2">[Lvl range 16-40]</System:String>
+    <System:String x:Key="LR3">[Lvl range 41-100]</System:String>
+    <System:String x:Key="MinKills">Min number of kills:</System:String>
+    <System:String x:Key="MaxKills">Max number of kills:</System:String>
+    <System:String x:Key="MinItems">Min number of items:</System:String>
+    <System:String x:Key="MaxItems">Max number of items:</System:String>
+    <System:String x:Key="MinExtracts">Min number of extracts:</System:String>
+    <System:String x:Key="MaxExtracts">Max number of extracts:</System:String>
+    <System:String x:Key="MinSpecExits">Min number of specific exits:</System:String>
+    <System:String x:Key="MaxSpecExits">Max number of specific exits:</System:String>
+
+    <System:String x:Key="Elimination">Elimination</System:String>
+ <System:String x:Key="Exploration">Exploration</System:String>
+ <System:String x:Key="Completion">Completion</System:String>
+ <System:String x:Key="CompElim">Completion, Elimination</System:String>
+ <System:String x:Key="CompExpl">Completion, Exploration</System:String>
+ <System:String x:Key="ExplElim">Exploration, Elimination</System:String>
+ <System:String x:Key="ExplElimComp">Completion, Exploration, Elimination</System:String>
+
+ <System:String x:Key="RewardScale">Level-based reward scaling</System:String>
+ <System:String x:Key="Levels">Levels:</System:String>
+ <System:String x:Key="Experience">Experience:</System:String>
+ <System:String x:Key="ItemsReward">Items:</System:String>
+ <System:String x:Key="Reputation">Reputation:</System:String>
+ <System:String x:Key="SkillPoint">Number of skill points:</System:String>
+    <System:String x:Key="SkillChance">Chance to get skill points:</System:String>
+    <System:String x:Key="SpecExtractsAmountLvl1">Specific exits required [Lvl range 1-15]:</System:String>
+    <System:String x:Key="SpecExtractsAmountLvl2">Specific exits required [Lvl range 16-40]:</System:String>
+    <System:String x:Key="SpecExtractsAmountLvl3">Specific exits required [Lvl range 41-100]:</System:String>
+    <System:String x:Key="Types">Mission Types:</System:String>
+ <System:String x:Key="Reroll">Free Rerolls:</System:String>
+
+
+ <!--Scav Section-->
+ <System:String x:Key="SCAVHealth">SCAV Health</System:String>
+ <System:String x:Key="SCAVPockets">SCAV Pockets</System:String>
+ <System:String x:Key="ScavLab">Enable access to Laboratory</System:String>
+ <System:String x:Key="HostileScavs">Other SCAVs are always hostile</System:String>
+ <System:String x:Key="FriendlyScavs">Other SCAVs are peaceful towards you</System:String>
+ <System:String x:Key="FriendlyBosses">SCAV Bosses are always hostile</System:String>
+ <System:String x:Key="HostileBosses">SCAV Bosses are peaceful towards you</System:String>
+ <System:String x:Key="ScavTimer">SCAV run cooldown (in seconds):</System:String>
+ <System:String x:Key="ScavStats">SCAV stats</System:String>
+ <System:String x:Key="CarBaseStanding">Fence standing for Car/Co-op exfil:</System:String>
+
+ <!--<System:String x:Key="Levels">Alpha:</System:String>
+ <System:String x:Key="Levels">Alpha:</System:String>
+ <System:String x:Key="Levels">Alpha:</System:String>-->
+
+ <!--Bots Section-->
+ <System:String x:Key="BotsSpawnChance">Bosses and Special types spawn chances</System:String>
+ <System:String x:Key="BotsArmorDurab">AI armor durability</System:String>
+ <System:String x:Key="BotsWeaponDurab">AI weapon durability</System:String>
+ <System:String x:Key="ForcePartisan">Change Partisan's spawn behavior</System:String>
+ <!--PMC Section-->
+ <System:String x:Key="PMCRatio">USEC/BEARs in raid ratio:</System:String>
+    <System:String x:Key="LootMelee">Allow picking melee weapons from PMC</System:String>
+ <System:String x:Key="DisableLowLevelPMC">Disable low level gear on PMCs</System:String>
+ <System:String x:Key="ForcePMC">Override default chance of SPT PMC Waves</System:String>
+ <System:String x:Key="PMCLevelDownMargin">Level Margin of AI PMCs below your level</System:String>
+ <System:String x:Key="PMCLevelUpMargin">Level Margin of AI PMCs above your level</System:String>
+ <System:String x:Key="Chances">Chance in %</System:String>
+ <System:String x:Key="WeaponInBackpacks">Weapons inside AI PMC backpacks:</System:String>
+ <System:String x:Key="PMCUpgradedWeapon">Weapon enhancement chance:</System:String>
+ <System:String x:Key="PMCHaveYourName">Spawned AI PMCs have your name with a prefix:</System:String>
+ <System:String x:Key="AllPMCHaveYourName">All Spawned AI PMCs have your name with a prefix:</System:String>
+ <System:String x:Key="PMCSameHostility">Hostilities of a PMC of the same faction:</System:String>
+ <System:String x:Key="PMCHostility">Hostilities of a PMC of the opposite faction:</System:String>
+ <System:String x:Key="PMCNames">PMC Names</System:String>
+ <System:String x:Key="OverridePMCNames">Remove Default SPT names</System:String>
+ <System:String x:Key="AIConverter">AI Types converter in %</System:String>
+ <System:String x:Key="PMCToAI">Chance to convert PMC waves to SCAVs (in %):</System:String>
+ <System:String x:Key="AIToPMC">Chance to convert Scav waves to PMCs (in %):</System:String>
+ <!--Advanced Features Section-->
+ <System:String x:Key="Debug">Debug Tools</System:String>
+ <System:String x:Key="CustomFields">User fields</System:String>
+ <System:String x:Key="Mailbox">Mailbox</System:String>
+ <System:String x:Key="LoggerIntoServer">Log the preset inside server log</System:String>
+ <System:String x:Key="DisableSPTFriend">Disable SPT Friend</System:String>
+ <System:String x:Key="DisableCommando">Disable Commando</System:String>
+ <System:String x:Key="DisablePMCMessages">Disable PMC responses in your mailbox</System:String>
+ <System:String x:Key="AddTraderAssort">Create a new trader offer</System:String>
+    <!--Individual Item Changer Section-->
+  <System:String x:Key="Changer">Individual item changer (Read FAQ)</System:String>
+  <System:String x:Key="IDDefault">Default IIC:</System:String>
+  <System:String x:Key="IDParent">Change everything by Parent ID:</System:String>
+  <System:String x:Key="IDPrice">Change/Add price in the handbook:</System:String>
+  <System:String x:Key="IDFilter">Push an ID into Filter:</System:String>
+    <System:String x:Key="FleaMultID">Add multiplier to the item’s price:</System:String>
+    <!--Unified name of Game objects-->
+ <System:String x:Key="FleaWeapons">Weapons:</System:String>
+ <System:String x:Key="FleaMedical">Medicals:</System:String>
+ <System:String x:Key="FleaSpec">Special Items:</System:String>
+ <System:String x:Key="FleaKeys">Keys:</System:String>
+ <System:String x:Key="FleaVests">Vests:</System:String>
+ <System:String x:Key="FleaArmor">Armor/Helmets:</System:String>
+ <System:String x:Key="FleaFood">Food/Drinks:</System:String>
+
+ <!--Unified names of multipliers and expander headers-->
+ <System:String x:Key="Misc">Miscellaneous</System:String>
+ <System:String x:Key="Multipliers">Multipliers</System:String>
+ <System:String x:Key="Toggles">Toggles</System:String>
+ <System:String x:Key="Min">Minimum</System:String>
+ <System:String x:Key="Max">Maximum</System:String>
+
+ <!--Unified names of Editions-->
+ <System:String x:Key="Default">Default</System:String>
+ <System:String x:Key="Standard">Standard</System:String>
+ <System:String x:Key="lb">Left Behind</System:String>
+ <System:String x:Key="pfe">Prepare for Escape</System:String>
+ <System:String x:Key="eod">Edge of Darkness</System:String>
+ <System:String x:Key="Unheard">The Unheard</System:String>
+
+ <!--Unified names of locations-->
+ <System:String x:Key="Shoreline">Shoreline:</System:String>
+ <System:String x:Key="FactoryDay">Day Factory:</System:String>
+ <System:String x:Key="FactoryNight">Night Factory:</System:String>
+ <System:String x:Key="Customs">Customs:</System:String>
+ <System:String x:Key="Lighthouse">Lighthouse:</System:String>
+ <System:String x:Key="Reserve">Reserve:</System:String>
+ <System:String x:Key="Woods">Woods:</System:String>
+ <System:String x:Key="Streets">Streets of Tarkov:</System:String>
+ <System:String x:Key="StreetsShort">Streets:</System:String>
+ <System:String x:Key="Lab">Laboratory:</System:String>
+ <System:String x:Key="Interchange">Interchange:</System:String>
+ <System:String x:Key="GroundZero">Ground Zero:</System:String>
+ <System:String x:Key="GroundZeroHard">Ground Zero - Hard:</System:String>
+ <!--Unified names of Traders-->
+ <System:String x:Key="TradersGroup">Traders:</System:String>
+ <System:String x:Key="Therapist">Therapist:</System:String>
+ <System:String x:Key="Prapor">Prapor:</System:String>
+ <System:String x:Key="Mechanic">Mechanic:</System:String>
+ <System:String x:Key="Skier">Skier:</System:String>
+ <System:String x:Key="Ragman">Ragman:</System:String>
+ <System:String x:Key="Fence">Fence:</System:String>
+ <System:String x:Key="Peacekeeper">Peacekeeper:</System:String>
+ <System:String x:Key="Jaeger">Jaeger:</System:String>
+ <System:String x:Key="Ref">Ref:</System:String>
+    <System:String x:Key="Lightkeeper">Lightkeeper:</System:String>
+    <!--Unified names of Bosses-->
+ <System:String x:Key="Killa">Killa</System:String>
+ <System:String x:Key="Tagilla">Tagilla</System:String>
+ <System:String x:Key="Reshala">Reshala</System:String>
+ <System:String x:Key="Shturman">Shturman</System:String>
+ <System:String x:Key="Glukhar">Glukhar</System:String>
+ <System:String x:Key="Sanitar">Sanitar</System:String>
+ <System:String x:Key="Goons">Goons</System:String>
+ <System:String x:Key="Zryachiy">Zryachiy</System:String>
+ <System:String x:Key="Kaban">Kaban</System:String>
+ <System:String x:Key="Kollontay">Kollontay</System:String>
+ <System:String x:Key="Cultist">Cultists</System:String>
+ <System:String x:Key="Partisan">Partisan</System:String>
+    
+ <!--Unified names of Bots Types-->
+ <System:String x:Key="SCAVAI">SCAVs</System:String>
+ <System:String x:Key="SCAVAIFactory">SCAVs on Factory</System:String>
+ <System:String x:Key="CursedSCAV">Cursed SCAVs</System:String>
+ <System:String x:Key="Raiders">Raiders</System:String>
+ <System:String x:Key="SCAVSniper">SCAV Snipers</System:String>
+ <System:String x:Key="Rogues">Rogues</System:String>
+ <System:String x:Key="PMCAI">PMCs</System:String>
+ <System:String x:Key="Bosses">Bosses</System:String>
+ <System:String x:Key="Followers">Boss guards</System:String>
+
+ <!--Tooltips-->
+ <System:String x:Key="EquipRigsWithArmors_TT">Allows equipping armored rigs such as AVS or Tac-Tec with armors such as the Trooper or Slick</System:String>
+ <System:String  xml:space="preserve" x:Key="RemoveBackpacksRestrictions_TT">Allows you to put any item into any backpack.
+ CAUTION: If you plan on putting in items that can't be discarded in raid, it is highly recommended to enable the "Remove 'Can't be dropped in Raid' tag" option - 
+ otherwise, those items will be deleted on death, even if insured or on softcore.</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveSecureContainerFilters_TT">Allows putting any items into any secure container
+  CAUTION: If you plan on putting in items that can't be discarded in raid, it is highly recommended to enable the "Remove 'Can't be dropped in Raid' tag" option - 
+ otherwise, those items will be deleted on death, even if insured or on softcore.
+ </System:String>
+ <System:String x:Key="RemoveRaidRestr_TT">Enables bringing any item into a raid.</System:String>
+ <System:String x:Key="NoGearPenalty_TT">Removes gear penalties like slower movement, reduced weapon ergonomics, and turning speed.</System:String>
+ <System:String x:Key="RaidDrop_TT">Enables dropping any item during a raid.</System:String>
+ <System:String x:Key="PistolToMain_TT">This includes Revolvers and Sawed-Off shotguns.</System:String>
+ <System:String x:Key="SMGToHolster_TT">This includes every SMG in the game.</System:String>
+ <System:String x:Key="ItemPriceMult_TT">Multiplies the base price for the item. Affects buying/selling on the flea market and sales to traders.</System:String>
+ <System:String x:Key="ExamineTime_TT">Affects how quickly unexamined items are inspected. Does not impact general search speed.</System:String>
+ <System:String  xml:space="preserve" x:Key="AmmoLoadSpeed_TT">Multiplies the required time to load or unload a round into a magazine. 
+The smaller the value, the faster the process.</System:String>
+ <System:String xml:space="preserve" x:Key="PistolRound_TT">Sets the maximum ammunition stack size 
+per cell for these calibers: 9x18, 9x19, 9x21, 7.62x25, .357(9x33), .45ACP(11.43x23ACP), 46x30, 5.7x28</System:String>
+ <System:String xml:space="preserve" x:Key="ShotgunRound_TT">Sets the maximum ammunition stack size 
+per cell for these calibers: 12x70, 20x70, 23x75</System:String>
+ <System:String xml:space="preserve" x:Key="RifleRound_TT">Sets the maximum ammunition stack size 
+per cell for these calibers: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
+ <System:String xml:space="preserve" x:Key="MarksmanRound_TT">Sets the maximum ammunition stack size 
+per cell for these calibers: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
+ <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excludes keys with non-standard use counts (e.g., 2, 5, 10, 20), such as Ref's Hideout keys, the Factory Exit key, certain Streets keys (e.g., Chek 15), the Cargo key, etc. 
+Does not affect Marked Room keys.</System:String>
+ <System:String x:Key="AvoidResidential_TT">TerraGroup Labs residential unit keycard, which has two uses by default.</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">Labs Access keycard won't become infinite or would have multiple uses</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">Avoid single-use keycards such as blue marked one, Labrys and Labs access keycard</System:String>
+    <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">If ticked, Dollars and Euros will scale with the Rouble stack at a 1:100 ratio.  
+Dollar and Euro input fields will be disabled.</System:String>
+ <System:String x:Key="RemoveConstructionsRequirements_TT">Removes materials as a requirement for construction.</System:String>
+ <System:String x:Key="RemoveSkillRequirements_TT">Removes PMC Skill levels as a requirement for construction.</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements_TT">Removes trader reputation levels as a requirement for construction.</System:String>
+ <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">Do not edit fields if you have ongoing production/construction on your profile.
+It may cause some inconsistencies with the time or materials required. You have been warned.</System:String>
+ <System:String xml:space="preserve" x:Key="AirFilterRate_TT">Multiplies the constant 0.0047222222222222 by the entered value.
+By default it takes ~211 seconds to spend 1 unit of the air filter.
+Smaller values result in increased consumption times.</System:String>
+ <System:String xml:space="preserve" x:Key="GPUBoostRate_TT">Multiplies the constant 0.041225 by the entered value.
+The greater the value, the more each GPU matters.
+To negate this constant entirely (and thus dramatically increase GPU efficiency), set the value below to 24,26.</System:String>
+ <System:String xml:space="preserve" x:Key="FuelConsumptionRate_TT">Multiplies the constant 0.00131944444444 by the entered value.
+It takes 758 seconds to spend 1 unit of fuel.
+Smaller values result in longer-lasting fuel.</System:String>
+ <System:String xml:space="preserve" x:Key="NoFuelMult_TT">Multiplies the constant 0.07 by the entered value.
+Greater values result in faster production times without fuel.</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutProdMult_TT">Modifies the time required to produce something in the hideout.
+Smaller values result in faster production times.</System:String>
+ <System:String xml:space="preserve" x:Key="HideoutConstMult_TT">Modifies the time required to construct something in the hideout.
+Smaller values result in faster construction times.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCaseTime_TT">Modifies the time required to complete each Scav Case cycle.
+Smaller values result in faster Scav Case return times.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">Modifies the price for each Scav Case offer.
+The smaller the value, the less you pay. 
+Affects only currency-based offers.</System:String> 
+ <System:String x:Key="FIRTrade_TT">Everything you purchase from traders will come with the `Found in Raid` tag.</System:String>
+ <System:String xml:space="preserve" x:Key="QuestLifespan_TT">Sets how long a repeatable quest remains active and when a new one becomes available.
+Be advised: It will only take effect when the current quests timers have run out.</System:String>
+ <System:String xml:space="preserve" x:Key="QuestSwitch_TT">Be advised: It will not change newly accepted quests.</System:String>
+ <System:String xml:space="preserve" x:Key="RewardSpread_TT">Setting this to 0 will remove randomisation (RNG) entirely.
+ Setting this value to 1 will result in the reward spread between 0 and 2.
+ By default, this value is 0.5, resulting in 0.5x-1.5x the reward.
+ Formula: (1 – X, 1 + X), with X as the entered value.</System:String>
+ <System:String  xml:space="preserve" x:Key="AllContainers_TT">Forces every chance-based container to spawn on the map.
+Not at all balanced and will increase the load on your PC.</System:String>
+ <!--<System:String x:Key="RemoveTradeLimits_TT">Removes trader offer limits (how many items you can buy per stock).</System:String>
+ <System:String x:Key="IncreaseAssort_TT">Not balanced: Increases the quantity of any purchasable item to over a million.</System:String>-->
+ <System:String x:Key="RemoveCurrencyOffers_TT">Excluding Fence and Peacekeeper</System:String>
+ <System:String xml:space="preserve" x:Key="PriceAssort_TT">Affects prices of items sold by traders.
+The greater the value, the more expensive the items will be.</System:String>
+ <System:String xml:space="preserve" x:Key="PriceMarkup_TT">Affects trader discount.
+A value of 100 means the items will be purchased by traders at full price; 1 means the lowest possible price.</System:String>
+ <System:String x:Key="ClothesAnySide_TT">Allows you to purchase both USEC and BEAR apparel.</System:String>
+ <System:String x:Key="ClothesFree_TT">Removes cash requirements for purchasing apparel.</System:String>
+ <System:String x:Key="ClothesLevelUnlock_TT">Removes quest, PMC level, and trader level requirements.</System:String>
+    <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">This value always should be smaller than visit time
+This value represents remaining visit time left before Lightkeeper will tell you to leave the island</System:String>
+    <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">Technically safe to use, but once you accept any unlocked quest,
+it becomes permanently bound to your profile. This cannot be undone.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">How often the server checks for available insurance returns (in seconds). 
+Setting this value too low may cause strain on the server - hurting performance.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">Overrides the timer for every trader capable of insurance. 
+Insurance returns are still is affected by the interval above.</System:String>
+ <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">By default, insurance costs increase with higher trader levels.</System:String>
+ <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Remember quests that show up only after 24 real-life hours have passed?
+Enable this to remove that time restriction.</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">This feature can throw an error if you have a custom trader mod. 
+There are two ways of dealing with that:
+ 1) Move the custom trader mod below SVM in the mod load order, or
+ 2) If the mod in question uses Virtual's Custom Quest Loader, be sure they are both ABOVE SVM in 
+mod load order (if this fails, do step 1 for both)</System:String>
+ <System:String xml:space="preserve"  x:Key="NoRunThrough_TT">Removes XP requirement for the 'Survived' tag.
+Effectively disables 'Run Through'.</System:String>
+ <System:String xml:space="preserve"  x:Key="ChanceExtracts_TT">Chance-based exits will always be available.
+Such exits are:
+ Streets: Courtyard, Primorsky Ave Taxi V-Ex
+ Interchange: Power Station V-Ex
+ Customs: Dorms V-Ex, Old Gas Station, Smuggler's Boat, ZB-1012
+ Woords: RUAF Gate, ZB-014, ZB-016
+ Shoreline: Pier Boat
+ Laboratory: Parking Gate, Hangar Gate
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ExtendedExtracts_TT">Allows you to use extraction points on the same side you deployed from.</System:String>
+ <System:String xml:space="preserve" x:Key="NoBackpack_TT">Removes the 'no backpack' requirement for certain extraction points.
+ Such exits are:
+  Interchange: Hole in the Fence
+  Reserve: Sewer Manhole
+  The Laboratory: Ventilation Shaft
+ </System:String>
+ <System:String xml:space="preserve" x:Key="ArmorExtract_TT">Removes the 'no armor' requirement for certain extraction points.
+ Such exits are:
+  Lighthouse: Mountain Pass
+  Reserve: Cliff Descent
+   </System:String>
+ <System:String xml:space="preserve" x:Key="GearExtract_TT">Removes the 'Red Rebel Ice Pick' and 'Paracord' requirements for extraction points.
+ Such exits are:
+  Lighthouse: Mountain Pass
+  Reserve: Cliff Descent
+ </System:String>
+
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">Will override all initial SCAV spawns into selected type of AI</System:String>
+ <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">Not recommended! This is more of a stress test than a feature.
+You will have more than 30 AI in a single area. Enable at your own peril.</System:String>
+ <System:String xml:space="preserve" x:Key="Halloween_TT">Halloween event - enables event exclusive lights in the hideout, 
+alters Zryachiy behavior/spawns, adds event loot to AI, as well as the ritual mechanic.</System:String>
+ <System:String  xml:space="preserve" x:Key="DisableZombies_TT">Disable zombies when Halloween is enabled, as they are on by default.
+ Will not work if Halloween is disabled.</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Randomises the infection level of various locations on server startup.</System:String>
+ <System:String xml:space="preserve" x:Key="Christmas_TT">Christmas event - enables event exclusive lights in hideout, gives you a christmas gift, 
+allows for Santa Claus to spawn, and adds event loot to AI.</System:String>
+ <System:String  xml:space="preserve" x:Key="Types_TT">Daily missions are split into 3 types: Extermination, Completion, and Exploration.
+ Extermination – Kill PMCs, Scavs, or Bosses. May require specific body parts or certain ranges (close or long).
+ Completion - Fetch items with the 'found in raid' tag.
+ Exploration - Exfiltrate from specific a location with the 'Survived' tag. May require a specific exit.</System:String>
+ <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">Removing certain IDs may result in an error on server launch. 
+Proceed with caution!</System:String>
+ <System:String xml:space="preserve" x:Key="SafeExit_TT">Allows you to leave via menu to save gear/loot.
+You will, however, be counted as 'Run Through' - stripping your loot from being FiR.
+Conflicts with the 'Softcore' option.</System:String>
+ <System:String xml:space="preserve" x:Key="SaveGearAfterDeath_TT">Dying, leaving via menu or getting lost will be counted as 'Run Through'.
+Saves your things, but removes the 'Found in Raid' tag from items.
+Conflicts with the 'Safe Exit' option.</System:String>
+ <System:String  xml:space="preserve" x:Key="PMCHealth_TT">Allows you to edit the maximum health of your PMC.
+ATTENTION: Changes are saved to your profile, so disabling this function won't revert your health.
+To restore your health to default, re-enter the default values, save, launch the game, then close it.
+Health changes will not automatically apply when creating a new profile.</System:String>
+ <System:String x:Key="PMCStats_TT">Allows you to edit the maximum stats of your PMC.
+ATTENTION: Changes are saved to your profile, so disabling this function won't revert your stats.
+To restore your stats to default, re-enter the default values, save, launch the game, then close it.
+Stat changes will not automatically apply when creating a new profile.</System:String>
+ <System:String x:Key="Sell_chance_TT">The default chance to sell an item if it is equal to the predefined price.</System:String>
+ <System:String x:Key="PriceRange_TT">CAUTION: Will not affect player selling prices.
+If you want to sell for a similarly raised price, use 'Sell chance Multiplier' instead.</System:String>
+ <System:String  xml:space="preserve" x:Key="Sell_mult_TT">Multiplier that makes the sell chance variable. 
+Example: If you sell an item for 20% less than its handbook value, the chance would be multiplied by 1.24 (default).
+This results in a 25% greater sell chance. The greater the difference, the more extreme the results.</System:String>
+ <System:String xml:space="preserve" x:Key="DisableBSGList_TT">CAUTION: Will not affect their (possibly) broken prices. Some items might be too cheap.</System:String>
+ <System:String xml:space="preserve" x:Key="PMCRatio_TT">Ratio (in %) for a spawned PMC to be USEC or BEAR. 100 = USEC only, 0 = BEAR only.</System:String>
+ <System:String xml:space="preserve" x:Key="ScavHealth_TT">Allows you to edit your SCAV's body part health. Will not affect other SCAVs.
+CAUTION: Disabling this section after making changes may not revert your current SCAV's health.</System:String>
+ <System:String xml:space="preserve" x:Key="AIToPMC_TT">The AI Types into PMC converter is chance based.
+If SCAV spawns - there is a 25% chance (default) that he converts to a PMC. Works exactly the same for the rest of the fields there.</System:String>
+ <System:String x:Key="ScavTimer_TT">CAUTION: Changing this will not affect the existing timer!</System:String>
+ <System:String xml:space="preserve" x:Key="ScavPockets_TT">CAUTION: Disabling this section after making changes will nullify your current SCAV's pockets.</System:String>
+ <System:String xml:space="preserve" x:Key="ForcePartisan_TT">By default, Partisan has a specific trigger event that possibly affects his spawn.
+This option removes it, making Partisan spawn like any other boss.</System:String>
+ <System:String xml:space="preserve" x:Key="DisableHalloweenAIFriendly_TT">By default, when zombies are enabled, SCAVs won't attack you, and PMCs may also hold fire.
+This option disables that behavior, causing AI to act as normal.
+CAUTION: This will override AI PMC fields related to hostility.</System:String>
+
+
+</ResourceDictionary>
