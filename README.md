@@ -12,6 +12,9 @@ Greed into game executable folder, ServerValueModifier into 'SPT/user/mods/[SVM]
 
 Exact path is important for Greed to operate.
 
+Optionally - you can compile HideSpecialIcon .dll to be inserted in client mods, you can find out about it more here:
+https://github.com/GhostFenixx/HideSpecialIcon
+It should be located in Greed/Resources to deploy properly.
 ### Disclaimer:
 This application and it's source code uses Media and/or Materials from the Video Game "Escape from Tarkov" and links that leads to Game official wiki that can be accessed via `https://escapefromtarkov.fandom.com/`
 Escape from Tarkov content and materials are the intellectual property of their respective owners "Battlestate Games Limited".
