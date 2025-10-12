@@ -20,10 +20,10 @@ namespace ServerValueModifier.Sections
             HideoutSettingsBase hideoutDB = databaseService.GetHideout().Settings;
             Globals globals = databaseService.GetGlobals();
             SPTarkov.Server.Core.Models.Spt.Hideout.Hideout hideout = databaseService.GetHideout();
-            hideoutDB.GeneratorFuelFlowRate = svmconfig.Hideout.FuelConsumptionRate;
-            hideoutDB.GeneratorSpeedWithoutFuel = svmconfig.Hideout.NoFuelMult;
-            hideoutDB.AirFilterUnitFlowRate = svmconfig.Hideout.AirFilterRate;
-            hideoutDB.GpuBoostRate = svmconfig.Hideout.GPUBoostRate;
+            hideoutDB.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
+            hideoutDB.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
+            hideoutDB.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
+            hideoutDB.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
             
             hideoutConfig.CultistCircle.MaxRewardItemCount = svmconfig.Hideout.CultistMaxRewards;
             hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = (int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime);

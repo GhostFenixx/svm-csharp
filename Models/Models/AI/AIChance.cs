@@ -17,7 +17,7 @@
         public int Zryachiy { get; set; } = 100;
         public int CultistCustoms { get; set; } = 20;
         public int CultistShoreline { get; set; } = 15;
-        public int Trio { get; set; } = 0;
+        public int Trio { get; set; } = 18;
         public int RaiderLab { get; set; } = 45;
         public int RaiderReserve { get; set; } = 35;
         public int CultistFactory { get; set; } = 20;

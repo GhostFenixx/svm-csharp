@@ -6,10 +6,13 @@
              xmlns:ui="http://schemas.modernwpf.com/2019">
  <Application.Resources>
   <ResourceDictionary>
-   <ResourceDictionary.MergedDictionaries>
-                <ResourceDictionary Source="Resources/Dictionary-en-US.xaml"/>
-                <ResourceDictionary Source="Resources/Dictionary-ru-RU.xaml"/>
-    <ui:ThemeResources />
+            <ResourceDictionary.MergedDictionaries>
+                <ui:ThemeResources />
+                <ResourceDictionary Source="/Resources/Dictionary-en-US.xaml"/>
+                <!--<ResourceDictionary Source="/Resources/Dictionary-uk-UA.xaml"/>
+                <ResourceDictionary Source="/Resources/Dictionary-ru-RU.xaml"/>
+                <ResourceDictionary Source="/Resources/Dictionary-zh-CN.xaml"/>
+                <ResourceDictionary Source="/Resources/Dictionary-ko-KR.xaml"/>-->
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>

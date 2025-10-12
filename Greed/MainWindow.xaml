@@ -3905,7 +3905,7 @@
                                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Fleamarket}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                                 </Expander.Header>
                                 <StackPanel Margin="10">
-                                    <TextBlock Text="{DynamicResource FleaMultID}" Margin="5,0,5,0" ToolTip="{DynamicResource FleaMultID_TT}" Foreground="White" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                                    <TextBlock Text="{DynamicResource FleaMultID}" Margin="5,0,5,0" Foreground="White" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left"/>
                                     <TextBox Margin="5,5,0,5" MinHeight="150" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.FleaMultID}"/>
                                 </StackPanel>
                             </Expander>

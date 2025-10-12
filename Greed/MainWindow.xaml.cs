@@ -22,6 +22,9 @@ namespace Greed
             InitializeComponent();
             string currDir = Directory.GetCurrentDirectory();
             string modFolder = currDir + @"\SPT\user\mods\[SVM] Server Value Modifier\";
+            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
+                new FrameworkPropertyMetadata(int.MaxValue));
+            LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
             if (!File.Exists(modFolder + "ServerValueModifier.dll"))
             {
                 Popup message = new((string)Application.Current.FindResource("SVMWrongInstallation"));
@@ -31,10 +34,6 @@ namespace Greed
                     Close();
                 }
             }
-            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
-                new FrameworkPropertyMetadata(int.MaxValue));
-            LangSwitch((Thread.CurrentThread.CurrentCulture).ToString());
-
             ToList();
             MainClass.MainConfig mainConfig = new();
             DataContext = mainConfig;
@@ -78,7 +77,7 @@ namespace Greed
             Presets.SelectedItem = tempfield;
         }
 
-        private void LangSwitch(string lang)
+        public void LangSwitch(string lang)
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
