@@ -5,6 +5,10 @@ A Server side mod for SPT project
 Download the archive from releases, unpack it in folder where your game executable located.
 Run Greed.exe to configure your settings, manual is included inside the app.
 
+### Uninstall:
+Delete Greed.exe, delete [SVM] ServerValueModifier folder in SPT/user/mods
+If you utilised CSM plugin - delete HideSpecialIcon.dll from BepInEx/Plugins
+
 ### Compiling:
 Simply build ServerValueModifier.dll and Greed (Either via Release or Publish if you want it to be a single file)
 Follow same path as archive does:
