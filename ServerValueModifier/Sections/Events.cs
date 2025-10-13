@@ -122,10 +122,10 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Raids.RaidEvents.BossesOnCustoms)
             {
-                locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", 100, "ZoneOldAZS", "followbully", "0"));
+                locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", 100, "ZoneOldAZS", "followerbully", "0"));
                 locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKojaniy", 100, "ZoneFactoryCenter", "followerKojaniy", "2"));
                 locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossSanitar", 100, "ZoneGasStation", "followerSanitar", "2"));
-                locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossTagilla", 100, "ZoneOldAZS", "followbully", "0"));
+                locs.Bigmap.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossTagilla", 100, "ZoneOldAZS", "followerbully", "0"));
             }
                 if (svmconfig.Raids.RaidEvents.CultistBosses)
             {

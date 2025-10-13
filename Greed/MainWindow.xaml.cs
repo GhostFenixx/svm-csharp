@@ -3,6 +3,7 @@ using System.Diagnostics;
 using System.Globalization;
 using System.IO;
 using System.Reflection;
+using System.Runtime.CompilerServices;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -17,15 +18,18 @@ namespace Greed
     /// </summary>
     public partial class MainWindow : Window
     {
+        string currDir = Directory.GetCurrentDirectory();
+        string modFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier");
+        string presetsFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier", "Presets");
+        string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT", "user", "mods", "[SVM] Server Value Modifier", "Loader");
+        string bepinexFolder = Path.Combine(Directory.GetCurrentDirectory(), "BepInEx", "plugins");
         public MainWindow()
         {
             InitializeComponent();
-            string currDir = Directory.GetCurrentDirectory();
-            string modFolder = currDir + @"\SPT\user\mods\[SVM] Server Value Modifier\";
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
                 new FrameworkPropertyMetadata(int.MaxValue));
             LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
-            if (!File.Exists(modFolder + "ServerValueModifier.dll"))
+            if (!File.Exists(Path.Combine(modFolder, "ServerValueModifier.dll")))
             {
                 Popup message = new((string)Application.Current.FindResource("SVMWrongInstallation"));
                 message.ShowDialog();
@@ -53,15 +57,15 @@ namespace Greed
 
         private void ToList()
         {
-            string startFolder = Directory.GetCurrentDirectory() + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\";
-            if (!Directory.Exists(startFolder))
+            
+            if (!Directory.Exists(presetsFolder))
             {
-                throw new NullReferenceException($"{startFolder} does not exist.");
+                throw new NullReferenceException($"{presetsFolder} does not exist.");
             }
 
             object tempfield = Presets.SelectedItem;
             Presets.Items.Clear();
-            DirectoryInfo dir = new(startFolder);
+            DirectoryInfo dir = new(presetsFolder);
             List<FileInfo> fileList = [.. dir.GetFiles("*.*", SearchOption.AllDirectories)
                 .Where(x => x.Extension == ".json")
                 .OrderBy(x => x.Name)];
@@ -152,9 +156,8 @@ namespace Greed
                     if (CheckName())
                     {
                         string rawJSON = JsonSerializer.Serialize((MainClass.MainConfig)DataContext, new JsonSerializerOptions() { WriteIndented = true });
-                        string savepath = Directory.GetCurrentDirectory() + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\";
-                        savepath += string.IsNullOrEmpty(Presets.Text) ? "Noname.json" : Presets.Text + ".json";
-                        File.WriteAllText(savepath, rawJSON);
+                        string filepath = Path.Combine( presetsFolder, string.IsNullOrEmpty(Presets.Text) ? "Noname.json" : Presets.Text + ".json");
+                        File.WriteAllText(filepath, rawJSON);
                         ToList();
                         if (Presets.Text == "")
                         {
@@ -173,8 +176,7 @@ namespace Greed
 
         private bool CheckName()
         {
-            string savepath = Directory.GetCurrentDirectory() + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\";
-            if (File.Exists(savepath + Presets.Text + ".json"))
+            if (File.Exists(presetsFolder + Presets.Text + ".json"))
             {
                 Popup Message = new((string)Application.Current.FindResource("OverridePreset"));
                 Message.ShowDialog();
@@ -196,7 +198,7 @@ namespace Greed
         {
             if (Presets.Text == "")
             {
-                if (File.Exists(Directory.GetCurrentDirectory() + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\Noname.json"))
+                if (File.Exists(Path.Combine(presetsFolder,"Noname.json")))
                 {
                     Presets.Text = "Noname";
                     Popup Message = new((string)Application.Current.FindResource("NonameLoaded"));
@@ -219,7 +221,7 @@ namespace Greed
 
         private void LoadJson()
         {
-            string rawJSON = File.ReadAllText(Directory.GetCurrentDirectory() + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\" + Presets.Text + ".json");
+            string rawJSON = File.ReadAllText(Path.Combine(presetsFolder, Presets.Text + ".json"));
             MainClass.MainConfig loadedConfig = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
             DataContext = loadedConfig;
         }
@@ -259,15 +261,13 @@ namespace Greed
         {
             try
             {
-                string exefolder = Directory.GetCurrentDirectory();
-
                 Process serverProcess = new()
                 {
 
                     StartInfo = new ProcessStartInfo
                     {
-                        FileName = exefolder + @"\SPT\SPT.Server.exe",
-                        WorkingDirectory = exefolder + @"\SPT",
+                        FileName = Path.Combine(currDir, "SPT", "SPT.Server.exe"),
+                        WorkingDirectory = Path.Combine(currDir, "SPT"),
                     }
                 };
                 serverProcess.Start();
@@ -276,8 +276,8 @@ namespace Greed
 
                     StartInfo = new ProcessStartInfo
                     {
-                        FileName = exefolder + @"\SPT\SPT.Launcher.exe",
-                        WorkingDirectory = exefolder + @"\SPT",
+                        FileName = Path.Combine(currDir, "SPT", "SPT.Launcher.exe"),
+                        WorkingDirectory = Path.Combine(currDir, "SPT"),
                     }
                 };
                 launcherprocess.Start();
@@ -291,13 +291,13 @@ namespace Greed
 
         private void CloseEverything(object sender, RoutedEventArgs e)
         {
-            string exefolder = Directory.GetCurrentDirectory() + @"\SPT";
+            string exefolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT");
 
             Process[] serverProcesses = Process.GetProcessesByName("SPT.Server");
             {
                 foreach (Process process in serverProcesses)
                 {
-                    if (process.MainModule.FileName == exefolder + @"\SPT.Server.exe")
+                    if (process.MainModule.FileName == Path.Combine(exefolder, "SPT.Server.exe"))
                         process.Kill();
                 }
             }
@@ -305,7 +305,7 @@ namespace Greed
             {
                 foreach (Process process in launcherProcesses)
                 {
-                    if (process.MainModule.FileName == exefolder + @"\SPT.Launcher.exe")
+                    if (process.MainModule.FileName == Path.Combine(exefolder, "SPT.Launcher.exe"))
                         process.Kill();
                 }
             }
@@ -313,11 +313,10 @@ namespace Greed
 
         private void PresetFolder(object sender, EventArgs e)
         {
-            var currDir = Directory.GetCurrentDirectory();
-            if (Directory.Exists(currDir + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\"))
+            if (Directory.Exists(presetsFolder))
             {
 
-                Process.Start("explorer.exe", currDir + @"\SPT\user\mods\[SVM] Server Value Modifier\Presets\");
+                Process.Start("explorer.exe", presetsFolder);
             }
             else
             {
@@ -336,12 +335,11 @@ namespace Greed
             }
             try
             {
-                var currDir = Directory.GetCurrentDirectory()+ @"\SPT\user\mods\[SVM] Server Value Modifier";
-                string savepath = currDir + @"\Loader\loader.json";
+                string savepath = Path.Combine(loaderFolder, "loader.json");
                 File.Delete(savepath);
                 if (Presets.Text == "")
                 {
-                    if (File.Exists(currDir + @"\Presets\Noname.json"))
+                    if (File.Exists( Path.Combine(presetsFolder, "Noname.json")))
                     {
                         File.AppendAllText(savepath, "{\n" + "\"CurrentlySelectedPreset\": \"Noname\"" + "\n}");
                         Popup Message = new((string)Application.Current.FindResource("NonameApplied"));
@@ -446,16 +444,13 @@ namespace Greed
 
         private void InstallPlugin(object sender, RoutedEventArgs e)
         {
-            string gamefolder = Directory.GetCurrentDirectory();
-            //string exeFolder = Path.GetFullPath(Path.Combine(modFolder, "..", "..",".."));
-            string pluginFolder = (gamefolder + @"\BepInEx\plugins\");
             string pluginname = @"HideSpecialIconGrids.dll";
             try
             {
-                if (!File.Exists(pluginFolder + pluginname))
+                if (!File.Exists(bepinexFolder + pluginname))
                 {
                     Stream stream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Greed.Resources.HideSpecialIconGrids.dll");
-                    var fileStream = File.Create(pluginFolder + pluginname);
+                    var fileStream = File.Create(bepinexFolder + pluginname);
                     stream2.CopyTo(fileStream);
                     fileStream.Close();
                     Popup Message = new((string)Application.Current.FindResource("InstallPluginComplete"));
@@ -673,8 +668,7 @@ namespace Greed
         {
             if (File.Exists("GreedConfig"))
             {
-                string path = Directory.GetCurrentDirectory() + @"\GreedConfig";
-                string cfg = File.ReadAllText(path);
+                string cfg = File.ReadAllText(Path.Combine(currDir, "GreedConfig"));
                 string[] load = cfg.Split(',');
                 if (load[0] == "true")
                 {

@@ -79,13 +79,13 @@ namespace ServerValueModifier.Sections
             {
                 if (production.Id == "5d5589c1f934db045e6c5492")
                 {
-                    production.ProductionTime *= svmconfig.Hideout.WaterFilterTime * 60;
+                    production.ProductionTime = svmconfig.Hideout.WaterFilterTime * 60;
                     production.Requirements[1].Resource = svmconfig.Hideout.WaterFilterRate;
                 }
                 if (production.Id == "5d5c205bd582a50d042a3c0e")
                 {
                     production.ProductionLimitCount = svmconfig.Hideout.MaxBitcoins;
-                    production.ProductionTime *= svmconfig.Hideout.BitcoinTime * 60;
+                    production.ProductionTime = svmconfig.Hideout.BitcoinTime * 60;
                 }
                 if (production.Continuous is not null && production.ProductionTime >= 10)
                 {
