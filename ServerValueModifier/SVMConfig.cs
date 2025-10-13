@@ -15,16 +15,16 @@ namespace ServerValueModifier
         string folder = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         public MainClass.MainConfig CallConfig()
         {
-            string loader = File.ReadAllText(folder + @"\Loader\loader.json");
+            string loader = File.ReadAllText(Path.Combine(folder, "Loader", "loader.json"));
             JsonNode loadname = JsonNode.Parse(loader);
-            string rawJSON = File.ReadAllText(folder + @"\Presets\" + loadname!["CurrentlySelectedPreset"] + ".json");
+            string rawJSON = File.ReadAllText(Path.Combine(folder, "Presets", loadname!["CurrentlySelectedPreset"] + ".json"));
             cf = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
             return cf;
         }
 
         public JsonNode ServerMessage()
         {
-            string loader = folder+ @"\Loader\loader.json";
+            string loader = Path.Combine(folder, "Loader","loader.json");
             JsonNode LoadName = JsonNode.Parse(File.ReadAllText(loader));
             return LoadName;
         }

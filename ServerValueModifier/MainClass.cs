@@ -100,7 +100,7 @@ namespace ServerValueModifier
                 if (svmcfg.PMC.EnablePMC) pmcload.PMCSection();
                 if (svmcfg.Custom.EnableCustom) advLoad.ItemChangerSection();
 
-                string[] funnitext = File.ReadAllText(ffolder + @"\Misc\MOTD.txt").Split("\n");
+                string[] funnitext = File.ReadAllText(System.IO.Path.Combine(ffolder,"Misc","MOTD.txt")).Split("\n");
                 Random rnd = new Random();
                 logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
                 logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);

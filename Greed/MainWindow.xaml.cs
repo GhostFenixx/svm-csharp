@@ -169,7 +169,7 @@ namespace Greed
             }
             catch
             {
-                Popup Message = new((string)Application.Current.FindResource("ApplyFailedUnknown"));
+                Popup Message = new((string)Application.Current.FindResource("ApplyFailedUnknown")+e);
                 Message.ShowDialog();
             }
         }
@@ -444,7 +444,7 @@ namespace Greed
 
         private void InstallPlugin(object sender, RoutedEventArgs e)
         {
-            string pluginname = @"HideSpecialIconGrids.dll";
+            string pluginname = "HideSpecialIconGrids.dll";
             try
             {
                 if (!File.Exists(bepinexFolder + pluginname))

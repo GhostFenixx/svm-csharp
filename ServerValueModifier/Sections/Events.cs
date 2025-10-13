@@ -23,7 +23,7 @@ namespace ServerValueModifier.Sections
             var locs = databaseService.GetLocations();
             var locsconfig = configServer.GetConfig<LocationConfig>();
             string wavesfile = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-            JsonNode loadName = JsonNode.Parse(File.ReadAllText(wavesfile + @"\Misc\Waves.json"));//This is for more complex setups with guards
+            JsonNode loadName = JsonNode.Parse(File.ReadAllText( Path.Combine(wavesfile, "Misc", "Waves.json")));//This is for more complex setups with guards
             if (svmconfig.Raids.RaidEvents.AITypeOverride)
             {
                 string aitype = "";
