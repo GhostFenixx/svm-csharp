@@ -101,7 +101,7 @@ namespace ServerValueModifier.Sections
                 int i = 0;
                 foreach (var level in traders["54cb57776803fa99248b456e"].Base.LoyaltyLevels)
                 {
-                    level.HealPriceCoefficient = therapistheallevels[i];
+                    level.HealPriceCoefficient = 100 * therapistheallevels[i];
                     i++;
                 }
             }
