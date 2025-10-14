@@ -288,7 +288,7 @@ namespace ServerValueModifier.Sections
                         }
                         else FreeExit(exits);
                     }
-                    if (type == "coop")
+                    if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidInterchange != 0)
                         {
@@ -334,7 +334,7 @@ namespace ServerValueModifier.Sections
                         }
                         else FreeExit(exits);
                     }
-                    else
+                    if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidStreets != 0)
                         {
@@ -357,7 +357,7 @@ namespace ServerValueModifier.Sections
                         }
                         else FreeExit(exits);
                     }
-                    else
+                    if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidLighthouse != 0)
                         {
@@ -380,7 +380,7 @@ namespace ServerValueModifier.Sections
                         }
                         else FreeExit(exits);
                     }
-                    else
+                    if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidShoreline != 0)
                         {
@@ -403,7 +403,7 @@ namespace ServerValueModifier.Sections
                         }
                         else FreeExit(exits);
                     }
-                    else
+                    if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidSandbox != 0)
                         {

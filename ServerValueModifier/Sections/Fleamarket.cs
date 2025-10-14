@@ -1,4 +1,5 @@
 ﻿using Greed.Models;
+using HarmonyLib;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
@@ -32,11 +33,10 @@ namespace ServerValueModifier.Sections
                     MaxActiveOfferCount offerCount = new();
                     offerCount.From = -100000;
                     offerCount.To = 100000;
+                    offerCount.CountForSpecialEditions = svmconfig.Fleamarket.SellOffersAmount;
                     offerCount.Count = svmconfig.Fleamarket.SellOffersAmount;
-                    globals.Configuration.RagFair.MaxActiveOfferCount = [];
-                    var offermaxcount = globals.Configuration.RagFair.MaxActiveOfferCount.ToList();
-                    offermaxcount.Add(offerCount);
-                    globals.Configuration.RagFair.MaxActiveOfferCount = offermaxcount;
+                    globals.Configuration.RagFair.MaxActiveOfferCount = [offerCount];
+
                 }
             }
             fleaconfig.Dynamic.Pack.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BundleOfferChance;
