@@ -120,7 +120,7 @@ namespace ServerValueModifier.Sections
                 foreach (var requirements in finishcondition)
                 {
                     requirements.PlantTime = requirements.PlantTime * svmcfg.Traders.PlantingTime;
-                    if (requirements.AvailableAfter is not null && svmcfg.Traders.FIRRestrictsQuests)
+                    if (requirements.OnlyFoundInRaid is not null && svmcfg.Traders.FIRRestrictsQuests)
                     {
                         requirements.OnlyFoundInRaid = false;
                     }
@@ -131,6 +131,8 @@ namespace ServerValueModifier.Sections
                 {
                     startcondition = [];
                 }
+                questid.Value.Conditions.AvailableForStart = startcondition;
+                questid.Value.Conditions.AvailableForFinish = finishcondition;
             }
             //}
             if (svmcfg.Traders.TradersLvl4)
