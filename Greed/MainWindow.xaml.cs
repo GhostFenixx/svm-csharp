@@ -176,7 +176,7 @@ namespace Greed
 
         private bool CheckName()
         {
-            if (File.Exists(presetsFolder + Presets.Text + ".json"))
+            if (File.Exists(Path.Combine( presetsFolder, Presets.Text + ".json")))
             {
                 Popup Message = new((string)Application.Current.FindResource("OverridePreset"));
                 Message.ShowDialog();
@@ -447,10 +447,10 @@ namespace Greed
             string pluginname = "HideSpecialIconGrids.dll";
             try
             {
-                if (!File.Exists(bepinexFolder + pluginname))
+                if (!File.Exists(Path.Combine(bepinexFolder, pluginname)))
                 {
                     Stream stream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Greed.Resources.HideSpecialIconGrids.dll");
-                    var fileStream = File.Create(bepinexFolder + pluginname);
+                    var fileStream = File.Create(Path.Combine(bepinexFolder, pluginname));
                     stream2.CopyTo(fileStream);
                     fileStream.Close();
                     Popup Message = new((string)Application.Current.FindResource("InstallPluginComplete"));

@@ -101,8 +101,8 @@ namespace ServerValueModifier.Sections
             }
             for (int i = 0; i < quest.RepeatableQuests[digit].QuestConfig.Elimination.Count && i < ranges.Length; i++)
             {
-                quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MinKills = ranges[i].MinExtracts;
-                quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MaxKills = ranges[i].MaxExtracts;
+                quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MinKills = ranges[i].MinKills;
+                quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MaxKills = ranges[i].MaxKills;
             }
             quest.RepeatableQuests[digit].Types = [];
             switch (type.Types)//I could just call exact possible types from enum or smth, hmm, TODO.

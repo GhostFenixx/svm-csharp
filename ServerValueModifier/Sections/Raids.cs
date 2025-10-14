@@ -180,7 +180,6 @@ namespace ServerValueModifier.Sections
                 var allowexfil = globals.Configuration.RequirementReferences.Alpinists.ToList();
                 allowexfil.Splice(0, 2);
                 globals.Configuration.RequirementReferences.Alpinists = allowexfil;
-
             }
             foreach (Location names in locationsdb.GetDictionary().Values)
             {
