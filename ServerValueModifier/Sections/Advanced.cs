@@ -6,6 +6,7 @@ using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using System.Collections;
+using System.Globalization;
 using System.Reflection;
 
 namespace ServerValueModifier.Sections
@@ -14,6 +15,9 @@ namespace ServerValueModifier.Sections
     {
         public void ItemChangerSection()
         {
+            CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = customCulture;
             Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
             if (svmconfig.Custom.IDChanger)
             {
@@ -23,7 +27,7 @@ namespace ServerValueModifier.Sections
                     string[] defaultList = svmconfig.Custom.IDDefault.Split("\r\n");
                     foreach (string line in defaultList)
                     {
-                        if (!line.StartsWith("#") && !line.StartsWith("//"))
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
                         {
                             string[] variables = line.Split(":");
                             logger.Info("Default: " + line);
@@ -37,7 +41,7 @@ namespace ServerValueModifier.Sections
                     foreach (string line in parentlist)
                     {
                         List<string> idarray = [];
-                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Length > 1)
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':') && line.Length > 1)
                         {
                             var variables = line.Split(":");
                             logger.Info("[SVM] Parent: " + line.ToString());
@@ -78,7 +82,7 @@ namespace ServerValueModifier.Sections
             var traders = databaseService.GetTraders();
             foreach (string line in offers)
             {
-                if (!line.StartsWith("#") && !line.StartsWith("//") && svmconfig.Custom.AddTraderAssort != "")
+                if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':') && svmconfig.Custom.AddTraderAssort != "")
                 {
                     string[] variables = line.Split(":");
                     MongoId uid = new(); 
@@ -132,16 +136,27 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Custom.FleaMultID != "" && svmconfig.Custom.FleaMultID.Length > 1)
             {
-                string[] IDlist = svmconfig.Custom.FleaMultID.Split("\r\n");
-                var fleaconfig = configServer.GetConfig<RagfairConfig>();
-                fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride = [];
-                foreach (string line in IDlist)
+                try
                 {
-                    if (!line.StartsWith("#") && !line.StartsWith("//"))
+                    string[] IDlist = svmconfig.Custom.FleaMultID.Split("\r\n");
+                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
+                    fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride = [];
+                    foreach (string line in IDlist)
                     {
-                        string[] variables = line.Split(":");
-                        fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride.Add(variables[0], Convert.ToDouble(variables[1]));
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
+                        {
+                            string[] variables = line.Split(":");
+                            if (variables[1].Contains(','))
+                            {
+                               variables[1] = variables[1].Replace(',', '.');
+                            }
+                            fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride.Add(variables[0], Convert.ToDouble(variables[1]));
+                        }
                     }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("[SVM] Advanced Features - Flea Market - Item's multipliers: Syntax error, read about the error below \n\n" + ex);
                 }
             }
             //Blacklist, will rewrite it later
