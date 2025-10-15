@@ -4,6 +4,8 @@ using System.Globalization;
 using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
+using System.Text;
+using System.Text.Encodings.Web;
 using System.Text.Json;
 using System.Text.RegularExpressions;
 using System.Windows;
@@ -155,9 +157,9 @@ namespace Greed
                 {
                     if (CheckName())
                     {
-                        string rawJSON = JsonSerializer.Serialize((MainClass.MainConfig)DataContext, new JsonSerializerOptions() { WriteIndented = true });
+                        string rawJSON = JsonSerializer.Serialize((MainClass.MainConfig)DataContext, new JsonSerializerOptions() {Encoder = JavaScriptEncoder.UnsafeRelaxedJsonEscaping,  WriteIndented = true });
                         string filepath = Path.Combine( presetsFolder, string.IsNullOrEmpty(Presets.Text) ? "Noname.json" : Presets.Text + ".json");
-                        File.WriteAllText(filepath, rawJSON);
+                        File.WriteAllText(filepath, rawJSON, Encoding.UTF8);
                         ToList();
                         if (Presets.Text == "")
                         {
@@ -221,7 +223,7 @@ namespace Greed
 
         private void LoadJson()
         {
-            string rawJSON = File.ReadAllText(Path.Combine(presetsFolder, Presets.Text + ".json"));
+            string rawJSON = File.ReadAllText(Path.Combine(presetsFolder, Presets.Text + ".json"), Encoding.UTF8);
             MainClass.MainConfig loadedConfig = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
             DataContext = loadedConfig;
         }
@@ -491,7 +493,7 @@ namespace Greed
         {
             if (LoadLast.IsChecked)
             {
-                File.WriteAllText("GreedConfig", "true," + Presets.Text);
+                File.WriteAllText("GreedConfig", "true," + Presets.Text, Encoding.UTF8);
             }
         }
 
@@ -511,11 +513,11 @@ namespace Greed
         {
             if (LoadLast.IsChecked)
             {
-                File.WriteAllText("GreedConfig", "true," + Presets.Text);
+                File.WriteAllText("GreedConfig", "true," + Presets.Text, Encoding.UTF8);
             }
             else
             {
-                File.WriteAllText("GreedConfig", "false," + Presets.Text);
+                File.WriteAllText("GreedConfig", "false," + Presets.Text, Encoding.UTF8);
             }
         }
 
@@ -668,7 +670,7 @@ namespace Greed
         {
             if (File.Exists("GreedConfig"))
             {
-                string cfg = File.ReadAllText(Path.Combine(currDir, "GreedConfig"));
+                string cfg = File.ReadAllText(Path.Combine(currDir, "GreedConfig"), Encoding.UTF8);
                 string[] load = cfg.Split(',');
                 if (load[0] == "true")
                 {
