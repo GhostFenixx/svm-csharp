@@ -153,9 +153,16 @@ namespace ServerValueModifier.Sections
             {
                 if (traderid.Key != "638f541a29ffd1183d187f57" && traderid.Key != "579dc571d53a0658a154fbec")
                 {
-                    if (svmcfg.Traders.UnlockQuestAssort && traderid.Value.QuestAssort["success"] is not null)
+                    try
                     {
-                        traderid.Value.QuestAssort["success"] = []; // please work
+                        if (svmcfg.Traders.UnlockQuestAssort && traderid.Value.QuestAssort["success"] is not null)
+                        {
+                            traderid.Value.QuestAssort["success"] = []; // please work
+                        }
+                    }
+                    catch 
+                    {
+                        logger.Warning("[SVM] Failed to modify trader quest assort with name: " + traderid.Value.Base.Name);
                     }
                     //Find all trader offers, sort them through currencies (RUB,USD,EUR,GPcoin,Lega)
                     //Then Adjust their amounts and restrictions

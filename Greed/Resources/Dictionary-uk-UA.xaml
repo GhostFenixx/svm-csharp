@@ -4,7 +4,7 @@
 
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - .Json Редактор завантажувача для мода SPT під ім'ям "Server Value Modifier"
 Незалежний додаток створений GhostFenixx
-Використовуя інструментарій VS 2022 на .NET 6 + Бібліотека ModernWPF створений Kinnara
+Використовуя інструментарій VS 2022 на .NET 9 + Бібліотека ModernWPF створений Kinnara
 https://github.com/Kinnara/ModernWpf
 Поширується по ліцензії Personal Use Source License (PUSL)
 Для ознайомлення з ліцензією: https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
@@ -39,8 +39,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 І багато інших хто підтримував розробку порадами, баг репортами, хорошими словами або рекламою.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM був неправильно встановлений, програма не знаходиться в "user/mods"
-Будь ласка, дотримуйтесь інструкцій зі встановлення на сторінці мода.
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed не зміг знайти ServerValueModifier.dll у SPT/user/mods/[SVM] Server Value Modifier
+Переконайтеся, що ви правильно встановили мод, ця програма має знаходитися там же, де й виконуваний файл гри.
 Ви можете продовжити використовувати програму, якщо натиснути `Ok`, але працювати вона не буде.
 Натисніть 'Cancel' щоб закрити програму.
 </System:String>
@@ -144,14 +144,16 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="SMGToHolster">Пістолети-Кулемети кладуться в кобуру</System:String>
  <System:String x:Key="PistolToMain">Пістолет в основний слот</System:String>
     <System:String x:Key="AllExaminedItems">Усі предмети вивчені</System:String>
- <System:String x:Key="EquipRigsWithArmors">Носіння бронежилета розгрузки разом з бронежилетом</System:String>
+ <System:String x:Key="EquipRigsWithArmors">Носіння броне-розгрузки разом з бронежилетом</System:String>
  <System:String x:Key="RemoveSecureContainerFilters">Прибрати фільтри для захищених контейнерів</System:String>
  <System:String x:Key="RemoveRaidRestr">Прибрати обмеження на внесення до рейду</System:String>
     <System:String x:Key="RemoveBackpacksRestrictions">Прибрати фільтри рюкзаків</System:String>
  <System:String x:Key="AddSignalPistolToSpec">Дозволити сигнальний пістолет у Спец.слот</System:String>
  <System:String x:Key="RaidDrop">Прибирає заборону на викид предметів у рейді</System:String>
  <System:String x:Key="NoGearPenalty">Спорядження без штрафів</System:String>
- <!--Keys Section-->
+    <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
+    <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
+    <!--Keys Section-->
  <System:String x:Key="Keys">Ключі та ключ-картки:</System:String>
  <System:String x:Key="InfiniteKeycards">Нескінченні ключ-картки</System:String>
     <System:String x:Key="IgnoreAccessKeycard">Не змінювати картку доступу до лаби</System:String>
@@ -163,8 +165,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="AvoidOddKeys">Крім незвичайних ключей</System:String>
  <System:String x:Key="KeyUseMult">Множник використання ключів:</System:String>
  <System:String x:Key="KeycardUseMult">Множник використання Ключ-карт:</System:String>
- <System:String x:Key="KeyDurabilityThreshold">Кількість використання не може бути вищою:</System:String>
- <!--Ammo Stack Section-->
+ <System:String x:Key="KeyDurabilityThreshold">Кількість використання ключів не може бути вищою:</System:String>
+    <System:String x:Key="KeyCardDurabilityThreshold">Кількість використання ключ-карток не може бути вищою:</System:String>
+    <!--Ammo Stack Section-->
     <System:String x:Key="AmmoStack">Амуніції за слот</System:String>
     <System:String x:Key="MarksmanRound">Гвинтівкові:</System:String>
     <System:String x:Key="RifleRound">Штурмові:</System:String>
@@ -190,8 +193,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="RemoveConstructionsFIRRequirements">Не потребує матеріалів "Знайдених у рейді"</System:String>
  <System:String x:Key="RemoveSkillRequirements">Будівництво не потребує навичок</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Будівництво не потребує торговців</System:String>
- <System:String x:Key="CultistMaxRewards">Amount of rewards from cultist circle:</System:String>
- <System:String x:Key="CultistTime">Time for Cultist circle:</System:String>
+ <System:String x:Key="CultistMaxRewards">Кількість нагород з кола культистів:</System:String>
+ <System:String x:Key="CultistTime">Час для циклу кола культистів:</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Час продукції:</System:String>
  <System:String x:Key="HideoutConstMult">Час будівництва:</System:String>
@@ -377,7 +380,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="GearExtract">РР та Паракорд не потрібні для виходів</System:String>
  <System:String x:Key="ArmorExtract">Дозволити броню для виходів у горах</System:String>
  <System:String x:Key="NoBackpack">Прибрати вимогу рюкзака на виходах</System:String>
- <System:String x:Key="FreeCoop">Немає вимог для спільних виходів</System:String>
+    <System:String x:Key="ForceTransitStash">Змінити розмір інвентаря у переході</System:String>
+    <System:String x:Key="FreeCoop">Немає вимог для спільних виходів</System:String>
  <System:String x:Key="CoopPaid">Зробити спільні виходи - Платними</System:String>
  <System:String x:Key="FenceGift">Вимкнути подарунки від Скупника за вихід диких</System:String>
  <System:String x:Key="CarExtractTime">Час для виходу через машиниc:</System:String>
@@ -386,7 +390,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="CarAndCoop">Виходи через машину</System:String>
  <!--BTR Section-->
  <System:String x:Key="BTR">БТР</System:String>
- <System:String x:Key="ForceBTRStash">Форсувати розмір інвентаря БТР</System:String>
+ <System:String x:Key="ForceBTRStash">Перезаписати розмір інвентаря БТР</System:String>
  <System:String x:Key="ForceBTRFriendly">БТР по замовчуванню дружелюбний</System:String>
  <System:String x:Key="BTRTaxiPrice">Цена таксі:</System:String>
  <System:String x:Key="BTRCoverPrice">Цена вогневой підтримки:</System:String>

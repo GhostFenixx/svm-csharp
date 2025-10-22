@@ -10,6 +10,7 @@ using SPTarkov.Server.Core.Models.Eft.Match;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
+using System.Linq.Expressions;
 
 namespace ServerValueModifier.Routers
 {
@@ -18,36 +19,40 @@ namespace ServerValueModifier.Routers
     {
         public override ValueTask<string> StartLocalRaid(string url, StartLocalRaidRequestData info, MongoId sessionID)
         {
-            var locs = DatabaseService.GetLocations();
-            MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
-            Random rnd = new Random();
-            if (cf.PMC.AItoPMC.AIConverterEnable)
+            try
             {
-                foreach (var loc in locs.GetDictionary().Values)
+                var locs = DatabaseService.GetLocations();
+                MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
+                Random rnd = new Random();
+                if (cf.PMC.AItoPMC.AIConverterEnable)
                 {
-                    loc.Base.NewSpawn = false;
-                    loc.Base.OfflineNewSpawn = false;
-                    foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
+                    foreach (var loc in locs.GetDictionary().Values)
                     {
-                        int chance = rnd.Next(1, 101);
-                        if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC")) // && (chance > (100 - svmcfg.PMC.AItoPMC.PMCToScav))
+                        loc.Base.NewSpawn = false;
+                        loc.Base.OfflineNewSpawn = false;
+                        foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
                         {
-                            wave.BossName = "assault";
-                            wave.BossEscortType = "assault";
+                            int chance = rnd.Next(1, 101);
+                            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC")) // && (chance > (100 - svmcfg.PMC.AItoPMC.PMCToScav))
+                            {
+                                wave.BossName = "assault";
+                                wave.BossEscortType = "assault";
+                            }
                         }
-                    }
-                    foreach (var wave in loc.Base.Waves)
-                    {
-                        int chance = rnd.Next(1, 101);
-                        if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
+                        foreach (var wave in loc.Base.Waves)
                         {
-                            WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
-                            wave.WildSpawnType = result;
+                            int chance = rnd.Next(1, 101);
+                            if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
+                            {
+                                WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
+                                wave.WildSpawnType = result;
+                            }
                         }
                     }
                 }
             }
-            return new ValueTask<string>(HttpResponseUtil.GetBody(MatchController.StartLocalRaid(sessionID, info)));
+            catch { }// handler for empty config.
+                return new ValueTask<string>(HttpResponseUtil.GetBody(MatchController.StartLocalRaid(sessionID, info)));
         }
         public override ValueTask<string> EndLocalRaid(string url, EndLocalRaidRequestData info, MongoId sessionID) //LocationLifeCycle
         {
@@ -129,12 +134,9 @@ namespace ServerValueModifier.Routers
                         }
                     }
                 }
-                return new ValueTask<string>(HttpResponseUtil.NullResponse());
             }
-            catch (Exception ex)
-            {
-                return new ValueTask<string>(HttpResponseUtil.NullResponse());
-            }
+            catch {}
+            return new ValueTask<string>(HttpResponseUtil.NullResponse());
         }
 
         public static void HealthEdit(Dictionary<string, BodyPartHealth>? Data, Greed.Models.PlayerData.Health values, string type)

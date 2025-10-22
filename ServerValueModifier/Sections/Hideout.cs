@@ -33,7 +33,7 @@ namespace ServerValueModifier.Sections
             //Stash size section with all 5 editions.
             if (svmconfig.Hideout.EnableStash)
             {
-                MongoId[] stashesID = ["566abbc34bdc2d92178b4576", "5811ce572459770cba1a34ea", "5811ce662459770f6f490f32", "5811ce772459770e9e5f9532", "6602bcf19cc643f44a04274b"];
+                MongoId[] stashesID = [ItemTpl.STASH_STANDARD_STASH_10X30, ItemTpl.STASH_LEFT_BEHIND_STASH_10X40, ItemTpl.STASH_PREPARE_FOR_ESCAPE_STASH_10X50, ItemTpl.STASH_EDGE_OF_DARKNESS_STASH_10X68, ItemTpl.STASH_THE_UNHEARD_EDITION_STASH_10X72];
                 int[] stashesValue = [svmconfig.Hideout.Stash.StashLvl1, svmconfig.Hideout.Stash.StashLvl2, svmconfig.Hideout.Stash.StashLvl3, svmconfig.Hideout.Stash.StashLvl4, svmconfig.Hideout.Stash.StashTUE];
                 int i = 0; //Simple reitration, maybe foreach wasn't smartest idea.TODO
                 foreach (MongoId stash in stashesID)
@@ -96,18 +96,16 @@ namespace ServerValueModifier.Sections
                     }
                 }
             }
-            //Hideout's Scav case 'crafts' time multiplier
+            //Hideout's scav case price modifiers for cash offers.
             foreach (ScavRecipe production in hideout.Production.ScavRecipes)
             {
+                //Hideout's Scav case 'crafts' time multiplier
                 production.ProductionTime *= svmconfig.Hideout.ScavCaseTime;
                 if (production.ProductionTime < 1)
                 {
                     production.ProductionTime = 2;
                 }
-            }
-            //Hideout's scav case orice modifiers for cash offers.
-            foreach (ScavRecipe production in hideout.Production.ScavRecipes)
-            {
+                //Hideout's Scav case 'crafts' time multiplier
                 if (production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f" || production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f" || production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f")
                 {
                     production.Requirements[0].Count = (int)(production.Requirements[0].Count * svmconfig.Hideout.ScavCasePrice);

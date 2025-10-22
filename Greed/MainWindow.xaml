@@ -19,6 +19,13 @@
         <controls:TwoDecimalPlacesFormatterWithNegative x:Key="DecimalFormatterMinus"/>
         <controls:ForceToOneInteger x:Key="ForceToOneInteger"/>
         <controls:UpperLimit x:Key="UpperLimit"/>
+        <Style TargetType="FrameworkElement">
+            <Style.Triggers>
+                <Trigger Property="ToolTipService.IsEnabled" Value="True">
+                    <Setter Property="Cursor" Value="Help"/>
+                </Trigger>
+            </Style.Triggers>
+        </Style>
         <Style x:Key="TabText" TargetType="TextBlock">
             <Setter Property="FontFamily" Value="{StaticResource Bender}"/>
             <Setter Property="Margin" Value="5,0,0,0"/>
@@ -76,7 +83,7 @@
             <Setter Property="Height" Value="30"/>
         </Style>
         <Style x:Key="Healthback" TargetType="DockPanel">
-            <Setter Property="Width" Value="124"/>
+            <Setter Property="Width" Value="125"/>
             <Setter Property="Height" Value="32"/>
             <Setter Property="Background">
                 <Setter.Value>
@@ -319,7 +326,7 @@
         </Style>
     </Window.Resources>
     <Window.Background>
-        <ImageBrush ImageSource="Resources/Forest720.png"/>
+        <ImageBrush ImageSource="/Resources/Cultist1080.png"/>
     </Window.Background>
     <Grid x:Name="MainGrid" Margin="10,10,0,0" HorizontalAlignment="Center" Loaded="MainGrid_Loaded">
         <Grid.ColumnDefinitions>
@@ -455,9 +462,13 @@
                                     <CheckBox Content="{DynamicResource PistolToMain}" IsChecked="{Binding Items.PistolToMain}" ToolTip="{DynamicResource PistolToMain_TT}"/>
                                     <CheckBox Content="{DynamicResource SMGToHolster}" IsChecked="{Binding Items.SMGToHolster}" ToolTip="{DynamicResource SMGToHolster_TT}"/>
                                     <CheckBox Content="{DynamicResource WeaponHeatOff}" IsChecked="{Binding Items.WeaponHeatOff}"/>
-                                    <CheckBox Content="{DynamicResource AddSignalPistolToSpec}" IsChecked="{Binding Items.AddSignalPistolToSpec}"/>
                                     <CheckBox Content="{DynamicResource SurvCMSToSpec}" IsChecked="{Binding Items.SurvCMSToSpec}"/>
                                     <CheckBox Content="{DynamicResource SurvCMSSecConBlock}" IsChecked="{Binding Items.SurvCMSSecConBlock}"/>
+                                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Minimum="1" Maximum="20" Value="{Binding Items.BackpackStacking}">
+                                        <ui:NumberBox.Header>
+                                            <TextBlock Text="{DynamicResource BackpackStacking}"/>
+                                        </ui:NumberBox.Header>
+                                    </ui:NumberBox>
                                 </StackPanel>
                             </Expander>
                             <DockPanel>
@@ -1620,7 +1631,7 @@
                     <Grid Margin="10" Name="PlayerSection" Opacity="0.2" IsEnabled="False">
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="420"/>
+                            <ColumnDefinition Width="410"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
@@ -1900,25 +1911,25 @@
                                 <Grid Cursor="">
                                     <Image Name="PMCHealth" Visibility="Visible" Opacity="1" Width="480" Height="480" Source="Resources/HealthEN.png" Stretch="Fill"/>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="180,240,184,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Stomach}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Stomach}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="14,240,350,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.RightArm}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.RightArm}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="180,160,184,288">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.Chest}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.Chest}" />
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="64,400,300,46">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.RightLeg}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.RightLeg}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="293,400,71,46">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.LeftLeg}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.LeftLeg}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="345,240,19,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.LeftArm}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Player.Health.LeftArm}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="304,60,60,390">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Head}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Head}" />
                                     </DockPanel>
                                 </Grid>
                             </Expander>
@@ -2442,14 +2453,14 @@
                                                 <TextBlock Text="{DynamicResource RoublesOrDefault}" HorizontalAlignment="Center"/>
                                             </ui:NumberBox.Header>
                                         </ui:NumberBox>
-                                        <ui:NumberBox Name="EuroRatio" Value="{Binding Fleamarket.DynamicOffers.Dollaroffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}">
-                                            <ui:NumberBox.Header>
-                                                <TextBlock Text="{DynamicResource Euros}" HorizontalAlignment="Center"/>
-                                            </ui:NumberBox.Header>
-                                        </ui:NumberBox>
-                                        <ui:NumberBox Name="DollarRatio" Value="{Binding Fleamarket.DynamicOffers.Eurooffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                                        <ui:NumberBox Name="DollarRatio" Value="{Binding Fleamarket.DynamicOffers.Dollaroffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}">
                                             <ui:NumberBox.Header>
                                                 <TextBlock Text="{DynamicResource Dollars}" HorizontalAlignment="Center"/>
+                                            </ui:NumberBox.Header>
+                                        </ui:NumberBox>
+                                        <ui:NumberBox Name="EuroRatio" Value="{Binding Fleamarket.DynamicOffers.Eurooffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                                            <ui:NumberBox.Header>
+                                                <TextBlock Text="{DynamicResource Euros}" HorizontalAlignment="Center"/>
                                             </ui:NumberBox.Header>
                                         </ui:NumberBox>
 
@@ -3294,7 +3305,7 @@
 
 
                         <Grid.ColumnDefinitions>
-                            <ColumnDefinition Width="420"/>
+                            <ColumnDefinition Width="410"/>
                             <ColumnDefinition/>
                         </Grid.ColumnDefinitions>
 
@@ -3400,27 +3411,27 @@
                                     </DockPanel>
                                 </Expander.Header>
                                 <Grid>
-                                    <Image Name="SCAVHealth" Visibility="Visible" Opacity="1" Width="480" Height="480" Source="Resources/HealthEN.png" Stretch="Fill"/>
+                                    <Image x:Name="SCAVHealth" Visibility="Visible" Opacity="1" Width="480" Height="480" Source="Resources/HealthEN.png" Stretch="Fill"/>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="180,240,184,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Stomach}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Stomach}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="14,240,350,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.RightArm}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.RightArm}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="180,160,184,288">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.Chest}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.Chest}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="64,400,300,46">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.RightLeg}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.RightLeg}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="293,400,71,46">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.LeftLeg}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.LeftLeg}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="345,240,19,208">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.LeftArm}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding  Scav.Health.LeftArm}"/>
                                     </DockPanel>
                                     <DockPanel Style="{StaticResource Healthback}" Margin="304,60,60,390">
-                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Head}" Width="124"/>
+                                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Head}"/>
                                     </DockPanel>
                                 </Grid>
                             </Expander>
@@ -3454,6 +3465,7 @@
                                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsSpawnChance}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                                 </Expander.Header>
                                 <StackPanel Margin="10">
+                                    <CheckBox Content="{DynamicResource DisableWeeklyBoss}" IsChecked="{Binding Bots.AIChance.DisableWeeklyBoss}"/>
                                     <DockPanel>
                                         <ui:NumberBox Value="{Binding Bots.AIChance.Sanitar}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                                             <ui:NumberBox.Header>
@@ -3967,7 +3979,7 @@
             </Button>
             <ComboBox Name="Presets" Width="350" Height="30"  PreviewTextInput="TextValidationTextBox" VerticalAlignment="Center" IsEditable="True"/>
         </StackPanel>
-        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.0.0 Hotfix #7" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.0.1" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
 
     </Grid>
 </Window>

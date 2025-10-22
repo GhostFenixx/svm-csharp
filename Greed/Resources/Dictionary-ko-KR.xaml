@@ -3,7 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
 Independent Application made by GhostFenixx
-Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+Using VS 2022 Tools on .NET 9 + ModernWPF Library By Kinnara
 https://github.com/Kinnara/ModernWpf
 Shared by Personal Use Source License (PUSL) License
 For more info: read license on - https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
@@ -153,9 +153,8 @@ Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요
  <System:String x:Key="PistolToMain">주무장 슬롯에 권총 장착 허용</System:String>
  <System:String x:Key="AllExaminedItems">모든 아이템 조사 완료</System:String>
  <System:String x:Key="EquipRigsWithArmors">방탄 착용 시 방탄 리그 장착 허용</System:String>
- <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
- <System:String x:Key="AddSignalPistolToSpec">신호탄 권총 특수 슬롯 장착 허용</System:String>
- <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 허용</System:String>
+    <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
+    <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 허용</System:String>
  <System:String x:Key="SurvCMSSecConBlock">보안 컨테이너에 Surv/CMS 수술킷 보관 제한</System:String>
  <System:String x:Key="RemoveRaidRestr">레이드 진입 전 레이드 소지 아이템 제한 제거</System:String>
  <System:String x:Key="RaidDrop">'레이드 도중 버리기 불가' 태그 제거</System:String>

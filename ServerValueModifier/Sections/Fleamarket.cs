@@ -56,9 +56,9 @@ namespace ServerValueModifier.Sections
             fleaconfig.Dynamic.StackablePercent.Min = svmconfig.Fleamarket.DynamicOffers.Stack_min;
             fleaconfig.Dynamic.StackablePercent.Max = svmconfig.Fleamarket.DynamicOffers.Stack_max;
             //Currency Ratio
-            fleaconfig.Dynamic.OfferCurrencyChangePercent["5449016a4bdc2d6f028b456f"] = svmconfig.Fleamarket.DynamicOffers.Roubleoffers;
-            fleaconfig.Dynamic.OfferCurrencyChangePercent["5696686a4bdc2da3298b456a"] = svmconfig.Fleamarket.DynamicOffers.Dollaroffers;
-            fleaconfig.Dynamic.OfferCurrencyChangePercent["569668774bdc2da2298b4568"] = svmconfig.Fleamarket.DynamicOffers.Eurooffers;
+            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_ROUBLES] = svmconfig.Fleamarket.DynamicOffers.Roubleoffers;
+            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_DOLLARS] = svmconfig.Fleamarket.DynamicOffers.Dollaroffers;
+            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_EUROS] = svmconfig.Fleamarket.DynamicOffers.Eurooffers;
 
             if (svmconfig.Fleamarket.EnableFleaConditions)//Flea Section > Item Conditions, horrible, as usual
             {

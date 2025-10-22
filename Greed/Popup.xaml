@@ -6,7 +6,7 @@
         xmlns:local="clr-namespace:Greed"
         mc:Ignorable="d"
         Title="Popup"
-         Width="600" MinHeight="100" MaxHeight="300"
+         Width="700" MinHeight="300" MaxHeight="300"
         Icon="Resources/SVMLOGO.png" ResizeMode="NoResize" MouseLeftButtonDown="Dragger" WindowStartupLocation="CenterScreen" WindowStyle="None" d:DesignHeight="150" >
  <Window.Resources>
   <FontFamily x:Key="Bender">./Resources/Bender.otf#Bender</FontFamily>
@@ -46,7 +46,7 @@
   </Style>
  </Window.Resources>
  <Window.Background>
-  <ImageBrush ImageSource="Resources/Factory720R1.png"/>
+  <ImageBrush ImageSource="Resources/Forest720.png"/>
  </Window.Background>
  <Border BorderBrush="#FFC5C3B2" BorderThickness="1">
   <Grid Margin="5">

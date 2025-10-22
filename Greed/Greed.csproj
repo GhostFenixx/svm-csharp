@@ -20,7 +20,6 @@
     <CETCompat>false</CETCompat>
     <Version>2.0.0</Version>
   </PropertyGroup>
-
   <ItemGroup>
     <Content Include="SVM.ico" />
   </ItemGroup>
@@ -45,13 +44,15 @@
     <EmbeddedResource Include="Resources\HelloRU.rtf" />
     <EmbeddedResource Include="Resources\HelloUA.rtf" />
     <EmbeddedResource Include="Resources\HideSpecialIconGrids.dll" />
+    <Resource Include="Resources\Cultist1080.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
     <Resource Include="Resources\HealthCN.png" />
     <Resource Include="Resources\HealthUA.png" />
     <Resource Include="Resources\Icons\icon_button_logout_over.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
     <Resource Include="Resources\HealthKO.png" />
-    <Resource Include="Resources\Factory720R1.png" />
     <Resource Include="Resources\Forest720.png" />
     <Resource Include="Resources\HealthEN.png" />
     <Resource Include="Resources\HealthRU.png" />

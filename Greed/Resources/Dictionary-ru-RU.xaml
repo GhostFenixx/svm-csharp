@@ -4,7 +4,7 @@
 
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - .Json Редактор загрузчика для мода SPT под именем "Server Value Modifier"
 Независимое приложение создано GhostFenixx
-Используя инструментарий VS 2022 на .NET 6 + Библиотека ModernWPF созданной Kinnara
+Используя инструментарий VS 2022 на .NET 9 + Библиотека ModernWPF созданной Kinnara
 https://github.com/Kinnara/ModernWpf
 Распостроняется по лицезнии Personal Use Source License (PUSL)
 Для ознакомления с лицензией: https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
@@ -37,10 +37,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 И многие другие кто поддерживал разработку советами, баг репортами, хорошими словами или же рекламой.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM был некоректно установлен, программа не находится в "user/mods"
-Пожайлуста, следуйте инструкции по установке на странице мода.
-Вы можете продолжить использовать программу если нажмете `Ok` но работать он не будет.
-Нажмите 'Cancel' что-бы закрыть программу.
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed не удалось найти ServerValueModifier.dll в папке SPT/user/mods/[SVM] Server Value Modifier.
+Убедитесь, что мод установлен правильно: это приложение должно находиться в том же месте, что и исполняемый файл игры.
 </System:String>
  <System:String x:Key="FileNotFoundException">Файл который вы пытаетесь загрузить - не существует</System:String>
  <System:String x:Key="CorruptedJSON">Файл который вы пытаетесь загрузить не может быть использоватся как набор настроек или поврежден</System:String>
@@ -382,7 +380,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="GearExtract">РР и Паракорд не требуются для выходов</System:String>
  <System:String x:Key="ArmorExtract">Разрешить броню для выходов в горах</System:String>
  <System:String x:Key="NoBackpack">Убрать требование рюкзака на выходах</System:String>
- <!--Coop/Car Section-->
+ <System:String x:Key="ForceTransitStash">Переписывать размер инвентаря перехода</System:String>
+    <!--Coop/Car Section-->
  <System:String x:Key="FreeCoop">Нет требований для совместных выходов</System:String>
  <System:String x:Key="CoopPaid">Сделать совместные выходы - Платными</System:String>
  <System:String x:Key="FenceGift">Отключить подарки от Скупщика за выход диких</System:String>
@@ -393,7 +392,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 
  <!--BTR Section-->
  <System:String x:Key="BTR">БТР</System:String>
- <System:String x:Key="ForceBTRStash">Форсировать размер инвентаря БТР</System:String>
+ <System:String x:Key="ForceBTRStash">Перезаписать размер инвентаря БТР</System:String>
  <System:String x:Key="ForceBTRFriendly">БТР по умолчанию дружелюбен</System:String>
  <System:String x:Key="BTRTaxiPrice">Цена такси:</System:String>
  <System:String x:Key="BTRCoverPrice">Цена огневой поддержки:</System:String>
@@ -586,7 +585,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <!--PMC Section-->
     <System:String x:Key="AIConverter">Конвертатор типов ИИ</System:String>
     <System:String x:Key="PMCToAI">Шанс изменить волну ЧВК на Диких (в %):</System:String>
-    <System:String x:Key="AIToPMC">Шанс изменить волну Диких на ПВК (в %):</System:String>
+    <System:String x:Key="AIToPMC">Шанс изменить волну Диких на ЧВК (в %):</System:String>
     <System:String x:Key="PMCRatio">Шанс того что ЧВК в рейде будет USEC в %:</System:String>
     <System:String x:Key="LootMelee">Разрешить подбор ближнего оружия с ЧВК</System:String>
  <System:String x:Key="DisableLowLevelPMC">Отключить ЧВК с слабым снаряжением</System:String>

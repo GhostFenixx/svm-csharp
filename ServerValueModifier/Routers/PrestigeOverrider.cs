@@ -124,14 +124,13 @@ namespace ServerValueModifier.Routers
                         }
                     }
                 }
-
-                return _databaseService.GetTemplates().Prestige;
             }
+            catch(FileNotFoundException) { }
             catch (Exception ex)
             {
-                _logger.Error("New Profile Detected: Restart SPT to apply Pockets/Health/Stats changes.");
-                return _databaseService.GetTemplates().Prestige;
+                _logger.Warning("[SVM] Player Health,  new profile detected: Restart game client to apply Pockets/Health/Stats changes.");
             }
+            return _databaseService.GetTemplates().Prestige;
         }
     }
 }

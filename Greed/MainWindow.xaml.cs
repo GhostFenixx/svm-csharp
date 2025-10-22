@@ -28,6 +28,13 @@ namespace Greed
         public MainWindow()
         {
             InitializeComponent();
+
+                    EventManager.RegisterClassHandler(typeof(FrameworkElement),
+            FrameworkElement.MouseEnterEvent,
+            new RoutedEventHandler(OnMouseEnter));
+            EventManager.RegisterClassHandler(typeof(FrameworkElement),
+                FrameworkElement.MouseLeaveEvent,
+                new RoutedEventHandler(OnMouseLeave));
             ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
                 new FrameworkPropertyMetadata(int.MaxValue));
             LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
@@ -40,7 +47,10 @@ namespace Greed
                     Close();
                 }
             }
-            ToList();
+            else//If there is proper folder structure - this will yield in a exception, we can handle it here so app at least would be browsable
+            {
+                ToList();
+            }
             MainClass.MainConfig mainConfig = new();
             DataContext = mainConfig;
         }
@@ -572,6 +582,16 @@ namespace Greed
             Message.ShowDialog();
         }
 
+        private static void OnMouseEnter(object sender, RoutedEventArgs e)
+        {
+            if (sender is FrameworkElement fe && fe.ToolTip != null)
+                Mouse.OverrideCursor = Cursors.Help;
+        }
+
+        private static void OnMouseLeave(object sender, RoutedEventArgs e)
+        {
+            Mouse.OverrideCursor = null;
+        }
         private void SectionEnabled(object sender, RoutedEventArgs e)//horrible
         {
             EnableSection(ItemsCheck.IsChecked, ItemsSection);

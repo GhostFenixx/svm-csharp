@@ -5,6 +5,7 @@ using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using System.Globalization;
+using static System.Net.Mime.MediaTypeNames;
 
 namespace ServerValueModifier.Sections
 {
@@ -29,16 +30,14 @@ namespace ServerValueModifier.Sections
                 questtemplate.Completion.ChangeCost[0].Count = (int)(questtemplate.Completion.ChangeCost[0].Count * svmconfig.Quests.QuestCostMult);
                 questtemplate.Exploration.ChangeCost[0].Count = (int)(questtemplate.Exploration.ChangeCost[0].Count * svmconfig.Quests.QuestCostMult);
                 questtemplate.Pickup.ChangeCost[0].Count = (int)(questtemplate.Pickup.ChangeCost[0].Count * svmconfig.Quests.QuestCostMult);
+                if (svmconfig.Quests.QuestRepToZero)
+                {
+                    questtemplate.Elimination.ChangeStandingCost = 0;
+                    questtemplate.Completion.ChangeStandingCost = 0;
+                    questtemplate.Exploration.ChangeStandingCost = 0;
+                    questtemplate.Pickup.ChangeStandingCost = 0; //Useless probably
+                }
             }
-
-            if (svmconfig.Quests.QuestRepToZero)
-            {
-                questtemplate.Elimination.ChangeStandingCost = 0;
-                questtemplate.Completion.ChangeStandingCost = 0;
-                questtemplate.Exploration.ChangeStandingCost = 0;
-                questtemplate.Pickup.ChangeStandingCost = 0; //Useless probably
-            }
-
             QuestDetails(daily, 0);
             QuestDetails(weekly, 1);
             QuestDetails(scavdaily, 2);
@@ -79,14 +78,19 @@ namespace ServerValueModifier.Sections
         {
             var quest = configServer.GetConfig<QuestConfig>();
             string[] arrays = ["Elimination", "Completion", "Exploration"];
-            quest.RepeatableQuests[digit].ResetTime = type.Lifespan * 60;
+            quest.RepeatableQuests[digit].ResetTime = (long)type.Lifespan * 60;
             quest.RepeatableQuests[digit].NumQuests = type.QuestAmount;
             quest.RepeatableQuests[digit].FreeChanges = type.Reroll;
             quest.RepeatableQuests[digit].FreeChangesAvailable = type.Reroll;
             quest.RepeatableQuests[digit].MinPlayerLevel = type.Access;
+
+            if (svmconfig.Quests.QuestRepToZero && svmconfig.Quests.EnableQuestsMisc)
+            {
+                quest.RepeatableQuests[digit].StandingChangeCost = [0];
+            }
             //TODO ASAP - optimise, add missing fields, run through LRs lists
             //I tried to make it as small as possible ;-;
-            LevelRanges[] ranges ={ type.LR1, type.LR2, type.LR3 };
+            LevelRanges[] ranges = { type.LR1, type.LR2, type.LR3 };
             for (int i = 0; i < quest.RepeatableQuests[digit].QuestConfig.ExplorationConfig.Count && i < ranges.Length; i++)
             {
                 quest.RepeatableQuests[digit].QuestConfig.ExplorationConfig[i].MinimumExtracts = ranges[i].MinExtracts;
@@ -104,29 +108,36 @@ namespace ServerValueModifier.Sections
                 quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MinKills = ranges[i].MinKills;
                 quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MaxKills = ranges[i].MaxKills;
             }
-            quest.RepeatableQuests[digit].Types = [];
             switch (type.Types)//I could just call exact possible types from enum or smth, hmm, TODO.
             {
                 case 0:
-                    quest.RepeatableQuests[digit].Types.Add(arrays[0]);
+                    //quest.RepeatableQuests[digit].Types.ForEach( type => logger.Warning(type.ToString()));
+                    quest.RepeatableQuests[digit].Types = [arrays[0]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0]]);
                     break;
                 case 1:
-                    quest.RepeatableQuests[digit].Types.Add(arrays[1]);
+                    quest.RepeatableQuests[digit].Types = [arrays[1]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[1]]);
                     break;
                 case 2:
-                    quest.RepeatableQuests[digit].Types.Add(arrays[2]);
+                    quest.RepeatableQuests[digit].Types = [arrays[2]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[2]]);
                     break;
                 case 3:
-                    quest.RepeatableQuests[digit].Types.AddRange(arrays[0], arrays[1]);
+                    quest.RepeatableQuests[digit].Types = [arrays[0],arrays[1]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0], arrays[1]]);
                     break;
                 case 4:
-                    quest.RepeatableQuests[digit].Types.AddRange(arrays[1], arrays[2]);
+                    quest.RepeatableQuests[digit].Types = [arrays[1], arrays[2]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[1], arrays[2]]);
                     break;
                 case 5:
-                    quest.RepeatableQuests[digit].Types.AddRange(arrays[0], arrays[2]);
+                    quest.RepeatableQuests[digit].Types = [arrays[0], arrays[2]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0], arrays[2]]);
                     break;
                 case 6:
-                    quest.RepeatableQuests[digit].Types.AddRange(arrays[0], arrays[1], arrays[2]);
+                    quest.RepeatableQuests[digit].Types = [arrays[0], arrays[1], arrays[2]];
+                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => { tradtype.QuestTypes = [arrays[0],arrays[1], arrays[2]];});
                     break;
             }
 

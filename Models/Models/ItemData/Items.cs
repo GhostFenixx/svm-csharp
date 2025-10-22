@@ -3,13 +3,13 @@
     public class Items
     {
         public bool ExamineKeys { get; set; }
-        public bool AddSignalPistolToSpec { get; set; }
         public bool WeaponHeatOff { get; set; }
         public bool SMGToHolster { get; set; }
         public bool PistolToMain { get; set; }
         public bool AllExaminedItems { get; set; }
         public bool EquipRigsWithArmors { get; set; }
         public bool RemoveSecureContainerFilters { get; set; }
+        public int BackpackStacking { get; set; } = 7;
         public double MisfireChance { get; set; } = 1;
         public double FragmentMult { get; set; } = 1;
         public double HeatFactor { get; set; } = 1;

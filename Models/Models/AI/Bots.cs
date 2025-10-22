@@ -9,7 +9,6 @@
         public BotDurability Follower { get; set; }
         public BotDurability Rogue { get; set; }
         public BotDurability Raider { get; set; }
-
         public BotDurability Marksman { get; set; }
         public bool EnableBots { get; set; }
         public Bots()

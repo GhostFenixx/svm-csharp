@@ -3,7 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - Un .Json creador cargador para un mod de SPT llamado "Server Value Modifier"
 Aplicación independiente creada por GhostFenixx
-Utilizando herramientas de VS 2022 en .NET 6 + ModernWPF Library por Kinnara
+Utilizando herramientas de VS 2022 en .NET 9 + ModernWPF Library por Kinnara
 https://github.com/Kinnara/ModernWpf
 Compartido bajo licencia para uso personal (PUSL) 
 para más información: Lee la licencia en - https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
@@ -154,9 +154,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="PistolToMain">Permitir pistolas como armas principales</System:String>
  <System:String x:Key="AllExaminedItems">Todos los objetos examinados</System:String>
  <System:String x:Key="EquipRigsWithArmors">Permitir el uso de portaplacas con armaduras</System:String>
- <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
- <System:String x:Key="AddSignalPistolToSpec">Permitir Pistola de Señales en los espacios especiales</System:String>
- <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
+    <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
+    <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
  <System:String x:Key="SurvCMSSecConBlock">Impide guardar el Surv/CMS en los contenedores seguros</System:String>
  <System:String x:Key="RemoveRaidRestr">Eliminar las restricciones dentro de raid</System:String>
  <System:String x:Key="RaidDrop">Elimina la etiqueta "No se puede soltar en raid"</System:String>

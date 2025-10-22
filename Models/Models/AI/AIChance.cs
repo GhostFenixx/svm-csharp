@@ -5,6 +5,7 @@
         public int KolontayStreets { get; set; } = 25;
         public int KolontayGZ { get; set; } = 30;
         public bool ForcePartisan { get; set; }
+        public bool DisableWeeklyBoss { get; set; }
         public int PartisanCustoms { get; set; } = 15;
         public int PartisanShoreline { get; set; } = 30;
         public int PartisanWoods { get; set; } = 30;

@@ -32,9 +32,12 @@ namespace ServerValueModifier
                     pmc.CustomPmcWaves.Clear();
                 }
             }
+            catch (FileNotFoundException)
+            {
+            }
             catch (Exception ex)
             {
-                logger.Warning("[SVM] Pre-DB Initialization failed: Missing Preset? If Post-DB fails - check the error there" + ex);
+                logger.Error("[SVM] Pre-DB Initialization failed due to unknown error: " + ex);
             }
             return Task.CompletedTask;
         }
@@ -105,9 +108,13 @@ namespace ServerValueModifier
                 logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
                 logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
             }
+            catch (FileNotFoundException)
+            {
+                logger.Warning("[SVM] Initialization cancelled: Preset or/and Loader is not found\nBe sure you clicked Save and Apply in Greed.exe");
+            }
             catch (Exception ex)
             {
-                logger.Warning("[SVM] Initialization failed: " + ex.ToString());
+                logger.Error("[SVM] Initialization failed. Check the error: " + ex.Message.ToString());
             }
             return Task.CompletedTask;
         }

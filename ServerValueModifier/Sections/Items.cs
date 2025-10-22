@@ -3,6 +3,7 @@ using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -29,6 +30,7 @@ namespace ServerValueModifier.Sections
             //Speed to load/unload magazines in raid.
             globals.Configuration.BaseUnloadTime *= svmconfig.Items.AmmoLoadSpeed;
             globals.Configuration.BaseLoadTime *= svmconfig.Items.AmmoLoadSpeed;
+            globals.Configuration.ItemsCommonSettings.MaxBackpackInserting = svmconfig.Items.BackpackStacking;
             //Remove raid restrictions.
             if (svmconfig.Items.RemoveRaidRestr)
             {
@@ -41,52 +43,53 @@ namespace ServerValueModifier.Sections
                     ele.Price = ele.Price * svmconfig.Items.ItemPriceMult;
                 }
             }
-
+            
             //Main cycle that goes once in items.json
             foreach (TemplateItem basetemplate in items.Values)
             {
                 //Add Signal Pistol to PMC's Standard/Unheard/CSM's Custom special slots
-                if (basetemplate.Id == "a8edfb0bce53d103d3f62b9b" || basetemplate.Id == "627a4e6b255f7527fb05a0f6" || basetemplate.Id == "65e080be269cbd5c5005e529")
+                if (basetemplate.Id == "a8edfb0bce53d103d3f62b9b" || basetemplate.Id == ItemTpl.POCKETS_1X4_SPECIAL || basetemplate.Id == ItemTpl.POCKETS_1X4_TUE)
                 {
-                    if (svmconfig.Items.AddSignalPistolToSpec)
-                    {
-                        var slotfilters = basetemplate.Properties.Slots.ToList();
-                        slotfilters.ForEach(slot => {
-                            var filter = slot.Properties.Filters.ToList();
-                            filter[0].Filter.Add(new MongoId ("620109578d82e67e7911abf2"));
-                            slot.Properties.Filters = filter;
-                        });
-                        basetemplate.Properties.Slots = slotfilters;
-                    }
+                    //if (svmconfig.Items.AddSignalPistolToSpec) // Not actual.
+                    //{
+                    //  // basetemplate.Properties.Cartridges.First().Properties.MaxStackCount;
+                    //    var slotfilters = basetemplate.Properties.Slots.ToList();
+                    //    slotfilters.ForEach(slot => {
+                    //        var filter = slot.Properties.Filters.ToList();
+                    //        filter[0].Filter.Add(new MongoId ("620109578d82e67e7911abf2"));
+                    //        slot.Properties.Filters = filter;
+                    //    });
+                    //    basetemplate.Properties.Slots = slotfilters;
+                    //}
                     // Add Surv and CMS to PMC's Standard/Unheard/CSM's Custom special slots //5448bf274bdc2dfc2f8b456a
                     if (svmconfig.Items.SurvCMSToSpec)
                     {
                         var slotfilters = basetemplate.Properties.Slots.ToList();
                         slotfilters.ForEach(slot => {
                             var filter = slot.Properties.Filters.ToList();
-                            filter[0].Filter.Add(new MongoId("5d02797c86f774203f38e30a"));
+                            filter[0].Filter.Add(new MongoId(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT));
                             slot.Properties.Filters = filter;
                         });
                         slotfilters.ForEach(slot => {
                             var filter = slot.Properties.Filters.ToList();
-                            filter[0].Filter.Add(new MongoId("5d02778e86f774203e7dedbe"));
+                            filter[0].Filter.Add(new MongoId(ItemTpl.MEDICAL_CMS_SURGICAL_KIT));
                             slot.Properties.Filters = filter;
                         });
                         basetemplate.Properties.Slots = slotfilters;
                     }
                 }
                 // Restrict Surv and CMS from all the Special Containers.
-                if (svmconfig.Items.SurvCMSSecConBlock && basetemplate.Parent == "5448bf274bdc2dfc2f8b456a")
+                if (svmconfig.Items.SurvCMSSecConBlock && basetemplate.Parent == "5448bf274bdc2dfc2f8b456a" && basetemplate.Id != ItemTpl.SECURE_CONTAINER_BOSS)
                 {
                     var gridsfilters = basetemplate.Properties.Grids.ToList();
                     gridsfilters.ForEach(grid => {
                         var filter = grid.Properties.Filters.ToList();
-                        filter[0].ExcludedFilter.Add(new MongoId("5d02797c86f774203f38e30a"));
+                        filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT));
                         grid.Properties.Filters = filter;
                     });
                     gridsfilters.ForEach(grid => {
                         var filter = grid.Properties.Filters.ToList();
-                        filter[0].ExcludedFilter.Add(new MongoId("5d02778e86f774203e7dedbe"));
+                        filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_CMS_SURGICAL_KIT));
                         grid.Properties.Filters = filter;
                     });
                     basetemplate.Properties.Grids = gridsfilters;
@@ -203,7 +206,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.BlocksArmorVest = false;
                 }
                 //Remove Secure Container requirements - now supports Theta other slots, yay.
-                if (svmconfig.Items.RemoveSecureContainerFilters && basetemplate.Parent == "5448bf274bdc2dfc2f8b456a" && basetemplate.Id != "5c0a794586f77461c458f892")
+                if (svmconfig.Items.RemoveSecureContainerFilters && basetemplate.Parent == "5448bf274bdc2dfc2f8b456a" && basetemplate.Id != ItemTpl.SECURE_CONTAINER_BOSS)
                 {
                     var gridsfilters = basetemplate.Properties.Grids.ToList();
                     gridsfilters.ForEach(Grid =>
@@ -279,12 +282,12 @@ namespace ServerValueModifier.Sections
                     if (basetemplate.Parent == "5c164d2286f774194c5e69fa" && basetemplate.Properties.MaximumNumberOfUsage is not null && svmconfig.Items.Keys.InfiniteKeycards)
                     {
                         //If Avoid Residential is true - we ignore this condition
-                        if (basetemplate.Id == "6711039f9e648049e50b3307" && !svmconfig.Items.Keys.AvoidResidential)
+                        if (basetemplate.Id == ItemTpl.KEYCARD_TERRAGROUP_LABS_RESIDENTIAL_UNIT && !svmconfig.Items.Keys.AvoidResidential)
                         {
                             basetemplate.Properties.MaximumNumberOfUsage = 0;
                         }
                         //If Avoid Access is true - we ignore this condition
-                        if (basetemplate.Id == "5c94bbff86f7747ee735c08f" && !svmconfig.Items.Keys.IgnoreAccessCard)
+                        if (basetemplate.Id == ItemTpl.KEYCARD_TERRAGROUP_LABS_ACCESS && !svmconfig.Items.Keys.IgnoreAccessCard)
                         {
                             basetemplate.Properties.MaximumNumberOfUsage = 0;
                         }
@@ -293,7 +296,7 @@ namespace ServerValueModifier.Sections
                             basetemplate.Properties.MaximumNumberOfUsage = 0;
                         }
                         //The other keycards goes here
-                        if (basetemplate.Id != "5c94bbff86f7747ee735c08f" && basetemplate.Id != "6711039f9e648049e50b3307" &&  basetemplate.Properties.MaximumNumberOfUsage != 1) //Horrible, might need to rework this, TODO
+                        if (basetemplate.Id != ItemTpl.KEYCARD_TERRAGROUP_LABS_ACCESS && basetemplate.Id != ItemTpl.KEYCARD_TERRAGROUP_LABS_RESIDENTIAL_UNIT &&  basetemplate.Properties.MaximumNumberOfUsage != 1) //Horrible, might need to rework this, TODO
                         {
                             basetemplate.Properties.MaximumNumberOfUsage = 0;
                         }
@@ -310,7 +313,7 @@ namespace ServerValueModifier.Sections
                     if (basetemplate.Parent == "5c164d2286f774194c5e69fa" && basetemplate.Properties.MaximumNumberOfUsage != 0)
                     {
                         //Ignoring access card once again
-                        if (basetemplate.Id != "5c94bbff86f7747ee735c08f" && !svmconfig.Items.Keys.IgnoreAccessCard)
+                        if (basetemplate.Id != ItemTpl.KEYCARD_TERRAGROUP_LABS_ACCESS && !svmconfig.Items.Keys.IgnoreAccessCard)
                         {
                             basetemplate.Properties.MaximumNumberOfUsage = (int)(basetemplate.Properties.MaximumNumberOfUsage * svmconfig.Items.Keys.KeycardUseMult);
                         }
@@ -321,7 +324,7 @@ namespace ServerValueModifier.Sections
                     }
                 }
                 //Allow SMG weapon type to be used in Holster slot
-                if (svmconfig.Items.SMGToHolster && basetemplate.Id == "55d7217a4bdc2d86028b456d")
+                if (svmconfig.Items.SMGToHolster && basetemplate.Id == ItemTpl.INVENTORY_DEFAULT) 
                 {
                     List<Slot> slots = basetemplate.Properties.Slots.ToList();
                     var filters = slots[2].Properties.Filters.ToList();
@@ -330,7 +333,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.Slots = slots;
                 }
                 //Allow Pistol weapon type to be used in Primary and Secondary slots.
-                if (svmconfig.Items.PistolToMain && basetemplate.Id == "55d7217a4bdc2d86028b456d")
+                if (svmconfig.Items.PistolToMain && basetemplate.Id == ItemTpl.INVENTORY_DEFAULT)
                 {
                     List<Slot> slots = basetemplate.Properties.Slots.ToList();
                     var filters = slots[0].Properties.Filters.ToList();

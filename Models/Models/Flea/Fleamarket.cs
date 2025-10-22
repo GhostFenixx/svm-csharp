@@ -11,8 +11,6 @@
         public FleaConditions FleaConditions { get; set; }
         public bool OverrideOffers { get; set; }
         public int FleaMarketLevel { get; set; } = 15;
-        public List<object> FleaBlacklist { get; set; }
-        //public TraderStaticOffers TraderStaticOffers { get; set; }
         public bool DisableBSGList { get; set; }
         public bool EnableFleamarket { get; set; }
         public double Sell_mult { get; set; } = 1.24;

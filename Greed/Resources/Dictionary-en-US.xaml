@@ -3,7 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
 Independent Application made by GhostFenixx
-Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+Using VS 2022 Tools on .NET 9 + ModernWPF Library By Kinnara
 https://github.com/Kinnara/ModernWpf
 Shared by Personal Use Source License (PUSL) License
 For more info: read license on - https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
@@ -57,10 +57,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
   
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">You've incorrectly installed SVM, it is not located under "user\mods"
-Please, follow the installation guide in the Server Value Modifier mod webpage
-You can still proceed by clicking `Ok` but do not expect a mod to work
-Click 'Cancel' to close the app.</System:String>
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
+Be sure you installed mod correctly, this application (Greed.exe) should be located on same place as game executable</System:String>
  <System:String x:Key="FileNotFoundException">File you're trying to load does not exist.</System:String>
  <System:String x:Key="CorruptedJSON">This file is either corrupted or not applicable to load as a preset</System:String>
  <System:String x:Key="NoAccess">No access to read the file. Windows permissions issue?</System:String>
@@ -173,11 +171,11 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="PistolToMain">Allow pistols in the primary slot</System:String>
  <System:String x:Key="AllExaminedItems">All items examined</System:String>
  <System:String x:Key="EquipRigsWithArmors">Allow armored rigs with armors</System:String>
- <System:String x:Key="RemoveSecureContainerFilters">Remove secure container filters</System:String>
- <System:String x:Key="AddSignalPistolToSpec">Allow Signal pistol in the Special slots</System:String>
- <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
- <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
- <System:String x:Key="RemoveRaidRestr">Remove In-raid restrictions</System:String>
+    <System:String x:Key="RemoveSecureContainerFilters">Remove secure container filters</System:String>
+    <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
+    <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
+    <System:String x:Key="BackpackStacking">Backpack stacking limit:</System:String>
+    <System:String x:Key="RemoveRaidRestr">Remove In-raid restrictions</System:String>
  <System:String x:Key="RaidDrop">Remove `Can't be dropped in raid` tag</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">Remove backpack restrictions</System:String>
  <System:String x:Key="NoGearPenalty">Remove movement penalty from gear</System:String>
@@ -636,7 +634,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="BotsArmorDurab">AI armor durability</System:String>
  <System:String x:Key="BotsWeaponDurab">AI weapon durability</System:String>
  <System:String x:Key="ForcePartisan">Change Partisan's spawn behavior</System:String>
- <!--PMC Section-->
+    <System:String x:Key="DisableWeeklyBoss">Disable 'Weekly Boss' feature</System:String>
+    <!--PMC Section-->
  <System:String x:Key="PMCRatio">USEC/BEARs in raid ratio:</System:String>
     <System:String x:Key="LootMelee">Allow picking melee weapons from PMC</System:String>
  <System:String x:Key="DisableLowLevelPMC">Disable low level gear on PMCs</System:String>

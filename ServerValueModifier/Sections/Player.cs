@@ -1,5 +1,6 @@
 ﻿using Greed.Models;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
@@ -13,6 +14,7 @@ namespace ServerValueModifier.Sections
         {
             Globals globals = databaseService.GetGlobals();
             HealthConfig healthconfig = configServer.GetConfig<HealthConfig>();
+            Dictionary<string, ProfileSides> playertemplates = databaseService.GetProfileTemplates();
             globals.Configuration.SkillsSettings.SkillProgressRate = Config.Player.SkillProgMult;
             globals.Configuration.SkillsSettings.WeaponSkillProgressRate = Config.Player.WeaponSkillMult;
            // healthconfig.HealthMultipliers.Death = Config.Player.DiedHealth.Health_death; TODO: REMOVED
@@ -20,6 +22,19 @@ namespace ServerValueModifier.Sections
             healthconfig.Save.Health = Config.Player.DiedHealth.Savehealth;
             //healthconfig.Save.Effects = Config.Player.DiedHealth.Saveeffects; TODO: REMOVED
 
+
+            if (Config.Player.EnableHealth)//Overriding templates for After-Raid health system
+            {
+                foreach (var player in playertemplates.Values)
+                {
+                    var usec = player.Usec.Character.Health.BodyParts;
+                    var bear = player.Bear.Character.Health.BodyParts;
+                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(usec, Config.Player.Health, "Current");//using existing method, overriding both usec/bear setups and current/maximum
+                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(usec, Config.Player.Health, "Maximum");
+                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(bear, Config.Player.Health, "Current");
+                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(bear, Config.Player.Health, "Maximum");
+                }
+            }
             if (Config.Player.EnableFatigue)
             {
                 globals.Configuration.SkillMinEffectiveness = Config.Player.Skills.SkillMinEffect;

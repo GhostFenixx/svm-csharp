@@ -3,7 +3,7 @@
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
  <System:String xml:space="preserve" x:Key="LicenseText">Greed - 一个名为“Server Value Modifier”的SPT模组的 .Json 加载器创建工具
 由 GhostFenixx 独立开发
-使用 VS 2022 Tools 在 .NET 6 + ModernWPF（作者 Kinnara）上制作
+使用 VS 2022 Tools 在 .NET 9 + ModernWPF（作者 Kinnara）上制作
 https://github.com/Kinnara/ModernWpf
 共享遵循协议： 个人使用源许可证 (PUSL) 
 详情请阅读：https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme 许可协议
@@ -12,7 +12,7 @@ https://github.com/Kinnara/ModernWpf
 原文：
 Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
 Independent Application made by GhostFenixx
-Using VS 2022 Tools on .NET 6 + ModernWPF Library By Kinnara
+Using VS 2022 Tools on .NET 9 + ModernWPF Library By Kinnara
 https://github.com/Kinnara/ModernWpf
 Shared by Personal Use Source License (PUSL) License
 For more info: read license on -https://github.com/GhostFenixx/Greed?tab=License-1-ov-file#readme
