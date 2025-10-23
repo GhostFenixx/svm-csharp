@@ -146,6 +146,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="AddSignalPistolToSpec">Разрешить сигнальный пистолет в Спец.слот</System:String>
     <System:String x:Key="SurvCMSToSpec">Разрешить Surv/CMS в спец слоты</System:String>
     <System:String x:Key="SurvCMSSecConBlock">Запретить Surv/CMS в защ.контейнерах</System:String>
+    <System:String x:Key="BackpackStacking">Ограничение рюкзаков в рюкзаке:</System:String>
     <System:String x:Key="RaidDrop">Убирает запрет на выброс предметов в рейде</System:String>
  <System:String x:Key="NoGearPenalty">Снаряжение без штрафов</System:String>
  <!--Keys Section-->
@@ -582,7 +583,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="BotsArmorDurab">Прочность снаряжения ИИ</System:String>
  <System:String x:Key="BotsWeaponDurab">Прочность оружия ИИ</System:String>
  <System:String x:Key="ForcePartisan">Изменить поведение спавна Партизана</System:String>
- <!--PMC Section-->
+    <System:String x:Key="DisableWeeklyBoss">Отключить 'Еженедельного босса'</System:String>
+    <!--PMC Section-->
     <System:String x:Key="AIConverter">Конвертатор типов ИИ</System:String>
     <System:String x:Key="PMCToAI">Шанс изменить волну ЧВК на Диких (в %):</System:String>
     <System:String x:Key="AIToPMC">Шанс изменить волну Диких на ЧВК (в %):</System:String>
@@ -722,7 +724,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Исключает ключи у которых не обычное кол-во использований (2,5,10,20) не включая меченые комнаты
  Такие ключи как: Убежища от Рефа, Выход из завода, ящик от контейнера, пару ключей с улиц итд.</System:String>
  <System:String x:Key="AvoidResidential_TT">Ключ-карта от жилого модуля TerraGroup Labs по умолчанию имеет 2 использования</System:String>
- <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">Не трогайте эти поля если у вас идёт производство/строительство в вашем профиле.
+<System:String xml:space="preserve" x:Key="IgnoreAccessKeycard_TT">Ключ-карта для входа в лабораторию не будет
+бесконечной или с несколькими использованиями</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">Одноразовые карты останутся одноразовыми, такие как Лабрис, Меченая и для входа в лабу.</System:String>
+    <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">Не трогайте эти поля если у вас идёт производство/строительство в вашем профиле.
 Это может повредить потребление ресурсов или время действия, на свой страх и риск.</System:String>
  <System:String x:Key="RemoveConstructionsRequirements_TT">Не требует никаких ресурсов или денег для постройки</System:String>
  <System:String x:Key="RemoveSkillRequirements_TT">Не требует уровни навыков вашего ЧВК для постройки</System:String>

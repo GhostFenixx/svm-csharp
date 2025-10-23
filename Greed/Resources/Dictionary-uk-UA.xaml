@@ -151,8 +151,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="AddSignalPistolToSpec">Дозволити сигнальний пістолет у Спец.слот</System:String>
  <System:String x:Key="RaidDrop">Прибирає заборону на викид предметів у рейді</System:String>
  <System:String x:Key="NoGearPenalty">Спорядження без штрафів</System:String>
-    <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
-    <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
+    <System:String x:Key="SurvCMSToSpec">Дозволити Surv/CMS у спец.слоти</System:String>
+    <System:String x:Key="SurvCMSSecConBlock">Обмежити Surv/CMS в Зах.Контейнери</System:String>
+    <System:String x:Key="BackpackStacking">Обмеження рюкзаків в рюкзаках:</System:String>
     <!--Keys Section-->
  <System:String x:Key="Keys">Ключі та ключ-картки:</System:String>
  <System:String x:Key="InfiniteKeycards">Нескінченні ключ-картки</System:String>
@@ -580,7 +581,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="BotsArmorDurab">Міцність спорядження ШІ</System:String>
  <System:String x:Key="BotsWeaponDurab">Міцність зброї ШІ</System:String>
  <System:String x:Key="ForcePartisan">Змінити поведінку спавна Партизана</System:String>
- <!--PMC Section-->
+    <System:String x:Key="DisableWeeklyBoss">Вимкнути 'Щотижневого боса'</System:String>
+    <!--PMC Section-->
     <System:String x:Key="AIConverter">Конвертер типів ШІ</System:String>
     <System:String x:Key="PMCToAI">Шанс змінити волну ПВК в Диких (у %):</System:String>
     <System:String x:Key="AIToPMC">Шанс змінити волну Диких в ПВК (у %):</System:String>
@@ -719,7 +721,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 Поля доларів та євро будуть відключені</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Виключає ключі у яких не звичайна кількість використання (2,5,10,20) не включаючи мічені кімнати
  Такі ключі як: Притулки від Рефа, Вихід із заводу, ящик від контейнера, пару ключів з вулиць тощо.</System:String>
- <System:String x:Key="AvoidResidential_TT">Ключ-карта від житлового модуля TerraGroup Labs за замовчуванням має 2 використання.</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">Картка-ключ доступу до лабораторії не стане безкінечною або матиме багаторазове використання</System:String>
+    <System:String xml:space="preserve" x:Key="AvoidSingleKeyCards_TT">Уникае одноразових ключ-карт, таких як синя позначена, ключ-картка Labrys
+та Картка-ключ доступу до лабораторії.</System:String>
+    <System:String x:Key="AvoidResidential_TT">Ключ-карта від житлового модуля TerraGroup Labs за замовчуванням має 2 використання.</System:String>
  <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">Не чіпайте ці поля якщо у вас йде виробництво/будівництво у вашему профілі.
 Це може пошкодити споживання ресурсів або час дiї, на свій страх і ризик.</System:String>
  <System:String x:Key="RemoveConstructionsRequirements_TT">Не вимагає жодних ресурсів чи грошей для будівництва</System:String>

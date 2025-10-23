@@ -154,9 +154,10 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="PistolToMain">Permitir pistolas como armas principales</System:String>
  <System:String x:Key="AllExaminedItems">Todos los objetos examinados</System:String>
  <System:String x:Key="EquipRigsWithArmors">Permitir el uso de portaplacas con armaduras</System:String>
-    <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
-    <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
+ <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
+ <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
  <System:String x:Key="SurvCMSSecConBlock">Impide guardar el Surv/CMS en los contenedores seguros</System:String>
+ <System:String x:Key="BackpackStacking">NEEDTRANSLATION:</System:String>
  <System:String x:Key="RemoveRaidRestr">Eliminar las restricciones dentro de raid</System:String>
  <System:String x:Key="RaidDrop">Elimina la etiqueta "No se puede soltar en raid"</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">Elimina las restricciones de las mochilas</System:String>
@@ -614,7 +615,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="BotsArmorDurab">Durabilidad del equipamiento de la IA</System:String>
  <System:String x:Key="BotsWeaponDurab">Durabilidad de las armas de la IA</System:String>
  <System:String x:Key="ForcePartisan">Cambiar la condición de aparición de Partisan</System:String>
- <!--PMC Section-->
+ <System:String x:Key="DisableWeeklyBoss">NEEDTRANSLATION</System:String>
+    <!--PMC Section-->
  <System:String x:Key="AIToPMC">Convertidor de IA general a PMC en %</System:String>
  <System:String x:Key="PMCRatio">Reparto de BEAR/USEC en raid:</System:String>
  <System:String x:Key="LootMelee">Armas de cuerpo a cuerpo looteables</System:String>
@@ -752,7 +754,9 @@ por celda para los siguientes calibres: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9
 por celda para los siguientes calibres: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excluye las llaves que tienen un numero de usos no habitual (2,5,10,20) excluyendo las llaves marcadas.
  Tales como: Llaves de escondites de Ref, Llave de la salida de Factory, un par de llaves de streets (Chek 15), llave del cargamento, etc.</System:String>
- <System:String x:Key="AvoidResidential_TT">Tarjeta de la unidad residencial de los Laboratorios de Terragroup, que por defecto tiene 2 usos.</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">NEEDTRANSLATION</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">NEEDTRANSLATION</System:String>
+    <System:String x:Key="AvoidResidential_TT">Tarjeta de la unidad residencial de los Laboratorios de Terragroup, que por defecto tiene 2 usos.</System:String>
  <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Si se activa: Dólares y Euros escalarán su apilado según las pilas de rublos, en una relación de 1:100. Los modificadores de Dólares y Euros serán desactivados.</System:String>
  <System:String x:Key="RemoveConstructionsRequirements_TT">Elimina los materiales como requisito para la construcción del Hideout</System:String>
  <System:String x:Key="RemoveSkillRequirements_TT">Elimina los niveles de habilidad de PMC como requisito para la construcción del Hideout</System:String>
@@ -798,7 +802,8 @@ Mayor el valor, más caro te venderán el objeto</System:String>
  <System:String x:Key="ClothesAnySide_TT">Permite la compra de atuendos de ambos bandos</System:String>
  <System:String x:Key="ClothesFree_TT">Elimina el requisito de dinero para comprar los atuendos</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Elimina los requisitos de nivel, quests y reputación con los comerciantes</System:String>
- <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">Técnicamente seguro de usar, pero en el momento en el que se acepte una quest desbloqueada
+ <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">NEEDTRANSLATION</System:String>
+    <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">Técnicamente seguro de usar, pero en el momento en el que se acepte una quest desbloqueada
 Quedará sujeta al perfíl. La acción es irreversible</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">Con que frecuencia el servidor comprueba si ha habido un retorno del seguro, 
 configurándolo al mínimo, genera mayor carga en el servidor y CPU.</System:String>
@@ -838,9 +843,8 @@ Extracciones de ejemplo:
   Reserve: Descenso de la colina
  </System:String>
 
- <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">Reemplazará las apariciones iniciales de PMC y SCAVS
-La IA PMC todavía puede ser convertida a partir de los Raiders</System:String>
- <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">No recomendado, es más una prueba de estrés para el PC que otra cosa
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">NEEDTRANSLATION</System:String>
+    <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">No recomendado, es más una prueba de estrés para el PC que otra cosa
 Habrá más de 30 IA, incluídos grupos, en un mismo lugar. Carga de CPU Extrema.</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">Evento de Halloween - Activa el evento de Halloween, incluyendo la iluminación especial en el Hideout, 
 altera la aparición y comportamiento de Zryachiy, añade loot de Halloween a la IA, añade mecánicas del ritual</System:String>

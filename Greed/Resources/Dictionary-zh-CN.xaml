@@ -194,6 +194,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="AddSignalPistolToSpec">允许 信号枪 放入 特殊装备栏</System:String>
  <System:String x:Key="SurvCMSToSpec">允许 手术包 放入 特殊装备栏</System:String>
  <System:String x:Key="SurvCMSSecConBlock">限制 手术包 放入 安全箱</System:String>
+ <System:String x:Key="BackpackStacking">NEEDTRANSLATION:</System:String>
  <System:String x:Key="RemoveRaidRestr">移除 物品带入战局限制</System:String>
  <System:String x:Key="RaidDrop">移除 "无法在战局中丢弃"限制</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">移除 背包限制</System:String>
@@ -655,7 +656,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="BotsArmorDurab">AI护甲装备 耐久度</System:String>
  <System:String x:Key="BotsWeaponDurab">AI武器 耐久度</System:String>
  <System:String x:Key="ForcePartisan">修改 Partisan 生成行为</System:String>
- <!--PMC Section-->
+ <System:String x:Key="DisableWeeklyBoss">NEEDTRANSLATION</System:String>
+    <!--PMC Section-->
  <System:String x:Key="AIToPMC">AI PMC  转换概率(百分比)</System:String>
  <System:String x:Key="PMCRatio">USEC/BEAR 比例:</System:String>
  <System:String x:Key="LootMelee">近战武器 可拾取</System:String>
@@ -793,9 +795,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
     <System:String x:Key="AvoidResidential_TT">TerraGroup 实验室生活区钥匙卡，默认有 2 次使用次数。</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">为了避免奇数使用次数(2,5,10,20)的钥匙，但不包括邪教房钥匙
  例如：竞技场藏身处钥匙、工厂出口钥匙、几个街道钥匙（Chek 15）、货物钥匙等。</System:String>
- <System:String x:Key="IgnoreAccessKeycard_TT">实验室白卡不会变成 无限次数 同时也不会有 多次使用次数</System:String> <!-- MISSING -->
- <System:String x:Key="AvoidSingleKeyCards_TT">避免单次使用次数的钥匙卡，如蓝色记号钥匙卡、生活区钥匙卡和实验室白卡</System:String> <!-- MISSING -->
- <System:String x:Key="RemoveConstructionsRequirements_TT">移除藏身处设施所需的材料要求</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">实验室白卡不会变成 无限次数 同时也不会有 多次使用次数</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">避免单次使用次数的钥匙卡，如蓝色记号钥匙卡、生活区钥匙卡和实验室白卡</System:String>
+    <System:String x:Key="RemoveConstructionsRequirements_TT">移除藏身处设施所需的材料要求</System:String>
  <System:String x:Key="RemoveSkillRequirements_TT">移除藏身处设施所需的PMC技能要求</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements_TT">移除藏身处设施所需的商人等级要求</System:String>
  <System:String  xml:space="preserve" x:Key="HideoutMisc_TT">如果当前的存档中正在进行生产/建造时，不要编辑该版块
@@ -839,9 +841,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="ClothesAnySide_TT">允许购买Usec和Bear的服装</System:String>
  <System:String x:Key="ClothesFree_TT">移除购买服装的现金要求</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">移除购买服装的PMC等级，商人等级和任务要求</System:String>
-     <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">此数值必须 始终小于 访问时间
-此数值表示在Lightkeeper告知玩家离开岛屿之前剩余的访问时间</System:String> <!-- MISSING -->
- <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">技术上可以安全使用,但一旦接受未解锁的任务
+    <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">此数值必须 始终小于 访问时间
+此数值表示在Lightkeeper告知玩家离开岛屿之前剩余的访问时间</System:String>
+    <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">技术上可以安全使用,但一旦接受未解锁的任务
 则无法还原并且不可逆。</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">服务器检测是否有可用保险的频率(秒)
 设为最小值可能会导致服务器性能下降</System:String>
@@ -881,10 +883,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
   储备站: 峭壁斜坡
  </System:String>
 
- <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">将覆盖每个初始PMC和Scav的刷新
-但请注意，AI PMC仍然可以由raider转换而来</System:String>
-<System:String xml:space="preserve" x:Key="AITypeOverride_TT">将覆盖所有初始 PMC 和 SCAV 生成修改为下方指定的 AI类型</System:String> <!-- MISSING -->
- <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">强烈不推荐！这更类似于压力测试而非正常游玩功能
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">将覆盖所有初始 PMC 和 SCAV 生成修改为下方指定的 AI类型</System:String>
+    <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">强烈不推荐！这更类似于压力测试而非正常游玩功能
 会导致单个区域内出现超过30个AI，请慎重修改</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">万圣节活动：启动藏身处的活动专属灯光，
 修改兹利亚奇Zryachiy的行为和刷出，AI将携带活动物品</System:String>
@@ -916,9 +916,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
 你需要在此处输入默认值，保存，运行一次游戏后并关闭该功能。
 状态值不会在 创建新预设 时应用</System:String>
  <System:String x:Key="Sell_chance_TT">若物品等于预定义价格，则默认的出售概率</System:String>
- <System:String x:Key="PriceRange_TT">注意：并不会影响 玩家 的出售价格。
-如果您想以类似的价格出售，请使用“出售概率 倍率”功能。</System:String> <!-- MISSING -->
- <System:String  xml:space="preserve" x:Key="Sell_mult_TT">非线性概率的乘数
+    <System:String x:Key="PriceRange_TT">注意：并不会影响 玩家 的出售价格。
+如果您想以类似的价格出售，请使用“出售概率 倍率”功能。</System:String>
+    <System:String  xml:space="preserve" x:Key="Sell_mult_TT">非线性概率的乘数
 例如：如果你以手册价格低20%的价格出售物品，则乘以（若为默认值）1.24
 最终结果为多25%概率出售，且差异越大，效果越明显</System:String>
 
