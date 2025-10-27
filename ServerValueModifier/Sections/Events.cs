@@ -2,6 +2,7 @@
 using SPTarkov.Common.Extensions;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
@@ -14,7 +15,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Events(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ModHelper modhelper)
+    internal class Events(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, SeasonalEventService seasonalEvent, ModHelper modhelper)
     {
         public void EventsSection()
         {
@@ -22,45 +23,21 @@ namespace ServerValueModifier.Sections
             Globals globals = databaseService.GetGlobals();
             var locs = databaseService.GetLocations();
             var locsconfig = configServer.GetConfig<LocationConfig>();
+            var botconfig = configServer.GetConfig<BotConfig>();
             string wavesfile = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
             JsonNode loadName = JsonNode.Parse(File.ReadAllText( Path.Combine(wavesfile, "Misc", "Waves.json")));//This is for more complex setups with guards
-            if (svmconfig.Raids.RaidEvents.AITypeOverride)
+
+            SeasonalEventConfig season = configServer.GetConfig<SeasonalEventConfig>();
+            if (svmconfig.Raids.RaidEvents.Christmas && !svmconfig.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
             {
-                string aitype = "";
-                WildSpawnType aispawntype = WildSpawnType.assault;//I hate to declare it with a variable but otherwise it throws an error, i'm missing something, TODO
-                switch (svmconfig.Raids.RaidEvents.AIType)//Select type of AI we will be converting to
-                {
-                    case 0: aitype = "pmcbot"; aispawntype = WildSpawnType.pmcBot; break;
-                    case 1: aitype = "exusec"; aispawntype = WildSpawnType.exUsec; break;
-                    case 2: aitype = "sectantwarrior"; aispawntype = WildSpawnType.sectantWarrior; break;
-                    case 3: aitype = "pmcBear"; aispawntype = WildSpawnType.pmcBEAR; break;
-                    case 4: aitype = "pmcUsec"; aispawntype = WildSpawnType.pmcUSEC; break;
-                }
-                foreach (var loc in locs.GetDictionary().Values) // DB > Locations > base
-                {
-                    foreach (var wave in loc.Base.Waves)
-                    {
-                        wave.WildSpawnType = aispawntype;
-                    }
-                }
-                foreach (var loc in locsconfig.CustomWaves.Boss) // Config > location
-                {
-                    foreach (var wave in loc.Value)
-                    {
-                        wave.BossName = aitype;
-                        wave.BossEscortType = aitype;
-                    }
-                }
-                foreach (var loc in locsconfig.CustomWaves.Normal)
-                {
-                    foreach (var wave in loc.Value)
-                    {
-                        wave.WildSpawnType = aispawntype;
-                    }
-                }
+                seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
+            }
+            if (svmconfig.Raids.RaidEvents.Halloween && !svmconfig.Raids.RaidEvents.DisableEvents)
+            {
+                seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
             }
 
-            if (svmconfig.Raids.RaidEvents.KillaFactory)
+            if (svmconfig.Raids.RaidEvents.KillaFactory)//Easier to create a standalone wave than finding existing one and editing follower, also handy if we want it to be a chance
             {
                 locs.Factory4Day.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", svmconfig.Raids.RaidEvents.KillaFactoryChance, locs.Factory4Day.Base.OpenZones, "followerBully", "0"));
                 locs.Factory4Night.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", svmconfig.Raids.RaidEvents.KillaFactoryChance, locs.Factory4Day.Base.OpenZones, "followerBully", "0"));
@@ -86,13 +63,15 @@ namespace ServerValueModifier.Sections
                 locs.RezervBase.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKojaniy", 100, locs.RezervBase.Base.OpenZones, "followerKojaniy", "2"));
                 locs.RezervBase.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossBully", 100, locs.RezervBase.Base.OpenZones, "followerBully", "4"));
                 //JsonNode loadName = JsonNode.Parse(File.ReadAllText("Waves.json"));//Hello Archangel, TODO full refactor so lacy's eyes won't burn seeing json usage. 
-
-                BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-                BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-                kolontay.BossZone = locs.RezervBase.Base.OpenZones;
-                kaban.BossZone = locs.RezervBase.Base.OpenZones;
-                locs.RezervBase.Base.BossLocationSpawn.Add(kolontay);
-                locs.RezervBase.Base.BossLocationSpawn.Add(kaban);
+                if (svmconfig.Raids.RaidEvents.IncludeStreetBosses)
+                {
+                    BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+                    BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+                    kolontay.BossZone = locs.RezervBase.Base.OpenZones;
+                    kaban.BossZone = locs.RezervBase.Base.OpenZones;
+                    locs.RezervBase.Base.BossLocationSpawn.Add(kolontay);
+                    locs.RezervBase.Base.BossLocationSpawn.Add(kaban);
+                }
             }
 
             if (svmconfig.Raids.RaidEvents.BossesOnHealthResort)

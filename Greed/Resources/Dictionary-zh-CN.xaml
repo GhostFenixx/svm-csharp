@@ -78,8 +78,9 @@ Chinese - Volcano
 Everyone else who provided any kind of support to the project, whether bug reports, feedback related to UI or helped other to with issues.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM安装错误，没有位于“user\mods”路径中
-请按照Oddba论坛的服务器配置修改器帖子中的安装教程进行操作
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed 在 SPT/user/mods/[SVM] Server Value Modifier 下找不到 ServerValueModifier.dll
+请确保您正确安装了 mod，此应用程序 (Greed.exe) 应与游戏可执行文件位于同一位置
+按照Oddba论坛的服务器配置修改器帖子中的安装教程进行操作
 您仍然可以通过单击“Ok”继续，但不要指望 SVM 能够正常工作
 单击“Cancel”关闭应用程序。</System:String>
  <System:String x:Key="FileNotFoundException">您尝试加载的文件不存在</System:String>
@@ -194,7 +195,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="AddSignalPistolToSpec">允许 信号枪 放入 特殊装备栏</System:String>
  <System:String x:Key="SurvCMSToSpec">允许 手术包 放入 特殊装备栏</System:String>
  <System:String x:Key="SurvCMSSecConBlock">限制 手术包 放入 安全箱</System:String>
- <System:String x:Key="BackpackStacking">NEEDTRANSLATION:</System:String>
+ <System:String x:Key="BackpackStacking">背包堆叠数量限制</System:String>
  <System:String x:Key="RemoveRaidRestr">移除 物品带入战局限制</System:String>
  <System:String x:Key="RaidDrop">移除 "无法在战局中丢弃"限制</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">移除 背包限制</System:String>
@@ -656,7 +657,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="BotsArmorDurab">AI护甲装备 耐久度</System:String>
  <System:String x:Key="BotsWeaponDurab">AI武器 耐久度</System:String>
  <System:String x:Key="ForcePartisan">修改 Partisan 生成行为</System:String>
- <System:String x:Key="DisableWeeklyBoss">NEEDTRANSLATION</System:String>
+ <System:String x:Key="DisableWeeklyBoss">禁用“每周Boss”百刷活动</System:String>
     <!--PMC Section-->
  <System:String x:Key="AIToPMC">AI PMC  转换概率(百分比)</System:String>
  <System:String x:Key="PMCRatio">USEC/BEAR 比例:</System:String>

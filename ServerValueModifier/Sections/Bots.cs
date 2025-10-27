@@ -12,7 +12,6 @@ namespace ServerValueModifier.Sections
         {
             var locs = databaseService.GetLocations();
             BotConfig bots = configServer.GetConfig<BotConfig>();
-            bots.WeeklyBoss.Enabled = !svmconfig.Bots.AIChance.DisableWeeklyBoss;
             //Double cycle to go through every location and every boss wave,
             //using switch to sort through boss names to adjust their spawn chances accordingly
             foreach (var loc in locs.GetDictionary().Values)

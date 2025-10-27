@@ -641,16 +641,17 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="eod">Edge of Darkness</System:String>
  <System:String x:Key="Unheard">The Unheard</System:String>
  <!--Unified names of locations-->
-    <System:String x:Key="Shoreline">Берег</System:String>
-    <System:String x:Key="FactoryDay">Завод - День</System:String>
-    <System:String x:Key="FactoryNight">Завод - Ніч</System:String>
-    <System:String x:Key="Customs">Митниця</System:String>
-    <System:String x:Key="Lighthouse">Маяк</System:String>
-    <System:String x:Key="Reserve">Резерв</System:String>
-    <System:String x:Key="Woods">Ліс</System:String>
-    <System:String x:Key="Streets">Вулиці Таркова</System:String>
+    <System:String x:Key="Shoreline">Берег:</System:String>
+    <System:String x:Key="FactoryDay">Завод - День:</System:String>
+    <System:String x:Key="FactoryNight">Завод - Ніч:</System:String>
+    <System:String x:Key="Customs">Митниця:</System:String>
+    <System:String x:Key="Lighthouse">Маяк:</System:String>
+    <System:String x:Key="Reserve">Резерв:</System:String>
+    <System:String x:Key="Woods">Ліс:</System:String>
+    <System:String x:Key="Streets">Вулиці Таркова:</System:String>
  <System:String x:Key="StreetsShort">Вулиці:</System:String>
- <System:String x:Key="Lab">Лабораторія</System:String>
+ <System:String x:Key="Lab">Лабораторія:</System:String>
+    <System:String x:Key="Labyrinth">Лабіринт:</System:String>
     <System:String x:Key="Interchange">Розв'язка</System:String>
     <System:String x:Key="GroundZero">Епіцентр</System:String>
  <System:String x:Key="GroundZeroHard">Епіцентр - Важко:</System:String>

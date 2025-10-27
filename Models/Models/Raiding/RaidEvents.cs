@@ -21,7 +21,6 @@
         public bool Halloween { get; set; }
         public bool DisableZombies { get; set; }
         public bool DisableHalloweenAIFriendly { get; set; }
-        public bool RandomInfectionLevel { get; set; }
         public bool IncludeStreetBosses { get; set; }
         public bool KillaFactory { get; set; }
         public bool BossesOnReserve { get; set; }

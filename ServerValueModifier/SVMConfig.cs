@@ -17,9 +17,17 @@ namespace ServerValueModifier
         {
             string loader = File.ReadAllText(Path.Combine(folder, "Loader", "loader.json"));
             JsonNode loadname = JsonNode.Parse(loader);
-            string rawJSON = File.ReadAllText(Path.Combine(folder, "Presets", loadname!["CurrentlySelectedPreset"] + ".json"));
-            cf = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
-            return cf;
+            if (loadname!["CurrentlySelectedPreset"] != null && 
+                !string.Equals(loadname!["CurrentlySelectedPreset"]?.ToString(), "null", StringComparison.OrdinalIgnoreCase))
+            {
+                string rawJSON = File.ReadAllText(Path.Combine(folder, "Presets", loadname!["CurrentlySelectedPreset"] + ".json"));
+                cf = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
+                return cf;
+            }
+            else 
+            {
+                throw new FileNotFoundException();
+            }
         }
 
         public JsonNode ServerMessage()

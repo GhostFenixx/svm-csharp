@@ -19,7 +19,6 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.RagFair.MinUserLevel = svmconfig.Fleamarket.FleaMarketLevel;
                 fleaconfig.Dynamic.PurchasesAreFoundInRaid = svmconfig.Fleamarket.FleaFIR;
                 globals.Configuration.RagFair.IsOnlyFoundInRaidAllowed = svmconfig.Fleamarket.FleaNoFIRSell;
-                fleaconfig.Dynamic.Blacklist.EnableBsgList = !svmconfig.Fleamarket.DisableBSGList;
                 fleaconfig.Sell.Fees = svmconfig.Fleamarket.EnableFees;
                 fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
                 fleaconfig.Sell.Chance.SellMultiplier = svmconfig.Fleamarket.Sell_mult;

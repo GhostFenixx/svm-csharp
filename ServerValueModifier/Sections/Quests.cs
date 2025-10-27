@@ -1,6 +1,8 @@
 ﻿using Greed.Models;
 using Greed.Models.Questing;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Repeatable;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -77,7 +79,7 @@ namespace ServerValueModifier.Sections
         public void QuestDetails(DailyQuests type, int digit)
         {
             var quest = configServer.GetConfig<QuestConfig>();
-            string[] arrays = ["Elimination", "Completion", "Exploration"];
+            string[] arrays = ["Elimination", "Completion", "Exploration"]; 
             quest.RepeatableQuests[digit].ResetTime = (long)type.Lifespan * 60;
             quest.RepeatableQuests[digit].NumQuests = type.QuestAmount;
             quest.RepeatableQuests[digit].FreeChanges = type.Reroll;
@@ -108,38 +110,66 @@ namespace ServerValueModifier.Sections
                 quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MinKills = ranges[i].MinKills;
                 quest.RepeatableQuests[digit].QuestConfig.Elimination[i].MaxKills = ranges[i].MaxKills;
             }
-            switch (type.Types)//I could just call exact possible types from enum or smth, hmm, TODO.
-            {
-                case 0:
-                    //quest.RepeatableQuests[digit].Types.ForEach( type => logger.Warning(type.ToString()));
-                    quest.RepeatableQuests[digit].Types = [arrays[0]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0]]);
-                    break;
-                case 1:
-                    quest.RepeatableQuests[digit].Types = [arrays[1]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[1]]);
-                    break;
-                case 2:
-                    quest.RepeatableQuests[digit].Types = [arrays[2]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[2]]);
-                    break;
-                case 3:
-                    quest.RepeatableQuests[digit].Types = [arrays[0],arrays[1]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0], arrays[1]]);
-                    break;
-                case 4:
-                    quest.RepeatableQuests[digit].Types = [arrays[1], arrays[2]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[1], arrays[2]]);
-                    break;
-                case 5:
-                    quest.RepeatableQuests[digit].Types = [arrays[0], arrays[2]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => tradtype.QuestTypes = [arrays[0], arrays[2]]);
-                    break;
-                case 6:
-                    quest.RepeatableQuests[digit].Types = [arrays[0], arrays[1], arrays[2]];
-                    quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype => { tradtype.QuestTypes = [arrays[0],arrays[1], arrays[2]];});
-                    break;
-            }
+            //switch (type.Types)//I could just call exact possible types from enum or smth, hmm, Scrapped to better times.
+            //{
+            //    case 0:
+            //        //quest.RepeatableQuests[digit].Types.ForEach( type => logger.Warning(type.ToString()));
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[1]);
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[2]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        { 
+            //        tradtype.QuestTypes.Remove(arrays[1]);
+            //        tradtype.QuestTypes.Remove(arrays[2]);
+            //        });
+            //        break;
+            //    case 1:
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[0]);
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[2]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        {
+            //            tradtype.QuestTypes.Remove(arrays[0]);
+            //            tradtype.QuestTypes.Remove(arrays[2]);
+            //        });
+            //        break;
+            //    case 2:
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[0]);
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[1]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        {
+            //            tradtype.QuestTypes.Remove(arrays[0]);
+            //            tradtype.QuestTypes.Remove(arrays[1]);
+            //        });
+            //        break;
+            //    case 3:
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[2]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        {
+            //            tradtype.QuestTypes.Remove(arrays[2]);
+            //        });
+            //        break;
+            //    case 4:
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[0]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        {
+            //            tradtype.QuestTypes.Remove(arrays[0]);
+            //        });
+            //        break;
+            //    case 5:
+            //        //quest.RepeatableQuests[digit].Types.Remove(arrays[1]);
+            //        if (quest.RepeatableQuests[digit].Name == "Daily") quest.RepeatableQuests[digit].Name = "SVM_Daily";
+            //        quest.RepeatableQuests[digit].TraderWhitelist.ForEach(tradtype =>
+            //        {
+            //            tradtype.QuestTypes.Remove(arrays[1]);
+            //        });
+            //        break;
+            //    case 6:
+            //        break;
+            //}
 
         }
     }

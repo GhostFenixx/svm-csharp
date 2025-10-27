@@ -1401,6 +1401,11 @@
                                         <ui:NumberBox Value="{Binding Loot.Locations.Laboratory.Loose}" Width="115" Style="{StaticResource Mults}"/>
                                         <ui:NumberBox Value="{Binding Loot.Locations.Laboratory.Container}" Width="115" Style="{StaticResource Mults}"/>
                                     </DockPanel>
+                                    <DockPanel Margin="5,5,0,5">
+                                        <TextBlock Text="{DynamicResource Labyrinth}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                                        <ui:NumberBox Value="{Binding Loot.Locations.Labyrinth.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                                        <ui:NumberBox Value="{Binding Loot.Locations.Labyrinth.Container}" Width="115" Style="{StaticResource Mults}"/>
+                                    </DockPanel>
                                     <CheckBox Content="{DynamicResource AllContainers}" ToolTip="{DynamicResource AllContainers_TT}" IsChecked="{Binding Loot.Locations.AllContainers}"/>
                                 </StackPanel>
                             </Expander>
@@ -2165,7 +2170,7 @@
                                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Events}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                                 </Expander.Header>
                                 <StackPanel Margin="10">
-                                    <CheckBox Content="{DynamicResource AITypeOverride}" Foreground="RoyalBlue" ToolTip="{DynamicResource AITypeOverride_TT}" IsChecked="{Binding Raids.RaidEvents.AITypeOverride}"/>
+                                    <CheckBox Content="{DynamicResource AITypeOverride}" Foreground="White" ToolTip="{DynamicResource AITypeOverride_TT}" IsChecked="{Binding Raids.RaidEvents.AITypeOverride}"/>
                                     <ComboBox Foreground ="White" Width="250" SelectedIndex="{Binding Path=Raids.RaidEvents.AIType, Mode=TwoWay}" SelectedValuePath="Content">
                                         <ComboBoxItem Content="{DynamicResource Raiders}"/>
                                         <ComboBoxItem Content="{DynamicResource Rogues}"/>
@@ -2183,7 +2188,6 @@
                                     <CheckBox Content="{DynamicResource Christmas}" ToolTip="{DynamicResource Christmas_TT}" IsChecked="{Binding Raids.RaidEvents.Christmas}"/>
                                     <CheckBox Content="{DynamicResource Halloween}" ToolTip="{DynamicResource Halloween_TT}" IsChecked="{Binding Raids.RaidEvents.Halloween}"/>
                                     <CheckBox Margin="20,0,0,0"  ToolTip="{DynamicResource DisableZombies_TT}" Content="{DynamicResource DisableZombies}" IsChecked="{Binding Raids.RaidEvents.DisableZombies}"/>
-                                    <CheckBox Margin="20,0,0,0"  ToolTip="{DynamicResource RandomInfectionLevel_TT}" Content="{DynamicResource RandomInfectionLevel}" IsChecked="{Binding Raids.RaidEvents.RandomInfectionLevel}"/>
                                     <CheckBox  Foreground="#FFFFA73B" Margin="20,0,0,0"  ToolTip="{DynamicResource DisableHalloweenAIFriendly_TT}" Content="{DynamicResource DisableHalloweenAIFriendly}" IsChecked="{Binding Raids.RaidEvents.DisableHalloweenAIFriendly}"/>
                                     <CheckBox Content="{DynamicResource NonSeasonalQuests}" IsChecked="{Binding Raids.RaidEvents.NonSeasonalQuests}"/>
                                     <CheckBox Content="{DynamicResource DisableEvents}" IsChecked="{Binding Raids.RaidEvents.DisableEvents}"/>
@@ -2563,7 +2567,7 @@
                                         </ui:NumberBox>
                                     </DockPanel>
 
-                                    <StackPanel>
+                                    <!--<StackPanel>
                                         <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
                                         <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.DailyQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
                                             <ComboBoxItem Content="{DynamicResource Elimination}"/>
@@ -2574,7 +2578,7 @@
                                             <ComboBoxItem Content="{DynamicResource ExplElim}"/>
                                             <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
                                         </ComboBox>
-                                    </StackPanel>
+                                    </StackPanel>-->
                                     <DockPanel>
                                         <ui:NumberBox Value="{Binding Quests.DailyQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
                                             <ui:NumberBox.Header>
@@ -2707,7 +2711,7 @@
                                             </ui:NumberBox.Header>
                                         </ui:NumberBox>
                                     </DockPanel>
-                                    <StackPanel>
+                                    <!--<StackPanel>
                                         <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
                                         <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.WeeklyQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
                                             <ComboBoxItem Content="{DynamicResource Elimination}"/>
@@ -2718,7 +2722,7 @@
                                             <ComboBoxItem Content="{DynamicResource ExplElim}"/>
                                             <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
                                         </ComboBox>
-                                    </StackPanel>
+                                    </StackPanel>-->
                                     <DockPanel>
                                         <ui:NumberBox Value="{Binding Quests.WeeklyQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
                                             <ui:NumberBox.Header>
@@ -2832,7 +2836,6 @@
                                             <TextBox Text="{Binding Quests.WeeklyQuests.SkillPoint}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
                                         </StackPanel>
                                     </DockPanel>
-
                                 </StackPanel>
                             </Expander>
                             <Expander>
@@ -2852,7 +2855,7 @@
                                             </ui:NumberBox.Header>
                                         </ui:NumberBox>
                                     </DockPanel>
-                                    <StackPanel>
+                                    <!--<StackPanel>
                                         <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
                                         <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.ScavQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
                                             <ComboBoxItem Content="{DynamicResource Elimination}"/>
@@ -2862,8 +2865,8 @@
                                             <ComboBoxItem Content="{DynamicResource CompExpl}"/>
                                             <ComboBoxItem Content="{DynamicResource ExplElim}"/>
                                             <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
-                                        </ComboBox>
-                                    </StackPanel>
+                                        </ComboBox>-->
+                                    <!--</StackPanel>-->
                                     <DockPanel>
                                         <ui:NumberBox Value="{Binding Quests.ScavQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
                                             <ui:NumberBox.Header>
@@ -3928,7 +3931,7 @@
                                 <StackPanel Margin="10">
                                     <TextBlock  Text="{DynamicResource AddTraderAssort}" VerticalAlignment="Center" />
                                     <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True"  Text="{Binding Custom.AddTraderAssort}"/>
-                                    <TextBlock Text="{DynamicResource FenceBlacklist}" ToolTip="{DynamicResource FenceBlacklist_TT}" Foreground="#FF9F0ACC" Width="200" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                                    <TextBlock Text="{DynamicResource FenceBlacklist}" ToolTip="{DynamicResource FenceBlacklist_TT}" Foreground="#FF9F0ACC" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,5"/>
                                     <TextBox MinHeight="150" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.Blacklist}"/>
                                 </StackPanel>
                             </Expander>

@@ -18,6 +18,7 @@ namespace ServerValueModifier.Sections
             Locations lootlc = svmconfig.Loot.Locations; // lc = local config, aka greed class
             Airdrops airlc = svmconfig.Loot.Airdrops;
             //Parsing config, mapname, loose loot and container from config and apply them.
+            LootValues(locsloot, "labyrinth", lootlc.Labyrinth.Loose, lootlc.Labyrinth.Container);
             LootValues(locsloot, "bigmap", lootlc.Bigmap.Loose, lootlc.Bigmap.Container);
             LootValues(locsloot, "factory4_day", lootlc.FactoryDay.Loose, lootlc.FactoryDay.Container);
             LootValues(locsloot, "factory4_night", lootlc.FactoryNight.Loose, lootlc.FactoryNight.Container);

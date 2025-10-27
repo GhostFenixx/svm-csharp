@@ -12,10 +12,9 @@ using SPTarkov.Server.Core.Services;
 namespace ServerValueModifier.Sections
 {
     //Safe exit and Softcore located in Routers.ValidateOverrider
-    internal class Raids(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, SeasonalEventService seasonalEvent, MainClass.MainConfig svmconfig)
+    internal class Raids(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService,  MainClass.MainConfig svmconfig)
     {
         private readonly Globals globals = databaseService.GetGlobals();
-        private readonly WeatherConfig Weather = configServer.GetConfig<WeatherConfig>();
         private readonly TraderConfig trader = configServer.GetConfig<TraderConfig>();
         private readonly LostOnDeathConfig midcore = configServer.GetConfig<LostOnDeathConfig>();
         private readonly SPTarkov.Server.Core.Models.Spt.Server.Locations locationsdb = databaseService.GetLocations();
@@ -24,18 +23,6 @@ namespace ServerValueModifier.Sections
         public void RaidsSection()
         {
 
-                SeasonalEventConfig season = configServer.GetConfig<SeasonalEventConfig>();
-                if (svmconfig.Raids.RaidEvents.Christmas)
-                {
-                    seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
-                }
-
-                if (svmconfig.Raids.RaidEvents.Halloween)
-                {
-                //globals.Configuration.SeasonActivity.InfectionHalloween.AddToExtensionData("RedThreatValue", 50);
-                globals.Configuration.SeasonActivity.InfectionHalloween.DisplayUIEnabled = true;
-                    seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
-                }
             //Pre-raid menu settings
             if (svmconfig.Raids.RaidStartup.EnableRaidStartup)
             {
@@ -89,39 +76,11 @@ namespace ServerValueModifier.Sections
 
                 //inraid.Save.Loot = Config.Raids.RaidStartup.SaveLoot; TODO
             }
-            if (svmconfig.Raids.ForceSeason)
-            {
-                //TODO turn from int to string/enum
-                //Might require to add the rest of seasons enums
-                //Weather.OverrideSeason = Config.Raids.Season;
-                //Weather.OverrideSeason = SPTarkov.Server.Core.Models.Enums.Season.SUMMER;
-                //logger.Info(Weather.OverrideSeason.ToString());
-                //Weather.OverrideSeason = (Season)Config.Raids.Season;
-                //logger.Info(Weather.OverrideSeason.ToString());
-                switch (svmconfig.Raids.Season)
-                {
-                    case 0: Weather.OverrideSeason = Season.SUMMER;
-                        break;
-                    case 1:
-                        Weather.OverrideSeason = Season.AUTUMN;
-                        break;
-                    case 2:
-                        Weather.OverrideSeason = Season.WINTER;
-                        break;
-                    case 3:
-                        Weather.OverrideSeason = Season.SPRING;
-                        break;
-                    case 4:
-                        Weather.OverrideSeason = Season.STORM;
-                        break;
-                }
-            }
             //Enable/Disable Fence gifts 
             trader.Fence.CoopExtractGift.SendGift = !svmconfig.Raids.Exfils.FenceGift;
             //Save quest items on death
             midcore.QuestItems = !svmconfig.Raids.SaveQuestItems;
             locationsdb.Sandbox.Base.RequiredPlayerLevelMax = svmconfig.Raids.SandboxAccessLevel;
-            Weather.Acceleration = svmconfig.Raids.Timeacceleration;
 
             if (svmconfig.Raids.NoRunThrough)
             {

@@ -1,10 +1,15 @@
 ﻿using Greed.Models;
+using Greed.Models.Flea;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Eft.Weather;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Repeatable;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -13,6 +18,7 @@ using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Xml;
+using static System.Net.WebRequestMethods;
 
 namespace ServerValueModifier
 {
@@ -25,12 +31,97 @@ namespace ServerValueModifier
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                if (svmcfg.PMC.AItoPMC.AIConverterEnable)
+
+                //A list of features that should run before `PerformPostDbLoadActions`
+                //Will make into a separate section later.
+                //bots section
+
+                if (svmcfg.Bots.EnableBots)
                 {
-                    var pmc = configServer.GetConfig<PmcConfig>();
-                    pmc.RemoveExistingPmcWaves = false;
-                    pmc.CustomPmcWaves.Clear();
+                    BotConfig bots = configServer.GetConfig<BotConfig>();
+                    bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
+                    if (svmcfg.Raids.RaidEvents.AITypeOverride)
+                    {
+                        switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now.
+                        {
+                            case 0: bots.ReplaceScavWith = WildSpawnType.pmcBot; break;
+                            case 1: bots.ReplaceScavWith = WildSpawnType.exUsec; break;
+                            case 2: bots.ReplaceScavWith = WildSpawnType.sectantWarrior; break;
+                            case 3: bots.ReplaceScavWith = WildSpawnType.pmcBEAR; break;
+                            case 4: bots.ReplaceScavWith = WildSpawnType.pmcUSEC; break;
+                        }
+                    }
                 }
+                //Raids/ Events section
+                if (svmcfg.Raids.EnableRaids)
+                {
+                    WeatherConfig weatherconfig = configServer.GetConfig<WeatherConfig>();
+                    weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
+                    if (svmcfg.Raids.ForceSeason)
+                    {
+                        switch (svmcfg.Raids.Season)
+                        {
+                            case 0:
+                                weatherconfig.OverrideSeason = Season.SUMMER;
+                                break;
+                            case 1:
+                                weatherconfig.OverrideSeason = Season.AUTUMN;
+                                break;
+                            case 2:
+                                weatherconfig.OverrideSeason = Season.WINTER;
+                                break;
+                            case 3:
+                                weatherconfig.OverrideSeason = Season.SPRING;
+                                break;
+                            case 4:
+                                weatherconfig.OverrideSeason = Season.STORM;
+                                break;
+                        }
+                    }
+
+                    var eventconfig = configServer.GetConfig<SeasonalEventConfig>();
+                    var questconfig = configServer.GetConfig<QuestConfig>();
+                    questconfig.ShowNonSeasonalEventQuests = svmcfg.Raids.RaidEvents.NonSeasonalQuests;
+                    foreach (var eventname in eventconfig.Events)//Very redundant tbh
+                    {
+                        if (eventname.Name == "halloween" && svmcfg.Raids.RaidEvents.DisableZombies)
+                        {
+                            eventname.Settings.ZombieSettings.Enabled = !svmcfg.Raids.RaidEvents.DisableZombies;
+                        }
+                    }
+                    eventconfig.EnableSeasonalEventDetection = !svmcfg.Raids.RaidEvents.DisableEvents;
+                    if (svmcfg.Raids.RaidEvents.DisableHalloweenAIFriendly)
+                    {
+                        foreach (var bottype in eventconfig.HostilitySettingsForEvent["zombies"]["default"])
+                        {
+                            if (bottype.BotRole == "pmcBEAR")
+                            {
+                                bottype.SavagePlayerBehaviour = "AlwaysEnemies";
+                                bottype.Neutral.Remove("pmcUSEC");
+                                bottype.AlwaysEnemies.Add("pmcUSEC");
+                            }
+                            else if (bottype.BotRole == "pmcUSEC")
+                            {
+                                bottype.SavagePlayerBehaviour = "AlwaysEnemies";
+                                bottype.Neutral.Remove("pmcBEAR");
+                                bottype.AlwaysEnemies.Add("pmcBEAR");
+                            }
+                            else
+                            {
+                                bottype.BearPlayerBehaviour = "AlwaysEnemies";
+                                bottype.UsecPlayerBehaviour = "AlwaysEnemies";
+                            }
+                        }
+                    }
+                }
+                //Flea section
+                if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
+                {
+                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
+                    fleaconfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
+                }
+                //
+
             }
             catch (FileNotFoundException)
             {
@@ -76,11 +167,11 @@ namespace ServerValueModifier
                 Sections.Loot lootLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Bots botload = new(logger, configServer, databaseService, svmcfg);
                 Sections.Player playerLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Raids raidsload = new(logger, configServer, databaseService, seasonalEvent, svmcfg);
+                Sections.Raids raidsload = new(logger, configServer, databaseService, svmcfg);
                 Sections.Fleamarket fleamarketLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Quests questsLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.CSM csmLoad = new(logger, configServer, databaseService, svmcfg, _cloner, custompocket);
-                Sections.Events eventsLoad = new(logger, configServer, databaseService, svmcfg, modhelper);
+                Sections.Events eventsLoad = new(logger, configServer, databaseService, svmcfg, seasonalEvent, modhelper);
                 Sections.Scav scavload = new(logger, configServer, databaseService, svmcfg, _cloner, scavcustompocket);
                 Sections.PMC pmcload = new(logger, configServer, databaseService, svmcfg);
 
@@ -103,14 +194,14 @@ namespace ServerValueModifier
                 if (svmcfg.PMC.EnablePMC) pmcload.PMCSection();
                 if (svmcfg.Custom.EnableCustom) advLoad.ItemChangerSection();
 
-                string[] funnitext = File.ReadAllText(System.IO.Path.Combine(ffolder,"Misc","MOTD.txt")).Split("\n");
+                string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder,"Misc","MOTD.txt")).Split("\n");
                 Random rnd = new Random();
                 logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
                 logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
             }
             catch (FileNotFoundException)
             {
-                logger.Warning("[SVM] Initialization cancelled: Preset or/and Loader is not found\nBe sure you clicked Save and Apply in Greed.exe");
+                logger.Error("[SVM] Initialization cancelled: Preset or/and Loader is not found or null\nBe sure you clicked Save and Apply in Greed.exe\nMod is disabled");
             }
             catch (Exception ex)
             {

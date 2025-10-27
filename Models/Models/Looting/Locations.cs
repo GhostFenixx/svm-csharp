@@ -13,6 +13,7 @@
         public LootOnLocations Shoreline { get; set; }
         public LootOnLocations Reserve { get; set; }
         public LootOnLocations Woods { get; set; }
+        public LootOnLocations Labyrinth { get; set; }
         public LootOnLocations FactoryNight { get; set; }
         public bool AllContainers { get; set; }
         public Locations()
@@ -75,6 +76,11 @@
             FactoryNight = new LootOnLocations()
             {
                 Loose = 3.5,
+                Container = 1
+            };
+            Labyrinth = new LootOnLocations()
+            {
+                Loose = 3,
                 Container = 1
             };
         }

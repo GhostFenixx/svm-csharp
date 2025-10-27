@@ -4,8 +4,6 @@
     {
 
         public bool NameOverride { get; set; }
-        public bool ForceCustomWaves { get; set; }
-        public int CustomWaveChance { get; set; } = 100;
         public PMCChance PMCChance { get; set; }
         public int LevelUpMargin { get; set; } = 10;
         public int LevelDownMargin { get; set; } = 70;
@@ -14,7 +12,6 @@
         public bool ChancesEnable { get; set; }
         public int PMCRatio { get; set; } = 50;
         public AItoPMC AItoPMC { get; set; }
-        public bool EnableConvert { get; set; }
         public bool DisableLowLevelPMC { get; set; }
         public bool LootableMelee { get; set; }
         public bool EnablePMC { get; set; }

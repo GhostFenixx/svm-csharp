@@ -38,10 +38,10 @@ Chino - Volcano
 Todos aquellos que han mostrado apoyo al proyecto, ya sea informando sobre errores, aportando opiniones o ayudando a otros usuarios con sus preguntas.
 </System:String>
     <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Has instalado mal GREED, no se encuentra en "user\mods"
-Por favor, sigue la guía de instalación de GREED en la página del mod
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">GREED no ha podido encontrar el archivo ServerValueModifier.dll"
+en la carpeta SPT/user/mods/[SVM] Server Value Modifier.
 Puedes continuar presionando OK, pero no esperes que el mod funcione.
-Presiona 'Cancelar' para cerrar la app.</System:String>
+Asegúrate de que has instalado el mod correctamente, la aplicación (Greed.exe) ha de estar en la misma carpeta que el ejecutable del juego.</System:String>
  <System:String x:Key="FileNotFoundException">El archivo que intentas cargar no existe.</System:String>
  <System:String x:Key="CorruptedJSON">Este archivo está corrupto o no se puede cargar correctamente</System:String>
  <System:String x:Key="NoAccess">No se puede acceder al archivo. Problemas con los permisos de administración?</System:String>
@@ -157,7 +157,7 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
  <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
  <System:String x:Key="SurvCMSSecConBlock">Impide guardar el Surv/CMS en los contenedores seguros</System:String>
- <System:String x:Key="BackpackStacking">NEEDTRANSLATION:</System:String>
+ <System:String x:Key="BackpackStacking">Apilado de mochilas:</System:String>
  <System:String x:Key="RemoveRaidRestr">Eliminar las restricciones dentro de raid</System:String>
  <System:String x:Key="RaidDrop">Elimina la etiqueta "No se puede soltar en raid"</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">Elimina las restricciones de las mochilas</System:String>
@@ -615,7 +615,7 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="BotsArmorDurab">Durabilidad del equipamiento de la IA</System:String>
  <System:String x:Key="BotsWeaponDurab">Durabilidad de las armas de la IA</System:String>
  <System:String x:Key="ForcePartisan">Cambiar la condición de aparición de Partisan</System:String>
- <System:String x:Key="DisableWeeklyBoss">NEEDTRANSLATION</System:String>
+ <System:String x:Key="DisableWeeklyBoss">Deshabilitar Boss semanal</System:String>
     <!--PMC Section-->
  <System:String x:Key="AIToPMC">Convertidor de IA general a PMC en %</System:String>
  <System:String x:Key="PMCRatio">Reparto de BEAR/USEC en raid:</System:String>
@@ -754,8 +754,8 @@ por celda para los siguientes calibres: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9
 por celda para los siguientes calibres: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excluye las llaves que tienen un numero de usos no habitual (2,5,10,20) excluyendo las llaves marcadas.
  Tales como: Llaves de escondites de Ref, Llave de la salida de Factory, un par de llaves de streets (Chek 15), llave del cargamento, etc.</System:String>
-    <System:String x:Key="IgnoreAccessKeycard_TT">NEEDTRANSLATION</System:String>
-    <System:String x:Key="AvoidSingleKeyCards_TT">NEEDTRANSLATION</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">Ignora el requisito de tarjeta de acceso</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">Deshabilita "el uso" de tarjetas de un uso</System:String>
     <System:String x:Key="AvoidResidential_TT">Tarjeta de la unidad residencial de los Laboratorios de Terragroup, que por defecto tiene 2 usos.</System:String>
  <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Si se activa: Dólares y Euros escalarán su apilado según las pilas de rublos, en una relación de 1:100. Los modificadores de Dólares y Euros serán desactivados.</System:String>
  <System:String x:Key="RemoveConstructionsRequirements_TT">Elimina los materiales como requisito para la construcción del Hideout</System:String>
@@ -802,7 +802,7 @@ Mayor el valor, más caro te venderán el objeto</System:String>
  <System:String x:Key="ClothesAnySide_TT">Permite la compra de atuendos de ambos bandos</System:String>
  <System:String x:Key="ClothesFree_TT">Elimina el requisito de dinero para comprar los atuendos</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Elimina los requisitos de nivel, quests y reputación con los comerciantes</System:String>
- <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">NEEDTRANSLATION</System:String>
+ <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">Tiempo para salir de la península de Lightkeeper</System:String>
     <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">Técnicamente seguro de usar, pero en el momento en el que se acepte una quest desbloqueada
 Quedará sujeta al perfíl. La acción es irreversible</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceInterval_TT">Con que frecuencia el servidor comprueba si ha habido un retorno del seguro, 
@@ -843,7 +843,7 @@ Extracciones de ejemplo:
   Reserve: Descenso de la colina
  </System:String>
 
-    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">NEEDTRANSLATION</System:String>
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">Reemplazo de IA</System:String>
     <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">No recomendado, es más una prueba de estrés para el PC que otra cosa
 Habrá más de 30 IA, incluídos grupos, en un mismo lugar. Carga de CPU Extrema.</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">Evento de Halloween - Activa el evento de Halloween, incluyendo la iluminación especial en el Hideout, 

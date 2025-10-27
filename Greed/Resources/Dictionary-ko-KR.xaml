@@ -37,10 +37,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 버그 리포트, UI 관련 피드백 제공, 다른 사용자들의 문제 해결 지원 등 어떤 형태로든 프로젝트에 도움을 주신 모든 분들께 감사드립니다.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">SVM이 올바르게 설치되지 않았습니다. "user\mods" 경로에 위치해 있지 않습니다.
-Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요.
-`확인`을 클릭하여 계속 진행할 수 있지만, 모드가 제대로 작동하지 않을 수 있습니다.
-'취소'를 클릭하면 앱이 닫힙니다.</System:String>
+ <System:String xml:space="preserve" x:Key="SVMWrongInstallation">오류: Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 ServerValueModifier.dll 파일을 찾을 수 없습니다.
+모드가 올바르게 설치되었는지 확인하고, 이 프로그램(Greed.exe)이 게임 실행 파일과 동일한 위치에 있는지 확인해주세요.</System:String>
  <System:String x:Key="FileNotFoundException">로드하려는 파일이 존재하지 않습니다.</System:String>
  <System:String x:Key="CorruptedJSON">이 파일이 손상되었거나 프리셋으로 로드할 수 없습니다.</System:String>
  <System:String x:Key="NoAccess">파일을 읽을 수 없습니다. Windows 권한 문제인가요?</System:String>
@@ -156,7 +154,7 @@ Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요
     <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
     <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 허용</System:String>
  <System:String x:Key="SurvCMSSecConBlock">보안 컨테이너에 Surv/CMS 수술킷 보관 제한</System:String>
-    <System:String x:Key="BackpackStacking">NEEDTRANSLATION:</System:String>
+    <System:String x:Key="BackpackStacking">가방 중첩 제한:</System:String>
     <System:String x:Key="RemoveRaidRestr">레이드 진입 전 레이드 소지 아이템 제한 제거</System:String>
  <System:String x:Key="RaidDrop">'레이드 도중 버리기 불가' 태그 제거</System:String>
  <System:String x:Key="RemoveBackpacksRestrictions">배낭 중첩 수납 제한 해제</System:String>
@@ -617,7 +615,7 @@ Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요
  <System:String x:Key="BotsArmorDurab">AI 방어구 장비 내구도</System:String>
  <System:String x:Key="BotsWeaponDurab">AI 무기 내구도</System:String>
  <System:String x:Key="ForcePartisan">파르티잔의 스폰 행동 변경</System:String>
- <System:String x:Key="DisableWeeklyBoss">NEEDTRANSLATION</System:String>
+ <System:String x:Key="DisableWeeklyBoss">주간 보스 비활성화</System:String>
     <!--PMC Section-->
  <System:String x:Key="AIToPMC">AI PMC 생성 시 변경될 유형 설정 (단위:%)</System:String>
  <System:String x:Key="PMCRatio">AI PMC USEC/BEAR 진영 생성 비율 :</System:String>
@@ -762,8 +760,8 @@ Server Value Modifier 모드 웹페이지의 설치 가이드를 따라주세요
  <System:String x:Key="AvoidResidential_TT">기본적으로 2회 사용 가능한 테라그룹 연구소 주거 구역 키카드</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">특별 표시된 방(마크방)을 제외하고 홀수 사용 횟수(2,5,10,20)를 가진 키는 제외
 예: 레프의 은신처 열쇠, 공장 출구 열쇠, 일부 타르코프 시내 열쇠(체크 15), 화물 열쇠 등</System:String>
-    <System:String x:Key="IgnoreAccessKeycard_TT">NEEDTRANSLATION</System:String>
-    <System:String x:Key="AvoidSingleKeyCards_TT">NEEDTRANSLATION</System:String>
+    <System:String x:Key="IgnoreAccessKeycard_TT">연구소(랩) 출입 키카드는 무제한 사용 또는 다회용으로 변경되지 않습니다.</System:String>
+    <System:String x:Key="AvoidSingleKeyCards_TT">청색 마크 키, 미궁, 연구소(랩) 출입 키카드와 같은 일회용 키카드는 사용을 피해주십시오.</System:String>
     <System:String x:Key="RemoveConstructionsRequirements_TT">시설 건설에 필요한 재료 요구사항을 제거합니다.</System:String>
  <System:String x:Key="RemoveSkillRequirements_TT">시설 건설에 필요한 PMC 스킬 레벨 요구사항을 제거합니다.</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements_TT">시설 건설에 필요한 상인 평판 레벨 요구사항을 제거합니다.</System:String>
@@ -808,7 +806,7 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
  <System:String x:Key="ClothesAnySide_TT">USEC와 BEAR 복장 모두 구매할 수 있게 합니다.</System:String>
  <System:String x:Key="ClothesFree_TT">복장 구매에 필요한 현금 요구사항을 제거합니다.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">PMC 레벨, 상인 레벨, 퀘스트 요구사항을 제거합니다.</System:String>
-    <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">NEEDTRANSLATION</System:String>
+    <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">해당 값은 '방문 시간' 미만으로 설정해야 합니다.</System:String>
     <System:String xml:space="preserve" x:Key="AllQuestsAvailable_TT">기술적으로 사용해도 안전하지만, 주의하세요: 잠금 해제된 퀘스트를 한 번 수락하면, 
 그 퀘스트는 당신의 프로필에 영구적으로 저장됩니다.
 이 행동은 되돌릴 수 없으며, 게임 진행에 영향을 줄 수 있습니다.</System:String>
@@ -850,7 +848,7 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
   리저브: Cliff Descent
  </System:String>
 
-<System:String xml:space="preserve" x:Key="AITypeOverride_TT">NEEDTRANSLATION</System:String>
+<System:String xml:space="preserve" x:Key="AITypeOverride_TT">레이드 시작 시 스폰되는 모든 스캐브를 사용자가 선택한 AI 유형으로 변경합니다.</System:String>
 <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">매우 권장하지 않습니다. 이는 기능이라기보다는 스트레스 테스트에 가깝습니다.
 단일 지역에 30명 이상의 AI가 생성되니 주의하세요. 이 점을 명심하시기 바랍니다!</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">은신처에 이벤트 전용 조명을 활성화하고, 
@@ -881,7 +879,7 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
 스탯 원래대로 되돌리려면 여기에 기본값을 입력하고, 저장한 뒤, 게임을 실행했다가 종료해야 합니다.
 새 프로필 생성 시에는 체력이 적용되지 않습니다.</System:String>
  <System:String x:Key="Sell_chance_TT">아이템이 미리 정의된 가격과 동일할 때 판매될 기본 확률입니다.</System:String>
- <System:String x:Key="PriceRange_TT">NEEDTRANSLATION</System:String>
+ <System:String x:Key="PriceRange_TT">주의: 이 설정은 플레이어가 상인에게 아이템을 판매할 때의 가격을 변경하지 않습니다.</System:String>
     <System:String xml:space="preserve" x:Key="Sell_mult_TT">이 설정은 아이템 가격에 따른 판매 확률을 더 현실적으로 만들어줍니다.
 아이템을 싸게 팔수록 빨리 팔릴 확률이 높아지고, 비싸게 팔수록 팔리기 어려워집니다.
 단순히 비례하는 게 아니라, 가격 차이가 클수록 그 효과가 더 극적으로 나타납니다.

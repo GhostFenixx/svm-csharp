@@ -33,7 +33,7 @@ namespace ServerValueModifier.Routers
                         foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
                         {
                             int chance = rnd.Next(1, 101);
-                            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC")) // && (chance > (100 - svmcfg.PMC.AItoPMC.PMCToScav))
+                            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC") && (chance > (100 - cf.PMC.AItoPMC.PMCToScav)))
                             {
                                 wave.BossName = "assault";
                                 wave.BossEscortType = "assault";

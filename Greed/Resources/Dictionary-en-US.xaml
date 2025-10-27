@@ -55,6 +55,22 @@ Everyone else who provided any kind of support to the project, whether bug repor
   
   WIP Features: AI Converter in PMC AI and SCAV overrider in Events
   
+  2.0.1 For SPT 4.0.2
+  Added:
+  Backpack limit field
+  Labyrinth Loose/Container loot
+  Little touch to UI.
+  Tooltip fields are highlighted now by different cursor
+  Reworked:
+  IIC Can use expressions for editing filters and can affect more types
+  Included bunch of handlers for missing loader/preset, and if trader missing quest assort.
+  Repeatable quest types, money and standing cost on rerolls, attempting to make it work properly.
+  Fixed:
+  Events and Mailbox missing functionality
+  Post-Health treatment.
+  Removed:
+  Add Signal pistol to special slots - this exist by default now.
+  Types in Repeatable quests - breaks profiles, will be removed until better times
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
@@ -705,7 +721,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="Streets">Streets of Tarkov:</System:String>
  <System:String x:Key="StreetsShort">Streets:</System:String>
  <System:String x:Key="Lab">Laboratory:</System:String>
- <System:String x:Key="Interchange">Interchange:</System:String>
+    <System:String x:Key="Labyrinth">Labyrinth:</System:String>
+    <System:String x:Key="Interchange">Interchange:</System:String>
  <System:String x:Key="GroundZero">Ground Zero:</System:String>
  <System:String x:Key="GroundZeroHard">Ground Zero - Hard:</System:String>
  <!--Unified names of Traders-->
