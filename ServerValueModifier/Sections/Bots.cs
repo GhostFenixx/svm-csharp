@@ -178,7 +178,7 @@ namespace ServerValueModifier.Sections
                     case "pmcbot":
                         AdjustDurab(bots, bottype, svmconfig.Bots.Raider);
                         break;
-                    case "follower":
+                    case "follower" or "sectantwarrior":
                         AdjustDurab(bots, bottype, svmconfig.Bots.Follower);
                         break;
                     case "exusec":

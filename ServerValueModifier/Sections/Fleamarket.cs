@@ -61,20 +61,20 @@ namespace ServerValueModifier.Sections
 
             if (svmconfig.Fleamarket.EnableFleaConditions)//Flea Section > Item Conditions, horrible, as usual
             {
-                fleaconfig.Dynamic.Condition["5422acb9af1c889c16000029"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaWeapons_Min / 100);
-                fleaconfig.Dynamic.Condition["543be5664bdc2dd4348b4569"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaMedical_Min / 100);
-                fleaconfig.Dynamic.Condition["5447e0e74bdc2d3c308b4567"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaSpec_Min / 100);
-                fleaconfig.Dynamic.Condition["543be5e94bdc2df1348b4568"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaKeys_Min / 100);
-                fleaconfig.Dynamic.Condition["5448e5284bdc2dcb718b4567"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaVests_Min / 100);
-                fleaconfig.Dynamic.Condition["57bef4c42459772e8d35a53b"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaArmor_Min / 100);
-                fleaconfig.Dynamic.Condition["543be6674bdc2df1348b4569"].Max.Min = (svmconfig.Fleamarket.FleaConditions.FleaFood_Min / 100);
-                fleaconfig.Dynamic.Condition["5422acb9af1c889c16000029"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaWeapons_Max / 100);
-                fleaconfig.Dynamic.Condition["543be5664bdc2dd4348b4569"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaMedical_Max / 100);
-                fleaconfig.Dynamic.Condition["5447e0e74bdc2d3c308b4567"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaSpec_Max / 100);
-                fleaconfig.Dynamic.Condition["543be5e94bdc2df1348b4568"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaKeys_Max / 100);
-                fleaconfig.Dynamic.Condition["5448e5284bdc2dcb718b4567"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaVests_Max / 100);
-                fleaconfig.Dynamic.Condition["57bef4c42459772e8d35a53b"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaArmor_Max / 100);
-                fleaconfig.Dynamic.Condition["543be6674bdc2df1348b4569"].Max.Max = (svmconfig.Fleamarket.FleaConditions.FleaFood_Max / 100);
+                fleaconfig.Dynamic.Condition["5422acb9af1c889c16000029"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaWeapons_Min / 100);
+                fleaconfig.Dynamic.Condition["543be5664bdc2dd4348b4569"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaMedical_Min / 100);
+                fleaconfig.Dynamic.Condition["5447e0e74bdc2d3c308b4567"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaSpec_Min / 100);
+                fleaconfig.Dynamic.Condition["543be5e94bdc2df1348b4568"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaKeys_Min / 100);
+                fleaconfig.Dynamic.Condition["5448e5284bdc2dcb718b4567"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaVests_Min / 100);
+                fleaconfig.Dynamic.Condition["57bef4c42459772e8d35a53b"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaArmor_Min / 100);
+                fleaconfig.Dynamic.Condition["543be6674bdc2df1348b4569"].Max.Min = (double)(svmconfig.Fleamarket.FleaConditions.FleaFood_Min / 100);
+                fleaconfig.Dynamic.Condition["5422acb9af1c889c16000029"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaWeapons_Max / 100);
+                fleaconfig.Dynamic.Condition["543be5664bdc2dd4348b4569"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaMedical_Max / 100);
+                fleaconfig.Dynamic.Condition["5447e0e74bdc2d3c308b4567"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaSpec_Max / 100);
+                fleaconfig.Dynamic.Condition["543be5e94bdc2df1348b4568"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaKeys_Max / 100);
+                fleaconfig.Dynamic.Condition["5448e5284bdc2dcb718b4567"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaVests_Max / 100);
+                fleaconfig.Dynamic.Condition["57bef4c42459772e8d35a53b"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaArmor_Max / 100);
+                fleaconfig.Dynamic.Condition["543be6674bdc2df1348b4569"].Max.Max = (double)(svmconfig.Fleamarket.FleaConditions.FleaFood_Max / 100);
             }
         }
     }

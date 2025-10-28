@@ -51,7 +51,7 @@ namespace ServerValueModifier.Sections
         }
         public void AirdropsValues(AirdropParameter airdrop, int chance, int min, int max)
         {
-            airdrop.PlaneAirdropChance = chance / 100;
+            airdrop.PlaneAirdropChance = (double)chance / 100;
             airdrop.PlaneAirdropStartMin = min * 60;
             airdrop.PlaneAirdropStartMax = max * 60;
         }

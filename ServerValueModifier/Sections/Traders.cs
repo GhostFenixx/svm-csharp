@@ -60,7 +60,7 @@ namespace ServerValueModifier.Sections
             }
 
             //Durability of items to be sold to traders
-            globals.Configuration.TradingSettings.BuyoutRestrictions.MinDurability = svmcfg.Traders.MinDurabSell / 100;
+            globals.Configuration.TradingSettings.BuyoutRestrictions.MinDurability = (double)svmcfg.Traders.MinDurabSell / 100;
             //Time given to redeem rewards for completed quests
             questConfig.MailRedeemTimeHours["default"] = svmcfg.Traders.QuestRedeemDefault;
             questConfig.MailRedeemTimeHours["unheard_edition"] = svmcfg.Traders.QuestRedeemUnheard;

@@ -397,7 +397,14 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="ForceBTRFriendly">БТР по умолчанию дружелюбен</System:String>
  <System:String x:Key="BTRTaxiPrice">Цена такси:</System:String>
  <System:String x:Key="BTRCoverPrice">Цена огневой поддержки:</System:String>
- <!--Events Section-->
+ <System:String x:Key="BTRPriceMult">Price multiplier by faction:</System:String>
+ <System:String x:Key="BTRTimeMin"> Minimum spawn time window (in minutes):</System:String>
+ <System:String x:Key="BTRTimeMax">Maximum spawn time window (in minutes):</System:String>
+ <System:String x:Key="BTRChance">BTR Spawn Chance (in %):</System:String>
+ <System:String x:Key="Usec">USEC</System:String>
+ <System:String x:Key="Bear">BEAR</System:String>
+
+    <!--Events Section-->
  <System:String x:Key="Events">События</System:String>
  <System:String x:Key="AITypeOverride">Переопределить стандартные типы SCAV на:</System:String>
  <System:String x:Key="RaidersEverywhere">Рейдеры вместо диких</System:String>

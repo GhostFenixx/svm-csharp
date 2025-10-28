@@ -24,7 +24,7 @@ namespace ServerValueModifier.Routers
                 var locs = DatabaseService.GetLocations();
                 MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
                 Random rnd = new Random();
-                if (cf.PMC.AItoPMC.AIConverterEnable)
+                if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
                 {
                     foreach (var loc in locs.GetDictionary().Values)
                     {
@@ -61,7 +61,7 @@ namespace ServerValueModifier.Routers
                 MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
                 Random rnd = new Random();
                 var locs = DatabaseService.GetLocations();
-                if (cf.PMC.AItoPMC.AIConverterEnable)
+                if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
                 {
                     foreach (var loc in locs.GetDictionary().Values)
                     {
@@ -87,7 +87,7 @@ namespace ServerValueModifier.Routers
                         }
                     }
                 }
-                if (cf.Raids.RaidStartup.SaveLoot)
+                if (cf.Raids.RaidStartup.SaveLoot && cf.Raids.EnableRaids && cf.Raids.RaidStartup.EnableRaidStartup)
                 {
 
                 }

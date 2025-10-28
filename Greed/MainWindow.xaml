@@ -464,7 +464,7 @@
                                     <CheckBox Content="{DynamicResource WeaponHeatOff}" IsChecked="{Binding Items.WeaponHeatOff}"/>
                                     <CheckBox Content="{DynamicResource SurvCMSToSpec}" IsChecked="{Binding Items.SurvCMSToSpec}"/>
                                     <CheckBox Content="{DynamicResource SurvCMSSecConBlock}" IsChecked="{Binding Items.SurvCMSSecConBlock}"/>
-                                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Minimum="1" Maximum="20" Value="{Binding Items.BackpackStacking}">
+                                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Minimum="2" Maximum="25" Value="{Binding Items.BackpackStacking}">
                                         <ui:NumberBox.Header>
                                             <TextBlock Text="{DynamicResource BackpackStacking}"/>
                                         </ui:NumberBox.Header>
@@ -1158,8 +1158,8 @@
                                     </DockPanel>
                                     <DockPanel Margin="5,5,0,5">
                                         <TextBlock Text="{DynamicResource InsuranceStorageTime}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
-                                        <ui:NumberBox Value="{Binding Services.TherapistStorageTime}" Minimum="1" Maximum="1440"  Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
-                                        <ui:NumberBox Value="{Binding Services.PraporStorageTime}" Minimum="1"  Maximum="1440" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                                        <ui:NumberBox Value="{Binding Services.TherapistStorageTime}" Minimum="1" Maximum="14400"  Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                                        <ui:NumberBox Value="{Binding Services.PraporStorageTime}" Minimum="1"  Maximum="14400" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
                                     </DockPanel>
                                     <DockPanel Margin="5,5,0,5">
                                         <TextBlock Text="{DynamicResource InsuranceTradersChance}" Width="200" VerticalAlignment="Center"/>

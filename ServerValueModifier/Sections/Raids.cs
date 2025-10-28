@@ -107,12 +107,12 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.BTRSettings.BearPriceMod = svmconfig.Raids.BearMult;
                 globals.Configuration.BTRSettings.UsecPriceMod = svmconfig.Raids.UsecMult;
                 globals.Configuration.BTRSettings.ScavPriceMod = svmconfig.Raids.ScavMult;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].ChanceSpawn = svmconfig.Raids.BTRWoodsChance;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.X = svmconfig.Raids.BTRWoodsTimeMin;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.Y = svmconfig.Raids.BTRWoodsTimeMax;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].ChanceSpawn = svmconfig.Raids.BTRStreetsChance;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.X = svmconfig.Raids.BTRStreetsTimeMin;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.Y = svmconfig.Raids.BTRStreetsTimeMax;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].ChanceSpawn = (double)svmconfig.Raids.BTRWoodsChance;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.X = (double)svmconfig.Raids.BTRWoodsTimeMin * 60;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.Y = (double)svmconfig.Raids.BTRWoodsTimeMax * 60;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].ChanceSpawn = (double)svmconfig.Raids.BTRStreetsChance;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.X = (double)svmconfig.Raids.BTRStreetsTimeMin * 60;
+                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.Y = (double)svmconfig.Raids.BTRStreetsTimeMax * 60;
                 {
                     foreach (var level in globals.Configuration.FenceSettings.Levels)
                     {
