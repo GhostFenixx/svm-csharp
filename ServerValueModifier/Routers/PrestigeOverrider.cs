@@ -5,9 +5,11 @@ using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using System.Xml.Linq;
 
 namespace ServerValueModifier.Routers
 {
@@ -30,20 +32,22 @@ namespace ServerValueModifier.Routers
                 MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
                 PmcData? pmcdata = _profileHelper.GetPmcProfile(sessionId);
                 PmcData? scavdata = _profileHelper.GetScavProfile(sessionId);
+                var allPockets = pmcdata.Inventory.Items.Where(item => item.SlotId == "Pockets");
+                var hasCompletedPocketUpgradeQuest = CheckPocketQuest(pmcdata);
+                var isUnheard = pmcdata.Info.GameVersion == "unheard_edition";
                 //Attempt to revive pockets to default value.
                 int pocketCount = 0;
-                foreach (var item in pmcdata.Inventory.Items)
+                foreach (var pocket in allPockets)
                 {
-                    if (item.SlotId == "Pockets" && pmcdata.Info.GameVersion == "unheard_edition")
+                    if (cf.CSM.EnableCSM && cf.CSM.CustomPocket)
                     {
-                        item.Template = UNHEARD_POCKETS; //Unheard pockets
-                        pocketCount++;
+                        pocket.Template = CUSTOM_POCKETS;
                     }
-                    else if (item.SlotId == "Pockets")
+                    else
                     {
-                        item.Template = DEFAULT_POCKETS;
-                        pocketCount++;
+                        pocket.Template = (hasCompletedPocketUpgradeQuest || isUnheard) ? UNHEARD_POCKETS : DEFAULT_POCKETS;
                     }
+                    pocketCount++;
                 }
                 if (pocketCount == 0)//If there is no pocket in profile - create a new one from scratch
                 {
@@ -54,33 +58,12 @@ namespace ServerValueModifier.Routers
                         Template = DEFAULT_POCKETS,
                         SlotId = "Pockets"
                     };
+                    //PMC Custom Pockets
+                    if (cf.CSM.EnableCSM && cf.CSM.CustomPocket)
+                    {
+                        newpocket.Template = CUSTOM_POCKETS;
+                    }
                     pmcdata.Inventory.Items.Add(newpocket);
-                }
-
-                //PMC Custom Pockets
-                if (cf.CSM.EnableCSM && cf.CSM.CustomPocket)
-                {
-                    pocketCount = 0;
-                    foreach (var item in pmcdata.Inventory.Items)
-                    {
-                        if (item.SlotId == "Pockets") //Custom Pocket
-                        {
-                            item.Template = CUSTOM_POCKETS; //Custom Pocket Template ID, TODO: Make it configurable.
-                            pocketCount++;
-                        }
-                    }
-
-                    if (pocketCount == 0)
-                    {
-                        Item? newpocket = new()
-                        {
-                            Id = new MongoId(),
-                            ParentId = pmcdata.Inventory.Equipment,
-                            Template = CUSTOM_POCKETS,
-                            SlotId = "Pockets"
-                        };
-                        pmcdata.Inventory.Items.Add(newpocket); //Attempt to add pockets if they were removed.
-                    }
                 }
 
                 if (cf.Player.EnablePlayer)
@@ -115,12 +98,10 @@ namespace ServerValueModifier.Routers
 
                     if (cf.Scav.ScavCustomPockets)
                     {
-                        foreach (var item in scavdata.Inventory.Items)
+                        var scavpockets = scavdata.Inventory.Items.Where(item => item.SlotId == "Pockets");
+                        foreach (var pocket in scavpockets)
                         {
-                            if (item.SlotId == "Pockets")
-                            {
-                                item.Template = SCAVCUSTOM_POCKETS;
-                            }
+                            pocket.Template = SCAVCUSTOM_POCKETS;
                         }
                     }
                 }
@@ -131,6 +112,10 @@ namespace ServerValueModifier.Routers
                 _logger.Warning("[SVM] Player Health,  new profile detected: Restart game client to apply Pockets/Health/Stats changes.");
             }
             return _databaseService.GetTemplates().Prestige;
+        }
+        public bool CheckPocketQuest(PmcData pmcdata)
+        {
+            return pmcdata.Quests.Any(quest => quest.QId == QuestTpl.OLD_PATTERNS && quest.Status == QuestStatusEnum.Success);
         }
     }
 }
