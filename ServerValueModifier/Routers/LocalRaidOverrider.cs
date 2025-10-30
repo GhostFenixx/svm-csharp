@@ -135,7 +135,9 @@ namespace ServerValueModifier.Routers
                     }
                 }
             }
-            catch {}
+            catch {
+                MatchController.EndLocalRaid(sessionID, info);
+            }
             return new ValueTask<string>(HttpResponseUtil.NullResponse());
         }
 
