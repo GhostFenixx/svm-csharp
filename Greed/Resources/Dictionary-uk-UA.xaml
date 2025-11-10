@@ -172,9 +172,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="AmmoStack">Амуніції за слот</System:String>
     <System:String x:Key="MarksmanRound">Гвинтівкові:</System:String>
     <System:String x:Key="RifleRound">Штурмові:</System:String>
- <System:String x:Key="ShotgunRound">Для Дробовиків:</System:String>
- <System:String x:Key="PistolRound">Пістолетні:</System:String>
- <!--Currency stack Section-->
+    <System:String x:Key="ShotgunRound">Для Дробовиків:</System:String>
+    <System:String x:Key="PistolRound">Пістолетні:</System:String>
+    <System:String x:Key="LargeCaliberRound">Великокаліберні:</System:String>
+    <!--Currency stack Section-->
     <System:String x:Key="CurrencyStack">Стак Валют</System:String>
  <System:String x:Key="DisableDefaultCashStack">Дотримуватись дизайну EFT за замовчуванням</System:String>
  <System:String x:Key="Dollars">Долари:</System:String>
@@ -717,8 +718,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String xml:space="preserve" x:Key="RifleRound_TT">Змінює максимальну кількість патронів в одній клітинці.
 Для таких калібрів: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
  <System:String xml:space="preserve" x:Key="MarksmanRound_TT">Змінює максимальну кількість патронів в одній клітинці.
-Для таких калібрів: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
- <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Якщо увімкнено: Співвідношення доларів та євро до рубля буде 1 до 100.
+Для таких калібрів: 6.8x51 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">Змінює максимальну кількість патронів в одній клітинці.
+Для таких калібрів: .50Cal, 12.7x55, .338LM</System:String>
+    <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Якщо увімкнено: Співвідношення доларів та євро до рубля буде 1 до 100.
 Поля доларів та євро будуть відключені</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Виключає ключі у яких не звичайна кількість використання (2,5,10,20) не включаючи мічені кімнати
  Такі ключі як: Притулки від Рефа, Вихід із заводу, ящик від контейнера, пару ключів з вулиць тощо.</System:String>
@@ -771,10 +774,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">Перезаписує час страховки всім продавцям в секунди, це поле теж під ефектом інтервалу вище</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">За умовчанням страховка коштує дорожче з кожним рівнем продавця</System:String>
  <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Прибирає прихований таймер між квестами щоб вони стали доступними</System:String>
- <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Ця опція може викинути помилку якщо є модівські торговці, є два варіанти що робити в такому випадку:
- 1) Зробіть так щоб мод із торговцем завантажувався після SVM
- 2) Якщо мод з торговцем використовує Virtual's Custom Quest Loader, зробіть так що б він і мод торговця були вищими 
-за SVM, Може допомогти, інакше робіть 1 варіант для обох.</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Ця опція може викинути уваження та не запрацювати на модівськіх торговців.</System:String>
  <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">За відсутності деяких полів - може не запуститься сервер
 Дійте обережно</System:String>
  <System:String xml:space="preserve" x:Key="SafeExit_TT">Дозволяє вийти з гри через меню із збереженням хабару

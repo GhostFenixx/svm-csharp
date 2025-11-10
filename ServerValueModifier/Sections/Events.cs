@@ -26,6 +26,10 @@ namespace ServerValueModifier.Sections
             var botconfig = configServer.GetConfig<BotConfig>();
             string wavesfile = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
             JsonNode loadName = JsonNode.Parse(File.ReadAllText( Path.Combine(wavesfile, "Misc", "Waves.json")));//This is for more complex setups with guards
+            BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+            BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+            BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+            BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
 
             SeasonalEventConfig season = configServer.GetConfig<SeasonalEventConfig>();
             if (svmconfig.Raids.RaidEvents.Christmas && !svmconfig.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
@@ -65,8 +69,8 @@ namespace ServerValueModifier.Sections
                 //JsonNode loadName = JsonNode.Parse(File.ReadAllText("Waves.json"));//Hello Archangel, TODO full refactor so lacy's eyes won't burn seeing json usage. 
                 if (svmconfig.Raids.RaidEvents.IncludeStreetBosses)
                 {
-                    BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-                    BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+                    //BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+                    //BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                     kolontay.BossZone = locs.RezervBase.Base.OpenZones;
                     kaban.BossZone = locs.RezervBase.Base.OpenZones;
                     locs.RezervBase.Base.BossLocationSpawn.Add(kolontay);
@@ -77,8 +81,9 @@ namespace ServerValueModifier.Sections
             if (svmconfig.Raids.RaidEvents.BossesOnHealthResort)
             {
                 //JsonNode loadName = JsonNode.Parse(File.ReadAllText("Waves.json"));//TODO as well
-                BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 goons.BossZone = "ZoneSanatorium1,ZoneSanatorium2";
+                kaban.BossZone = "ZoneSanatorium1,ZoneSanatorium2";
+                kolontay.BossZone = "ZoneSanatorium1,ZoneSanatorium2";
                 if (svmconfig.Raids.RaidEvents.HealthResortIncludeGuards)
                 {
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerBully", "0"));
@@ -86,6 +91,10 @@ namespace ServerValueModifier.Sections
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossSanitar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "2"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKojaniy", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerKojaniy", "2"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossBully", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerBully", "4"));
+                    locs.Shoreline.Base.BossLocationSpawn.Add(goons);
+                    locs.Shoreline.Base.BossLocationSpawn.Add(kaban);
+                    locs.Shoreline.Base.BossLocationSpawn.Add(kolontay);
+                    locs.Shoreline.Base.BossLocationSpawn.Add(glukhar);
                 }
                 else
                 {
@@ -96,6 +105,7 @@ namespace ServerValueModifier.Sections
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossSanitar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossBoar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerKojaniy", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKolontay", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "0"));
+                    locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossGluhar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerGluharSecurity", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(goons);
                 }
             }
@@ -121,7 +131,7 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Raids.RaidEvents.GoonsFactory)
             {
-                BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+                //BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 goons.BossZone = "BotZone";
                 goons.BossChance = svmconfig.Raids.RaidEvents.GoonsFactoryChance;
                 locs.Factory4Day.Base.BossLocationSpawn.Add(goons);
@@ -129,7 +139,7 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Raids.RaidEvents.GlukharLabs)
             {
-                BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+               // BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 glukhar.BossZone = "BotZoneFloor1,BotZoneFloor2";
                 locs.Laboratory.Base.BossLocationSpawn.Add(glukhar);
             }

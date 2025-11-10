@@ -167,6 +167,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
     <!--Ammo Stack Section-->
     <System:String x:Key="AmmoStack">Амуниции за слот</System:String>
     <System:String x:Key="MarksmanRound">Винтовочные:</System:String>
+    <System:String x:Key="LargeCaliberRound">Крупнокалиберные:</System:String>
     <System:String x:Key="RifleRound">Штурмовые:</System:String>
  <System:String x:Key="ShotgunRound">Для Дробовиков:</System:String>
  <System:String x:Key="PistolRound">Пистолетные:</System:String>
@@ -726,8 +727,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String xml:space="preserve" x:Key="RifleRound_TT">Изменяет максимальное количество хранимых патронов в одной ячейке
 для таких калибров: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
  <System:String xml:space="preserve" x:Key="MarksmanRound_TT">Изменяет максимальное количество хранимых патронов в одной ячейке
-для таких калибров: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
- <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Если включено: Соотношение долларок и евро к рублю будет 1 к 100.
+для таких калибров: 6.8x51 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">Изменяет максимальное количество хранимых патронов в одной ячейке
+для таких калибров: .50Cal, 12.7x55, .338LM</System:String>
+    <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">Если включено: Соотношение долларок и евро к рублю будет 1 к 100.
 Поля долларов и евро будут отключены</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Исключает ключи у которых не обычное кол-во использований (2,5,10,20) не включая меченые комнаты
  Такие ключи как: Убежища от Рефа, Выход из завода, ящик от контейнера, пару ключей с улиц итд.</System:String>
@@ -780,10 +783,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">Перезаписывает время страховки всем торговцам в секунды, это поле тоже под эффектом интервала выше</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">По умолчанию страховка стоит дороже с каждым уровнем торговца</System:String>
  <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Убирает скрытый таймер между квестами что бы они стали доступными</System:String>
- <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Эта опция может выкинуть ошибку если есть модовские торговцы, Есть 2 варианта что делать в таком случае:
- 1) Сделайте так что бы мод с торговцем загружался после SVM
- 2) Если мод с торговцем использует Virtual's Custom Quest Loader, Сделайте так что бы он и мод торговца были 
-выше SVM, Может помочь, Иначе делайте 1 вариант для обоих.</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Эта опция может выкинуть предупреждение и не заработать на модовских торговцев</System:String>
  <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">При отсутствии некоторых полей - может не запустится сервер
 Действуйте осторожно</System:String>
  <System:String xml:space="preserve" x:Key="SafeExit_TT">Позволяет выйти из игры через меню с сохранением лута

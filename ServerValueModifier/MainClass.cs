@@ -31,7 +31,6 @@ namespace ServerValueModifier
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-
                 //A list of features that should run before `PerformPostDbLoadActions`
                 //Will make into a separate section later.
                 //bots section
@@ -241,7 +240,11 @@ namespace ServerValueModifier
             var suits = databaseService.GetCustomization();//Maybe i shouldn't call them here, TODO
             var traders = databaseService.GetTraders();
             var locales = databaseService.GetTables().Locales.Global;
-
+            if (traders["579dc571d53a0658a154fbec"].Suits is null) //Horrible temporary solution, will make it outside cycle. later, TODO
+            {
+                traders["579dc571d53a0658a154fbec"].Base.CustomizationSeller = true;
+                traders["579dc571d53a0658a154fbec"].Suits = new();
+            }
             Suit upperassort = _cloner.Clone(traders["5ac3b934156ae10c4430e83c"].Suits[1]);//Example we're using - Contractor BEAR Upper
             CustomizationItem? uppercustom = _cloner.Clone(suits["5d1f60ae86f7744bcc04998b"]);
             uppercustom.Id = upKitID;
@@ -251,7 +254,7 @@ namespace ServerValueModifier
             upperassort.SuiteId = upKitID;
             if (cfg.Services.ClothesAnySide)
             {
-                traders["5ac3b934156ae10c4430e83c"].Suits.Add(upperassort);
+                traders["579dc571d53a0658a154fbec"].Suits.Add(upperassort);
             }
             suits[upKitID] = uppercustom;
             //MongoId originallocale = 
@@ -280,7 +283,7 @@ namespace ServerValueModifier
             lowerassort.SuiteId = lowKitID;
             if (cfg.Services.ClothesAnySide)
             {
-                traders["5ac3b934156ae10c4430e83c"].Suits.Add(lowerassort);
+                traders["579dc571d53a0658a154fbec"].Suits.Add(lowerassort);
             }
             suits[lowKitID] = lowercustom;
 

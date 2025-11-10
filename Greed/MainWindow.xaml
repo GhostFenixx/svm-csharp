@@ -500,6 +500,11 @@
                                                 <TextBlock Text="{DynamicResource MarksmanRound}"/>
                                             </ui:NumberBox.Header>
                                         </ui:NumberBox>
+                                        <ui:NumberBox Value="{Binding Items.AmmoStacks.LargeCaliberRound}" Minimum="5" Maximum="800" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource LargeCaliberRound_TT}">
+                                            <ui:NumberBox.Header>
+                                                <TextBlock Text="{DynamicResource LargeCaliberRound}"/>
+                                            </ui:NumberBox.Header>
+                                        </ui:NumberBox>
                                     </StackPanel>
                                 </Expander>
 
@@ -890,6 +895,7 @@
                                     </ui:NumberBox>
                                     <CheckBox Content="{DynamicResource UnlockJaeger}" IsChecked="{Binding Traders.UnlockJaeger}"/>
                                     <CheckBox Content="{DynamicResource UnlockRef}" IsChecked="{Binding Traders.UnlockRef}"/>
+                                    <CheckBox Content="{DynamicResource RandomizeAssort}" IsChecked="{Binding Traders.RandomizeAssort}" ToolTip="{DynamicResource RandomizeAssort_TT}"/>
                                     <CheckBox Content="{DynamicResource FIRTrade}" IsChecked="{Binding Traders.FIRTrade}"/>
                                     <CheckBox Content="{DynamicResource AllQuestsAvailable}" ToolTip="{DynamicResource AllQuestsAvailable_TT}" Foreground="#FFFF3B3B"  IsChecked="{Binding Traders.AllQuestsAvailable}"/>
                                     <CheckBox Content="{DynamicResource RemoveTimeCondition}"  IsChecked="{Binding Traders.RemoveTimeCondition}" ToolTip="{DynamicResource RemoveTimeCondition_TT}"/>
@@ -3982,7 +3988,7 @@
             </Button>
             <ComboBox Name="Presets" Width="350" Height="30"  PreviewTextInput="TextValidationTextBox" VerticalAlignment="Center" IsEditable="True"/>
         </StackPanel>
-        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.0.1  Hotfix #2" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.0.2" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
 
     </Grid>
 </Window>

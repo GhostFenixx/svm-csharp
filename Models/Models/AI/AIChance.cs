@@ -2,8 +2,8 @@
 {
     public class AIChance
     {
-        public int KolontayStreets { get; set; } = 25;
-        public int KolontayGZ { get; set; } = 30;
+        public int KolontayStreets { get; set; } = 30;
+        public int KolontayGZ { get; set; } = 0;
         public bool ForcePartisan { get; set; }
         public bool DisableWeeklyBoss { get; set; }
         public int PartisanCustoms { get; set; } = 15;
@@ -12,13 +12,13 @@
         public int PartisanLighthouse { get; set; } = 30;
         public int Kaban { get; set; } = 50;
         public int TagillaNight { get; set; } = 30;
-        public int TrioLighthouse { get; set; } = 50;
-        public int TrioShoreline { get; set; } = 25;
+        public int TrioLighthouse { get; set; } = 20;
+        public int TrioShoreline { get; set; } = 20;
         public int TrioWoods { get; set; } = 20;
         public int Zryachiy { get; set; } = 100;
         public int CultistCustoms { get; set; } = 20;
         public int CultistShoreline { get; set; } = 15;
-        public int Trio { get; set; } = 18;
+        public int Trio { get; set; } = 20;
         public int RaiderLab { get; set; } = 45;
         public int RaiderReserve { get; set; } = 35;
         public int CultistFactory { get; set; } = 20;

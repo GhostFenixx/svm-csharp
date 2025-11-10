@@ -6,5 +6,6 @@
         public int RifleRound { get; set; } = 60;
         public int ShotgunRound { get; set; } = 20;
         public int PistolRound { get; set; } = 50;
+        public int LargeCaliberRound { get; set; } = 20;
     }
 }

@@ -792,7 +792,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String xml:space="preserve" x:Key="RifleRound_TT">设置单格的最大弹药堆叠数大小
 适用于以下口径：5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
     <System:String xml:space="preserve" x:Key="MarksmanRound_TT">设置单格的最大弹药堆叠数大小
-适用于以下口径：6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
+适用于以下口径：6.8x51 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">设置单格的最大弹药堆叠数大小
+适用于以下口径： .50Cal, 12.7x55, .338LM</System:String>
     <System:String x:Key="AvoidResidential_TT">TerraGroup 实验室生活区钥匙卡，默认有 2 次使用次数。</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">为了避免奇数使用次数(2,5,10,20)的钥匙，但不包括邪教房钥匙
  例如：竞技场藏身处钥匙、工厂出口钥匙、几个街道钥匙（Chek 15）、货物钥匙等。</System:String>

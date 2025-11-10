@@ -751,8 +751,10 @@ por celda para los siguientes calibres: 12x70, 20x70, 23x75</System:String>
  <System:String xml:space="preserve" x:Key="RifleRound_TT">Configura la cantidad máxima de apilado 
 por celda para los siguientes calibres: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
  <System:String xml:space="preserve" x:Key="MarksmanRound_TT">Configura la cantidad máxima de apilado 
-por celda para los siguientes calibres: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
- <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excluye las llaves que tienen un numero de usos no habitual (2,5,10,20) excluyendo las llaves marcadas.
+por celda para los siguientes calibres: 6.8x51 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">Configura la cantidad máxima de apilado 
+por celda para los siguientes calibres: .50Cal, 12.7x55, .338LM</System:String>
+    <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excluye las llaves que tienen un numero de usos no habitual (2,5,10,20) excluyendo las llaves marcadas.
  Tales como: Llaves de escondites de Ref, Llave de la salida de Factory, un par de llaves de streets (Chek 15), llave del cargamento, etc.</System:String>
     <System:String x:Key="IgnoreAccessKeycard_TT">Ignora el requisito de tarjeta de acceso</System:String>
     <System:String x:Key="AvoidSingleKeyCards_TT">Deshabilita "el uso" de tarjetas de un uso</System:String>

@@ -167,6 +167,7 @@ namespace ServerValueModifier.Sections
                     //Find all trader offers, sort them through currencies (RUB,USD,EUR,GPcoin,Lega)
                     //Then Adjust their amounts and restrictions
                     //If not falling under ID - it will count as offer using other items aka default = barter.
+                    Random rnd = new();
                     foreach (var scheme in traderid.Value.Assort.BarterScheme)
                     {
                         var barter = scheme.Value[0][0].Template;
@@ -183,12 +184,26 @@ namespace ServerValueModifier.Sections
                                     if (elem.Id == scheme.Key)//I don't remember why - but this is very important.
                                     {
                                         elem.Upd.StackObjectsCount *= svmcfg.Traders.CurrencyOffers;
-                                        if (elem.Upd.StackObjectsCount >= 999999 && elem.Upd.UnlimitedCount is not null)
+                                        if (elem.Upd.StackObjectsCount >= 999999 && elem.Upd.UnlimitedCount is not null && !svmcfg.Traders.RandomizeAssort)
                                         {
                                             elem.Upd.StackObjectsCount = 999999;
                                             elem.Upd.UnlimitedCount = true;
                                         }
-                                        elem.Upd.BuyRestrictionMax *= (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
+                                        else //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
+                                        {
+                                            elem.Upd.UnlimitedCount = false;
+                                            elem.Upd.StackObjectsCount = rnd.Next(480);
+                                        }
+                                            elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
+                                        //Safety guard in case something hit less than 1
+                                        if (elem.Upd.BuyRestrictionMax < 1)
+                                        {
+                                            elem.Upd.BuyRestrictionMax = 1;
+                                        }
+                                        if (elem.Upd.StackObjectsCount < 1 && !svmcfg.Traders.RandomizeAssort)
+                                        {
+                                            elem.Upd.StackObjectsCount = 1;
+                                        }
                                     }
                                 }
                                 break;
@@ -203,8 +218,21 @@ namespace ServerValueModifier.Sections
                                             elem.Upd.StackObjectsCount = 999999;
                                             elem.Upd.UnlimitedCount = true;
                                         }
+                                        else //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
+                                        {
+                                            elem.Upd.UnlimitedCount = false;
+                                            elem.Upd.StackObjectsCount = rnd.Next(480);
+                                        }
                                         elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.BarterRestrictions);
-
+                                        //Safety guard in case something hit less than 1
+                                        if (elem.Upd.BuyRestrictionMax < 1)
+                                        {
+                                            elem.Upd.BuyRestrictionMax = 1;
+                                        }
+                                        if (elem.Upd.StackObjectsCount < 1 && !svmcfg.Traders.RandomizeAssort)
+                                        {
+                                            elem.Upd.StackObjectsCount = 1;
+                                        }
                                     }
                                 }
                                 break;

@@ -28,11 +28,11 @@ namespace ServerValueModifier.Sections
             {
                 coreConfig.Features.ChatbotFeatures.EnabledBots["6723fd51c5924c57ce0ca01e"] = false;
             }
-            if (svmconfig.Custom.DisableSPTFriend) 
+            if (svmconfig.Custom.DisableSPTFriend)
             {
                 coreConfig.Features.ChatbotFeatures.EnabledBots["6723fd51c5924c57ce0ca01f"] = false;
             }
-            if (svmconfig.Custom.DisablePMCMessages) 
+            if (svmconfig.Custom.DisablePMCMessages)
             {
                 var chatConfig = configServer.GetConfig<PmcChatResponse>();
                 chatConfig.Victim.ResponseChancePercent = 0;
@@ -78,7 +78,6 @@ namespace ServerValueModifier.Sections
                             }
                             foreach (var result in idarray)
                             {
-
                                 variables[0] = result;
                                 IDChanger(variables, items);
                             }
@@ -104,43 +103,45 @@ namespace ServerValueModifier.Sections
             var traders = databaseService.GetTraders();
             foreach (string line in offers)
             {
-                if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':') && svmconfig.Custom.AddTraderAssort != "")
+                try
                 {
-                    string[] variables = line.Split(":");
-                    MongoId uid = new();
-                    variables[0] = variables[0] switch
+                    if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':') && svmconfig.Custom.AddTraderAssort != "")
                     {
-                        "Therapist" => "54cb57776803fa99248b456e",
-                        "Prapor" => "54cb50c76803fa8b248b4571",
-                        "Mechanic" => "5a7c2eca46aef81a7ca2145d",
-                        "Ragman" => "5ac3b934156ae10c4430e83c",
-                        "Jaeger" => "5c0647fdd443bc2504c2d371",
-                        "Peacekeeper" => "5935c25fb3acc3127c3d8cd9",
-                        "Ref" => "6617beeaa9cfa777ca915b7c",
-                        "Skier" => "58330581ace78e27b8b10cee",
-                        _ => variables[0]
-                    };
-                    variables[1] = variables[1] switch
-                    {
-                        "USD" => ItemTpl.MONEY_DOLLARS,
-                        "RUB" => ItemTpl.MONEY_ROUBLES,
-                        "EUR" => ItemTpl.MONEY_EUROS,
-                        "GP" => ItemTpl.MONEY_GP_COIN,
-                        _ => variables[1]
-                    };
-                    Item item = new()
-                    {
-                        Upd = new Upd
+                        string[] variables = line.Split(":");
+                        MongoId uid = new();
+                        variables[0] = variables[0] switch
                         {
-                            UnlimitedCount = true,
-                            StackObjectsCount = 99999
-                        },
-                        Id = uid,
-                        Template = variables[3],
-                        ParentId = "hideout",
-                        SlotId = "hideout"
-                    };
-                    List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
+                            "Therapist" => "54cb57776803fa99248b456e",
+                            "Prapor" => "54cb50c76803fa8b248b4571",
+                            "Mechanic" => "5a7c2eca46aef81a7ca2145d",
+                            "Ragman" => "5ac3b934156ae10c4430e83c",
+                            "Jaeger" => "5c0647fdd443bc2504c2d371",
+                            "Peacekeeper" => "5935c25fb3acc3127c3d8cd9",
+                            "Ref" => "6617beeaa9cfa777ca915b7c",
+                            "Skier" => "58330581ace78e27b8b10cee",
+                            _ => variables[0]
+                        };
+                        variables[1] = variables[1] switch
+                        {
+                            "USD" => ItemTpl.MONEY_DOLLARS,
+                            "RUB" => ItemTpl.MONEY_ROUBLES,
+                            "EUR" => ItemTpl.MONEY_EUROS,
+                            "GP" => ItemTpl.MONEY_GP_COIN,
+                            _ => variables[1]
+                        };
+                        Item item = new()
+                        {
+                            Upd = new Upd
+                            {
+                                UnlimitedCount = true,
+                                StackObjectsCount = 99999
+                            },
+                            Id = uid,
+                            Template = variables[3],
+                            ParentId = "hideout",
+                            SlotId = "hideout"
+                        };
+                        List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
                     {
                         new List<BarterScheme>
                         {
@@ -151,9 +152,14 @@ namespace ServerValueModifier.Sections
                             }
                         }
                     };
-                    traders[variables[0]].Assort.Items.Add(item);
-                    traders[variables[0]].Assort.BarterScheme.Add(uid, barterScheme);
-                    traders[variables[0]].Assort.LoyalLevelItems.Add(uid, Convert.ToInt32(variables[4]));
+                        traders[variables[0]].Assort.Items.Add(item);
+                        traders[variables[0]].Assort.BarterScheme.Add(uid, barterScheme);
+                        traders[variables[0]].Assort.LoyalLevelItems.Add(uid, Convert.ToInt32(variables[4]));
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("[SVM] Advanced Features - Add trader sort - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
                 }
             }
             if (svmconfig.Custom.FleaMultID != "" && svmconfig.Custom.FleaMultID.Length > 1)
@@ -178,7 +184,7 @@ namespace ServerValueModifier.Sections
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("[SVM] Advanced Features - Flea Market - Item's multipliers: Syntax error, read about the error below \n\n" + ex);
+                    logger.Error("[SVM] Advanced Features - Flea Market - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
                 }
             }
             //Blacklist, will rewrite it later
@@ -493,10 +499,8 @@ namespace ServerValueModifier.Sections
                     throw new InvalidOperationException($"Cannot create collection for abstract/interface type {targetType}");
                 }
             }
-
             return concreteType;
         }
-
         private static MemberInfo GetMember(object obj, string name)
         {
             var type = obj.GetType();
@@ -505,14 +509,12 @@ namespace ServerValueModifier.Sections
                 throw new MissingMemberException($"Member '{name}' not found in {type.Name}");
             return member;
         }
-
         private static void SetMemberValue(object obj, MemberInfo member, object value)
         {
             if (member is PropertyInfo pi) pi.SetValue(obj, value);
             else if (member is FieldInfo fi) fi.SetValue(obj, value);
             else throw new ArgumentException("Unsupported member type.");
         }
-
         private static object ConvertStringToType(string strValue, Type targetType)
         {
             if (targetType == typeof(string)) return strValue;
@@ -536,7 +538,6 @@ namespace ServerValueModifier.Sections
 
             throw new InvalidCastException($"Cannot convert string '{strValue}' to {underlying.FullName}");
         }
-
         private static object ApplyOperation(object oldValue, object newValue, string? operation)
         {
             if (operation == null || operation == "=")

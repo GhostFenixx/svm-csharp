@@ -14,6 +14,7 @@
         public double CurrencyOffers { get; set; } = 1;
         public double BarterRestrictions { get; set; } = 1;
         public double CurrencyRestrictions { get; set; } = 1;
+        public bool RandomizeAssort { get; set; }
         public bool UnlockQuestAssort { get; set; }
         public bool EnableTraders { get; set; }
         public bool FIRRestrictsQuests { get; set; }

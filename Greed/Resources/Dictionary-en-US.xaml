@@ -71,6 +71,23 @@ Everyone else who provided any kind of support to the project, whether bug repor
   Removed:
   Add Signal pistol to special slots - this exist by default now.
   Types in Repeatable quests - breaks profiles, will be removed until better times
+     
+  2.0.2 For SPT 4.0.2+
+  Added:
+  Separated field for high caliber ammo
+  WIP feature - Randomize Stock Assort
+  Reworked:
+  Updated Boss values for AI and Bosses section
+  Moved Scav/BP clothing to Fence
+  Fixed: 
+  Trader Stock limits below 1 may cause an error on server
+  If Preset is not present/null - it would cause the profile to not save after the raid
+  Traders > Assort stock size (Currency one), unintended extra multiplier
+  Vehicle extract on reserve not affected by Raid section changes
+  Resort event lacking certain bosses
+  Bitcoin time cycle was affected by production multiplier
+  Refreshed some locales and fixed russian FAQ trader assort entry
+ 
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
@@ -213,7 +230,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
     <!--Ammo Stack Section-->
  <System:String x:Key="AmmoStack">Ammo stacks</System:String>
  <System:String x:Key="MarksmanRound">Marksman Rifle Rounds:</System:String>
- <System:String x:Key="RifleRound">Assault Rifle Rounds:</System:String>
+    <System:String x:Key="LargeCaliberRound">Large  Caliber Rounds:</System:String>
+    <System:String x:Key="RifleRound">Assault Rifle Rounds:</System:String>
  <System:String x:Key="ShotgunRound">Shotgun Rounds:</System:String>
  <System:String x:Key="PistolRound">Pistol/SMG Rounds:</System:String>
  <!--Currency stack Section-->
@@ -271,6 +289,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="RemoveTimeCondition">Remove timer for new quests</System:String>
  <System:String x:Key="TradersLvl4">All traders are LV4</System:String>
  <System:String x:Key="FIRRestrictsQuests">No "Found in Raid" requirements in quests</System:String>
+ <System:String x:Key="RandomizeAssort">Randomize Stock Assort</System:String>
  <System:String x:Key="RemoveTradeLimits">Remove all trade limits</System:String>
  <System:String x:Key="QuestRedeemTime">Quest reward redeem time in hours:</System:String>
  <System:String x:Key="StockTime">New stock time in minutes:</System:String>
@@ -787,8 +806,10 @@ per cell for these calibers: 12x70, 20x70, 23x75</System:String>
  <System:String xml:space="preserve" x:Key="RifleRound_TT">Sets the maximum ammunition stack size 
 per cell for these calibers: 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
  <System:String xml:space="preserve" x:Key="MarksmanRound_TT">Sets the maximum ammunition stack size 
-per cell for these calibers: 6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
- <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excludes keys with non-standard use counts (e.g., 2, 5, 10, 20), such as Ref's Hideout keys, the Factory Exit key, certain Streets keys (e.g., Chek 15), the Cargo key, etc. 
+per cell for these calibers: 6.8x51, 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">Sets the maximum ammunition stack size 
+per cell for these calibers: .50Cal, 12.7x55, .338LM</System:String>
+    <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">Excludes keys with non-standard use counts (e.g., 2, 5, 10, 20), such as Ref's Hideout keys, the Factory Exit key, certain Streets keys (e.g., Chek 15), the Cargo key, etc. 
 Does not affect Marked Room keys.</System:String>
  <System:String x:Key="AvoidResidential_TT">TerraGroup Labs residential unit keycard, which has two uses by default.</System:String>
     <System:String x:Key="IgnoreAccessKeycard_TT">Labs Access keycard won't become infinite or would have multiple uses</System:String>
@@ -837,7 +858,10 @@ Not at all balanced and will increase the load on your PC.</System:String>
 The greater the value, the more expensive the items will be.</System:String>
  <System:String xml:space="preserve" x:Key="PriceMarkup_TT">Affects trader discount.
 A value of 100 means the items will be purchased by traders at full price; 1 means the lowest possible price.</System:String>
- <System:String x:Key="ClothesAnySide_TT">Allows you to purchase both USEC and BEAR apparel.</System:String>
+    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">WIP Feature: alters available stock size randomly up to 480
+Currently not affected by stock multiplier field above but doesn't interfere with restrictions
+In the future i plan to expand it to be affected by it on top of different random limit depending on item</System:String>
+    <System:String x:Key="ClothesAnySide_TT">Allows you to purchase both USEC and BEAR apparel.</System:String>
  <System:String x:Key="ClothesFree_TT">Removes cash requirements for purchasing apparel.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Removes quest, PMC level, and trader level requirements.</System:String>
     <System:String xml:space="preserve" x:Key="LightKeeperLeave_TT">This value always should be smaller than visit time
@@ -851,19 +875,15 @@ Insurance returns are still is affected by the interval above.</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">By default, insurance costs increase with higher trader levels.</System:String>
  <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Remember quests that show up only after 24 real-life hours have passed?
 Enable this to remove that time restriction.</System:String>
- <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">This feature can throw an error if you have a custom trader mod. 
-There are two ways of dealing with that:
- 1) Move the custom trader mod below SVM in the mod load order, or
- 2) If the mod in question uses Virtual's Custom Quest Loader, be sure they are both ABOVE SVM in 
-mod load order (if this fails, do step 1 for both)</System:String>
+ <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">This feature can throw a warning and may not take an effect on a custom trader mod.</System:String>
  <System:String xml:space="preserve"  x:Key="NoRunThrough_TT">Removes XP requirement for the 'Survived' tag.
 Effectively disables 'Run Through'.</System:String>
  <System:String xml:space="preserve"  x:Key="ChanceExtracts_TT">Chance-based exits will always be available.
 Such exits are:
  Streets: Courtyard, Primorsky Ave Taxi V-Ex
  Interchange: Power Station V-Ex
- Customs: Dorms V-Ex, Old Gas Station, Smuggler's Boat, ZB-1012
- Woords: RUAF Gate, ZB-014, ZB-016
+ Customs: Dorms V-Ex, Old Gas Station
+ Woods: RUAF Gate, ZB-014, ZB-016
  Shoreline: Pier Boat
  Laboratory: Parking Gate, Hangar Gate
  </System:String>

@@ -166,15 +166,15 @@ namespace ServerValueModifier.Sections
                         {
                             exits.ExfiltrationTime = svmconfig.Raids.Exfils.CarExtractTime;
                             exits.ExfiltrationTimePVE = svmconfig.Raids.Exfils.CarExtractTime;
-                            AdjustExit(names.Base.Name, exits, "Car");
+                            //AdjustExit(names.Base.Id, exits, "Car");
                         }
                         if (svmconfig.Raids.Exfils.CoopPaid && svmconfig.Raids.EnableCarCoop && exits.PassageRequirement == RequirementState.ScavCooperation)
                         {
-                            AdjustExit(names.Base.Name, exits, "Coop");
+                            AdjustExit(names.Base.Id, exits, "Coop");
                         }
                         if (svmconfig.Raids.Exfils.ExtendedExtracts)
                         {
-                            AdjustExit(names.Base.Name, exits, "Side");
+                            AdjustExit(names.Base.Id, exits, "Side");
                         }
                         if (svmconfig.Raids.Exfils.FreeCoop && svmconfig.Raids.EnableCarCoop && exits.PassageRequirement == RequirementState.ScavCooperation)
                         {
@@ -257,7 +257,7 @@ namespace ServerValueModifier.Sections
                         else FreeExit(exits);
                     }
                     break;
-                case "Customs":
+                case "bigmap":
                     if (type == "Side")
                     {
                         exits.EntryPoints = "Customs,Boiler Tanks";
@@ -280,7 +280,7 @@ namespace ServerValueModifier.Sections
                         else FreeExit(exits);
                     }
                     break;
-                case "Streets of Tarkov":
+                case "TarkovStreets":
                     if (type == "Side")
                     {
                         exits.EntryPoints = "E1_2,E6_1,E2_3,E3_4,E4_5,E5_6,E6_1";
@@ -349,7 +349,7 @@ namespace ServerValueModifier.Sections
                         else FreeExit(exits);
                     }
                     break;
-                case "Sandbox":
+                case "Sandbox" or "Sandbox_high":
                     if (type == "Side")
                     {
                         exits.EntryPoints = "west,east";
@@ -372,7 +372,7 @@ namespace ServerValueModifier.Sections
                         else FreeExit(exits);
                     }
                     break;
-                case "Reserve":
+                case "RezervBase":
                     if (type == "Coop")
                     {
                         if (svmconfig.Raids.Exfils.CoopPaidReserve != 0)

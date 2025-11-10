@@ -87,7 +87,7 @@ namespace ServerValueModifier.Sections
                     production.ProductionLimitCount = svmconfig.Hideout.MaxBitcoins;
                     production.ProductionTime = svmconfig.Hideout.BitcoinTime * 60;
                 }
-                if (production.Continuous is not null && production.ProductionTime >= 10)
+                if (production.Continuous == false && production.ProductionTime >= 10)
                 {
                     production.ProductionTime *= svmconfig.Hideout.HideoutProdMult;
                     if (production.ProductionTime < 1)

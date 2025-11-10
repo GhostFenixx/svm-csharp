@@ -754,8 +754,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String xml:space="preserve" x:Key="RifleRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
 5.45x39, 5.56x45, .300, .366, 7.62x39, 9x39</System:String>
  <System:String xml:space="preserve" x:Key="MarksmanRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
-6.8x51 7.62x51, 7.62x54R, 12.7x55, .338LM</System:String>
- <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">활성화 시 달러와 유로는 루블 스택의 1:100 비율로 조정됩니다.
+6.8x51 7.62x51, 7.62x54R</System:String>
+    <System:String xml:space="preserve" x:Key="LargeCaliberRound_TT">다음 구경의 탄약에 대해 칸당 최대 스택 크기를 설정합니다:
+.50Cal, 12.7x55, .338LM</System:String>
+    <System:String xml:space="preserve" x:Key="DisableDefaultCashStack_TT">활성화 시 달러와 유로는 루블 스택의 1:100 비율로 조정됩니다.
 달러와 유로 설정은 비활성화됩니다</System:String>
  <System:String x:Key="AvoidResidential_TT">기본적으로 2회 사용 가능한 테라그룹 연구소 주거 구역 키카드</System:String>
  <System:String xml:space="preserve" x:Key="AvoidOddKeys_TT">특별 표시된 방(마크방)을 제외하고 홀수 사용 횟수(2,5,10,20)를 가진 키는 제외
