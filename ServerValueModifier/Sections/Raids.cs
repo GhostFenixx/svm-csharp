@@ -180,7 +180,7 @@ namespace ServerValueModifier.Sections
                         {
                             FreeExit(exits);
                         }
-                        if (svmconfig.Raids.Exfils.ChanceExtracts && exits.Chance is not null)
+                        if (svmconfig.Raids.Exfils.ChanceExtracts && exits.Chance is not null && exits.Chance != 0)
                         {
                             exits.Chance = 100;
                             exits.ChancePVE = 100;
