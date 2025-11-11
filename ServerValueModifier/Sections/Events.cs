@@ -27,8 +27,8 @@ namespace ServerValueModifier.Sections
             string wavesfile = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
             JsonNode loadName = JsonNode.Parse(File.ReadAllText( Path.Combine(wavesfile, "Misc", "Waves.json")));//This is for more complex setups with guards
             BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-            BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-            BossLocationSpawn kolontay = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+            BossLocationSpawn kolontay  = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
+            BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
             BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
 
             SeasonalEventConfig season = configServer.GetConfig<SeasonalEventConfig>();
@@ -121,7 +121,7 @@ namespace ServerValueModifier.Sections
                 BossLocationSpawn cultists = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Cultists"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 cultists.BossZone = locs.Bigmap.Base.OpenZones;
                 cultists.BossChance = svmconfig.Raids.RaidEvents.CultistBossesChance;
-                locs.Bigmap.Base.BossLocationSpawn.Add(cultists);//Maybe i should short that, another TODO, heh.
+                locs.Bigmap.Base.BossLocationSpawn.Add(cultists);
                 cultists.BossZone = locs.Shoreline.Base.OpenZones;
                 locs.Shoreline.Base.BossLocationSpawn.Add(cultists);
                 cultists.BossZone = locs.Woods.Base.OpenZones;
@@ -131,7 +131,6 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Raids.RaidEvents.GoonsFactory)
             {
-                //BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 goons.BossZone = "BotZone";
                 goons.BossChance = svmconfig.Raids.RaidEvents.GoonsFactoryChance;
                 locs.Factory4Day.Base.BossLocationSpawn.Add(goons);
@@ -139,7 +138,6 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Raids.RaidEvents.GlukharLabs)
             {
-               // BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
                 glukhar.BossZone = "BotZoneFloor1,BotZoneFloor2";
                 locs.Laboratory.Base.BossLocationSpawn.Add(glukhar);
             }

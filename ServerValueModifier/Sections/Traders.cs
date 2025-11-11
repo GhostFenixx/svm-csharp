@@ -189,7 +189,7 @@ namespace ServerValueModifier.Sections
                                             elem.Upd.StackObjectsCount = 999999;
                                             elem.Upd.UnlimitedCount = true;
                                         }
-                                        else //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
+                                        else if(svmcfg.Traders.RandomizeAssort && elem.Upd.UnlimitedCount is not null) //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
                                         {
                                             elem.Upd.UnlimitedCount = false;
                                             elem.Upd.StackObjectsCount = rnd.Next(480);

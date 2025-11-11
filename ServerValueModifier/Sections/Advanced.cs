@@ -210,6 +210,10 @@ namespace ServerValueModifier.Sections
                 {
                     variables[i] = "Properties";
                 }
+                if (variables[i].Contains("_max_count"))
+                {
+                    variables[i] = "MaxCount";
+                }
             }
         }
         public void PriceChange(string[] variables)

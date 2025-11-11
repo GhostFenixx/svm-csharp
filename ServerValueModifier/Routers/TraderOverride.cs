@@ -38,7 +38,7 @@ namespace ServerValueModifier.Routers
             try//I really hope it won't override existing trader assort and only take an effect of the one active, maybe find a way to select the one with passed timer?
             {
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                if (svmcfg.Traders.RandomizeAssort)
+                if (svmcfg.Traders.EnableTraders && svmcfg.Traders.RandomizeAssort)
                 {
                     Dictionary<MongoId, Trader> traders = databaseService.GetTraders();
                     Random rnd = new();
