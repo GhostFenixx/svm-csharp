@@ -7,6 +7,7 @@ using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils.Cloners;
+using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.Sections
 {
@@ -22,11 +23,10 @@ namespace ServerValueModifier.Sections
             //Insurance section
             if (svmcfg.Services.EnableInsurance)
             {
-
-                insurance.ReturnChancePercent["54cb50c76803fa8b248b4571"] = svmcfg.Services.ReturnChancePrapor;
-                insurance.ReturnChancePercent["54cb57776803fa99248b456e"] = svmcfg.Services.ReturnChanceTherapist;
-                TraderInsurance? praporinsurance = traders["54cb50c76803fa8b248b4571"].Base.Insurance;
-                TraderInsurance? therapistinsurance = traders["54cb57776803fa99248b456e"].Base.Insurance;
+                insurance.ReturnChancePercent[TraderID.PRAPOR] = svmcfg.Services.ReturnChancePrapor;
+                insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
+                TraderInsurance? praporinsurance = traders[TraderID.PRAPOR].Base.Insurance;
+                TraderInsurance? therapistinsurance = traders[TraderID.THERAPIST].Base.Insurance;
                 praporinsurance.MaxStorageTime = svmcfg.Services.PraporStorageTime;
                 praporinsurance.MinReturnHour = svmcfg.Services.Prapor_Min;
                 praporinsurance.MaxReturnHour = svmcfg.Services.Prapor_Max;
@@ -43,14 +43,14 @@ namespace ServerValueModifier.Sections
                     insurance.ReturnTimeOverrideSeconds = svmcfg.Services.InsuranceTimeOverride;
                 }
                 int i = 0;
-                foreach (var level in traders["54cb57776803fa99248b456e"].Base.LoyaltyLevels)
+                foreach (var level in traders[TraderID.THERAPIST].Base.LoyaltyLevels)
                 {
                     level.InsurancePriceCoefficient = therapistlevels[i];
                     i++;
 
                 }
                 i = 0;
-                foreach (var level in traders["54cb50c76803fa8b248b4571"].Base.LoyaltyLevels)
+                foreach (var level in traders[TraderID.PRAPOR].Base.LoyaltyLevels)
                 {
                     level.InsurancePriceCoefficient = praporlevels[i];
                     i++;
@@ -74,17 +74,19 @@ namespace ServerValueModifier.Sections
 
             if (svmcfg.Services.ClothesFree || svmcfg.Services.ClothesLevelUnlock)
             {
-                foreach (var suit in traders["5ac3b934156ae10c4430e83c"].Suits)
+                foreach (var suit in traders[TraderID.RAGMAN].Suits)
                 {
                     if (svmcfg.Services.ClothesLevelUnlock)
                     {
                         suit.IsHiddenInPVE = false;
+                        if (suit.Requirements == null) continue;
                         suit.Requirements.LoyaltyLevel = 1;
                         suit.Requirements.ProfileLevel = 1;
                         suit.Requirements.Standing = 0;
                         suit.Requirements.PrestigeLevel = 0;
                         suit.Requirements.QuestRequirements = [];
                         suit.Requirements.AchievementRequirements = [];
+                        suit.Requirements.RequiredTid = new MongoId("");
                     }
                     if (svmcfg.Services.ClothesFree)
                     {
@@ -99,7 +101,7 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.Health.HealPrice.TrialLevels = svmcfg.Services.FreeHealLvl;
                 double[] therapistheallevels = [svmcfg.Services.TherapistLvl1, svmcfg.Services.TherapistLvl2, svmcfg.Services.TherapistLvl3, svmcfg.Services.TherapistLvl4];
                 int i = 0;
-                foreach (var level in traders["54cb57776803fa99248b456e"].Base.LoyaltyLevels)
+                foreach (var level in traders[TraderID.THERAPIST].Base.LoyaltyLevels)
                 {
                     level.HealPriceCoefficient = 100 * therapistheallevels[i];
                     i++;
@@ -117,7 +119,7 @@ namespace ServerValueModifier.Sections
                 repair.ApplyRandomizeDurabilityLoss = !svmcfg.Services.RepairBox.NoRandomRepair;
                 foreach (var trader in traders)
                 {
-                    if (trader.Key == "58330581ace78e27b8b10cee" || trader.Key == "54cb50c76803fa8b248b4571" || trader.Key == "5a7c2eca46aef81a7ca2145d") //5a7c2eca46aef81a7ca2145d
+                    if (trader.Key == TraderID.SKIER || trader.Key == TraderID.PRAPOR || trader.Key == TraderID.MECHANIC) //5a7c2eca46aef81a7ca2145d
                     {
                         int i = 0;
                         foreach (var level in traders[trader.Key].Base.LoyaltyLevels)

@@ -19,6 +19,7 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Xml;
 using static System.Net.WebRequestMethods;
+using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier
 {
@@ -240,12 +241,12 @@ namespace ServerValueModifier
             var suits = databaseService.GetCustomization();//Maybe i shouldn't call them here, TODO
             var traders = databaseService.GetTraders();
             var locales = databaseService.GetTables().Locales.Global;
-            if (traders["579dc571d53a0658a154fbec"].Suits is null) //Horrible temporary solution, will make it outside cycle. later, TODO
+            if (traders[TraderID.FENCE].Suits is null) //Horrible temporary solution, will make it outside cycle. later, TODO
             {
-                traders["579dc571d53a0658a154fbec"].Base.CustomizationSeller = true;
-                traders["579dc571d53a0658a154fbec"].Suits = new();
+                traders[TraderID.FENCE].Base.CustomizationSeller = true;
+                traders[TraderID.FENCE].Suits = new();
             }
-            Suit upperassort = _cloner.Clone(traders["5ac3b934156ae10c4430e83c"].Suits[1]);//Example we're using - Contractor BEAR Upper
+            Suit upperassort = _cloner.Clone(traders[TraderID.RAGMAN].Suits[1]);//Example we're using - Contractor BEAR Upper
             CustomizationItem? uppercustom = _cloner.Clone(suits["5d1f60ae86f7744bcc04998b"]);
             uppercustom.Id = upKitID;
             uppercustom.Properties.Body = body;
@@ -254,7 +255,7 @@ namespace ServerValueModifier
             upperassort.SuiteId = upKitID;
             if (cfg.Services.ClothesAnySide)
             {
-                traders["579dc571d53a0658a154fbec"].Suits.Add(upperassort);
+                traders[TraderID.FENCE].Suits.Add(upperassort);
             }
             suits[upKitID] = uppercustom;
             //MongoId originallocale = 
@@ -262,9 +263,18 @@ namespace ServerValueModifier
             {
                 lazyloadedValue.AddTransformer(lazyloadedLocaleData =>
                 {
-                    lazyloadedLocaleData.Add(upKitID + " Name", "Scav Apparel");
-                    lazyloadedLocaleData.Add(upKitID + " ShortName", "Scav");
-                    lazyloadedLocaleData.Add(upKitID + " Description", "SVM's Clothing");
+                    if (ApparelNames.LOCALES.TryGetValue(upKitID, out var locale))
+                    {
+                        lazyloadedLocaleData.Add(upKitID + " Name", locale.Name);
+                        lazyloadedLocaleData.Add(upKitID + " ShortName", locale.ShortName);
+                        lazyloadedLocaleData.Add(upKitID + " Description", locale.Description);
+                    }
+                    else
+                    {
+                        lazyloadedLocaleData.Add(upKitID + " Name", "Scav Apparel");
+                        lazyloadedLocaleData.Add(upKitID + " ShortName", "Scav");
+                        lazyloadedLocaleData.Add(upKitID + " Description", "SVM's Special");
+                    }
                     return lazyloadedLocaleData;
                 });
             }
@@ -275,7 +285,7 @@ namespace ServerValueModifier
             var traders = databaseService.GetTraders();
             var locales = databaseService.GetTables().Locales.Global;
 
-            Suit lowerassort = _cloner.Clone(traders["5ac3b934156ae10c4430e83c"].Suits[1]);//
+            Suit lowerassort = _cloner.Clone(traders[TraderID.RAGMAN].Suits[1]);//
             CustomizationItem? lowercustom = _cloner.Clone(suits["66043e047502eca33a08cad6"]);
             lowercustom.Id = lowKitID;
             lowercustom.Properties.Feet = feet;
@@ -283,7 +293,7 @@ namespace ServerValueModifier
             lowerassort.SuiteId = lowKitID;
             if (cfg.Services.ClothesAnySide)
             {
-                traders["579dc571d53a0658a154fbec"].Suits.Add(lowerassort);
+                traders[TraderID.FENCE].Suits.Add(lowerassort);
             }
             suits[lowKitID] = lowercustom;
 
@@ -291,17 +301,27 @@ namespace ServerValueModifier
             {
                 lazyloadedValue.AddTransformer(lazyloadedLocaleData =>
                 {
-                    lazyloadedLocaleData.Add(lowKitID + " Name", "Scav Apparel");
-                    lazyloadedLocaleData.Add(lowKitID + " ShortName", "Scav");
-                    lazyloadedLocaleData.Add(lowKitID + " Description", "SVM's Special");
+                    if (ApparelNames.LOCALES.TryGetValue(lowKitID, out var locale))
+                    {
+                        lazyloadedLocaleData.Add(lowKitID + " Name", locale.Name);
+                        lazyloadedLocaleData.Add(lowKitID + " ShortName", locale.ShortName);
+                        lazyloadedLocaleData.Add(lowKitID + " Description", locale.Description);
+                    }
+                    else
+                    {
+                        lazyloadedLocaleData.Add(lowKitID + " Name", "Scav Apparel");
+                        lazyloadedLocaleData.Add(lowKitID + " ShortName", "Scav");
+                        lazyloadedLocaleData.Add(lowKitID + " Description", "SVM's Special");
+                    }
+
                     return lazyloadedLocaleData;
                 });
             }
         }
+        
         private class Loader
         {
             public string CurrentlySelectedPreset { get; set; }
         }
-
     }
 }

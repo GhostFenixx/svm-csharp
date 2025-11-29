@@ -7,6 +7,7 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.Sections
 {
@@ -22,7 +23,7 @@ namespace ServerValueModifier.Sections
             Dictionary<MongoId, Quest> quests = databaseService.GetQuests();
             Dictionary<MongoId, Trader> traders = databaseService.GetTraders();
             //Need to move trader array outside the method
-            string[] traderArray = ["54cb50c76803fa8b248b4571", "54cb57776803fa99248b456e", "58330581ace78e27b8b10cee", "5935c25fb3acc3127c3d8cd9", "5a7c2eca46aef81a7ca2145d", "5ac3b934156ae10c4430e83c", "5c0647fdd443bc2504c2d371", "6617beeaa9cfa777ca915b7c", "579dc571d53a0658a154fbec"];
+            string[] traderArray = [TraderID.PRAPOR, TraderID.THERAPIST, TraderID.SKIER, TraderID.PEACEKEEPER, TraderID.MECHANIC, TraderID.RAGMAN, TraderID.JAEGER, TraderID.REF, TraderID.FENCE];
             Greed.Models.Trading.TraderMarkup traderMarkupList = svmcfg.Traders.TraderMarkup;
             Greed.Models.Trading.TraderSell sell = svmcfg.Traders.TraderSell;
             double[] sellarray = [sell.Prapor, sell.Therapist, sell.Skier, sell.Peacekeeper, sell.Mechanic, sell.Ragman, sell.Jaeger, sell.Ref];
@@ -45,7 +46,7 @@ namespace ServerValueModifier.Sections
                 //Fence stock time
                 foreach (UpdateTime test in traderConfig.UpdateTime)//Funny, i thought i'd get rid of this foreach.
                 {
-                    if (test.TraderId == "579dc571d53a0658a154fbec")
+                    if (test.TraderId == TraderID.FENCE)
                     {
                         test.Seconds.Min = svmcfg.Traders.Fence.StockTime_Min * 60;
                         test.Seconds.Max = svmcfg.Traders.Fence.StockTime_Max * 60;
@@ -67,12 +68,12 @@ namespace ServerValueModifier.Sections
             //Whether bought items from traders considered FIR
             traderConfig.PurchasesAreFoundInRaid = svmcfg.Traders.FIRTrade;
             //Trader access by default
-            traders["5c0647fdd443bc2504c2d371"].Base.UnlockedByDefault = svmcfg.Traders.UnlockJaeger;
-            traders["6617beeaa9cfa777ca915b7c"].Base.UnlockedByDefault = svmcfg.Traders.UnlockRef;
+            traders[TraderID.JAEGER].Base.UnlockedByDefault = svmcfg.Traders.UnlockJaeger;
+            traders[TraderID.REF].Base.UnlockedByDefault = svmcfg.Traders.UnlockRef;
             int i = 0;//Horrible solution, simple enumerator to avoid using dictionary, will change later, aka TODO.
             foreach (var trader in traderArray)
             {
-                if (traderArray[i] != "579dc571d53a0658a154fbec")//Bandaid, added it to fit markup yet there is no assort to edit for fence
+                if (traderArray[i] != TraderID.FENCE.ToString())//Bandaid, added it to fit markup yet there is no assort to edit for fence
                 {
                     foreach (var assort in traders[trader].Assort.BarterScheme)
                     {
@@ -151,7 +152,7 @@ namespace ServerValueModifier.Sections
             //Remove quest requirements, adjust amount of items and how many you can buy from traders -- Very smooth comparing to JS.
             foreach (var traderid in traders)
             {
-                if (traderid.Key != "638f541a29ffd1183d187f57" && traderid.Key != "579dc571d53a0658a154fbec")
+                if (traderid.Key != TraderID.LIGHTHOUSEKEEPER && traderid.Key != TraderID.FENCE)
                 {
                     try
                     {
@@ -181,7 +182,7 @@ namespace ServerValueModifier.Sections
                             case "6656560053eaaa7a23349c86":
                                 foreach (Item elem in traderid.Value.Assort.Items)
                                 {
-                                    if (elem.Id == scheme.Key)//I don't remember why - but this is very important.
+                                    if (elem.Id == scheme.Key)//I don't remember why - but this is very important. [mfw coconut.jpg -bushtail]
                                     {
                                         elem.Upd.StackObjectsCount *= svmcfg.Traders.CurrencyOffers;
                                         if (elem.Upd.StackObjectsCount >= 999999 && elem.Upd.UnlimitedCount is not null && !svmcfg.Traders.RandomizeAssort)
