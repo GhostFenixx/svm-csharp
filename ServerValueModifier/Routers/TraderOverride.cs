@@ -18,6 +18,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.Routers
 {
@@ -45,7 +46,7 @@ namespace ServerValueModifier.Routers
                     foreach (var scheme in trader.Assort.BarterScheme)
                     {
                         var barter = scheme.Value[0][0].Template;
-                        if (trader.Base.Id != "638f541a29ffd1183d187f57" && trader.Base.Id != "579dc571d53a0658a154fbec" && trader.Assort is not null)//excessive check?
+                        if (trader.Base.Id != TraderID.LIGHTHOUSEKEEPER && trader.Base.Id != TraderID.FENCE && trader.Assort is not null)//excessive check?
                         {
                             foreach (Item elem in trader.Assort.Items)
                             {
