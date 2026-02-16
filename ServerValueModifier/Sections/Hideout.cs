@@ -18,6 +18,7 @@ namespace ServerValueModifier.Sections
         {
             HideoutConfig hideoutConfig = configServer.GetConfig<HideoutConfig>();
             HideoutSettingsBase hideoutDB = databaseService.GetHideout().Settings;
+            Prestige prestige = databaseService.GetTemplates().Prestige;
             Globals globals = databaseService.GetGlobals();
             SPTarkov.Server.Core.Models.Spt.Hideout.Hideout hideout = databaseService.GetHideout();
             hideoutDB.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
@@ -163,6 +164,11 @@ namespace ServerValueModifier.Sections
             globals.Configuration.Health.Effects.Regeneration.Energy = svmconfig.Hideout.Regeneration.EnergyRegen;
             globals.Configuration.Health.Effects.Regeneration.Hydration = svmconfig.Hideout.Regeneration.HydrationRegen;
 
+            //Prestige
+            PrestigeEdit(prestige.Elements[0].TransferConfigs, svmconfig.Hideout.FirstPrestige.Height, svmconfig.Hideout.FirstPrestige.Skills, svmconfig.Hideout.FirstPrestige.Mastery, svmconfig.Hideout.FirstPrestige.Filter);
+            PrestigeEdit(prestige.Elements[1].TransferConfigs, svmconfig.Hideout.SecondPrestige.Height, svmconfig.Hideout.SecondPrestige.Skills, svmconfig.Hideout.SecondPrestige.Mastery, svmconfig.Hideout.SecondPrestige.Filter);
+            PrestigeEdit(prestige.Elements[2].TransferConfigs, svmconfig.Hideout.ThirdPrestige.Height, svmconfig.Hideout.ThirdPrestige.Skills, svmconfig.Hideout.ThirdPrestige.Mastery, svmconfig.Hideout.ThirdPrestige.Filter);
+            PrestigeEdit(prestige.Elements[3].TransferConfigs, svmconfig.Hideout.FourthPrestige.Height, svmconfig.Hideout.FourthPrestige.Skills, svmconfig.Hideout.FourthPrestige.Mastery, svmconfig.Hideout.FourthPrestige.Filter);
             //Removing passive bonuses for Health/Energy/Hydration regeneration.
             if (svmconfig.Hideout.RemoveConstructionsRequirements || svmconfig.Hideout.RemoveSkillRequirements || svmconfig.Hideout.RemoveTraderLevelRequirements || svmconfig.Hideout.RemoveConstructionsFIRRequirements)
             {   
@@ -187,6 +193,16 @@ namespace ServerValueModifier.Sections
                         }
                     }
                 }
+            }
+        }
+        public void PrestigeEdit(TransferConfigs edit, int height, int skills, int mastery, bool filter)
+        {
+            edit.StashConfig.XCellCount = height;
+            edit.SkillConfig.TransferMultiplier = skills;
+            edit.MasteringConfig.TransferMultiplier = mastery;
+            if (filter)
+            {
+                edit.StashConfig.Filters.IncludedItems = [];
             }
         }
     }

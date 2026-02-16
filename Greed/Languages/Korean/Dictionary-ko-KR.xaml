@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
- <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
+    <BitmapImage x:Key="HealthImage" UriSource="pack://application:,,,/Languages/Korean/HealthKO.png" />
+    <BitmapImage x:Key="PMCIcon" UriSource="pack://application:,,,/Resources/Icons/icon_usec.png" />
+    <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
 Independent Application made by GhostFenixx
 Using VS 2022 Tools on .NET 9 + ModernWPF Library By Kinnara
 https://github.com/Kinnara/ModernWpf

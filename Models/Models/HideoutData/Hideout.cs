@@ -1,4 +1,6 @@
-﻿namespace Greed.Models.HideoutData
+﻿using System.Runtime.ExceptionServices;
+
+namespace Greed.Models.HideoutData
 {
     public class Hideout
     {
@@ -24,11 +26,42 @@
         public bool RemoveTraderLevelRequirements { get; set; }
         public bool EnableHideout { get; set; }
         public double FuelConsumptionRate { get; set; } = 1;
-
+        public Prestige FirstPrestige { get; set; }
+        public Prestige SecondPrestige { get; set; }
+        public Prestige ThirdPrestige { get; set; }
+        public Prestige FourthPrestige { get; set; }
         public Hideout()
         {
             Stash = new Stash();
             Regeneration = new Regeneration();
+            FirstPrestige = new Prestige()
+            {
+                Height = 3,
+                Skills = 5,
+                Mastery = 5,
+                Filter = false
+            };
+            SecondPrestige = new Prestige()
+            {
+                Height = 4,
+                Skills = 10,
+                Mastery = 10,
+                Filter = false
+            };
+            ThirdPrestige = new Prestige()
+            {
+                Height = 5,
+                Skills = 15,
+                Mastery = 15,
+                Filter = false
+            };
+            FourthPrestige = new Prestige()
+            {
+                Height = 6,
+                Skills = 20,
+                Mastery = 20,
+                Filter = false
+            };
         }
     }
 }

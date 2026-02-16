@@ -1,0 +1,143 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Scav"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Scav.EnableScav}">
+        <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="410"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Expander>
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        </Expander.Header>
+                        <StackPanel Margin="10">
+                            <ui:NumberBox Value="{Binding Scav.ScavTimer}" Style="{StaticResource FlatsSmall}" Maximum="14400" Minimum="1" >
+                                <ui:NumberBox.Header>
+                                    <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource ScavTimer_TT}" Text="{DynamicResource ScavTimer}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding Scav.CarBaseStanding}" Style="{StaticResource Mults}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource CarBaseStanding}" Cursor=""/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+
+                            <CheckBox Content="{DynamicResource ScavLab}" IsChecked="{Binding Scav.ScavLab}"/>
+                            <CheckBox Content="{DynamicResource HostileScavs}" x:Name="HostileScav" IsChecked="{Binding Scav.HostileScavs}" Click="HostilitySwitchers"/>
+                            <CheckBox Content="{DynamicResource FriendlyScavs}" x:Name="FriendlyScav" IsChecked="{Binding Scav.FriendlyScavs}" Click="FriendlySwitchers"/>
+                            <CheckBox Content="{DynamicResource HostileBosses}" x:Name="HostileBoss" IsChecked="{Binding Scav.HostileBosses}" Click="FriendlyBossSwitchers"/>
+                            <CheckBox Content="{DynamicResource FriendlyBosses}" x:Name="FriendlyBoss" IsChecked="{Binding Scav.FriendlyBosses}" Click="HostilityBossSwitchers"/>
+                            <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
+                        </StackPanel>
+                    </Expander>
+                    <Expander>
+                        <Expander.Header>
+                            <DockPanel>
+                                <TextBlock Style="{StaticResource TabText}" ToolTip="{DynamicResource ScavPockets_TT}" Text="{DynamicResource SCAVPockets}" Foreground="#FFFFA73B" VerticalAlignment="Center" FontSize="20"/>
+                                <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Scav.ScavCustomPockets}"/>
+                            </DockPanel>
+                        </Expander.Header>
+                <StackPanel Margin="10" IsEnabled="{Binding Scav.ScavCustomPockets}">
+
+                            <DockPanel Margin="5,5,0,5">
+                                <TextBlock Text="{DynamicResource FirstCell}" Width="110" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.FirstWidth}" Maximum="20" Width="100">
+                                    <ui:NumberBox.Header>
+                                        <TextBlock Text="{DynamicResource Width}" HorizontalAlignment="Center"/>
+                                    </ui:NumberBox.Header>
+                                </ui:NumberBox>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.FirstHeight}" Maximum="6"  Width="100">
+                                    <ui:NumberBox.Header>
+                                        <TextBlock Text="{DynamicResource Height}" HorizontalAlignment="Center"/>
+                                    </ui:NumberBox.Header>
+                                </ui:NumberBox>
+                            </DockPanel>
+                            <DockPanel Margin="5,5,0,5" Height="35">
+                                <TextBlock Text="{DynamicResource SecondCell}" Width="110" VerticalAlignment="Center"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.SecondWidth}"  Maximum="20" Width="100"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.SecondHeight}"  Maximum="6" Width="100"/>
+                            </DockPanel>
+                            <DockPanel Margin="5,5,0,5" Height="35">
+                                <TextBlock Text="{DynamicResource ThirdCell}" Width="110" VerticalAlignment="Center"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.ThirdWidth}" Maximum="20" Width="100"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.ThirdHeight}" Maximum="6" Width="100"/>
+                            </DockPanel>
+                            <DockPanel Margin="5,5,0,5" Height="35">
+                                <TextBlock Text="{DynamicResource FourthCell}" Width="110" VerticalAlignment="Center"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.FourthWidth}" Maximum="20" Width="100"/>
+                                <ui:NumberBox Value="{Binding Scav.SCAVPockets.FourthHeight}" Maximum="6" Width="100"/>
+                            </DockPanel>
+                            <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
+                        </StackPanel>
+                    </Expander>
+                    <Expander>
+                        <Expander.Header>
+                            <DockPanel>
+                                <TextBlock Style="{StaticResource TabText}" Foreground="White" Text="{DynamicResource ScavStats}" VerticalAlignment="Center" FontSize="20"/>
+                                <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Scav.EnableStats}"/>
+                            </DockPanel>
+                        </Expander.Header>
+                <StackPanel Margin="5" IsEnabled="{Binding Scav.EnableStats}">
+                            <DockPanel>
+                                <ui:NumberBox  Value="{Binding Scav.ScavStats.MaxEnergy}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                                    <ui:NumberBox.Header>
+                                        <TextBlock Text="{DynamicResource MaxEnergy}"/>
+                                    </ui:NumberBox.Header>
+                                </ui:NumberBox>
+                                <ui:NumberBox  Value="{Binding Scav.ScavStats.MaxHydration}" Style="{StaticResource FlatsSmall}">
+                                    <ui:NumberBox.Header>
+                                        <TextBlock Text="{DynamicResource MaxHydration}"/>
+                                    </ui:NumberBox.Header>
+                                </ui:NumberBox>
+                            </DockPanel>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" ToolTip="{DynamicResource ScavHealth_TT}" Text="{DynamicResource SCAVHealth}" VerticalAlignment="Center" Foreground="#FFFFA73B" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Scav.EnableScavHealth}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <Grid IsEnabled="{Binding Scav.EnableScavHealth}">
+                    <Image  Visibility="Visible" Opacity="1" Width="480" Height="480" Source="{DynamicResource HealthImage}" Stretch="Fill"/>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="180,240,184,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Stomach}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="14,240,350,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.RightArm}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="180,160,184,288">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Chest}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="64,400,300,46">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.RightLeg}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="293,400,71,46">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.LeftLeg}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="345,240,19,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.LeftArm}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="304,60,60,390">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Scav.Health.Head}"/>
+                    </DockPanel>
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

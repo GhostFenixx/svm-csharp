@@ -48,6 +48,7 @@ namespace ServerValueModifier.Sections
             //Main cycle that goes once in items.json
             foreach (TemplateItem basetemplate in items.Values)
             {
+                if((svmconfig.Items.RemoveRaidRestr && (basetemplate.Parent == "57864a3d24597754843f8721"  || basetemplate.Parent == ""))) //Shitty attempt to fix BSG insurance filters.
                 //Add Signal Pistol to PMC's Standard/Unheard/CSM's Custom special slots
                 if (basetemplate.Id == "a8edfb0bce53d103d3f62b9b" || basetemplate.Id == ItemTpl.POCKETS_1X4_SPECIAL || basetemplate.Id == ItemTpl.POCKETS_1X4_TUE)
                 {

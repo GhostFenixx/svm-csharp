@@ -1,0 +1,302 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Bots"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Bots.EnableBots}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="460"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsSpawnChance}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource DisableWeeklyBoss}" IsChecked="{Binding Bots.AIChance.DisableWeeklyBoss}"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Sanitar}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Sanitar}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Reshala}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reshala}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.Shturman}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shturman}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.Rogue}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Rogues}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Zryachiy}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Zryachiy}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Kaban}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Kaban}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.Glukhar}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Glukhar}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Killa}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Killa}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource Kollontay}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.KolontayGZ}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource GroundZeroHard}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.KolontayStreets}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Streets}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource Partisan}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <CheckBox Content="{DynamicResource ForcePartisan}" IsChecked="{Binding Bots.AIChance.ForcePartisan}" ToolTip="{DynamicResource ForcePartisan_TT}"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.PartisanShoreline}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shoreline}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.PartisanLighthouse}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lighthouse}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.PartisanWoods}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.PartisanCustoms}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource Tagilla}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.Tagilla}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource FactoryDay}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.TagillaNight}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource FactoryNight}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text= "{DynamicResource Raiders}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.RaiderLab}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lab}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.RaiderReserve}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reserve}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource Cultist}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.CultistFactory}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource FactoryNight}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.CultistWoods}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.CultistCustoms}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.CultistShoreline}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shoreline}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.CultistGroundZero}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource GroundZero}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource Goons}" HorizontalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.TrioLighthouse}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lighthouse}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.AIChance.TrioWoods}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.Trio}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Bots.AIChance.TrioShoreline}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shoreline}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsArmorDurab}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10" HorizontalAlignment="Left">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource SCAVAI}" Width="180" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox Value="{Binding Bots.SCAV.ArmorMin, UpdateSourceTrigger=PropertyChanged, ValidatesOnDataErrors=True, ValidatesOnExceptions=True}"  Maximum="{Binding Bots.SCAV.ArmorMax}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.SCAV.ArmorMax}" Minimum="{Binding Bots.SCAV.ArmorMin}" Maximum="100" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource SCAVSniper}" TextWrapping="Wrap" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Marksman.ArmorMin}"  Maximum="{Binding Bots.Marksman.ArmorMax}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Marksman.ArmorMax}"  Minimum="{Binding Bots.Marksman.ArmorMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Raiders}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Raider.ArmorMin}"   Maximum="{Binding Bots.Raider.ArmorMax}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Raider.ArmorMax}"   Minimum="{Binding Bots.Raider.ArmorMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Rogues}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Rogue.ArmorMin}"  Maximum="{Binding Bots.Rogue.ArmorMax}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Rogue.ArmorMax}"  Minimum="{Binding Bots.Rogue.ArmorMin}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource PMCAI}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.PMC.ArmorMin}" Maximum="{Binding Bots.PMC.ArmorMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.PMC.ArmorMax}" Minimum="{Binding Bots.PMC.ArmorMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Bosses}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Boss.ArmorMin}" Maximum="{Binding Bots.Boss.ArmorMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Boss.ArmorMax}"  Minimum="{Binding Bots.Boss.ArmorMin}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Followers}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Follower.ArmorMin}" Maximum="{Binding Bots.Follower.ArmorMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Follower.ArmorMax}"  Minimum="{Binding Bots.Follower.ArmorMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsWeaponDurab}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10" HorizontalAlignment="Left">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource SCAVAI}" Width="180" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox Value="{Binding Bots.SCAV.WeaponMin}"  Maximum="{Binding Bots.SCAV.WeaponMax}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Bots.SCAV.WeaponMax}" Minimum="{Binding Bots.SCAV.WeaponMin}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource SCAVSniper}" TextWrapping="Wrap" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Marksman.WeaponMin}"  Maximum="{Binding Bots.Marksman.WeaponMax}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Marksman.WeaponMax}"  Minimum="{Binding Bots.Marksman.WeaponMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Raiders}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Raider.WeaponMin}"   Maximum="{Binding Bots.Raider.WeaponMax}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Raider.WeaponMax}"   Minimum="{Binding Bots.Raider.WeaponMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Rogues}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Rogue.WeaponMin}"  Maximum="{Binding Bots.Rogue.WeaponMax}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Rogue.WeaponMax}"  Minimum="{Binding Bots.Rogue.WeaponMin}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource PMCAI}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.PMC.WeaponMin}" Maximum="{Binding Bots.PMC.WeaponMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.PMC.WeaponMax}" Minimum="{Binding Bots.PMC.WeaponMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Bosses}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Boss.WeaponMin}" Maximum="{Binding Bots.Boss.WeaponMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Boss.WeaponMax}"  Minimum="{Binding Bots.Boss.WeaponMin}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Followers}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Bots.Follower.WeaponMin}" Maximum="{Binding Bots.Follower.WeaponMax}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Bots.Follower.WeaponMax}"  Minimum="{Binding Bots.Follower.WeaponMin}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

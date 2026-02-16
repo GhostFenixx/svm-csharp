@@ -1,4 +1,10 @@
 ﻿using ModernWpf.Controls;
+using System.Globalization;
+using System.Text.RegularExpressions;
+using System.Windows;
+using System.Windows.Controls;
+using System.Windows.Data;
+using System.Windows.Input;
 
 
 namespace Greed
@@ -101,7 +107,49 @@ namespace Greed
             return null;
         }
     }
+    public static class NumberBoxClampBehavior
+    {
+        public static readonly DependencyProperty EnableClampProperty =
+            DependencyProperty.RegisterAttached(
+                "EnableClamp",
+                typeof(bool),
+                typeof(NumberBoxClampBehavior),
+                new PropertyMetadata(false, OnEnableClampChanged));
 
+        public static void SetEnableClamp(DependencyObject obj, bool value)
+            => obj.SetValue(EnableClampProperty, value);
+
+        public static bool GetEnableClamp(DependencyObject obj)
+            => (bool)obj.GetValue(EnableClampProperty);
+
+        private static void OnEnableClampChanged(
+            DependencyObject d,
+            DependencyPropertyChangedEventArgs e)
+        {
+            if (d is NumberBox nb)
+            {
+                nb.ValueChanged -= OnValueChanged;
+
+                if ((bool)e.NewValue)
+                    nb.ValueChanged += OnValueChanged;
+            }
+        }
+
+        private static void OnValueChanged(
+            NumberBox sender,
+            NumberBoxValueChangedEventArgs args)
+        {
+            if (double.IsNaN(sender.Value))
+                return;
+
+            double value = sender.Value;
+
+            if (value < sender.Minimum)
+                sender.Value = sender.Minimum;
+            else if (value > sender.Maximum)
+                sender.Value = sender.Maximum;
+        }
+    }
 
 }
 

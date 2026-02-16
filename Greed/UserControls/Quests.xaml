@@ -1,0 +1,471 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Quests"
+             mc:Ignorable="d">
+
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Quests.EnableQuests}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="920"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock ToolTip="{DynamicResource QuestSwitch_TT}" Foreground="#FFFF3B3B" Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" FontSize="20"/>
+                        <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Quests.EnableQuestsMisc}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="10" IsEnabled="{Binding Quests.EnableQuestsMisc}">
+                    <CheckBox Content="{DynamicResource QuestRepToZero}" IsChecked="{Binding Quests.QuestRepToZero}"/>
+                    <ui:NumberBox Value="{Binding Quests.QuestCostMult}"  Style="{StaticResource Mults}" HorizontalAlignment="Left" Width="300" Margin="0,0,40,0">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource QuestCostMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource DailyQuests}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.Lifespan}" HorizontalAlignment="Left" Width="300" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLifespan}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.QuestAmount}" Maximum="20" Width="300" HorizontalAlignment="Left" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource AmountofQuests}" HorizontalAlignment="Left"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+
+                    <!--<StackPanel>
+                                        <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                                        <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.DailyQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
+                                            <ComboBoxItem Content="{DynamicResource Elimination}"/>
+                                            <ComboBoxItem Content="{DynamicResource Completion}"/>
+                                            <ComboBoxItem Content="{DynamicResource Exploration}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompExpl}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
+                                        </ComboBox>
+                                    </StackPanel>-->
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLevel}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.Reroll}" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Width="300">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reroll}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinKills}" Width="320" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.LR1.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR1}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.LR2.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR2}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.DailyQuests.LR3.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR3}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxKills}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MaxKills}" Minimum="{Binding Quests.DailyQuests.LR1.MinKills}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MaxKills}" Minimum="{Binding Quests.DailyQuests.LR2.MinKills}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MaxKills}" Minimum="{Binding Quests.DailyQuests.LR3.MinKills}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinItems}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxItems}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MaxItems}" Minimum="{Binding Quests.DailyQuests.LR1.MinItems}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MaxItems}" Minimum="{Binding Quests.DailyQuests.LR2.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MaxItems}" Minimum="{Binding Quests.DailyQuests.LR3.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MaxExtracts}" Minimum="{Binding Quests.DailyQuests.LR1.MinExtracts}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MaxExtracts}" Minimum="{Binding Quests.DailyQuests.LR2.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MaxExtracts}" Minimum="{Binding Quests.DailyQuests.LR3.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR1.MaxSpecExits}" Minimum="{Binding Quests.DailyQuests.LR1.MinSpecExits}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR2.MaxSpecExits}" Minimum="{Binding Quests.DailyQuests.LR2.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.DailyQuests.LR3.MaxSpecExits}" Minimum="{Binding Quests.DailyQuests.LR3.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <TextBlock Foreground="#FF9F0ACC" Text="{DynamicResource RewardScale}" HorizontalAlignment="Left" Margin="275,10,0,10"/>
+                    <DockPanel>
+                        <StackPanel Margin="5,0,40,0">
+                            <TextBlock  Text="{DynamicResource Levels}" Margin="0,0,0,5"/>
+                            <TextBox  Text="{Binding Quests.DailyQuests.Levels}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Experience}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.Experience}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="5,0,40,0">
+                            <TextBlock Text="{DynamicResource RoublesOrDefault}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.Roubles}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource GPCoin}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.GPcoins}"  PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="5,0,40,0">
+                            <TextBlock Text="{DynamicResource ItemsReward}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.ItemsReward}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Reputation}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.Reputation}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="5,0,40,0">
+                            <TextBlock Text="{DynamicResource SkillChance}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.SkillChance}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource SkillPoint}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.DailyQuests.SkillPoint}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource WeeklyQuests}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.Lifespan}" HorizontalAlignment="Left" Width="300" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLifespan}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.QuestAmount}" Maximum="20" Width="300" HorizontalAlignment="Left" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource AmountofQuests}" HorizontalAlignment="Left"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <!--<StackPanel>
+                                        <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                                        <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.WeeklyQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
+                                            <ComboBoxItem Content="{DynamicResource Elimination}"/>
+                                            <ComboBoxItem Content="{DynamicResource Completion}"/>
+                                            <ComboBoxItem Content="{DynamicResource Exploration}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompExpl}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
+                                        </ComboBox>
+                                    </StackPanel>-->
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLevel}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.Reroll}" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Width="300">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reroll}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinKills}" Width="320" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.LR1.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR1}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.LR2.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR2}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.WeeklyQuests.LR3.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR3}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxKills}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MaxKills}" Minimum="{Binding Quests.WeeklyQuests.LR1.MinKills}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MaxKills}" Minimum="{Binding Quests.WeeklyQuests.LR2.MinKills}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MaxKills}" Minimum="{Binding Quests.WeeklyQuests.LR3.MinKills}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinItems}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxItems}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MaxItems}" Minimum="{Binding Quests.WeeklyQuests.LR1.MinItems}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MaxItems}" Minimum="{Binding Quests.WeeklyQuests.LR2.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MaxItems}" Minimum="{Binding Quests.WeeklyQuests.LR3.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MaxExtracts}" Minimum="{Binding Quests.WeeklyQuests.LR1.MinExtracts}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MaxExtracts}" Minimum="{Binding Quests.WeeklyQuests.LR2.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MaxExtracts}" Minimum="{Binding Quests.WeeklyQuests.LR3.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR1.MaxSpecExits}" Minimum="{Binding Quests.WeeklyQuests.LR1.MinSpecExits}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR2.MaxSpecExits}" Minimum="{Binding Quests.WeeklyQuests.LR2.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.WeeklyQuests.LR3.MaxSpecExits}" Minimum="{Binding Quests.WeeklyQuests.LR3.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <TextBlock Foreground="#FF9F0ACC" Text="{DynamicResource RewardScale}" HorizontalAlignment="Left" Margin="275,10,0,10"/>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock  Text="{DynamicResource Levels}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.Levels}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Experience}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.Experience}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource RoublesOrDefault}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.Roubles}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource GPCoin}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.GPcoins}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource ItemsReward}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.ItemsReward}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Reputation}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.Reputation}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource SkillChance}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.SkillChance}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource SkillPoint}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.WeeklyQuests.SkillPoint}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource ScavQuests}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.Lifespan}" HorizontalAlignment="Left" Width="300" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLifespan}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.QuestAmount}" Maximum="20" Width="300" HorizontalAlignment="Left" Margin="0,0,40,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource AmountofQuests}" HorizontalAlignment="Left"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <!--<StackPanel>
+                                        <TextBlock Text="{DynamicResource Types}" HorizontalAlignment="Left" Margin="0,0,0,0"/>
+                                        <ComboBox Foreground ="White" Margin="0,4,0,0" Width="500" SelectedIndex="{Binding Path=Quests.ScavQuests.Types, Mode=TwoWay}" ToolTip="{DynamicResource Types_TT}" SelectedValuePath="Content">
+                                            <ComboBoxItem Content="{DynamicResource Elimination}"/>
+                                            <ComboBoxItem Content="{DynamicResource Completion}"/>
+                                            <ComboBoxItem Content="{DynamicResource Exploration}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource CompExpl}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElim}"/>
+                                            <ComboBoxItem Content="{DynamicResource ExplElimComp}"/>
+                                        </ComboBox>-->
+                    <!--</StackPanel>-->
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.Access}" Margin="0,0,40,0" Width="300" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource QuestLevel}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.Reroll}" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Width="300">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reroll}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinKills}" Width="320" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.LR1.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR1}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Quests.ScavQuests.LR2.MinKills}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR2}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxKills}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MaxKills}" Minimum="{Binding Quests.ScavQuests.LR1.MinKills}"  Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MaxKills}" Minimum="{Binding Quests.ScavQuests.LR2.MinKills}"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinItems}" Width="320" VerticalAlignment="Bottom"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MinItems}" Minimum="1"  Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LR2}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxItems}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MaxItems}" Minimum="{Binding Quests.ScavQuests.LR1.MinItems}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MaxItems}" Minimum="{Binding Quests.ScavQuests.LR2.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR3.MaxItems}" Minimum="{Binding Quests.ScavQuests.LR3.MinItems}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR3.MinExtracts}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxExtracts}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MaxExtracts}" Minimum="{Binding Quests.ScavQuests.LR1.MinExtracts}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MaxExtracts}" Minimum="{Binding Quests.ScavQuests.LR2.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR3.MaxExtracts}" Minimum="{Binding Quests.ScavQuests.LR3.MinExtracts}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MinSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR3.MinSpecExits}" Minimum="1" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource MaxSpecExits}" Width="320"  Padding="0,20,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR1.MaxSpecExits}" Minimum="{Binding Quests.ScavQuests.LR1.MinSpecExits}" Width="135" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR2.MaxSpecExits}" Minimum="{Binding Quests.ScavQuests.LR2.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                        <ui:NumberBox VerticalAlignment="Bottom" Value="{Binding Quests.ScavQuests.LR3.MaxSpecExits}" Minimum="{Binding Quests.ScavQuests.LR3.MinSpecExits}" Width="135" Style="{StaticResource MinMax}" HorizontalAlignment="Left" Margin="15,0,0,0"/>
+                    </DockPanel>
+                    <TextBlock Foreground="#FF9F0ACC" Text="{DynamicResource RewardScale}" HorizontalAlignment="Left" Margin="275,10,0,10"/>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock  Text="{DynamicResource Levels}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.Levels}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Experience}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.Experience}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource RoublesOrDefault}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.Roubles}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource GPCoin}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.GPcoins}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource ItemsReward}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.ItemsReward}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource Reputation}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.Reputation}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel>
+                        <StackPanel Margin="0,0,40,0">
+                            <TextBlock Text="{DynamicResource SkillChance}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.SkillChance}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                        <StackPanel>
+                            <TextBlock Text="{DynamicResource SkillPoint}" Margin="0,0,0,5"/>
+                            <TextBox Text="{Binding Quests.ScavQuests.SkillPoint}" PreviewTextInput="NumberValidationTextBox" Width="350" HorizontalAlignment="Left"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

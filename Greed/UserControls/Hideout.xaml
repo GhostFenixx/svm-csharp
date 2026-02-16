@@ -1,0 +1,232 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Hideout"
+             mc:Ignorable="d">
+    <Grid Margin="5" x:Name="HideoutSection" Style="{StaticResource Enablers}" IsEnabled="{Binding Hideout.EnableHideout}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" ToolTip="{DynamicResource HideoutMisc_TT}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="#FFFFA73B" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource RemoveConstructionsFIRRequirements}" IsChecked="{Binding Hideout.RemoveConstructionsFIRRequirements}"/>
+                    <CheckBox Content="{DynamicResource RemoveConstructionsRequirements}" ToolTip="{DynamicResource RemoveConstructionsRequirements_TT}" IsChecked="{Binding Hideout.RemoveConstructionsRequirements}"/>
+                    <CheckBox Content="{DynamicResource RemoveSkillRequirements}" ToolTip="{DynamicResource RemoveSkillRequirements_TT}" IsChecked="{Binding Hideout.RemoveSkillRequirements}"/>
+                    <CheckBox Content="{DynamicResource RemoveTraderLevelRequirements}" ToolTip="{DynamicResource RemoveTraderLevelRequirements_TT}" IsChecked="{Binding Hideout.RemoveTraderLevelRequirements}"/>
+
+                    <ui:NumberBox Maximum="4000" Value="{Binding Hideout.WaterFilterRate}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource WaterFilterRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Maximum="4000" Value="{Binding Hideout.WaterFilterTime}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource WaterFilterTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Maximum="40" Value="{Binding Hideout.MaxBitcoins}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MaxBitcoins}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Maximum="4000" SmallChange="30" Value="{Binding Hideout.BitcoinTime}" Style="{StaticResource FlatsBig}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource BitcoinTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Maximum="40" Value="{Binding Hideout.CultistMaxRewards}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource CultistMaxRewards}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" ToolTip="{DynamicResource HideoutMisc_TT}" Text="{DynamicResource Multipliers}" VerticalAlignment="Center" Foreground="#FFFFA73B" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <ui:NumberBox Value="{Binding Hideout.AirFilterRate}" ToolTip="{DynamicResource AirFilterRate_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource AirFilterRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.GPUBoostRate}" ToolTip="{DynamicResource GPUBoostRate_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource GPUBoostRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.FuelConsumptionRate}" ToolTip="{DynamicResource FuelConsumptionRate_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource FuelConsumptionRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.NoFuelMult}" ToolTip="{DynamicResource NoFuelMult_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource NoFuelMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.HideoutProdMult}" ToolTip="{DynamicResource HideoutProdMult_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HideoutProdMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.HideoutConstMult}" ToolTip="{DynamicResource HideoutConstMult_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HideoutConstMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.ScavCaseTime}" ToolTip="{DynamicResource ScavCaseTime_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource ScavCaseTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.ScavCasePrice}" ToolTip="{DynamicResource ScavCasePrice_TT}" Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource ScavCasePrice}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.CultistTime}"  Style="{StaticResource ThreeMults}">
+                        <ui:NumberBox.Header>
+                            <!--ToolTip="{DynamicResource CultistTime_TT}"-->
+                            <TextBlock Text="{DynamicResource CultistTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Regeneration}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <ui:NumberBox Value="{Binding Hideout.Regeneration.EnergyRegen}" Minimum="0" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource EnergyRegen}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Regeneration.HydrationRegen}" Minimum="0" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HydrationRegen}" Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Regeneration.HealthRegen}" Minimum="0" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HealthRegen}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <CheckBox Content="{DynamicResource OfflineRegen}" IsChecked="{Binding Hideout.Regeneration.OfflineRegen}"/>
+                    <TextBlock Text="{DynamicResource HideoutRegen}" HorizontalAlignment="Center"/>
+                    <DockPanel HorizontalAlignment="Center">
+                        <CheckBox Content="{DynamicResource HideoutEnergy}" IsChecked="{Binding Hideout.Regeneration.HideoutEnergy}" Margin="0,0,15,0"/>
+                        <CheckBox Content="{DynamicResource HideoutHydration}" IsChecked="{Binding Hideout.Regeneration.HideoutHydration}" Margin="0,0,15,0"/>
+                        <CheckBox Content="{DynamicResource HideoutHealth}" IsChecked="{Binding Hideout.Regeneration.HideoutHealth}"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Stash}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" x:Name="StashCheck" IsChecked="{Binding Hideout.EnableStash}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="10" IsEnabled="{Binding Hideout.EnableStash}">
+                    <ui:NumberBox Value="{Binding Hideout.Stash.StashLvl1}" Minimum="4" Maximum="300" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StashLvl1}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Stash.StashLvl2}" Minimum="{Binding Hideout.Stash.StashLvl1}" Maximum="320" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StashLvl2}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Stash.StashLvl3}" Minimum="{Binding Hideout.Stash.StashLvl2}" Maximum="340" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StashLvl3}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Stash.StashLvl4}" Minimum="{Binding Hideout.Stash.StashLvl3}" Maximum="360" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StashLvl4}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.Stash.StashTUE}" Minimum="{Binding Hideout.Stash.StashLvl4}" Maximum="380" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StashTUE}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Prestige}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Items.AmmoSwitch}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="5" x:Name="PrestigeSection" IsEnabled="{Binding Items.AmmoSwitch}">
+                    <DockPanel Margin="0,5,0,5" >
+                        <TextBlock Text="{DynamicResource First}" Width="70" VerticalAlignment="Center" Padding="5,30,0,0"/>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Skills}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Skill}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Mastery}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Mastery}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Height}"  Margin="0,0,10,0" Width="75" Style="{StaticResource SizesHeight}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Size}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <StackPanel>
+                            <TextBlock Foreground="#FFFFA73B" Text="{DynamicResource RemoveFilters}" HorizontalAlignment="Center"/>
+                            <CheckBox IsChecked="{Binding Hideout.FirstPrestige.Filter}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </DockPanel>
+                    <DockPanel Margin="5,0,0,5">
+                        <TextBlock Text="{DynamicResource Second}" Width="60" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Hideout.SecondPrestige.Skills}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.SecondPrestige.Mastery}" Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.SecondPrestige.Height}" Width="75" Style="{StaticResource SizesHeight}"/>
+                        <CheckBox IsChecked="{Binding Hideout.SecondPrestige.Filter}" Margin=" 10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,0,0,5">
+                        <TextBlock Text="{DynamicResource Third}" Width="60" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Hideout.ThirdPrestige.Skills}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.ThirdPrestige.Mastery}" Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.ThirdPrestige.Height}" Width="75" Style="{StaticResource SizesHeight}"/>
+                        <CheckBox IsChecked="{Binding Hideout.ThirdPrestige.Filter}" Margin=" 10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,0,0,5">
+                        <TextBlock Text="{DynamicResource Fourth}" Width="60" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Hideout.FourthPrestige.Skills}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.FourthPrestige.Mastery}" Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Hideout.FourthPrestige.Height}" Width="75" Style="{StaticResource SizesHeight}"/>
+                        <CheckBox IsChecked="{Binding Hideout.FourthPrestige.Filter}" Margin=" 10,0,0,0" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
+                    </DockPanel>
+
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

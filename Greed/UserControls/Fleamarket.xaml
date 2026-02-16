@@ -1,0 +1,216 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Fleamarket"
+             mc:Ignorable="d">
+
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Fleamarket.EnableFleamarket}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+
+        <StackPanel Grid.Row="0" Grid.Column="0">
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource PlayerFlea}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Fleamarket.EnablePlayerOffers}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding Fleamarket.EnablePlayerOffers}" Margin="10">
+                    <ui:NumberBox Value="{Binding Fleamarket.FleaMarketLevel}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource FleaMarketLevel}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.Sell_chance}"  ToolTip="{DynamicResource Sell_chance_TT}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource Sell_chance}" Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.Sell_mult}" ToolTip="{DynamicResource Sell_mult_TT}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource Sell_mult}" Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.Rep_gain}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource RepGain}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.Rep_loss}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource RepLoss}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource Fleatime}" Width="180" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.Tradeoffer_min}" Maximum="{Binding Fleamarket.Tradeoffer_max}" SmallChange="1" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Fleamarket.Tradeoffer_max}" Minimum="{Binding Fleamarket.Tradeoffer_min}" SmallChange="1" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+                    <CheckBox Content="{DynamicResource FleaFIR}" IsChecked="{Binding Fleamarket.FleaFIR}"/>
+                    <CheckBox Content="{DynamicResource FleaNoFIRSell}" IsChecked="{Binding Fleamarket.FleaNoFIRSell}"/>
+                    <CheckBox Foreground="#FFFFA73B" Content="{DynamicResource DisableBSGList}" ToolTip="{DynamicResource DisableBSGList_TT}" IsChecked="{Binding Fleamarket.DisableBSGList}"/>
+                    <CheckBox Content="{DynamicResource EventOffers}" IsChecked="{Binding Fleamarket.EventOffers}"/>
+                    <CheckBox Content="{DynamicResource EnableFees}" IsChecked="{Binding Fleamarket.EnableFees}"/>
+                    <CheckBox Content="{DynamicResource OverrideOffers}" IsChecked="{Binding Fleamarket.OverrideOffers}"/>
+                    <ui:NumberBox Value="{Binding Fleamarket.SellOffersAmount}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SellOffersAmount}"  Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource FleaConditions}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Fleamarket.EnableFleaConditions}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding Fleamarket.EnableFleaConditions}" Margin="10" HorizontalAlignment="Left">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource FleaWeapons}" Width="180" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaWeapons_Min}"  Maximum="{Binding Fleamarket.FleaConditions.FleaWeapons_Max}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaWeapons_Max}" Minimum="{Binding Fleamarket.FleaConditions.FleaWeapons_Min}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaMedical}" TextWrapping="Wrap" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaMedical_Min}"  Maximum="{Binding Fleamarket.FleaConditions.FleaMedical_Max}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaMedical_Max}"  Minimum="{Binding Fleamarket.FleaConditions.FleaMedical_Min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaSpec}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaSpec_Min}"   Maximum="{Binding Fleamarket.FleaConditions.FleaSpec_Max}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaSpec_Max}"   Minimum="{Binding Fleamarket.FleaConditions.FleaSpec_Min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaKeys}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaKeys_Min}"  Maximum="{Binding Fleamarket.FleaConditions.FleaKeys_Max}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaKeys_Max}"  Minimum="{Binding Fleamarket.FleaConditions.FleaKeys_Min}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaVests}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaVests_Min}" Maximum="{Binding Fleamarket.FleaConditions.FleaVests_Max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaVests_Max}" Minimum="{Binding Fleamarket.FleaConditions.FleaVests_Min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaArmor}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaArmor_Min}" Maximum="{Binding Fleamarket.FleaConditions.FleaArmor_Max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaArmor_Max}"  Minimum="{Binding Fleamarket.FleaConditions.FleaArmor_Min}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FleaFood}" Width="180" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaFood_Min}" Maximum="{Binding Fleamarket.FleaConditions.FleaFood_Max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.FleaConditions.FleaFood_Max}"  Minimum="{Binding Fleamarket.FleaConditions.FleaFood_Min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                    </DockPanel>
+                    <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource AIOffers}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10" HorizontalAlignment="Left">
+                    <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.BundleOfferChance}" Height="auto">
+                        <ui:NumberBox.Header>
+                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource BundleOfferChance}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.ExpireThreshold}" Height="auto">
+                        <ui:NumberBox.Header>
+                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource ExpireThreshold}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource OffersRatio}" Width="180" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox x:Name="RoubleRatio" Value="{Binding Fleamarket.DynamicOffers.Roubleoffers}" Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource RoublesOrDefault}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox x:Name="DollarRatio" Value="{Binding Fleamarket.DynamicOffers.Dollaroffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Dollars}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox x:Name="EuroRatio" Value="{Binding Fleamarket.DynamicOffers.Eurooffers}"  Margin="5,0,5,0" Width="75" Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Euros}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource NonStack}" Width="205" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.NonStack_min}" Maximum="{Binding Fleamarket.DynamicOffers.NonStack_max}" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.NonStack_max}" Maximum="30" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Stack}" TextWrapping="Wrap" Width="205" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Stack_min}" Maximum="{Binding Fleamarket.DynamicOffers.Stack_max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Stack_max}" Maximum="1800" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource OffersPerItem}" Width="205" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.PerOffer_min}" Maximum="{Binding Fleamarket.DynamicOffers.PerOffer_max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.PerOffer_max}" Maximum="45" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock  Foreground="#FFFFA73B" Text="{DynamicResource PriceRange}" ToolTip="{DynamicResource PriceRange_TT}" Width="205" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Price_min}" Maximum="{Binding Fleamarket.DynamicOffers.Price_max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Price_max}" Minimum="{Binding Fleamarket.DynamicOffers.Price_min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock VerticalAlignment="Center" TextWrapping="Wrap" Text="{DynamicResource OfferTime}" Width="205"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Time_min}" Maximum="{Binding Fleamarket.DynamicOffers.Time_max}" VerticalAlignment="Center" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.Time_max}" Maximum="300" VerticalAlignment="Center" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                    </DockPanel>
+                    <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

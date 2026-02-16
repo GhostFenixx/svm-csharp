@@ -1,0 +1,316 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Player"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Player.EnablePlayer}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="410"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Multipliers}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <ui:NumberBox Value="{Binding Player.SkillProgMult}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillProgMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.WeaponSkillMult}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource WeaponSkillMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.HydrationLoss}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HydrationLoss}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.EnergyLoss}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource EnergyLoss}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.BlackStomach}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource BlackStomach}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Skills}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Player.EnableFatigue}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillMinEffect}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillMinEffect}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillFatiguePerPoint}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillFatiguePerPoint}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillFreshEffect}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillFreshEffect}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillFPoints}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillFPoints}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillPointsBeforeFatigue}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillPointsBeforeFatigue}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.Skills.SkillFatigueReset}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SkillFatigueReset}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Foreground="White" Text="{DynamicResource LegsStamina}" VerticalAlignment="Center" FontSize="20"/>
+                        <CheckBox x:Name="StaminaLegsCheck" Style="{StaticResource SectionSwitch}" IsChecked="{Binding Player.EnableStaminaLegs}"/>
+                    </DockPanel>
+                </Expander.Header>
+
+                <StackPanel Margin="10" x:Name="StaminaLegsSection" IsEnabled="{Binding Player.EnableStaminaLegs}">
+                    <ui:NumberBox Value="{Binding Player.MaxStaminaLegs}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MaxStamina}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.RegenStaminaLegs}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StaminaRegenRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.JumpConsumption}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource JumpConsumption}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <TextBlock TextWrapping="Wrap" Margin="10,5,10,5" Text="{DynamicResource StanceSwitchConsumption}" HorizontalAlignment="Center"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Player.LayToStand}" Margin="20,0,0,0"  Width="150"  Style="{StaticResource FlatsSmall}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LayingDown}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Player.CrouchToStand}" Margin="30,0,0,0"  Width="150"  Style="{StaticResource FlatsSmall}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Crouching}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Foreground="White" Text="{DynamicResource HandsStamina}" VerticalAlignment="Center" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Player.EnableStaminaHands}" />
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="10" IsEnabled="{Binding Player.EnableStaminaHands}">
+                    <ui:NumberBox Value="{Binding Player.MaxStaminaHands}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MaxStamina}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Player.RegenStaminaHands}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource StaminaRegenRate}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <TextBlock TextWrapping="Wrap" Margin="10,5,10,5" Text="{DynamicResource StaminaStanceConsumption}" HorizontalAlignment="Center"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Player.Standing}" Margin="20,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Standing}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Player.Crouching}" Margin="30,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Crouching}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Player.LayingDown}" Margin="30,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LayingDown}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource UnlimitedStamina}" IsChecked="{Binding Player.UnlimitedStamina}"/>
+                    <CheckBox Content="{DynamicResource FallDamage}" IsChecked="{Binding Player.FallDamage}"/>
+
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource DiedHealth}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+
+                    <ui:NumberBox Value="{Binding Player.DiedHealth.Health_blacked}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource Blacked}" Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <CheckBox Content="{DynamicResource Savehealth}" IsChecked="{Binding Player.DiedHealth.Savehealth}"/>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource RaidMult}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Player.RaidMult.Survived}" Style="{StaticResource Mults}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Survived}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Player.RaidMult.MIA}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource MIA}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Player.RaidMult.Killed}" Style="{StaticResource Mults}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Killed}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Player.RaidMult.Runner}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Runner}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource CharXP}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Player.CharXP.ScavKill}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource ScavKill}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Player.CharXP.PMCKill}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource PMCKill}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Player.CharXP.ScavHMult}" Style="{StaticResource Mults}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource ScavHMult}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Player.CharXP.PMCHMult}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource PMCHMult}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource PMCStats}" ToolTip="{DynamicResource PMCStats_TT}" VerticalAlignment="Center" Foreground="#FFFF3B3B" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Player.EnableStats}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="10" IsEnabled="{Binding Player.EnableStats}">
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Player.PMCStats.MaxEnergy}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource MaxEnergy}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Player.PMCStats.MaxHydration}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource MaxHydration}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" ToolTip="{DynamicResource PMCHealth_TT}" Text="{DynamicResource PMCHealth}" VerticalAlignment="Center" Foreground="#FFFF3B3B" FontSize="20"/>
+                        <CheckBox x:Name="HealthCheck" Style="{StaticResource SectionSwitch}" IsChecked="{Binding Player.EnableHealth}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <Grid Cursor="">
+                    <Image x:Name="PMCHealth" Visibility="Visible" Opacity="1" Width="480" Height="480" Source="{DynamicResource HealthImage}" Stretch="Fill"/>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="180,240,184,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Stomach}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="14,240,350,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.RightArm}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="180,160,184,288">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Chest}" />
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="64,400,300,46">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.RightLeg}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="293,400,71,46">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.LeftLeg}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="345,240,19,208">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.LeftArm}"/>
+                    </DockPanel>
+                    <DockPanel Style="{StaticResource Healthback}" Margin="304,60,60,390">
+                        <ui:NumberBox Style="{StaticResource Health}" Value="{Binding Player.Health.Head}" />
+                    </DockPanel>
+                </Grid>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

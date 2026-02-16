@@ -1,4 +1,6 @@
 ﻿using Greed.Models;
+using Greed.UserControls;
+using System.ComponentModel;
 using System.Diagnostics;
 using System.Globalization;
 using System.IO;
@@ -11,6 +13,8 @@ using System.Text.RegularExpressions;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Input;
+using System.Windows.Markup;
+using System.Windows.Media;
 using System.Windows.Media.Imaging;
 
 namespace Greed
@@ -20,11 +24,10 @@ namespace Greed
     /// </summary>
     public partial class MainWindow : Window
     {
-        string currDir = Directory.GetCurrentDirectory();
-        string modFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier");
-        string presetsFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier", "Presets");
-        string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT", "user", "mods", "[SVM] Server Value Modifier", "Loader");
-        string bepinexFolder = Path.Combine(Directory.GetCurrentDirectory(), "BepInEx", "plugins");
+       readonly string currDir = Directory.GetCurrentDirectory();
+       readonly string modFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier");
+       readonly string presetsFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier", "Presets");
+       readonly string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT", "user", "mods", "[SVM] Server Value Modifier", "Loader");
         public MainWindow()
         {
             InitializeComponent();
@@ -66,7 +69,6 @@ namespace Greed
             RT.Selection.Load(Stream, DataFormats.Rtf);
             RT.Selection.Select(RT.Selection.Start, RT.Selection.Start);
         }
-
         private void ToList()
         {
             
@@ -102,45 +104,41 @@ namespace Greed
             {
                 case "ru-RU":
                 case "ru-UA":
-                    LoadLanguage($"/Resources/Dictionary-ru-RU.xaml", "Greed.Resources.HelloRU.rtf", "Greed.Resources.faqRU.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_bear.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthRU.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthRU.png"));
+                    LoadLanguage($"Dictionary-ru-RU.xaml", "Russian", "HelloRU.rtf", "faqRU.rtf");
                     break;
                 case "ko-KR":
-                    LoadLanguage($"/Resources/Dictionary-ko-KR.xaml", "Greed.Resources.HelloKR.rtf", "Greed.Resources.faqKR.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_usec.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthKO.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthKO.png"));
+                    LoadLanguage($"Dictionary-ko-KR.xaml", "Korean", "HelloKR.rtf", "faqKR.rtf");
                     break;
                 case "uk-UA":
-                    LoadLanguage($"/Resources/Dictionary-uk-UA.xaml", "Greed.Resources.HelloUA.rtf", "Greed.Resources.faqUA.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_usec.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthUA.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthUA.png"));
+                    LoadLanguage($"Dictionary-uk-UA.xaml", "Ukrainian", "HelloUA.rtf", "faqUA.rtf"); ;
                     break;
                 case "zh-CHS":
                 case "zh-CN":
-                    LoadLanguage($"/Resources/Dictionary-zh-CN.xaml", "Greed.Resources.HelloCN.rtf", "Greed.Resources.faqCN.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_bear.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthCN.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthCN.png"));
+                    LoadLanguage($"Dictionary-zh-CN.xaml", "Chinese", "HelloCN.rtf", "faqCN.rtf");
                     break;
                 case "es-ES":
-                    LoadLanguage($"/Resources/Dictionary-es-ES.xaml", "Greed.Resources.HelloES.rtf", "Greed.Resources.faqES.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_usec.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthES.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthES.png"));
+                    LoadLanguage($"Dictionary-es-ES.xaml", "Spanish", "HelloES.rtf", "faqES.rtf");
                     break;
                 default:
-                    LoadLanguage($"/Resources/Dictionary-en-US.xaml", "Greed.Resources.HelloEN.rtf", "Greed.Resources.faqEN.rtf");
-                    PMCIcon.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/Icons/icon_usec.png"));
-                    PMCHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthEN.png"));
-                    SCAVHealth.Source = new BitmapImage(new Uri(@"pack://application:,,,/Resources/HealthEN.png"));
+                    LoadDefaultLanguage($"Languages/English/Dictionary-en-US.xaml", "Greed.Languages.English.HelloEN.rtf", "Greed.Languages.English.faqEN.rtf");
                     break;
             }
         }
-        private void LoadLanguage(string dict, string hello, string faq)
+        private void LoadLanguage(string dict, string lang, string hello, string faq)
+        {
+            FileStream dictfs = new(Path.Combine(modFolder, "Languages", lang, dict), FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream hellofs = new(Path.Combine(modFolder, "Languages", lang, hello), FileMode.Open, FileAccess.Read, FileShare.Read);
+            FileStream faqfs = new(Path.Combine(modFolder, "Languages", lang, faq), FileMode.Open, FileAccess.Read, FileShare.Read);//this is lame
+            ResourceDictionary resdict = (ResourceDictionary)XamlReader.Load(dictfs);
+            Application.Current.Resources.MergedDictionaries.Add(resdict);
+            CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
+            customCulture.NumberFormat.NumberDecimalSeparator = ".";
+            Thread.CurrentThread.CurrentCulture = customCulture;
+            LoadRTF(WelcomeMessage, hellofs);
+            LoadRTF(RTF1, faqfs);
+        }
+
+        private void LoadDefaultLanguage(string dict, string hello, string faq)
         {
             ResourceDictionary resdict = new()
             {
@@ -205,7 +203,6 @@ namespace Greed
                 return false;
             }
         }
-
         private void LoadPreset(object sender, RoutedEventArgs e)
         {
             if (Presets.Text == "")
@@ -245,7 +242,6 @@ namespace Greed
                 LoadJson();//Horrible solution - the issue is: Converters and MVVM maximum/minimums bugging out the parsed values, therefore to properly apply them - i need to reload DataContext twice.
                 LoadJson();//Possible solution was nulling DataContext, however it cause application to hang for 3-5 seconds, unacceptable. Previous solution was loading whole LoadFunc, causing messages to show up twice.
                            //May coding dieties mercy me
-                SectionEnabled(null, null);
             }
             catch (FileNotFoundException)
             {
@@ -300,7 +296,6 @@ namespace Greed
                 Message.ShowDialog();
             }
         }
-
         private void CloseEverything(object sender, RoutedEventArgs e)
         {
             string exefolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT");
@@ -339,12 +334,12 @@ namespace Greed
 
         private void Apply_Click(object sender, RoutedEventArgs e)
         {
-            if (RoubleRatio.Value + DollarRatio.Value + EuroRatio.Value != 100)
-            {
-                Popup Message = new((string)Application.Current.FindResource("RatioError"));
-                Message.ShowDialog();
-                return;
-            }
+            //if (RoubleRatio.Value + DollarRatio.Value + EuroRatio.Value != 100)
+            //{
+            //    Popup Message = new((string)Application.Current.FindResource("RatioError"));
+            //    Message.ShowDialog();
+            //    return;
+            //} TODO: Reimplement back OR do the check on SVM side
             try
             {
                 string savepath = Path.Combine(loaderFolder, "loader.json");
@@ -407,7 +402,7 @@ namespace Greed
             }
         }
 
-        private void ItemFinder(object sender, EventArgs e)
+        private void ItemFinder(object sender, EventArgs e)//TODO Route to tarkynator maybe? Although Item Finder is SPT domain, best to leave as is.
         {
             Popup Message = new((string)Application.Current.FindResource("IDFinder"));
             Message.ShowDialog();
@@ -419,7 +414,7 @@ namespace Greed
             }
         }
 
-        private void SPTDiscord(object sender, EventArgs e)
+        private void SPTDiscord(object sender, EventArgs e)//TODO: Maybe in future rework as one method and do a switch? Not like it matters really.
         {
             RunURL("SPTLink", "https://discord.gg/Xn9msqQZan");
         }
@@ -454,32 +449,6 @@ namespace Greed
             RunURL("WikiPage_Link", "https://escapefromtarkov.fandom.com/wiki/Escape_from_Tarkov_Wiki");
         }
 
-        private void InstallPlugin(object sender, RoutedEventArgs e)
-        {
-            string pluginname = "HideSpecialIconGrids.dll";
-            try
-            {
-                if (!File.Exists(Path.Combine(bepinexFolder, pluginname)))
-                {
-                    Stream stream2 = Assembly.GetExecutingAssembly().GetManifestResourceStream("Greed.Resources.HideSpecialIconGrids.dll");
-                    var fileStream = File.Create(Path.Combine(bepinexFolder, pluginname));
-                    stream2.CopyTo(fileStream);
-                    fileStream.Close();
-                    Popup Message = new((string)Application.Current.FindResource("InstallPluginComplete"));
-                    Message.ShowDialog();
-                }
-                else
-                {
-                    Popup Message = new((string)Application.Current.FindResource("InstallationAlreadyDone"));
-                    Message.ShowDialog();
-                }
-            }
-            catch (Exception ex)
-            {
-                Popup Message = new((string)Application.Current.FindResource("InstallPluginFailed") + "\n\n" + ex);
-                Message.ShowDialog();
-            }
-        }
 
         private void Disclaimer(object sender, RoutedEventArgs e)
         {
@@ -513,12 +482,6 @@ namespace Greed
             e.Handled = regex.IsMatch(e.Text);
         }
 
-        private void NumberValidationTextBox(object sender, TextCompositionEventArgs e)
-        {
-            Regex regex = NumberValidationRegex();
-            e.Handled = regex.IsMatch(e.Text);
-        }
-
         private void LoadLast_Click(object sender, RoutedEventArgs e)
         {
             if (LoadLast.IsChecked)
@@ -530,52 +493,6 @@ namespace Greed
                 File.WriteAllText("GreedConfig", "false," + Presets.Text, Encoding.UTF8);
             }
         }
-
-        private void HostilitySwitchers(object sender, RoutedEventArgs e)
-        {
-            if (FriendlyScav.IsChecked == true && HostileScav.IsChecked == true)
-            {
-                FriendlyScav.IsChecked = false;
-            }
-        }
-
-        private void FriendlySwitchers(object sender, RoutedEventArgs e)
-        {
-            if (FriendlyScav.IsChecked == true && HostileScav.IsChecked == true)
-            {
-                HostileScav.IsChecked = false;
-            }
-        }
-
-        private void FriendlyBossSwitchers(object sender, RoutedEventArgs e)
-        {
-            if (FriendlyBoss.IsChecked == true && HostileBoss.IsChecked == true)
-            {
-                FriendlyBoss.IsChecked = false;
-            }
-        }
-        private void HostilityBossSwitchers(object sender, RoutedEventArgs e)
-        {
-            if (FriendlyBoss.IsChecked == true && HostileBoss.IsChecked == true)
-            {
-                HostileBoss.IsChecked = false;
-            }
-        }
-        private void SafeExitsSwitchers(object sender, RoutedEventArgs e)
-        {
-            if (Softcore.IsChecked == true && SafeExits.IsChecked == true)
-            {
-                Softcore.IsChecked = false;
-            }
-        }
-        private void SoftcoreSwitchers(object sender, RoutedEventArgs e)
-        {
-            if (SafeExits.IsChecked == true && Softcore.IsChecked == true)
-            {
-                SafeExits.IsChecked = false;
-            }
-        }
-
         private void ChangelogOpen(object sender, RoutedEventArgs e)
         {
             Popup Message = new((string)Application.Current.FindResource("ChangelogText"));
@@ -592,53 +509,6 @@ namespace Greed
         {
             Mouse.OverrideCursor = null;
         }
-        private void SectionEnabled(object sender, RoutedEventArgs e)//horrible
-        {
-            EnableSection(ItemsCheck.IsChecked, ItemsSection);
-            EnableSection(HideoutCheck.IsChecked, HideoutSection);
-            EnableSection(TradersCheck.IsChecked, TradersSection);
-            EnableSection(ServiceCheck.IsChecked, ServicesSection);
-            EnableSection(LootCheck.IsChecked, LootSection);
-            EnableSection(PlayerCheck.IsChecked, PlayerSection);
-            EnableSection(RaidCheck.IsChecked, RaidSection);
-            EnableSection(FleaCheck.IsChecked, FleaSection);
-            EnableSection(QuestsCheck.IsChecked, QuestsSection);
-            EnableSection(CSMCheck.IsChecked, CSMSection);
-            EnableSection(SCAVCheck.IsChecked, SCAVSection);
-            EnableSection(BotsCheck.IsChecked, BotsSection);
-            EnableSection(PMCCheck.IsChecked, PMCSection);
-            EnableSection(CustomCheck.IsChecked, CustomSection);
-            EnableSubSection(StashCheck.IsChecked, StashSection);
-            EnableSubSection(PMCNameCheck.IsChecked, PMCNameSection);
-            EnableSubSection(IICCheck.IsChecked, IICSection);
-            EnableSubSection(PMCPocketsCheck.IsChecked, PMCPocketsSection);
-            EnableSubSection(AmmoCheck.IsChecked, AmmoSection);
-            EnableSubSection(QuestsMiscCheck.IsChecked, QuestsMiscSection);
-            EnableSubSection(ScavPocketsCheck.IsChecked, ScavPocketsSection);
-            EnableSubSection(HealthMarkupCheck.IsChecked, HealthMarkupSection);
-            EnableSubSection(PMCStatsCheck.IsChecked, PMCStatsSection);
-            EnableSubSection(CurrencyCheck.IsChecked, CurrencySection);
-            EnableSubSection(CasesCheck.IsChecked, CasesSection);
-            EnableSubSection(SecureCasesCheck.IsChecked, SecureCasesSection);
-            EnableSubSection(InsuranceCheck.IsChecked, InsuranceSection);
-            EnableSubSection(RepairCheck.IsChecked, RepairSection);
-            EnableSubSection(PMCChancesCheck.IsChecked, PMCChancesSection);
-            EnableSubSection(FatigueCheck.IsChecked, FatigueSection);
-            EnableSubSection(KeysCheck.IsChecked, KeysSection);
-            EnableSubSection(FenceCheck.IsChecked, FenceSection);
-            EnableSubSection(BTRCheck.IsChecked, BTRSection);
-            EnableSubSection(CarCoopCheck.IsChecked, CarCoopSection);
-            EnableSubSection(RaidStartupCheck.IsChecked, RaidStartupSection);
-            EnableSubSection(FleaConditionsCheck.IsChecked, FleaConditionsSection);
-            EnableSubSection(PlayerOffersCheck.IsChecked, PlayerOffersSection);
-            EnableSubSection(WeatherCheck.IsChecked, WeatherSection);
-            EnableSubSection(ScavStatsCheck.IsChecked, ScavStatsSection);
-            EnableSubSection(StaminaLegsCheck.IsChecked, StaminaLegsSection);
-            EnableSubSection(StaminaHandsCheck.IsChecked, StaminaHandsSection);
-            EnableSubSection(LightKeeperCheck.IsChecked, LightKeeperSection);
-            EnableSubSection(PMCConverterCheck.IsChecked, PMCConverterSection);
-        }
-
         public static void EnableSection(bool? checker, Grid field)
         {
             bool isChecked = checker.Value;
@@ -700,30 +570,11 @@ namespace Greed
                 }
             }
         }
-
         [GeneratedRegex("(?:\\W)")]
         private static partial Regex PresetNameRegex();
         [GeneratedRegex("[^0-9.,]+")]
         public static partial Regex NumberValidationRegex();
         [GeneratedRegex("[`<>^@!?#%*%:&\\]*$]")]
         public static partial Regex TextValidationRegex();
-
-        private void CurrencyAmmoExpander_Collapsed(object sender, RoutedEventArgs e)
-        {
-            if (AmmoExpander is not null && CurrencyExpander is not null)
-            {
-                AmmoExpander.IsExpanded = false;
-                CurrencyExpander.IsExpanded = false;
-            }
-        }
-
-        private void CurrencyAmmoExpander_Expanded(object sender, RoutedEventArgs e)
-        {
-            if (AmmoExpander is not null && CurrencyExpander is not null)
-            {
-                AmmoExpander.IsExpanded = true;
-                CurrencyExpander.IsExpanded = true;
-            }
-        }
     }
 }

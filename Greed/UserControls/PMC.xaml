@@ -1,0 +1,126 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.PMC"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding PMC.EnablePMC}">
+        <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="460"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Expander>
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        </Expander.Header>
+                        <StackPanel Margin="10">
+                            <!--<StackPanel>
+          <CheckBox Content="{DynamicResource ForcePMC}" IsChecked="{Binding PMC.ForceCustomWaves}"/>
+          <ui:NumberBox Value="{Binding PMC.CustomWaveChance}" Style="{StaticResource FlatsSmall}"/>
+         </StackPanel>-->
+                            <ui:NumberBox  Value="{Binding PMC.PMCRatio}" ToolTip="{DynamicResource PMCRatio_TT}" Style="{StaticResource MinMax}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Foreground="RoyalBlue" Text="{DynamicResource PMCRatio}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding PMC.LevelUpMargin}" Minimum="1" Maximum="70" Style="{StaticResource MinMax}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource PMCLevelUpMargin}" Cursor=""/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding PMC.LevelDownMargin}" Minimum="1" Maximum="70" Style="{StaticResource MinMax}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource PMCLevelDownMargin}" Cursor=""/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <CheckBox Content="{DynamicResource LootMelee}" IsChecked="{Binding PMC.LootableMelee}"/>
+                            <CheckBox Content="{DynamicResource DisableLowLevelPMC}" IsChecked="{Binding PMC.DisableLowLevelPMC}"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander>
+                        <Expander.Header>
+                            <DockPanel>
+                                <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource AIConverter}" VerticalAlignment="Center"  Foreground="RoyalBlue" FontSize="20"/>
+                                <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding PMC.AItoPMC.AIConverterEnable}"/>
+                            </DockPanel>
+                        </Expander.Header>
+                <StackPanel IsEnabled="{Binding PMC.AItoPMC.AIConverterEnable}" Margin="10">
+                            <ui:NumberBox Value="{Binding PMC.AItoPMC.PMCToScav}" Style="{StaticResource MinMax}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource PMCToAI}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding PMC.AItoPMC.ScavToPMC}" Style="{StaticResource MinMax}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource AIToPMC}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                        </StackPanel>
+                    </Expander>
+                </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Chances}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding PMC.ChancesEnable}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding PMC.ChancesEnable}" Margin="10">
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.PMCLooseWep}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource WeaponInBackpacks}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.PMCWepEnhance}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PMCUpgradedWeapon}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.PMCNamePrefix}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PMCHaveYourName}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.PMCAllNamePrefix}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource AllPMCHaveYourName}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.HostileSamePMC}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PMCSameHostility}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding PMC.PMCChance.HostilePMC}" Style="{StaticResource MinMax}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PMCHostility}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource PMCNames}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding PMC.NamesEnable}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding PMC.NamesEnable}" Margin="10">
+                    <DockPanel>
+                        <TextBox TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding PMC.PMCNameList}" Height="220"/>
+                    </DockPanel>
+                    <CheckBox Content="{DynamicResource OverridePMCNames}" IsChecked="{Binding PMC.NameOverride}"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

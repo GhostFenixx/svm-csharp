@@ -20,43 +20,76 @@
     <CETCompat>false</CETCompat>
     <Version>2.0.2</Version>
   </PropertyGroup>
+
   <ItemGroup>
     <Content Include="SVM.ico" />
   </ItemGroup>
 
   <ItemGroup>
-    <EmbeddedResource Include="Resources\Dictionary-es-ES.xaml" />
-    <EmbeddedResource Include="Resources\Dictionary-zh-CN.xaml" />
-    <EmbeddedResource Include="Resources\Dictionary-uk-UA.xaml" />
-    <EmbeddedResource Include="Resources\Dictionary-ko-KR.xaml" />
-    <EmbeddedResource Include="Resources\Dictionary-en-US.xaml" />
-    <EmbeddedResource Include="Resources\Dictionary-ru-RU.xaml" />
-    <EmbeddedResource Include="Resources\faqCN.rtf" />
-    <EmbeddedResource Include="Resources\faqES.rtf" />
-    <EmbeddedResource Include="Resources\faqKR.rtf" />
-    <EmbeddedResource Include="Resources\faqUA.rtf" />
-    <EmbeddedResource Include="Resources\faqEN.rtf" />
-    <EmbeddedResource Include="Resources\faqRU.rtf" />
-    <EmbeddedResource Include="Resources\HelloCN.rtf" />
-    <EmbeddedResource Include="Resources\HelloEN.rtf" />
-    <EmbeddedResource Include="Resources\HelloES.rtf" />
-    <EmbeddedResource Include="Resources\HelloKR.rtf" />
-    <EmbeddedResource Include="Resources\HelloRU.rtf" />
-    <EmbeddedResource Include="Resources\HelloUA.rtf" />
+	  <Content Include="Languages\Spanish\Dictionary-es-ES.xaml">
+		  <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+	  </Content>
+    <Content Include="Languages\Chinese\Dictionary-zh-CN.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Ukrainian\Dictionary-uk-UA.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Korean\Dictionary-ko-KR.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Languages\English\Dictionary-en-US.xaml" />
+    <Content Include="Languages\Russian\Dictionary-ru-RU.xaml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Chinese\faqCN.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Spanish\faqES.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Korean\faqKR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Ukrainian\faqUA.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Languages\English\faqEN.rtf" />
+    <Content Include="Languages\Russian\faqRU.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Chinese\HelloCN.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <EmbeddedResource Include="Languages\English\HelloEN.rtf" />
+    <Content Include="Languages\Spanish\HelloES.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Korean\HelloKR.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Russian\HelloRU.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
+    <Content Include="Languages\Ukrainian\HelloUA.rtf">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </Content>
     <EmbeddedResource Include="Resources\HideSpecialIconGrids.dll" />
     <Resource Include="Resources\Cultist1080.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\HealthCN.png" />
-    <Resource Include="Resources\HealthUA.png" />
+    <Resource Include="Languages\Chinese\HealthCN.png">
+      <CopyToOutputDirectory>Never</CopyToOutputDirectory>
+    </Resource>
+    <Resource Include="Languages\Ukrainian\HealthUA.png" />
     <Resource Include="Resources\Icons\icon_button_logout_over.png">
       <CopyToOutputDirectory>Never</CopyToOutputDirectory>
     </Resource>
-    <Resource Include="Resources\HealthKO.png" />
+    <Resource Include="Languages\Korean\HealthKO.png" />
     <Resource Include="Resources\Forest720.png" />
-    <Resource Include="Resources\HealthEN.png" />
-    <Resource Include="Resources\HealthRU.png" />
-    <Resource Include="Resources\HealthES.png" />
+    <Resource Include="Languages\English\HealthEN.png" />
+    <Resource Include="Languages\Russian\HealthRU.png" />
+    <Resource Include="Languages\Spanish\HealthES.png" />
   </ItemGroup>
 
   <ItemGroup>

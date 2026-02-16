@@ -33,7 +33,6 @@ namespace Greed.Models
             public Bots Bots { get; set; }
             public PMC PMC { get; set; }
             public Custom Custom { get; set; }
-
             public MainConfig()
             {
                 Items = new Items();

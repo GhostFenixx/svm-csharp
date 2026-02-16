@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
- <System:String xml:space="preserve" x:Key="LicenseText">Greed - 一个名为“Server Value Modifier”的SPT模组的 .Json 加载器创建工具
+    <BitmapImage x:Key="HealthImage" UriSource="pack://application:,,,/Languages/Chinese/HealthCN.png" />
+    <BitmapImage x:Key="PMCIcon" UriSource="pack://application:,,,/Resources/Icons/icon_bear.png" />
+    <System:String xml:space="preserve" x:Key="LicenseText">Greed - 一个名为“Server Value Modifier”的SPT模组的 .Json 加载器创建工具
 由 GhostFenixx 独立开发
 使用 VS 2022 Tools 在 .NET 9 + ModernWPF（作者 Kinnara）上制作
 https://github.com/Kinnara/ModernWpf

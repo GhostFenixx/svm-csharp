@@ -160,7 +160,6 @@ namespace ServerValueModifier
                 DeclareModdedAssort(svmcfg);
                 //Initialisation
                 Sections.Items itemLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, _cloner, svmcfg);
                 Sections.Traders tradersLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Services servicesLoad = new(logger, configServer, databaseService, _cloner, localeService, svmcfg);
@@ -192,9 +191,8 @@ namespace ServerValueModifier
                 if (svmcfg.CSM.EnableCSM) csmLoad.CSMSection();
                 if (svmcfg.Scav.EnableScav) scavload.ScavSection();
                 if (svmcfg.PMC.EnablePMC) pmcload.PMCSection();
-                if (svmcfg.Custom.EnableCustom) advLoad.ItemChangerSection();
 
-                string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder,"Misc","MOTD.txt")).Split("\n");
+                string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder, "Misc", "MOTD.txt")).Split("\n");
                 Random rnd = new Random();
                 logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
                 logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
@@ -318,10 +316,29 @@ namespace ServerValueModifier
                 });
             }
         }
-        
+
         private class Loader
         {
             public string CurrentlySelectedPreset { get; set; }
+        }
+    }
+    [Injectable(TypePriority = OnLoadOrder.PostSptModLoader + 100)]
+    public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper) : IOnLoad
+    {
+        public Task OnLoad() //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
+        {
+            try
+            {
+                //Load Preset
+                MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
+                Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg);
+                if (svmcfg.Custom.EnableCustom) advLoad.ItemChangerSection();
+                return Task.CompletedTask;
+            }
+            catch // Currently no logging on this since we have them in the method itself? debug/tests required
+            {
+                return Task.CompletedTask;
+            }
         }
     }
 }

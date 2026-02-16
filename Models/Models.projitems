@@ -19,6 +19,7 @@
     <Compile Include="$(MSBuildThisFileDirectory)Models\Flea\FleaConditions.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\Flea\Fleamarket.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Hideout.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)models\hideoutdata\Prestige.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Regeneration.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\HideoutData\Stash.cs" />
     <Compile Include="$(MSBuildThisFileDirectory)Models\ItemData\AmmoStacks.cs" />

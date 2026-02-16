@@ -1,0 +1,81 @@
+﻿<UserControl x:Class="Greed.UserControls.Custom"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Custom.EnableCustom}">
+        <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="550"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition Height="auto"/>
+                </Grid.RowDefinitions>
+                <StackPanel Grid.Column="0" Grid.Row="0">
+                    <Expander>
+                        <Expander.Header>
+                            <DockPanel>
+                                <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Changer}" VerticalAlignment="Center" Foreground="#FF9F0ACC" FontSize="20"/>
+                                <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Custom.IDChanger}"/>
+                            </DockPanel>
+                        </Expander.Header>
+                            <StackPanel IsEnabled="{Binding Custom.IDChanger}" Margin="10">
+                            <TextBlock  Text="{DynamicResource IDDefault}" VerticalAlignment="Center" />
+                            <TextBox MinHeight="100"  MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDDefault}"/>
+                            <TextBlock  Text="{DynamicResource IDParent}" VerticalAlignment="Center" />
+                            <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True"  Text="{Binding Custom.IDParent}"/>
+                            <!--<TextBlock Text="{DynamicResource IDFilter}" VerticalAlignment="Center"  />
+                                    <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDFilter}"/>-->
+                            <TextBlock  Text="{DynamicResource IDPrice}" VerticalAlignment="Center"/>
+                            <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDPrice}"/>
+                            <TextBlock Margin="10" Text="effects_damage &gt; EffectsDamage, any similar field goes same way"/>
+
+                        </StackPanel>
+                    </Expander>
+                    <Expander>
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Fleamarket}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        </Expander.Header>
+                        <StackPanel Margin="10">
+                            <TextBlock Text="{DynamicResource FleaMultID}" Margin="5,0,5,0" Foreground="White" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBox Margin="5,5,0,5" MinHeight="150" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.FleaMultID}"/>
+                        </StackPanel>
+                    </Expander>
+                    <Expander>
+                        <Expander.Header>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Traders}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        </Expander.Header>
+                        <StackPanel Margin="10">
+                            <TextBlock  Text="{DynamicResource AddTraderAssort}" VerticalAlignment="Center" />
+                            <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True"  Text="{Binding Custom.AddTraderAssort}"/>
+                            <TextBlock Text="{DynamicResource FenceBlacklist}" ToolTip="{DynamicResource FenceBlacklist_TT}" Foreground="#FF9F0ACC" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="0,5,0,5"/>
+                            <TextBox MinHeight="150" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.Blacklist}"/>
+                        </StackPanel>
+                    </Expander>
+                    <!--<Expander>
+        <Expander.Header>
+         <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Debug}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+        </Expander.Header>
+        <StackPanel Margin="10">
+         <CheckBox Content="{DynamicResource LoggerIntoServer}" IsChecked="{Binding Custom.LoggerIntoServer}"/>
+        </StackPanel>
+       </Expander>-->
+                </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Mailbox}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox  Content="{DynamicResource DisableSPTFriend}"  Foreground="RoyalBlue"  IsChecked="{Binding Custom.DisableSPTFriend}"/>
+                    <CheckBox Content="{DynamicResource DisableCommando}"  Foreground="RoyalBlue" IsChecked="{Binding Custom.DisableCommando}"/>
+                    <CheckBox Content="{DynamicResource DisablePMCMessages}" IsChecked="{Binding Custom.DisablePMCMessages}"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

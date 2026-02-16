@@ -1,0 +1,209 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Services"
+             mc:Ignorable="d">
+    <Grid>
+        <Grid  Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Services.EnableServices}">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="460"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+
+            <Grid.RowDefinitions>
+                <RowDefinition Height="auto"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <StackPanel Grid.Column="0" Grid.Row="0">
+                <Expander>
+                    <Expander.Header>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Clothing}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    </Expander.Header>
+                    <StackPanel Margin="10">
+                        <CheckBox Content="{DynamicResource ClothesAnySide}" IsChecked="{Binding Services.ClothesAnySide}" ToolTip="{DynamicResource ClothesAnySide_TT}"/>
+                        <CheckBox Content="{DynamicResource ClothesLevelUnlock}" IsChecked="{Binding Services.ClothesLevelUnlock}" ToolTip="{DynamicResource ClothesLevelUnlock_TT}"/>
+                        <CheckBox Content="{DynamicResource ClothesFree}" IsChecked="{Binding Services.ClothesFree}"  ToolTip="{DynamicResource ClothesFree_TT}"/>
+                    </StackPanel>
+                </Expander>
+                <Expander>
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Insurance}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Services.EnableInsurance}"/>
+                        </DockPanel>
+                    </Expander.Header>
+                    <StackPanel Margin="10" HorizontalAlignment="Left" IsEnabled="{Binding Services.EnableInsurance}">
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource InsuranceMinimumTime}" Width="200" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                            <ui:NumberBox Value="{Binding Services.Therapist_Min}" Minimum="1" Maximum="{Binding Services.Therapist_Max}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMaxOne}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource Therapist}" HorizontalAlignment="Center"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding Services.Prapor_Min}" Minimum="1" Maximum="{Binding Services.Prapor_Max}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMaxOne}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource Prapor}" HorizontalAlignment="Center"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource InsuranceMaximumTime}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.Therapist_Max}"  Minimum="{Binding Services.Therapist_Min}"   Margin="5,0,5,0" Width="100" Style="{StaticResource MinMaxOne}" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.Prapor_Max}" Minimum="{Binding Services.Prapor_Min}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMaxOne}" VerticalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource InsuranceStorageTime}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.TherapistStorageTime}" Minimum="1" Maximum="14400"  Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                            <ui:NumberBox Value="{Binding Services.PraporStorageTime}" Minimum="1"  Maximum="14400" Margin="5,0,5,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource InsuranceTradersChance}" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.ReturnChanceTherapist}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                            <ui:NumberBox Value="{Binding Services.ReturnChancePrapor}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource InsuranceTradersPriceMult}" ToolTip="{DynamicResource InsuranceTradersPriceMult_TT}" TextWrapping="Wrap" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource Lvl1}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultTherapistLvl1}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultPraporLvl1}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource Lvl2}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultTherapistLvl2}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultPraporLvl2}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource Lvl3}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultTherapistLvl3}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultPraporLvl3}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        </DockPanel>
+                        <DockPanel Margin="5,5,0,5">
+                            <TextBlock Text="{DynamicResource Lvl4}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultTherapistLvl4}"  Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                            <ui:NumberBox Value="{Binding Services.InsuranceMultPraporLvl4}" Margin="5,0,5,0" Width="100" Style="{StaticResource MinMax}"/>
+                        </DockPanel>
+                        <ui:NumberBox Value="{Binding Services.InsuranceAttachmentChance}" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource InsuranceAttachmentChance}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.InsuranceInterval}" Minimum="180" Maximum="720" Style="{DynamicResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource InsuranceInterval_TT}" Text="{DynamicResource InsuranceInterval}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <StackPanel>
+                            <CheckBox Content="{DynamicResource InsuranceTimeOverride}" ToolTip="{DynamicResource InsuranceTimeOverride_TT}"  IsChecked="{Binding Services.EnableTimeOverride}" Cursor="Hand"/>
+                            <ui:NumberBox Margin="0,0,0,5" Value="{Binding Services.InsuranceTimeOverride}" Minimum="180" Maximum="3600" Style="{StaticResource FlatsSmall}" VerticalAlignment="Center"/>
+                        </StackPanel>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+
+            <StackPanel Grid.Column="1" Grid.Row="0">
+                <Expander>
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Repair}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Services.EnableRepair}"/>
+                        </DockPanel>
+                    </Expander.Header>
+                    <StackPanel Margin="10" IsEnabled="{Binding Services.EnableRepair}">
+                        <ui:NumberBox Value="{Binding Services.RepairBox.RepairMult}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource RepairMarkup}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.RepairBox.ArmorSkillMult}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource ArmorSkillMult}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.RepairBox.WeaponMaintenanceSkillMult}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource WeaponMaintenanceSkillMult}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <TextBlock Text="{DynamicResource IntellectSkillMult}" Margin="10" HorizontalAlignment="Center"/>
+                        <DockPanel>
+                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillMultWeaponKit}" Width="200" Style="{StaticResource ThreeMults}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource WeaponRepairKit}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillMultArmorKit}" Width="200" Style="{StaticResource ThreeMults}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource ArmorRepairKit}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                        </DockPanel>
+                        <TextBlock Text="{DynamicResource IntellectSkillLimit}" Margin="10" HorizontalAlignment="Center"/>
+                        <DockPanel>
+                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillLimitTraders}" Width="200" Style="{StaticResource Mults}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource TradersGroup}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillLimitKit}" Width="200" Style="{StaticResource Mults}">
+                                <ui:NumberBox.Header>
+                                    <TextBlock Text="{DynamicResource RepairKit}"/>
+                                </ui:NumberBox.Header>
+                            </ui:NumberBox>
+                        </DockPanel>
+                        <CheckBox Content="{DynamicResource NoRandomDamageOnRepair}" IsChecked="{Binding Services.RepairBox.NoRandomRepair}"/>
+                        <CheckBox Content="{DynamicResource NoPermDamageWeapon}" IsChecked="{Binding Services.RepairBox.OpGunRepair}"/>
+                        <CheckBox Content="{DynamicResource NoPermDamageArmor}" IsChecked="{Binding Services.RepairBox.OpArmorRepair}"/>
+                    </StackPanel>
+                </Expander>
+                <Expander>
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource HealthMarkup}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Services.EnableHealMarkup}"/>
+                        </DockPanel>
+                    </Expander.Header>
+                    <StackPanel Margin="10" IsEnabled="{Binding Services.EnableHealMarkup}">
+                        <ui:NumberBox Value="{Binding Services.FreeHealLvl}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource FreeHealLvl}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.FreeHealRaids}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource FreeHealRaids}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <TextBlock Text="{DynamicResource TherapistHealthPrice}" TextWrapping="Wrap" Width="250" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Services.TherapistLvl1}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lvl1}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.TherapistLvl2}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lvl2}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.TherapistLvl3}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lvl3}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Services.TherapistLvl4}" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lvl4}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </StackPanel>
+                </Expander>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</UserControl>

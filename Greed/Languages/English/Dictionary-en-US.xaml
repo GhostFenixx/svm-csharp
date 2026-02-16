@@ -1,7 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
- <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
+    <BitmapImage x:Key="HealthImage" UriSource="pack://application:,,,/Languages/English/HealthEN.png" />
+    <BitmapImage x:Key="PMCIcon" UriSource="pack://application:,,,/Resources/Icons/icon_usec.png" />
+    <System:String xml:space="preserve" x:Key="LicenseText">Greed - A .Json loader creator for a SPT mod called "Server Value Modifier"
 Independent Application made by GhostFenixx
 Using VS 2022 Tools on .NET 9 + ModernWPF Library By Kinnara
 https://github.com/Kinnara/ModernWpf
@@ -132,8 +134,13 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
 [Be advised - it will launch your browser]</System:String>
  <System:String xml:space="preserve" x:Key="WikiPage_Link">Press 'Ok' To visit Official Tarkov Wiki,
 [Be advised - it will launch your browser]</System:String>
+<!--Counting-->
+    <System:String x:Key="First">First:</System:String>
+    <System:String x:Key="Second">Second:</System:String>
+    <System:String x:Key="Third">Third:</System:String>
+    <System:String x:Key="Fourth">Fourth:</System:String>
 
- <!--Buttons-->
+    <!--Buttons-->
  <System:String x:Key="ApplyButton">Apply</System:String>
  <System:String x:Key="Applied">Preset Applied!</System:String>
  <System:String x:Key="LoadButton">Load Preset</System:String>
@@ -213,7 +220,9 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="RemoveBackpacksRestrictions">Remove backpack restrictions</System:String>
  <System:String x:Key="NoGearPenalty">Remove movement penalty from gear</System:String>
 
- <!--Keys Section-->
+   
+
+    <!--Keys Section-->
  <System:String x:Key="Keys">Keys and Keycards:</System:String>
     <System:String x:Key="InfiniteKeycards">Infinite uses for keycards</System:String>
     <System:String x:Key="AvoidResidential">Except the Residential keycard</System:String>
@@ -256,8 +265,11 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="RemoveTraderLevelRequirements">Remove trader standing construction requirement</System:String>
  <System:String x:Key="CultistMaxRewards">Number of rewards from the cultist circle:</System:String>
  <System:String x:Key="CultistTime">Cultist Circle cycle time:</System:String>
-
- <!--Hideout Multipliers-->
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">Prestige</System:String>
+    <System:String x:Key="Skill">Skills</System:String>
+    <System:String x:Key="Mastery">Mastery</System:String>
+    <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Hideout production time:</System:String>
  <System:String x:Key="HideoutConstMult">Hideout construction time:</System:String>
  <System:String x:Key="ScavCaseTime">Scav Case cycle time:</System:String>

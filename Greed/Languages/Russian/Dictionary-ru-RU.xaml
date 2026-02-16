@@ -1,8 +1,9 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
                     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:System="clr-namespace:System;assembly=mscorlib">
-
- <System:String xml:space="preserve" x:Key="LicenseText">Greed - .Json Редактор загрузчика для мода SPT под именем "Server Value Modifier"
+    <BitmapImage x:Key="HealthImage" UriSource="pack://application:,,,/Languages/Russian/HealthRU.png"/>
+    <BitmapImage x:Key="PMCIcon" UriSource="pack://application:,,,/Resources/Icons/icon_bear.png" />
+    <System:String xml:space="preserve" x:Key="LicenseText">Greed - .Json Редактор загрузчика для мода SPT под именем "Server Value Modifier"
 Независимое приложение создано GhostFenixx
 Используя инструментарий VS 2022 на .NET 9 + Библиотека ModernWPF созданной Kinnara
 https://github.com/Kinnara/ModernWpf

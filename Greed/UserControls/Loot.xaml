@@ -1,0 +1,315 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Loot"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" x:Name="LootSection" IsEnabled="{Binding Loot.EnableLoot}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="450"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource LocationsLoot}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="0">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Customs}" Width="155" VerticalAlignment="Center" Padding="0,30,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Bigmap.Loose}" Width="115" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LooseLoot}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Bigmap.Container}" Width="115" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource ContainerLoot}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Interchange}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Interchange.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Interchange.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Woods}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Woods.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Woods.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Shoreline}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Shoreline.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Shoreline.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Reserve}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Reserve.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Reserve.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock  TextWrapping="Wrap" Text="{DynamicResource Lighthouse}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Lighthouse.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Lighthouse.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource Streets}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Streets.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Streets.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock  TextWrapping="Wrap" Text="{DynamicResource GroundZero}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Sandbox.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Sandbox.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock  TextWrapping="Wrap" Text="{DynamicResource GroundZeroHard}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.SandboxHard.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.SandboxHard.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FactoryDay}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.FactoryDay.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.FactoryDay.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource FactoryNight}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.FactoryNight.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.FactoryNight.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Lab}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Laboratory.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Laboratory.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource Labyrinth}" Width="150" VerticalAlignment="Center" Margin="0,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Labyrinth.Loose}" Width="115" Style="{StaticResource Mults}"/>
+                        <ui:NumberBox Value="{Binding Loot.Locations.Labyrinth.Container}" Width="115" Style="{StaticResource Mults}"/>
+                    </DockPanel>
+                    <CheckBox Content="{DynamicResource AllContainers}" ToolTip="{DynamicResource AllContainers_TT}" IsChecked="{Binding Loot.Locations.AllContainers}"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Airdrops}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource AirdropsTimeMinMax}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.AirtimeMin}" Width="100" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.AirtimeMax}" Width="100" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Text="{DynamicResource AirdropChance}" HorizontalAlignment="center" VerticalAlignment="Center" Margin="0,5,0,5"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Bigmap_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Interchange_air}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Interchange}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Woods_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Shoreline_air}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shoreline}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Reserve_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Reserve}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Lighthouse_air}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Lighthouse}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Streets_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Streets}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Sandbox_air}" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource GroundZero}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Mixed}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BarterLoot}" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.BarterMin}" Maximum="59" Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.BarterMax}" Minimum="{Binding Loot.Airdrops.Mixed.BarterMin}" Maximum="60"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Gear}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.ArmorMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.ArmorMax}"  Minimum="{Binding Loot.Airdrops.Mixed.ArmorMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Guns}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.PresetMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.PresetMax}" Minimum="{Binding Loot.Airdrops.Mixed.PresetMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource WepCrates}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.CratesMin}" Maximum="9" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Mixed.CratesMax}" Minimum="{Binding Loot.Airdrops.Mixed.CratesMin}" Maximum="10" Width="100"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BarterCrate}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BarterLoot}" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.BarterMin}" Maximum="59" Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.BarterMax}" Minimum="{Binding Loot.Airdrops.Barter.BarterMin}" Maximum="60"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Gear}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.ArmorMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.ArmorMax}"  Minimum="{Binding Loot.Airdrops.Barter.ArmorMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Guns}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.PresetMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.PresetMax}" Minimum="{Binding Loot.Airdrops.Barter.PresetMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource WepCrates}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.CratesMin}" Maximum="9" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Barter.CratesMax}" Minimum="{Binding Loot.Airdrops.Barter.CratesMin}" Maximum="10" Width="100"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Medical}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BarterLoot}" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.BarterMin}" Maximum="59" Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.BarterMax}" Minimum="{Binding Loot.Airdrops.Medical.BarterMin}" Maximum="60"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Gear}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.ArmorMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.ArmorMax}"  Minimum="{Binding Loot.Airdrops.Medical.ArmorMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Guns}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.PresetMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.PresetMax}" Minimum="{Binding Loot.Airdrops.Medical.PresetMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource WepCrates}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.CratesMin}" Maximum="9" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Medical.CratesMax}" Minimum="{Binding Loot.Airdrops.Medical.CratesMin}" Maximum="10" Width="100"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource WepArmor}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BarterLoot}" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.BarterMin}" Maximum="59" Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Min}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.BarterMax}" Minimum="{Binding Loot.Airdrops.Weapon.BarterMin}" Maximum="60"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Max}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Gear}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.ArmorMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.ArmorMax}"  Minimum="{Binding Loot.Airdrops.Weapon.ArmorMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource Guns}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.PresetMin}" Maximum="59" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.PresetMax}" Minimum="{Binding Loot.Airdrops.Weapon.PresetMin}" Maximum="60" Width="100"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" Height="35">
+                        <TextBlock Text="{DynamicResource WepCrates}" Width="200" VerticalAlignment="Center"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.CratesMin}" Maximum="9" Width="100"/>
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Weapon.CratesMax}" Minimum="{Binding Loot.Airdrops.Weapon.CratesMin}" Maximum="10" Width="100"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

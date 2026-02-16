@@ -60,15 +60,24 @@ namespace ServerValueModifier.Sections
             {
                 try
                 {
-                    bot.Equipment["pmc"].Randomisation[0].LevelRange.Min = 1;
-                    bot.Equipment["pmc"].Randomisation[0].LevelRange.Max = 14;//svm.cfg.PMC.LvlRange1
-                    bot.Equipment["pmc"].Randomisation[1].LevelRange.Min = 15;// svm.cfg.PMC.LvlRange1 + 1
-                    bot.Equipment["pmc"].Randomisation[1].LevelRange.Max = 22;//svm.cfg.PMC.LvlRange2
-                    bot.Equipment["pmc"].Randomisation[2].LevelRange.Min = 23;// svm.cfg.PMC.LvlRange2 + 1
-                    bot.Equipment["pmc"].Randomisation[2].LevelRange.Max = 45;//svm.cfg.PMC.LvlRange3 
-                    bot.Equipment["pmc"].Randomisation[2].LevelRange.Min = 46;// svm.cfg.PMC.LvlRange3 + 1
+                    //bot.Equipment["pmc"].Randomisation[0].LevelRange.Min = 1;
+                    //bot.Equipment["pmc"].Randomisation[0].LevelRange.Max = 14;//svm.cfg.PMC.LvlRange1
+                    //bot.Equipment["pmc"].Randomisation[1].LevelRange.Min = 15;// svm.cfg.PMC.LvlRange1 + 1
+                    //bot.Equipment["pmc"].Randomisation[1].LevelRange.Max = 22;//svm.cfg.PMC.LvlRange2
+                    //bot.Equipment["pmc"].Randomisation[2].LevelRange.Min = 23;// svm.cfg.PMC.LvlRange2 + 1
+                    //bot.Equipment["pmc"].Randomisation[2].LevelRange.Max = 45;//svm.cfg.PMC.LvlRange3 
+                    //bot.Equipment["pmc"].Randomisation[2].LevelRange.Min = 46;// svm.cfg.PMC.LvlRange3 + 1
                     //No point declaring Max of Level range 4 since it goes to 100, gotta limit level ranges to 75 to avoid hitting the ceiling.
                     //So they won't overlap this way, 3 fields for user control and being catched if certain mods deletes them.
+
+                    //REWORKED
+                    //Never ended as i wanted it to be, instead - i will just remove first 2 random levels and adjust last 2 to balance it out.
+                    bot.Equipment["pmc"].Randomisation.RemoveRange(0, 1);
+                    bot.Equipment["pmc"].Randomisation[0].LevelRange.Max = 29;
+                    bot.Equipment["pmc"].Randomisation[0].LevelRange.Min = 1;
+                    bot.Equipment["pmc"].Randomisation[1].LevelRange.Max = 99;
+                    bot.Equipment["pmc"].Randomisation[1].LevelRange.Min = 30;
+
                 }
                 catch
                 {
@@ -78,19 +87,33 @@ namespace ServerValueModifier.Sections
             //bot.Equipment["pmc"].Randomisation[1].LevelRange.Min = 1; According to Acid - they shouldn't overlap, therefore i'll just remove first level range and leave it be.
             //bot.Equipment["pmc"].Randomisation[2].LevelRange.Min = 1; Probably will just allow user to adjust every range eventually.
             //bot.Equipment["pmc"].Randomisation[3].LevelRange.Min = 1;
-            if (svmcfg.PMC.NamesEnable)
+
+            if (svmcfg.PMC.NameOverride && svmcfg.PMC.NamesEnable)
             {
-                if (svmcfg.PMC.NameOverride)
+                string[] names = svmcfg.PMC.PMCNameList.Split("\r\n");
+                foreach (string name in names)
                 {
-                    string[] names = svmcfg.PMC.PMCNameList.Split("\r\n");
-                    foreach (string name in names)
-                    {
-                        bottypes.Types["pmcusec"].FirstNames.Add(name);
-                        bottypes.Types["usec"].FirstNames.Add(name);
-                        bottypes.Types["pmcbear"].FirstNames.Add(name);
-                        bottypes.Types["bear"].FirstNames.Add(name);
-                    }
+                    bottypes.Types["pmcusec"].FirstNames = [];
+                    bottypes.Types["pmcusec"].FirstNames.Add(name);
+                    bottypes.Types["usec"].FirstNames = [];
+                    bottypes.Types["usec"].FirstNames.Add(name);
+                    bottypes.Types["pmcbear"].FirstNames = [];
+                    bottypes.Types["pmcbear"].FirstNames.Add(name);
+                    bottypes.Types["bear"].FirstNames = [];
+                    bottypes.Types["bear"].FirstNames.Add(name);
                 }
+            }
+            else if (svmcfg.PMC.NamesEnable)
+            {
+                string[] names = svmcfg.PMC.PMCNameList.Split("\r\n");
+                foreach (string name in names)
+                {
+                    bottypes.Types["pmcusec"].FirstNames.Add(name);
+                    bottypes.Types["usec"].FirstNames.Add(name);
+                    bottypes.Types["pmcbear"].FirstNames.Add(name);
+                    bottypes.Types["bear"].FirstNames.Add(name);
+                }
+
             }
         }
     }

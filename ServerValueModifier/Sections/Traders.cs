@@ -197,7 +197,7 @@ namespace ServerValueModifier.Sections
                                         }
                                             elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
                                         //Safety guard in case something hit less than 1
-                                        if (elem.Upd.BuyRestrictionMax < 1)
+                                        if (elem.Upd.BuyRestrictionMax < 1 && svmcfg.Traders.CurrencyRestrictions > 0) // UPD: Trying to mitigate offers not being 0 in case it wasn't intended
                                         {
                                             elem.Upd.BuyRestrictionMax = 1;
                                         }
@@ -226,7 +226,7 @@ namespace ServerValueModifier.Sections
                                         }
                                         elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.BarterRestrictions);
                                         //Safety guard in case something hit less than 1
-                                        if (elem.Upd.BuyRestrictionMax < 1)
+                                        if (elem.Upd.BuyRestrictionMax < 1 && svmcfg.Traders.BarterRestrictions > 0)
                                         {
                                             elem.Upd.BuyRestrictionMax = 1;
                                         }

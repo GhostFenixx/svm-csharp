@@ -1,0 +1,345 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Raids"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Raids.EnableRaids}">
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="500"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource Removelabkey}" IsChecked="{Binding Raids.Removelabkey}"/>
+                    <CheckBox Content="{DynamicResource LabInsurance}" IsChecked="{Binding Raids.LabInsurance}"/>
+                    <CheckBox Content="{DynamicResource NoRunThrough}" ToolTip="{DynamicResource NoRunThrough_TT}" IsChecked="{Binding Raids.NoRunThrough}"/>
+                    <CheckBox Content="{DynamicResource SaveQuestItems}" IsChecked="{Binding Raids.SaveQuestItems}"/>
+                    <ui:NumberBox Value="{Binding Raids.SandboxAccessLevel}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource SandboxAccessLevel}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Raids.RaidTime}" Maximum="720" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource RaidTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Raids.Timeacceleration}" Maximum="35" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource Timeacceleration}" Cursor=""/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource ExtractsSettings}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource ChanceExtracts}" ToolTip="{DynamicResource ChanceExtracts_TT}" IsChecked="{Binding Raids.Exfils.ChanceExtracts}"/>
+                    <CheckBox Content="{DynamicResource ExtendedExtracts}"  ToolTip="{DynamicResource ExtendedExtracts_TT}" IsChecked="{Binding Raids.Exfils.ExtendedExtracts}"/>
+                    <CheckBox Content="{DynamicResource GearExtract}" ToolTip="{DynamicResource GearExtract_TT}" IsChecked="{Binding Raids.Exfils.GearExtract}"/>
+                    <CheckBox Content="{DynamicResource ArmorExtract}" ToolTip="{DynamicResource ArmorExtract_TT}" IsChecked="{Binding Raids.Exfils.ArmorExtract}"/>
+                    <CheckBox Content="{DynamicResource NoBackpack}" ToolTip="{DynamicResource NoBackpack_TT}" IsChecked="{Binding Raids.Exfils.NoBackpack}"/>
+                    <CheckBox Content="{DynamicResource FenceGift}" IsChecked="{Binding Raids.Exfils.FenceGift}"/>
+
+                    <CheckBox Content="{DynamicResource ForceTransitStash}" IsChecked="{Binding Raids.ForceTransitStash}"/>
+                    <DockPanel Margin="5,5,0,5">
+                        <ui:NumberBox Value="{Binding Raids.TransitWidth}" Maximum="6" Width="100" HorizontalAlignment="Center" Margin="80,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Width}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.TransitHeight}" Maximum="20"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Height}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource CarAndCoop}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Raids.EnableCarCoop}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding Raids.EnableCarCoop}" Margin="10">
+                    <CheckBox Content="{DynamicResource FreeCoop}" IsChecked="{Binding Raids.Exfils.FreeCoop}"/>
+                    <CheckBox Content="{DynamicResource CoopPaid}" IsChecked="{Binding Raids.Exfils.CoopPaid}"/>
+                    <ui:NumberBox Value="{Binding Raids.Exfils.CarExtractTime}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource CarExtractTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <DockPanel Margin="75,5,0,5" Width="340">
+                        <TextBlock Text="{DynamicResource CoopExitPrices}" HorizontalAlignment="Left" Margin="0,0,5,0"/>
+                        <TextBlock Text="{DynamicResource CarExitPrices}" HorizontalAlignment="Right" Margin="0,0,5,0"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Woods}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidWoods}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource Woods}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarWoods}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Interchange}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidInterchange}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource Interchange}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarInterchange}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Customs}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidCustoms}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource Customs}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarCustoms}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource StreetsShort}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidStreets}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource StreetsShort}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarStreets}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Lighthouse}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidLighthouse}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource Lighthouse}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarLighthouse}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Shoreline}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidShoreline}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource Shoreline}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarShoreline}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource GroundZero}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidSandbox}" Width="100" Style="{StaticResource FlatsBig}"/>
+                        <TextBlock Text="{DynamicResource GroundZero}" Width="100" VerticalAlignment="Center" Margin="15,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CarSandbox}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5" HorizontalAlignment="Left">
+                        <TextBlock Text="{DynamicResource Reserve}" Width="100" VerticalAlignment="Center" Margin="5,0,5,0"/>
+                        <ui:NumberBox Value="{Binding Raids.Exfils.CoopPaidReserve}" Width="100" Style="{StaticResource FlatsBig}"/>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BTR}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox x:Name="BTRCheck" Style="{StaticResource SectionSwitch}" IsChecked="{Binding Raids.EnableBTR}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel  IsEnabled="{Binding Raids.EnableBTR}" Margin="10">
+                    <CheckBox Content="{DynamicResource ForceBTRFriendly}" IsChecked="{Binding Raids.ForceBTRFriendly}"/>
+                    <CheckBox Content="{DynamicResource ForceBTRStash}" IsChecked="{Binding Raids.ForceBTRStash}"/>
+                    <DockPanel Margin="5,5,0,5">
+                        <ui:NumberBox Value="{Binding Raids.BTRWidth}" Maximum="6" Width="100" HorizontalAlignment="Center" Margin="80,0,0,0">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Width}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.BTRHeight}" Maximum="20"  Width="100">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Height}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BTRChance}" TextWrapping="Wrap" Width="180" VerticalAlignment="Center" Padding="0,20,0,0"/>
+                        <ui:NumberBox Value="{Binding Raids.BTRWoodsChance}" Width="100" Margin="10,0,0,0" Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.BTRStreetsChance}" Width="100"  Style="{StaticResource FlatsSmall}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource StreetsShort}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BTRTimeMin}"  TextWrapping="Wrap" Width="180"/>
+                        <ui:NumberBox Value="{Binding Raids.BTRWoodsTimeMin}" Margin="10,0,0,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        <ui:NumberBox Value="{Binding Raids.BTRStreetsTimeMin}" Width="100" Style="{StaticResource FlatsSmall}"/>
+                    </DockPanel>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock Text="{DynamicResource BTRTimeMax}" TextWrapping="Wrap" Width="180"/>
+                        <ui:NumberBox Value="{Binding Raids.BTRWoodsTimeMax}" VerticalAlignment="Center" Margin="10,0,0,0" Width="100" Style="{StaticResource FlatsSmall}"/>
+                        <ui:NumberBox Value="{Binding Raids.BTRStreetsTimeMax}" VerticalAlignment="Center" Width="100" Style="{StaticResource FlatsSmall}"/>
+                    </DockPanel>
+                    <ui:NumberBox Margin="0,5,0,5" Value="{Binding Raids.BTRTaxiPrice}" Minimum="1" Maximum="500000" Style="{StaticResource FlatsBig}" Cursor="">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource BTRTaxiPrice}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Margin="0,5,0,5" Value="{Binding Raids.BTRCoverPrice}" Minimum="1" Maximum="500000" Style="{StaticResource FlatsBig}" Cursor="">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource BTRCoverPrice}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <DockPanel Margin="5,5,0,5">
+                        <TextBlock TextWrapping="Wrap" Text="{DynamicResource BTRPriceMult}" Width="150" VerticalAlignment="Bottom" Padding="0,0,0,5"/>
+                        <ui:NumberBox  Value="{Binding Raids.ScavMult}"  Minimum="0.01" Maximum="20" Margin="5,0,5,0" Width="95" Style="{StaticResource Mults}" VerticalAlignment="Bottom">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource SCAVAI}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox  Value="{Binding Raids.BearMult}"  Minimum="0.01" Maximum="20"  Margin="5,0,5,0" Width="95" Style="{StaticResource Mults}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Bear}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.UsecMult}"  Minimum="0.01" Maximum="20"  Margin="5,0,5,0" Width="95" Style="{StaticResource Mults}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Usec}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+
+                    </DockPanel>
+
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Events}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource AITypeOverride}" Foreground="White" ToolTip="{DynamicResource AITypeOverride_TT}" IsChecked="{Binding Raids.RaidEvents.AITypeOverride}"/>
+                    <ComboBox Foreground ="White" Width="250" SelectedIndex="{Binding Raids.RaidEvents.AIType, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource Raiders}"/>
+                        <ComboBoxItem Content="{DynamicResource Rogues}"/>
+                        <ComboBoxItem Content="{DynamicResource Cultist}"/>
+                        <ComboBoxItem Content="{DynamicResource Bear}"/>
+                        <ComboBoxItem Content="{DynamicResource Usec}"/>
+
+                    </ComboBox>
+                    <CheckBox Content="{DynamicResource GlukharLabs}" IsChecked="{Binding Raids.RaidEvents.GlukharLabs}"/>
+                    <CheckBox Content="{DynamicResource BossesOnCustoms}" IsChecked="{Binding Raids.RaidEvents.BossesOnCustoms}"/>
+                    <CheckBox Content="{DynamicResource BossesOnHealthResort}" IsChecked="{Binding Raids.RaidEvents.BossesOnHealthResort}"/>
+                    <CheckBox Foreground="#FFFFA73B" Margin="20,0,0,0"  ToolTip="{DynamicResource HealthResortIncludeGuards_TT}" Content="{DynamicResource HealthResortIncludeGuards}" IsChecked="{Binding Raids.RaidEvents.HealthResortIncludeGuards}"/>
+                    <CheckBox Content="{DynamicResource BossesOnReserve}" IsChecked="{Binding Raids.RaidEvents.BossesOnReserve}"/>
+                    <CheckBox Margin="20,0,0,0" Content="{DynamicResource IncludeStreetBosses}" IsChecked="{Binding Raids.RaidEvents.IncludeStreetBosses}"/>
+                    <CheckBox Content="{DynamicResource Christmas}" ToolTip="{DynamicResource Christmas_TT}" IsChecked="{Binding Raids.RaidEvents.Christmas}"/>
+                    <CheckBox Content="{DynamicResource Halloween}" ToolTip="{DynamicResource Halloween_TT}" IsChecked="{Binding Raids.RaidEvents.Halloween}"/>
+                    <CheckBox Margin="20,0,0,0"  ToolTip="{DynamicResource DisableZombies_TT}" Content="{DynamicResource DisableZombies}" IsChecked="{Binding Raids.RaidEvents.DisableZombies}"/>
+                    <CheckBox  Foreground="#FFFFA73B" Margin="20,0,0,0"  ToolTip="{DynamicResource DisableHalloweenAIFriendly_TT}" Content="{DynamicResource DisableHalloweenAIFriendly}" IsChecked="{Binding Raids.RaidEvents.DisableHalloweenAIFriendly}"/>
+                    <CheckBox Content="{DynamicResource NonSeasonalQuests}" IsChecked="{Binding Raids.RaidEvents.NonSeasonalQuests}"/>
+                    <CheckBox Content="{DynamicResource DisableEvents}" IsChecked="{Binding Raids.RaidEvents.DisableEvents}"/>
+                    <CheckBox Content="{DynamicResource TagillaInterchange}" IsChecked="{Binding Raids.RaidEvents.TagillaInterchange}"/>
+                    <StackPanel>
+                        <CheckBox Content="{DynamicResource GoonsFactory}" IsChecked="{Binding Raids.RaidEvents.GoonsFactory}"/>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.GoonsFactoryChance}" Style="{StaticResource MinMax}"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <CheckBox Content="{DynamicResource KillaFactory}" IsChecked="{Binding Raids.RaidEvents.KillaFactory}" Cursor="Hand"/>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.KillaFactoryChance}"  Style="{StaticResource MinMax}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <StackPanel>
+                        <CheckBox Content="{DynamicResource CultistBosses}" IsChecked="{Binding Raids.RaidEvents.CultistBosses}" Cursor="Hand"/>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.CultistBossesChance}"  Style="{StaticResource MinMax}" VerticalAlignment="Center"/>
+                    </StackPanel>
+                    <TextBlock Margin="0,5,0,5" Text="{DynamicResource Bloodhounds}" HorizontalAlignment="Center"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.HoundsCustoms}" Margin="80,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.HoundsWoods}" Margin="30,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Woods}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                    <TextBlock Margin="0,5,0,5" Text="{DynamicResource RedBlueEvent}" HorizontalAlignment="Center"/>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.SkierFighters}" Margin="80,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Customs}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Raids.RaidEvents.PeaceFighters}" Margin="30,0,0,0"  Width="100"  Style="{StaticResource MinMax}" HorizontalAlignment="Left">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Shoreline}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource RaidStartup}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox  Style="{StaticResource SectionSwitch}" IsChecked="{Binding Raids.RaidStartup.EnableRaidStartup}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding Raids.RaidStartup.EnableRaidStartup}" Margin="10">
+                    <TextBlock Text="{DynamicResource AIDifficulty}"/>
+                    <ComboBox Foreground ="White" Width="250" SelectedIndex="{Binding Raids.RaidStartup.AIDifficulty, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource AsOnline}"/>
+                        <ComboBoxItem Content="{DynamicResource Easy}"/>
+                        <ComboBoxItem Content="{DynamicResource Medium}"/>
+                        <ComboBoxItem Content="{DynamicResource Hard}"/>
+                        <ComboBoxItem Content="{DynamicResource Impossible}"/>
+                        <ComboBoxItem Content="{DynamicResource Random}"/>
+                    </ComboBox>
+                    <TextBlock Text="{DynamicResource AIAmount}"/>
+                    <ComboBox Foreground ="White" Width="250" x:Name="AIAmount" SelectedIndex="{Binding Raids.RaidStartup.AIAmount, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource AsOnline}"/>
+                        <ComboBoxItem Content="{DynamicResource Low}"/>
+                        <ComboBoxItem Content="{DynamicResource Medium}"/>
+                        <ComboBoxItem Content="{DynamicResource High}"/>
+                        <ComboBoxItem Content="{DynamicResource Horde}"/>
+                        <ComboBoxItem Content="{DynamicResource NoBots}"/>
+                    </ComboBox>
+                    <ui:NumberBox HorizontalAlignment="Left" Width="250" Value="{Binding Raids.RaidStartup.TimeBeforeDeployLocal}" Minimum="5" Maximum="60" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource DeployTimer}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <CheckBox Content="{DynamicResource ScavWars}" IsChecked="{Binding Raids.RaidStartup.ScavWars}"/>
+                    <CheckBox Content="{DynamicResource Bosses}" IsChecked="{Binding Raids.RaidStartup.EnableBosses}"/>
+                    <CheckBox Content="{DynamicResource Cursed}" IsChecked="{Binding Raids.RaidStartup.TaggedAndCursed}"/>
+                    <CheckBox Content="{DynamicResource LootRaid}" IsChecked="{Binding Raids.RaidStartup.SaveLoot}"/>
+
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource ForceSeason}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox x:Name="WeatherCheck" Style="{StaticResource SectionSwitch}" IsChecked="{Binding Raids.ForceSeason}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel IsEnabled="{Binding Raids.ForceSeason}" Margin="10">
+                    <TextBlock Text="{DynamicResource Season}" VerticalAlignment="Center" Margin="0,0,10,0"/>
+                    <ComboBox Foreground ="White" Width="200" x:Name="WeatherBox" SelectedIndex="{Binding Raids.Season, Mode=TwoWay}" SelectedValuePath="Content" Cursor="">
+                        <ComboBoxItem Content="{DynamicResource Summer}"/>
+                        <ComboBoxItem Content="{DynamicResource Autumn}"/>
+                        <ComboBoxItem Content="{DynamicResource Winter}"/>
+                        <ComboBoxItem Content="{DynamicResource Spring}"/>
+                        <ComboBoxItem Content="{DynamicResource Storm}"/>
+                    </ComboBox>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

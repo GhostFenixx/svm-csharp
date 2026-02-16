@@ -9,42 +9,14 @@
          Width="700" MinHeight="300" MaxHeight="300"
         Icon="Resources/SVMLOGO.png" ResizeMode="NoResize" MouseLeftButtonDown="Dragger" WindowStartupLocation="CenterScreen" WindowStyle="None" d:DesignHeight="150" >
  <Window.Resources>
-  <FontFamily x:Key="Bender">./Resources/Bender.otf#Bender</FontFamily>
-
-  <Style TargetType="TextBlock">
-   <Setter Property="Foreground" Value="LightGray"/>
-   <Setter Property="FontFamily" Value="Segoe UI"/>
-   <Setter Property="FontWeight" Value="SemiBold"/>
-   <Setter Property="FontSize" Value="18"/>
-  </Style>
-  <Style TargetType="Button">
-   <Setter Property="FontFamily" Value="{StaticResource Bender}"/>
-   <Setter Property="FontSize" Value="18"/>
-   <Setter Property="Height" Value="35"/>
-   <Setter Property="Width" Value="150"/>
-   <Setter Property="Background" Value="Transparent"/>
-   <Setter Property="Foreground" Value="#FFC5C3B2"/>
-   <Setter Property="Template">
-    <Setter.Value>
-     <ControlTemplate TargetType="{x:Type Button}">
-      <Border x:Name="Border" Background="{TemplateBinding Background}">
-       <ContentPresenter HorizontalAlignment="Center" VerticalAlignment="Center" />
-      </Border>
-      <ControlTemplate.Triggers>
-       <Trigger Property="IsMouseOver" Value="True">
-        <Setter Property="Background" Value="#FFC5C3B2" TargetName="Border" />
-       </Trigger>
-      </ControlTemplate.Triggers>
-     </ControlTemplate>
-    </Setter.Value>
-   </Setter>
-   <Style.Triggers>
-    <Trigger Property="IsMouseOver" Value="True">
-     <Setter Property="Foreground" Value="Black"/>
-    </Trigger>
-   </Style.Triggers>
-  </Style>
- </Window.Resources>
+        <FontFamily x:Key="Bender">./Resources/Bender.otf#Bender</FontFamily>
+        <Style TargetType="TextBlock">
+            <Setter Property="Foreground" Value="LightGray"/>
+            <Setter Property="FontFamily" Value="Segoe UI"/>
+            <Setter Property="FontWeight" Value="SemiBold"/>
+            <Setter Property="FontSize" Value="18"/>
+        </Style>
+    </Window.Resources>
  <Window.Background>
   <ImageBrush ImageSource="Resources/Forest720.png"/>
  </Window.Background>

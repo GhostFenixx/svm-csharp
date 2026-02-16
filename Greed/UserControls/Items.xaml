@@ -1,0 +1,216 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Items"
+             mc:Ignorable="d">
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Items.EnableItems}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="550"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <DockPanel>
+                        <CheckBox Content="{DynamicResource AllExaminedItems}" IsChecked="{Binding Items.AllExaminedItems}"/>
+                        <CheckBox Margin="15,0,0,0" Content="{DynamicResource ExamineKeys}"  IsChecked="{Binding Items.ExamineKeys}"/>
+                    </DockPanel>
+                    <CheckBox Content="{DynamicResource EquipRigsWithArmors}" IsChecked="{Binding Items.EquipRigsWithArmors}" ToolTip="{DynamicResource EquipRigsWithArmors_TT}"/>
+                    <CheckBox Content="{DynamicResource RemoveBackpacksRestrictions}" Foreground="#FFFFA73B" IsChecked="{Binding Items.RemoveBackpacksRestrictions}" ToolTip="{DynamicResource RemoveBackpacksRestrictions_TT}"/>
+                    <CheckBox Content="{DynamicResource RemoveSecureContainerFilters}" Foreground="#FFFFA73B" IsChecked="{Binding Items.RemoveSecureContainerFilters}" ToolTip="{DynamicResource RemoveSecureContainerFilters_TT}"/>
+                    <CheckBox Content="{DynamicResource RemoveRaidRestr}" IsChecked="{Binding Items.RemoveRaidRestr}" ToolTip="{DynamicResource RemoveRaidRestr_TT}"/>
+                    <CheckBox Content="{DynamicResource NoGearPenalty}" IsChecked="{Binding Items.NoGearPenalty}" ToolTip="{DynamicResource NoGearPenalty_TT}"/>
+                    <CheckBox Content="{DynamicResource RaidDrop}" IsChecked="{Binding Items.RaidDrop}" ToolTip="{DynamicResource RaidDrop_TT}"/>
+                    <CheckBox Content="{DynamicResource PistolToMain}" IsChecked="{Binding Items.PistolToMain}" ToolTip="{DynamicResource PistolToMain_TT}"/>
+                    <CheckBox Content="{DynamicResource SMGToHolster}" IsChecked="{Binding Items.SMGToHolster}" ToolTip="{DynamicResource SMGToHolster_TT}"/>
+                    <CheckBox Content="{DynamicResource WeaponHeatOff}" IsChecked="{Binding Items.WeaponHeatOff}"/>
+                    <CheckBox Content="{DynamicResource SurvCMSToSpec}" IsChecked="{Binding Items.SurvCMSToSpec}"/>
+                    <CheckBox Content="{DynamicResource SurvCMSSecConBlock}" IsChecked="{Binding Items.SurvCMSSecConBlock}"/>
+                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Minimum="2" Maximum="25" Value="{Binding Items.BackpackStacking}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource BackpackStacking}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <DockPanel>
+                <Expander Width="275" x:Name="AmmoExpander" Collapsed="CurrencyAmmoExpander_Collapsed" Expanded="CurrencyAmmoExpander_Expanded">
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource AmmoStack}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <CheckBox Style="{StaticResource SectionSwitch}"  IsChecked="{Binding Items.AmmoSwitch}"/>
+                        </DockPanel>
+                    </Expander.Header>
+                    <StackPanel Margin="10" IsEnabled="{Binding Items.AmmoSwitch}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.PistolRound}" Minimum="5" Maximum="1500" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource PistolRound_TT}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource PistolRound}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.ShotgunRound}" Minimum="2" Maximum="400" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource ShotgunRound_TT}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource ShotgunRound}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.RifleRound}" Minimum="5" Maximum="1400" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource RifleRound_TT}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource RifleRound}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.MarksmanRound}" Minimum="5" Maximum="1200" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource MarksmanRound_TT}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource MarksmanRound}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.LargeCaliberRound}" Minimum="5" Maximum="800" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource LargeCaliberRound_TT}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource LargeCaliberRound}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </StackPanel>
+                </Expander>
+
+                <Expander x:Name="CurrencyExpander" Collapsed="CurrencyAmmoExpander_Collapsed" Expanded="CurrencyAmmoExpander_Expanded">
+                    <Expander.Header>
+                        <DockPanel>
+                            <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource CurrencyStack}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                            <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Items.EnableCurrency}"/>
+
+                        </DockPanel>
+                    </Expander.Header>
+                    <StackPanel Margin="10" IsEnabled="{Binding Items.EnableCurrency}">
+                        <!--<CheckBox Content="{DynamicResource DisableDefaultCashStack}" ToolTip="{DynamicResource DisableDefaultCashStack_TT}" IsChecked="{Binding Items.BSGCashStack}"/>-->
+                        <ui:NumberBox Value="{Binding Items.RubStack}" Minimum="50000" Style="{StaticResource FlatsBig}" SmallChange="50000">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource RoublesOrDefault}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.DollarStack}" Minimum="500" Style="{StaticResource FlatsBig}" SmallChange="500">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Dollars}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.EuroStack}" Minimum="500" Style="{StaticResource FlatsBig}" SmallChange="500">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Euros}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Items.GPStack}" Minimum="5" Style="{StaticResource FlatsSmall}" SmallChange="5">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource GPCoin}"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                    </StackPanel>
+                </Expander>
+            </DockPanel>
+        </StackPanel>
+        <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander IsExpanded="True"  BorderThickness="1">
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Multipliers}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10" Cursor="">
+                    <ui:NumberBox Style="{StaticResource Mults}" Maximum="5" Value="{Binding Items.ItemPriceMult}">
+                        <ui:NumberBox.Header>
+                            <TextBlock  Text="{DynamicResource ItemPriceMult}" ToolTip="{DynamicResource ItemPriceMult_TT}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0" Maximum="5" Value="{Binding Items.WeightChanger}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource WeightChanger}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.LootExp}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource LootExp}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.ExamineExp}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource ExamineExp}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.MalfunctChanceMult}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MalfunctChanceMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}"   Value="{Binding Items.MisfireChance}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MisfireChance}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0"   Value="{Binding Items.FragmentMult}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource FragmentMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.AmmoLoadSpeed}" ToolTip="{DynamicResource AmmoLoadSpeed_TT}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource AmmoLoadSpeed}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.ExamineTime}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource ExamineTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0" Value="{Binding Items.HeatFactor}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource HeatFactor}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Keys}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                        <CheckBox x:Name="KeysCheck" Style="{StaticResource SectionSwitch}" IsChecked="{Binding Items.Keys.EnableKeys}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel  IsEnabled="{Binding Items.Keys.EnableKeys}" Margin="10">
+                    <ui:NumberBox Value="{Binding Items.Keys.KeyUseMult}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource KeyUseMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Items.Keys.KeycardUseMult}" Style="{StaticResource Mults}" Cursor="">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource KeycardUseMult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Items.Keys.KeyDurabilityThreshold}" Minimum="1" Maximum="400" Style="{StaticResource FlatsSmall}" Cursor="">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource KeyDurabilityThreshold}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Items.Keys.KeyCardDurabilityThreshold}" Minimum="1" Maximum="400" Style="{StaticResource FlatsSmall}" Cursor="">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource KeyCardDurabilityThreshold}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <CheckBox Content="{DynamicResource IgnoreAccessKeycard}" ToolTip="{DynamicResource IgnoreAccessKeycard_TT}" IsChecked="{Binding Items.Keys.IgnoreAccessCard}"/>
+                    <CheckBox Content="{DynamicResource InfiniteKeycards}" IsChecked="{Binding Items.Keys.InfiniteKeycards}"/>
+                    <CheckBox Margin="30,0,0,0" Content="{DynamicResource AvoidResidential}" ToolTip="{DynamicResource AvoidResidential_TT}" IsChecked="{Binding Items.Keys.AvoidResidential}"/>
+                    <CheckBox Margin="30,0,0,0" Content="{DynamicResource AvoidSingleKeyCards}" ToolTip="{DynamicResource AvoidSingleKeyCards_TT}" IsChecked="{Binding Items.Keys.AvoidSingleKeyCards}"/>
+                    <CheckBox Content="{DynamicResource InfiniteKeys}" IsChecked="{Binding Items.Keys.InfiniteKeys}"/>
+                    <CheckBox Margin="30,0,0,0" Content="{DynamicResource AvoidSingleKeys}" IsChecked="{Binding Items.Keys.AvoidSingleKeys}"/>
+                    <CheckBox Margin="30,0,0,0" Content="{DynamicResource AvoidOddKeys}"  ToolTip="{DynamicResource AvoidOddKeys_TT}" IsChecked="{Binding Items.Keys.AvoidOddKeys}"/>
+                    <CheckBox Margin="30,0,0,0" Content="{DynamicResource AvoidMarkedKeys}" IsChecked="{Binding Items.Keys.AvoidMarkedKeys}"/>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>
