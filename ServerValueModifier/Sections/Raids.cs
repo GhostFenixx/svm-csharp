@@ -73,7 +73,6 @@ namespace ServerValueModifier.Sections
                 inraid.RaidMenuSettings.BossEnabled = svmconfig.Raids.RaidStartup.EnableBosses;
                 inraid.RaidMenuSettings.ScavWars = svmconfig.Raids.RaidStartup.ScavWars;
                 inraid.RaidMenuSettings.TaggedAndCursed = svmconfig.Raids.RaidStartup.TaggedAndCursed;
-
                 //inraid.Save.Loot = Config.Raids.RaidStartup.SaveLoot; TODO
             }
             //Enable/Disable Fence gifts 
@@ -142,6 +141,10 @@ namespace ServerValueModifier.Sections
             }
             foreach (Location names in locationsdb.GetDictionary().Values)
             {
+                if (svmconfig.Raids.DisableTransits)
+                {
+                    names.Base.Transits = [];
+                }
                 if (svmconfig.Raids.RaidTime != 0)
                 {
                     names.Base.ExitAccessTime += svmconfig.Raids.RaidTime;

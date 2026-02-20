@@ -460,7 +460,22 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="ArmorExtract">Allow armor on climbing extracts</System:String>
  <System:String x:Key="NoBackpack">Remove restrictions for backpack related extracts</System:String>
  <System:String x:Key="ForceTransitStash">Force size of Transit Inventory</System:String>
- <!--Coop/Car Section-->
+ <System:String x:Key="DisableTransits">Disable transits</System:String> 
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">Raid Status on raid end</System:String>
+    <System:String x:Key="OnSurvivedState">If survived</System:String>
+    <System:String x:Key="OnRunnerState">If Run-Through</System:String>
+    <System:String x:Key="OnKilledState">If died</System:String>
+    <System:String x:Key="OnMIAState">If MIA</System:String>
+    <System:String x:Key="OnLeftState">If Left via menu</System:String>
+    <System:String x:Key="SurvivedRaid">Count as Survived</System:String>
+    <System:String x:Key="MIARaid">Count as MIA</System:String>
+    <System:String x:Key="RunnerRaid">Count as Run-Through</System:String>
+    <System:String x:Key="KilledRaid">Count as Killed</System:String>
+    <System:String x:Key="LeftRaid">Count as Left</System:String>
+    <System:String x:Key="IgnoreRaid">Count as Raid never happened</System:String>
+
+    <!--Coop/Car Section-->
  <System:String x:Key="FreeCoop">No Co-op exit restrictions</System:String>
  <System:String x:Key="CoopPaid">Make Co-op extracts - paid extracts</System:String>
  <System:String x:Key="FenceGift">Disable Fence's gift for Co-op extracts</System:String>
@@ -506,9 +521,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="RedBlueEvent">Skier/Peacekeeper squads spawn chance</System:String>
  <!--Raid Startup Section-->
  <System:String x:Key="RaidStartup">Raid startup settings</System:String>
- <System:String x:Key="Cursed">Tagged and Cursed</System:String>
- <System:String x:Key="MIARaid">MIA at the end of the raid</System:String>
- <System:String x:Key="LootRaid">Practice Mode</System:String>
+    <System:String x:Key="Cursed">Tagged and Cursed</System:String>
+    <System:String x:Key="LootRaid">Practice Mode</System:String>
  <System:String x:Key="AIDifficulty">AI Difficulty</System:String>
  <System:String x:Key="AIAmount">Number of AI</System:String>
  <System:String x:Key="DeployTimer">Deploy timer in the raid</System:String>

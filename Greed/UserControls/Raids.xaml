@@ -27,6 +27,7 @@
                     <CheckBox Content="{DynamicResource LabInsurance}" IsChecked="{Binding Raids.LabInsurance}"/>
                     <CheckBox Content="{DynamicResource NoRunThrough}" ToolTip="{DynamicResource NoRunThrough_TT}" IsChecked="{Binding Raids.NoRunThrough}"/>
                     <CheckBox Content="{DynamicResource SaveQuestItems}" IsChecked="{Binding Raids.SaveQuestItems}"/>
+                    
                     <ui:NumberBox Value="{Binding Raids.SandboxAccessLevel}" Style="{StaticResource FlatsSmall}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource SandboxAccessLevel}"/>
@@ -46,9 +47,62 @@
             </Expander>
             <Expander>
                 <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource RaidStates}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <StackPanel Margin="10">
+                    <TextBlock Text="{DynamicResource OnSurvivedState}"/>
+                    <ComboBox Foreground ="White" Width="400" SelectedIndex="{Binding Raids.OnSurvivedState, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource SurvivedRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource KilledRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource LeftRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource RunnerRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource MIARaid}"/>
+                        <ComboBoxItem Content="{DynamicResource IgnoreRaid}"/>
+                    </ComboBox>
+                    <TextBlock Text="{DynamicResource OnKilledState}"/>
+                    <ComboBox Foreground ="White" Width="400" SelectedIndex="{Binding Raids.OnKilledState, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource SurvivedRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource KilledRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource LeftRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource RunnerRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource MIARaid}"/>
+                        <ComboBoxItem Content="{DynamicResource IgnoreRaid}"/>
+                    </ComboBox>
+                    <TextBlock Text="{DynamicResource OnLeftState}"/>
+                    <ComboBox Foreground ="White" Width="400" SelectedIndex="{Binding Raids.OnLeftState, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource SurvivedRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource KilledRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource LeftRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource RunnerRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource MIARaid}"/>
+                        <ComboBoxItem Content="{DynamicResource IgnoreRaid}"/>
+                    </ComboBox>
+                    <TextBlock Text="{DynamicResource OnRunnerState}"/>
+                    <ComboBox Foreground ="White" Width="400" SelectedIndex="{Binding Raids.OnRunnerState, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource SurvivedRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource KilledRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource LeftRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource RunnerRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource MIARaid}"/>
+                        <ComboBoxItem Content="{DynamicResource IgnoreRaid}"/>
+                    </ComboBox>
+                    <TextBlock Text="{DynamicResource OnMIAState}"/>
+                    <ComboBox Foreground ="White" Width="400" SelectedIndex="{Binding Raids.OnMIAState, Mode=TwoWay}" SelectedValuePath="Content">
+                        <ComboBoxItem Content="{DynamicResource SurvivedRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource KilledRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource LeftRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource RunnerRaid}"/>
+                        <ComboBoxItem Content="{DynamicResource MIARaid}"/>
+                        <ComboBoxItem Content="{DynamicResource IgnoreRaid}"/>
+                    </ComboBox>
+                </StackPanel>
+            </Expander>
+            <Expander>
+                <Expander.Header>
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource ExtractsSettings}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10">
+                    <CheckBox Content="{DynamicResource DisableTransits}" IsChecked="{Binding Raids.DisableTransits}"/>
                     <CheckBox Content="{DynamicResource ChanceExtracts}" ToolTip="{DynamicResource ChanceExtracts_TT}" IsChecked="{Binding Raids.Exfils.ChanceExtracts}"/>
                     <CheckBox Content="{DynamicResource ExtendedExtracts}"  ToolTip="{DynamicResource ExtendedExtracts_TT}" IsChecked="{Binding Raids.Exfils.ExtendedExtracts}"/>
                     <CheckBox Content="{DynamicResource GearExtract}" ToolTip="{DynamicResource GearExtract_TT}" IsChecked="{Binding Raids.Exfils.GearExtract}"/>

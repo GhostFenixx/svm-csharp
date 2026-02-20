@@ -7,6 +7,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Match;
+using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Utils;
@@ -89,19 +90,19 @@ namespace ServerValueModifier.Routers
                 }
                 if (cf.Raids.RaidStartup.SaveLoot && cf.Raids.EnableRaids && cf.Raids.RaidStartup.EnableRaidStartup)
                 {
-
+                    //Bad writing, still - if Section and subsection is on AND practice mode(saveloot) is on - ignore any changes to raid, including scav raids.
                 }
                 else
                 {
-                    if (info.Results.Result == ExitStatus.LEFT && info.Results.Profile.Info.Side != "Savage" && cf.Raids.SafeExit & cf.Raids.EnableRaids)
+                    if (info.Results.Profile.Info.Side != "Savage" && info.Results.Result != ExitStatus.TRANSIT && cf.Raids.EnableRaids)
                     {
-                        info.Results.Result = ExitStatus.RUNNER;
+                        DefineRaidStatus(cf, info);
+                        if (info.Results.Result != ExitStatus.TRANSIT)
+                        {                                                  // So, this is funny case, since my field is int converting to ExitStatus, my 'ignore raid' state hits same number as Transit,
+                            MatchController.EndLocalRaid(sessionID, info); // therefore knowing that initially it can't roll transit exit on entry i utilise it to ignore raid altogether
+                                                                           // Very doohickey.
+                        }
                     }
-                    if (info.Results.Result != ExitStatus.SURVIVED && info.Results.Result != ExitStatus.TRANSIT && info.Results.Profile.Info.Side != "Savage" && cf.Raids.SaveGearAfterDeath && cf.Raids.EnableRaids)
-                    {
-                        info.Results.Result = ExitStatus.RUNNER;
-                    }
-                    MatchController.EndLocalRaid(sessionID, info);
                     if (cf.Scav.EnableScav)
                     {
                         if (info.Results.Result != ExitStatus.SURVIVED && info.Results.Result != ExitStatus.TRANSIT && info.Results.Result != ExitStatus.RUNNER && info.Results.Profile.Info.Side == "Savage")//Cursed, i hate it.
@@ -141,6 +142,27 @@ namespace ServerValueModifier.Routers
             return new ValueTask<string>(HttpResponseUtil.NullResponse());
         }
 
+        public static void DefineRaidStatus(MainClass.MainConfig svmconfig, EndLocalRaidRequestData info)
+        {
+            switch (info.Results.Result)
+            {
+                case ExitStatus.SURVIVED:
+                    info.Results.Result = (ExitStatus)svmconfig.Raids.OnSurvivedState;
+                    break;
+                case ExitStatus.KILLED:
+                    info.Results.Result = (ExitStatus)svmconfig.Raids.OnKilledState;
+                    break;
+                case ExitStatus.LEFT:
+                    info.Results.Result = (ExitStatus)svmconfig.Raids.OnLeftState;
+                    break;
+                case ExitStatus.RUNNER:
+                    info.Results.Result = (ExitStatus)svmconfig.Raids.OnRunnerState;
+                    break;
+                case ExitStatus.MISSINGINACTION:
+                    info.Results.Result = (ExitStatus)svmconfig.Raids.OnMIAState;
+                    break;
+            }
+        }
         public static void HealthEdit(Dictionary<string, BodyPartHealth>? Data, Greed.Models.PlayerData.Health values, string type)
         {
             if (type == "Current")

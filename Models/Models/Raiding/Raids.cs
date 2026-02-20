@@ -15,6 +15,12 @@
         public bool EnableRaids { get; set; }
         public bool Removelabkey { get; set; }
 
+        public int OnSurvivedState { get; set; } = 0;
+        public int OnKilledState { get; set; } = 1;
+        public int OnLeftState { get; set; } = 2;
+        public int OnRunnerState { get; set; } = 3;
+        public int OnMIAState { get; set; } = 4;
+        public bool DisableTransits { get; set; }
         public bool EnableCarCoop { get; set; }
         public bool ForceBTRFriendly { get; set; }
 

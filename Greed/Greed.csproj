@@ -11,14 +11,14 @@
     <Title>Greed</Title>
     <Authors>GhostFenixx</Authors>
     <Description>A .Json loader creator with a GUI for SVM (Server Value Modifier) - A mod for SPT</Description>
-    <Copyright>© GhostFenixx 2025</Copyright>
+    <Copyright>© GhostFenixx 2026</Copyright>
     <PackageIcon>SVMLOGO.png</PackageIcon>
     <PlatformTarget>x64</PlatformTarget>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <FileVersion>2.0.2</FileVersion>
+    <FileVersion>2.1.0</FileVersion>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <CETCompat>false</CETCompat>
-    <Version>2.0.2</Version>
+    <Version>2.1.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

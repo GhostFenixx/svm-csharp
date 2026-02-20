@@ -17,6 +17,7 @@ using SPTarkov.Server.Core.Utils.Cloners;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
+using System.Runtime.Intrinsics.Arm;
 using System.Xml;
 using static System.Net.WebRequestMethods;
 using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
@@ -35,7 +36,6 @@ namespace ServerValueModifier
                 //A list of features that should run before `PerformPostDbLoadActions`
                 //Will make into a separate section later.
                 //bots section
-
                 if (svmcfg.Bots.EnableBots)
                 {
                     BotConfig bots = configServer.GetConfig<BotConfig>();
@@ -128,7 +128,7 @@ namespace ServerValueModifier
             }
             catch (Exception ex)
             {
-                logger.Error("[SVM] Pre-DB Initialization failed due to unknown error: " + ex);
+                logger.Error("[SVM] Pre-DB Initialization failed due to this error: " + ex);
             }
             return Task.CompletedTask;
         }
@@ -158,7 +158,7 @@ namespace ServerValueModifier
                 items["a8edfb0bce53d103d3f6219b"] = scavcustompocket;
                 //Creating Ragman offers for SCAV apparels
                 DeclareModdedAssort(svmcfg);
-                //Initialisation
+                //Initialization
                 Sections.Items itemLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, _cloner, svmcfg);
                 Sections.Traders tradersLoad = new(logger, configServer, databaseService, svmcfg);
@@ -317,10 +317,10 @@ namespace ServerValueModifier
             }
         }
 
-        private class Loader
-        {
-            public string CurrentlySelectedPreset { get; set; }
-        }
+        //private class Loader
+        //{
+        //    public string CurrentlySelectedPreset { get; set; }
+        //}
     }
     [Injectable(TypePriority = OnLoadOrder.PostSptModLoader + 100)]
     public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper) : IOnLoad
@@ -332,7 +332,11 @@ namespace ServerValueModifier
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
                 Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg);
-                if (svmcfg.Custom.EnableCustom) advLoad.ItemChangerSection();
+                if (svmcfg.Custom.EnableCustom)
+                {
+                    logger.LogWithColor("[SVM] Advanced Section is enabled, Loads post init to affect other mods if present", SPTarkov.Server.Core.Models.Logging.LogTextColor.Magenta);
+                    advLoad.ItemChangerSection();
+                }
                 return Task.CompletedTask;
             }
             catch // Currently no logging on this since we have them in the method itself? debug/tests required
