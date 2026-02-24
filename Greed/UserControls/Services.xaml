@@ -25,6 +25,7 @@
                     </Expander.Header>
                     <StackPanel Margin="10">
                         <CheckBox Content="{DynamicResource ClothesAnySide}" IsChecked="{Binding Services.ClothesAnySide}" ToolTip="{DynamicResource ClothesAnySide_TT}"/>
+                        <CheckBox Content="{DynamicResource ScavClothes}" IsChecked="{Binding Services.ScavClothes}" ToolTip="{DynamicResource ClothesAnySide_TT}"/>
                         <CheckBox Content="{DynamicResource ClothesLevelUnlock}" IsChecked="{Binding Services.ClothesLevelUnlock}" ToolTip="{DynamicResource ClothesLevelUnlock_TT}"/>
                         <CheckBox Content="{DynamicResource ClothesFree}" IsChecked="{Binding Services.ClothesFree}"  ToolTip="{DynamicResource ClothesFree_TT}"/>
                     </StackPanel>

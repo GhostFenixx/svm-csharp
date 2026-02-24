@@ -141,7 +141,7 @@ namespace ServerValueModifier.Sections
             }
             foreach (Location names in locationsdb.GetDictionary().Values)
             {
-                if (svmconfig.Raids.DisableTransits)
+                if (svmconfig.Raids.Exfils.DisableTransits)
                 {
                     names.Base.Transits = [];
                 }

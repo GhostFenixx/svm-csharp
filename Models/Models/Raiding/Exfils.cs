@@ -17,7 +17,7 @@
         public int CoopPaidWoods { get; set; } = 5000;
         public int CoopPaidReserve { get; set; } = 5000;
 
-        
+        public bool DisableTransits { get; set; }
         public bool NoBackpack { get; set; }
         public bool FreeCoop { get; set; }
         public int CarInterchange { get; set; } = 5000;

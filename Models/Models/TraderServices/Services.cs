@@ -37,6 +37,7 @@
         public bool ClothesAnySide { get; set; }
         public bool ClothesLevelUnlock { get; set; }
         public bool ClothesFree { get; set; }
+        public bool ScavClothes { get; set; }
         public Services()
         {
             RepairBox = new RepairBox();

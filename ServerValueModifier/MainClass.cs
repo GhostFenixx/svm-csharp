@@ -251,7 +251,7 @@ namespace ServerValueModifier
             uppercustom.Properties.Hands = hands;
             upperassort.Id = tradeUpperUID;
             upperassort.SuiteId = upKitID;
-            if (cfg.Services.ClothesAnySide)
+            if (cfg.Services.ScavClothes)
             {
                 traders[TraderID.FENCE].Suits.Add(upperassort);
             }
@@ -289,7 +289,7 @@ namespace ServerValueModifier
             lowercustom.Properties.Feet = feet;
             lowerassort.Id = tradeLowerUID;
             lowerassort.SuiteId = lowKitID;
-            if (cfg.Services.ClothesAnySide)
+            if (cfg.Services.ScavClothes)
             {
                 traders[TraderID.FENCE].Suits.Add(lowerassort);
             }

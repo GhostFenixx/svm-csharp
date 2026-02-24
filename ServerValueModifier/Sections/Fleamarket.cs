@@ -19,6 +19,7 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.RagFair.MinUserLevel = svmconfig.Fleamarket.FleaMarketLevel;
                 fleaconfig.Dynamic.PurchasesAreFoundInRaid = svmconfig.Fleamarket.FleaFIR;
                 globals.Configuration.RagFair.IsOnlyFoundInRaidAllowed = svmconfig.Fleamarket.FleaNoFIRSell;
+                fleaconfig.Dynamic.Barter.ChancePercent = svmconfig.Fleamarket.BarterChance;
                 fleaconfig.Sell.Fees = svmconfig.Fleamarket.EnableFees;
                 fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
                 fleaconfig.Sell.Chance.SellMultiplier = svmconfig.Fleamarket.Sell_mult;
@@ -38,6 +39,7 @@ namespace ServerValueModifier.Sections
 
                 }
             }
+            fleaconfig.TieredFlea.Enabled = !svmconfig.Fleamarket.TieredFlea;
             fleaconfig.Dynamic.Pack.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BundleOfferChance;
             fleaconfig.Dynamic.ExpiredOfferThreshold = svmconfig.Fleamarket.DynamicOffers.ExpireThreshold;
             fleaconfig.Dynamic.OfferItemCount["default"].Min = svmconfig.Fleamarket.DynamicOffers.PerOffer_min;

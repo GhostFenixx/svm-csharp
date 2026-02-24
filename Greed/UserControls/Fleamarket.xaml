@@ -143,9 +143,15 @@
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource AIOffers}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10" HorizontalAlignment="Left">
+                    <CheckBox Content="{DynamicResource TieredFlea}" IsChecked="{Binding Fleamarket.TieredFlea}"/>
                     <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.BundleOfferChance}" Height="auto">
                         <ui:NumberBox.Header>
                             <TextBlock TextWrapping="Wrap" Text="{DynamicResource BundleOfferChance}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.BarterChance}" Height="auto">
+                        <ui:NumberBox.Header>
+                            <TextBlock TextWrapping="Wrap" Text="{DynamicResource BarterChance}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
                     <ui:NumberBox Value="{Binding Fleamarket.DynamicOffers.ExpireThreshold}" Height="auto">

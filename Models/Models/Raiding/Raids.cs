@@ -20,7 +20,6 @@
         public int OnLeftState { get; set; } = 2;
         public int OnRunnerState { get; set; } = 3;
         public int OnMIAState { get; set; } = 4;
-        public bool DisableTransits { get; set; }
         public bool EnableCarCoop { get; set; }
         public bool ForceBTRFriendly { get; set; }
 

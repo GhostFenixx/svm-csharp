@@ -357,6 +357,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="NoPermDamageArmor">Armor repair won't degrade durability</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">Clothing</System:String>
+ <System:String x:Key="ScavClothes">Fence sells Battlepass/Scav clothing</System:String>
  <System:String x:Key="ClothesAnySide">Unlock apparel from both factions</System:String>
  <System:String x:Key="ClothesFree">All apparel is free</System:String>
  <System:String x:Key="ClothesLevelUnlock">Remove all prerequisites to buy apparel</System:String>
@@ -573,6 +574,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="OffersRatio">Offer ratio by currency (in %)</System:String>
  <System:String x:Key="ExpireThreshold">Generate new offers if the expired offers are more than:</System:String>
     <System:String x:Key="BundleOfferChance">Chance for items to appear as a bundle (in %):</System:String>
+    <System:String x:Key="BarterChance">Chance for offer to be a barter one (in %):</System:String>
+    <System:String x:Key="TieredFlea">Disable tiered flea</System:String>
     <!--CSM Section-->
  <System:String x:Key="Cases">Cases</System:String>
  <System:String x:Key="RemoveFilters">Remove Filters</System:String>

@@ -102,7 +102,7 @@
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource ExtractsSettings}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10">
-                    <CheckBox Content="{DynamicResource DisableTransits}" IsChecked="{Binding Raids.DisableTransits}"/>
+                    <CheckBox Content="{DynamicResource DisableTransits}" IsChecked="{Binding Raids.Exfils.DisableTransits}"/>
                     <CheckBox Content="{DynamicResource ChanceExtracts}" ToolTip="{DynamicResource ChanceExtracts_TT}" IsChecked="{Binding Raids.Exfils.ChanceExtracts}"/>
                     <CheckBox Content="{DynamicResource ExtendedExtracts}"  ToolTip="{DynamicResource ExtendedExtracts_TT}" IsChecked="{Binding Raids.Exfils.ExtendedExtracts}"/>
                     <CheckBox Content="{DynamicResource GearExtract}" ToolTip="{DynamicResource GearExtract_TT}" IsChecked="{Binding Raids.Exfils.GearExtract}"/>

@@ -230,9 +230,8 @@ namespace Greed
 
         private void LoadJson()
         {
-            string rawJSON = File.ReadAllText(Path.Combine(presetsFolder, Presets.Text + ".json"), Encoding.UTF8);
-            MainClass.MainConfig loadedConfig = JsonSerializer.Deserialize<MainClass.MainConfig>(rawJSON);
-            DataContext = loadedConfig;
+            using var stream = File.OpenRead(Path.Combine(presetsFolder, Presets.Text + ".json"));
+            DataContext = JsonSerializer.Deserialize<MainClass.MainConfig>(stream);
         }
 
         private void LoadFunc()

@@ -24,7 +24,7 @@ namespace ServerValueModifier.Routers
         public const string DEFAULT_POCKETS = "627a4e6b255f7527fb05a0f6";
         public const string UNHEARD_POCKETS = "65e080be269cbd5c5005e529";
         public const string CUSTOM_POCKETS = "a8edfb0bce53d103d3f62b9b";
-        public const string SCAVCUSTOM_POCKETS = "a8edfb0bce53d103d3f62b9b";
+        public const string SCAVCUSTOM_POCKETS = "a8edfb0bce53d103d3f6219b";
         public override Prestige GetPrestige(MongoId sessionId)
         {
             try
