@@ -111,9 +111,9 @@ namespace ServerValueModifier.Sections
                 {
                     basetemplate.Properties.HeatFactor *= svmconfig.Items.HeatFactor;
                 }
-                if (basetemplate.Properties.HeatFactorGun is not null)
+                if (basetemplate.Properties.HeatFactorByShot is not null)
                 {
-                    basetemplate.Properties.HeatFactorGun *= svmconfig.Items.HeatFactor;
+                    basetemplate.Properties.HeatFactorByShot *= svmconfig.Items.HeatFactor;
                 }
                 //Remove in-raid restrictions
                 if (basetemplate.Type == "Item" && basetemplate.Properties.DiscardLimit is not null && svmconfig.Items.RaidDrop)
