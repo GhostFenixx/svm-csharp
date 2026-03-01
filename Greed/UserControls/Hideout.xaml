@@ -25,6 +25,8 @@
                     <CheckBox Content="{DynamicResource RemoveConstructionsRequirements}" ToolTip="{DynamicResource RemoveConstructionsRequirements_TT}" IsChecked="{Binding Hideout.RemoveConstructionsRequirements}"/>
                     <CheckBox Content="{DynamicResource RemoveSkillRequirements}" ToolTip="{DynamicResource RemoveSkillRequirements_TT}" IsChecked="{Binding Hideout.RemoveSkillRequirements}"/>
                     <CheckBox Content="{DynamicResource RemoveTraderLevelRequirements}" ToolTip="{DynamicResource RemoveTraderLevelRequirements_TT}" IsChecked="{Binding Hideout.RemoveTraderLevelRequirements}"/>
+                    <CheckBox Content="{DynamicResource RemoveCustomizationRequirements}" IsChecked="{Binding Hideout.RemoveCustomizationRequirements}"/>
+                    <CheckBox Content="{DynamicResource RemoveArenaCrafts}" IsChecked="{Binding Hideout.RemoveArenaCrafts}"/>
 
                     <ui:NumberBox Maximum="4000" Value="{Binding Hideout.WaterFilterRate}" Style="{StaticResource FlatsSmall}">
                         <ui:NumberBox.Header>

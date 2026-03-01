@@ -203,7 +203,7 @@ namespace ServerValueModifier
             }
             catch (Exception ex)
             {
-                logger.Error("[SVM] Initialization failed. Check the error: " + ex.Message.ToString());
+                logger.Error("[SVM] Initialization failed. Check the error: " + ex);
             }
             return Task.CompletedTask;
         }

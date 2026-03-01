@@ -18,6 +18,7 @@ namespace ServerValueModifier.Sections
             {
                 foreach (var chances in loc.Base.BossLocationSpawn)
                 {
+                    logger.Warning(chances.BossChance + " " + chances.BossName);
                     switch (chances.BossName)
                     {
                         case "bossBoar":
@@ -149,13 +150,13 @@ namespace ServerValueModifier.Sections
                             {
                                 chances.BossChance = svmconfig.Bots.AIChance.CultistShoreline;
                             }
-                            if (loc.Base.Id == "Sandbox")
+                            if (loc.Base.Id == "Sandbox_High")
                             {
                                 chances.BossChance = svmconfig.Bots.AIChance.CultistGroundZero;
                             }
                             break;
-
                     }
+                    logger.Success(chances.BossChance + " " + chances.BossName);
                 }
             }
             //bots.Durability.BotDurabilities
@@ -193,10 +194,10 @@ namespace ServerValueModifier.Sections
         }
         public void AdjustDurab(BotConfig bots, string bottype, Greed.Models.AI.BotDurability type)
         {
-            bots.Durability.BotDurabilities[bottype].Weapon.HighestMax = type.WeaponMax;
-            bots.Durability.BotDurabilities[bottype].Weapon.LowestMax = type.WeaponMin;
-            bots.Durability.BotDurabilities[bottype].Armor.MinDelta = 100 - type.ArmorMin;
-            bots.Durability.BotDurabilities[bottype].Armor.MaxDelta = 100 - type.ArmorMax;
+            Math.Clamp(bots.Durability.BotDurabilities[bottype].Weapon.HighestMax = type.WeaponMax, 0, 100); //Shitty bandaid - TODO proper clamp throughout whole app on fields that may affect each other(but not limited to), like minimum and maximums
+            Math.Clamp(bots.Durability.BotDurabilities[bottype].Weapon.LowestMax = type.WeaponMin, 0, 100);
+            Math.Clamp(bots.Durability.BotDurabilities[bottype].Armor.MinDelta = 100 - type.ArmorMin, 0, 100);
+            Math.Clamp(bots.Durability.BotDurabilities[bottype].Armor.MaxDelta = 100 - type.ArmorMax, 0, 100);
         }
 
     }

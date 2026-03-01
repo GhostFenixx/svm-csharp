@@ -263,7 +263,9 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="RemoveConstructionsFIRRequirements">Remove the FiR requirement</System:String>
  <System:String x:Key="RemoveSkillRequirements">Remove the character skill requirement</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Remove trader standing construction requirement</System:String>
- <System:String x:Key="CultistMaxRewards">Number of rewards from the cultist circle:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">Remove any requirements for hideout customization </System:String>
+    <System:String x:Key="RemoveArenaCrafts">Remove crafts related to arena cases</System:String>
+    <System:String x:Key="CultistMaxRewards">Number of rewards from the cultist circle:</System:String>
  <System:String x:Key="CultistTime">Cultist Circle cycle time:</System:String>
     <!--Prestige Section-->
     <System:String x:Key="Prestige">Prestige</System:String>

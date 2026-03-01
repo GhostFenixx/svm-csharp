@@ -22,6 +22,8 @@ namespace Greed.Models.HideoutData
         public int CultistMaxRewards { get; set; } = 5;
         public bool RemoveConstructionsRequirements { get; set; }
         public bool RemoveConstructionsFIRRequirements { get; set; }
+        public bool RemoveCustomizationRequirements { get; set; }
+        public bool RemoveArenaCrafts { get; set; }
         public bool RemoveSkillRequirements { get; set; }
         public bool RemoveTraderLevelRequirements { get; set; }
         public bool EnableHideout { get; set; }

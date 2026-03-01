@@ -126,7 +126,8 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.AllowOverheat = false;
                 }
                 //Base malfunctions chance in each weapon class
-                if (basetemplate.Parent.Equals(WeaponTypesID) && basetemplate.Properties.BaseMalfunctionChance is not null)
+               // if (basetemplate.Parent.Equals(WeaponTypesID) && basetemplate.Properties.BaseMalfunctionChance is not null)
+               if( SimpleFilter(WeaponTypesID, basetemplate.Parent))
                 {
                     basetemplate.Properties.BaseMalfunctionChance *= svmconfig.Items.MalfunctChanceMult;
                 }
@@ -146,7 +147,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.ExaminedByDefault = true;
                 }
                 //If ExamineKeys was off - examine everything except key types, mechanical and keycards.
-                else if (basetemplate.Properties.ExaminedByDefault is not null && basetemplate.Parent.Equals(KeyTypes) && svmconfig.Items.ExamineKeys)
+                else if (basetemplate.Properties.ExaminedByDefault is not null && SimpleFilter(KeyTypes, basetemplate.Parent) && svmconfig.Items.ExamineKeys) //basetemplate.Parent.Equals(KeyTypes)
                 {
                     basetemplate.Properties.ExaminedByDefault = true;
                 }
@@ -254,12 +255,12 @@ namespace ServerValueModifier.Sections
                 //Multiplier of loot experience (picking up in raid)
                 if (basetemplate.Properties.LootExperience is not null)
                 {
-                    basetemplate.Properties.LootExperience = (int)(basetemplate.Properties.LootExperience * svmconfig.Items.LootExp);
+                    basetemplate.Properties.LootExperience = Math.Max((int)(basetemplate.Properties.LootExperience * svmconfig.Items.LootExp),1); //I think it's redundant here, but for sanity purposes we don't want it to be 0
                 }
                 //Multiplier of examination experience
                 if (basetemplate.Properties.ExamineExperience is not null)
                 {
-                    basetemplate.Properties.ExamineExperience = (int)(basetemplate.Properties.ExamineExperience * svmconfig.Items.ExamineExp);
+                    basetemplate.Properties.ExamineExperience = Math.Max((int)(int)(basetemplate.Properties.ExamineExperience * svmconfig.Items.ExamineExp),1);
                 }
                 //Keys Section
                 if (svmconfig.Items.Keys.EnableKeys)
@@ -310,7 +311,7 @@ namespace ServerValueModifier.Sections
                     //Now multiply keys and keycards if they weren't infinite but keep them under threshold
                     if (basetemplate.Parent == "5c99f98d86f7745c314214b3" && basetemplate.Properties.MaximumNumberOfUsage != 0)
                     {
-                        basetemplate.Properties.MaximumNumberOfUsage = (int)(basetemplate.Properties.MaximumNumberOfUsage * svmconfig.Items.Keys.KeyUseMult);
+                        basetemplate.Properties.MaximumNumberOfUsage = Math.Max((int)(basetemplate.Properties.MaximumNumberOfUsage * svmconfig.Items.Keys.KeyUseMult), 1);
                         if (basetemplate.Properties.MaximumNumberOfUsage > svmconfig.Items.Keys.KeyDurabilityThreshold)
                         {
                             basetemplate.Properties.MaximumNumberOfUsage = svmconfig.Items.Keys.KeyDurabilityThreshold;
@@ -321,7 +322,7 @@ namespace ServerValueModifier.Sections
                         //Ignoring access card once again
                         if (basetemplate.Id != ItemTpl.KEYCARD_TERRAGROUP_LABS_ACCESS && !svmconfig.Items.Keys.IgnoreAccessCard)
                         {
-                            basetemplate.Properties.MaximumNumberOfUsage = (int)(basetemplate.Properties.MaximumNumberOfUsage * svmconfig.Items.Keys.KeycardUseMult);
+                            basetemplate.Properties.MaximumNumberOfUsage = Math.Max((int)(basetemplate.Properties.MaximumNumberOfUsage * svmconfig.Items.Keys.KeycardUseMult),1);
                         }
                         if (basetemplate.Properties.MaximumNumberOfUsage > svmconfig.Items.Keys.KeyCardDurabilityThreshold)
                         {
@@ -352,7 +353,6 @@ namespace ServerValueModifier.Sections
                     slots[1].Properties.Filters = filtertwo;
                     basetemplate.Properties.Slots = slots;
                 }
-
             }
         }
         public static bool SimpleFilter(MongoId[] AmmoType, string CurrentType)

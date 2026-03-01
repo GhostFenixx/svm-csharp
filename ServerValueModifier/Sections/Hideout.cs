@@ -1,4 +1,6 @@
 ﻿using Greed.Models;
+using HarmonyLib;
+using SPTarkov.Common.Extensions;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -16,20 +18,49 @@ namespace ServerValueModifier.Sections
     {
         public void HideoutSection()
         {
+            // Init
             HideoutConfig hideoutConfig = configServer.GetConfig<HideoutConfig>();
-            HideoutSettingsBase hideoutDB = databaseService.GetHideout().Settings;
             Prestige prestige = databaseService.GetTemplates().Prestige;
             Globals globals = databaseService.GetGlobals();
             SPTarkov.Server.Core.Models.Spt.Hideout.Hideout hideout = databaseService.GetHideout();
-            hideoutDB.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
-            hideoutDB.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
-            hideoutDB.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
-            hideoutDB.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
-            
+            //
+            hideout.Settings.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
+            hideout.Settings.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
+            hideout.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
+            hideout.Settings.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
             hideoutConfig.CultistCircle.MaxRewardItemCount = svmconfig.Hideout.CultistMaxRewards;
-            hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = (int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime);
-            hideoutConfig.CultistCircle.CraftTimeThresholds.ForEach(c => { c.CraftTimeSeconds = (int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime); });
-            hideoutConfig.CultistCircle.DirectRewards.ForEach(c => { c.CraftTimeSeconds = (int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime); });
+            hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = Math.Max((int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime),1);
+            hideoutConfig.CultistCircle.CraftTimeThresholds.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime), 1); });
+            hideoutConfig.CultistCircle.DirectRewards.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime),1); });
+            if (svmconfig.Hideout.RemoveCustomizationRequirements)
+            {
+                foreach (var fancy in hideout.Customisation.Globals)
+                {
+                    fancy.Conditions = [];
+                }
+            }
+            if (svmconfig.Hideout.RemoveArenaCrafts)
+            {
+               MongoId[] toRemove = [ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_RARE,ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_BATTLEPASS_0, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_COMMON, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_COMMON, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_RARE, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_COMMON, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_EPIC, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_RARE, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_COMMON, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_EPIC, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_RARE];
+                hideoutConfig.HideoutCraftsToAdd.Clear();
+                hideoutConfig.HideoutLootCrateCraftIdsToUnlockInHideout = [];
+                foreach (var crafts in hideout.Production.Recipes)
+                {
+
+                    foreach (var condition in crafts.Requirements)
+                    {
+                        if (condition.TemplateId.HasValue)//Null check, otherwise will be throwing exception trying to get 'Value' that doesn't exist.
+                        {
+                            if(toRemove.Any(ID => condition.TemplateId.Value.Equals(ID)))
+                            {
+                                //logger.Info("Craft removed: " + crafts.Id);
+                                crafts.Locked = true;
+                                break;
+                            }
+                        }
+                    }
+                }
+            }
             var itemsdb = databaseService.GetItems();
             //Stash size section with all 5 editions.
             if (svmconfig.Hideout.EnableStash)
@@ -106,7 +137,7 @@ namespace ServerValueModifier.Sections
                 {
                     production.ProductionTime = 2;
                 }
-                //Hideout's Scav case 'crafts' time multiplier
+                //Hideout's Scav case 'crafts' price multiplier
                 if (production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f" || production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f" || production.Requirements[0].TemplateId == "5449016a4bdc2d6f028b456f")
                 {
                     production.Requirements[0].Count = (int)(production.Requirements[0].Count * svmconfig.Hideout.ScavCasePrice);
