@@ -205,9 +205,14 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Sin req. de "EER" para materiales de construcción</System:String>
  <System:String x:Key="RemoveSkillRequirements">Eliminar requisitos de habilidad para la construcción</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Eliminar Rep con comerciantes para construcción</System:String>
- <System:String x:Key="CultistMaxRewards">Cantidad de recompensas del círculo cultista:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
+    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+    <System:String x:Key="CultistMaxRewards">Cantidad de recompensas del círculo cultista:</System:String>
  <System:String x:Key="CultistTime">Tiempo de uso del círculo cultista:</System:String>
-
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Tiempo de producción en el Hideout:</System:String>
  <System:String x:Key="HideoutConstMult">Tiempo de construcción del Hideout:</System:String>
@@ -436,8 +441,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="KillaFactory">Killa en Factory, con probabilidad del:</System:String>
  <System:String x:Key="CultistBosses">Habilitar Bosses Cultistas, con probabilidad del:</System:String>
  <System:String x:Key="Halloween">Halloween</System:String>
- <System:String x:Key="DisableZombies">Deshabilitar Zombies</System:String>
- <System:String x:Key="RandomInfectionLevel">Aleatorizar nivel de infección</System:String>
+ <!--<System:String x:Key="DisableZombies">Deshabilitar Zombies</System:String>
+ <System:String x:Key="RandomInfectionLevel">Aleatorizar nivel de infección</System:String>-->
  <System:String x:Key="DisableHalloweenAIFriendly">Deshabilitar alto al fuego</System:String>
  <System:String x:Key="Christmas">Navidades</System:String>
  <System:String x:Key="NonSeasonalQuests">Habilitar quests no estacionales</System:String>
@@ -852,9 +857,9 @@ Extracciones de ejemplo:
 Habrá más de 30 IA, incluídos grupos, en un mismo lugar. Carga de CPU Extrema.</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">Evento de Halloween - Activa el evento de Halloween, incluyendo la iluminación especial en el Hideout, 
 altera la aparición y comportamiento de Zryachiy, añade loot de Halloween a la IA, añade mecánicas del ritual</System:String>
- <System:String  xml:space="preserve" x:Key="DisableZombies_TT">Desactiva los Zombies si el evento de Halloween está activado. 
+ <!--<System:String  xml:space="preserve" x:Key="DisableZombies_TT">Desactiva los Zombies si el evento de Halloween está activado. 
  Si no, no hace nada. Quién lo diría, eh?</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Aleatoriza el nivel de infección al arrancar el servidor.</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Aleatoriza el nivel de infección al arrancar el servidor.</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">Evento de Navidad - Activa la iluminación especial navideña, te entrega un regalo de navidad, 
 activa la nieve, permite la aparición de Santa Claus, añade el loot de Navidad a la IA</System:String>
  <System:String  xml:space="preserve" x:Key="Types_TT">Las quest diarias se reparten entre: Eliminación, Complementario, Exploración

@@ -4,6 +4,7 @@
     {
         public int ExpireThreshold { get; set; } = 1400;
         public int BundleOfferChance { get; set; } = 6;
+        public int BarterChance { get; set; } = 20;
         public int Stack_min { get; set; } = 10;
         public int PerOffer_min { get; set; } = 7;
         public int Stack_max { get; set; } = 600;

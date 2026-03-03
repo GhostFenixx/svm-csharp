@@ -178,30 +178,58 @@
             <Expander>
                 <Expander.Header>
                     <DockPanel>
-                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Prestige}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
-                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Items.AmmoSwitch}"/>
+                        <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource Prestige_TT}" Style="{StaticResource TabText}" Text="{DynamicResource Prestige}" VerticalAlignment="Center" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Hideout.EnablePrestige}"/>
                     </DockPanel>
                 </Expander.Header>
-                <StackPanel Margin="5" x:Name="PrestigeSection" IsEnabled="{Binding Items.AmmoSwitch}">
+                <StackPanel Margin="5" x:Name="PrestigeSection" IsEnabled="{Binding Hideout.EnablePrestige}">
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeLevel}" Minimum="0" Maximum="100" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeLevel}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeStrength}" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeStrength}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeEndurance}" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeEndurance}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeCharisma}" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeCharisma}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeCurrency}" Minimum="0" Maximum="500000000" Style="{StaticResource FlatsBig}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeCurrency}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <CheckBox Content="{DynamicResource PrestigeCollector}" IsChecked="{Binding Hideout.PrestigeCollector}"/>
+                    <CheckBox Content="{DynamicResource PrestigeNewBeginnings}" IsChecked="{Binding Hideout.PrestigeNewBeginnings}"/>
+                    <CheckBox Content="{DynamicResource PrestigeAreas}" ToolTip="{DynamicResource PrestigeAreas_TT}" IsChecked="{Binding Hideout.PrestigeAreas}"/>
                     <DockPanel Margin="0,5,0,5" >
                         <TextBlock Text="{DynamicResource First}" Width="70" VerticalAlignment="Center" Padding="5,30,0,0"/>
                         <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Skills}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
-                                <TextBlock Text="{DynamicResource Skill}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Skill}"  ToolTip="{DynamicResource PrestigeSkill_TT}" HorizontalAlignment="Center"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                         <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Mastery}"  Margin="0,0,10,0" Width="75" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
-                                <TextBlock Text="{DynamicResource Mastery}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Mastery}"  ToolTip="{DynamicResource PrestigeMastery_TT}" HorizontalAlignment="Center"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                         <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Height}"  Margin="0,0,10,0" Width="75" Style="{StaticResource SizesHeight}">
                             <ui:NumberBox.Header>
-                                <TextBlock Text="{DynamicResource Size}" HorizontalAlignment="Center"/>
+                                <TextBlock Text="{DynamicResource Size}" ToolTip="{DynamicResource PrestigeSize_TT}" HorizontalAlignment="Center"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                         <StackPanel>
-                            <TextBlock Foreground="#FFFFA73B" Text="{DynamicResource RemoveFilters}" HorizontalAlignment="Center"/>
+                            <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource PrestigeFilter_TT}" Text="{DynamicResource RemoveFilters}" HorizontalAlignment="Center"/>
                             <CheckBox IsChecked="{Binding Hideout.FirstPrestige.Filter}" HorizontalAlignment="Center" VerticalAlignment="Bottom"/>
                         </StackPanel>
                     </DockPanel>

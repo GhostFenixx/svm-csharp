@@ -193,10 +193,15 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="RemoveConstructionsFIRRequirements">Не требуются "найдены в рейде" материалы</System:String>
  <System:String x:Key="RemoveSkillRequirements">Строительство не требует навыков</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Строительство не требует торговцев</System:String>
-
- <System:String x:Key="CultistMaxRewards">Количество наград от круга культистов:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">Убрать требования для декораций убежища</System:String>
+    <System:String x:Key="RemoveArenaCrafts">Убрать крафты связанные с кейсами из арены</System:String>
+    <System:String x:Key="CultistMaxRewards">Количество наград от круга культистов:</System:String>
  <System:String x:Key="CultistTime">Время на цикл круга культистов:</System:String>
- <!--Hideout Multipliers-->
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">Престиж</System:String>
+    <System:String x:Key="Skill">Навыки</System:String>
+    <System:String x:Key="Mastery">Мастерство</System:String>
+    <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Время продукции:</System:String>
  <System:String x:Key="HideoutConstMult">Время строительства:</System:String>
  <System:String x:Key="ScavCaseTime">Время для ящика диких:</System:String>
@@ -419,8 +424,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="KillaFactory">Килла на Заводе и его шанс спавна:</System:String>
  <System:String x:Key="CultistBosses">Включить боссов культистов и их шанс спавна:</System:String>
  <System:String x:Key="Halloween">Хэллоуин</System:String>
- <System:String x:Key="DisableZombies">Выключить зомби</System:String>
- <System:String x:Key="RandomInfectionLevel">Случайный уровень заражения</System:String>
+ <!--<System:String x:Key="DisableZombies">Выключить зомби</System:String>-->
+ <!--<System:String x:Key="RandomInfectionLevel">Случайный уровень заражения</System:String>-->
  <System:String x:Key="Christmas">Рождество</System:String>
  <System:String x:Key="DisableEvents">Отключить текущие события</System:String>
  <System:String x:Key="DisableHalloweenAIFriendly">Отключить перемирие</System:String>
@@ -838,9 +843,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 У вас будет более 30 ИИ в одном месте, Я предупредил</System:String>
  <System:String x:Key="Halloween_TT">Включает праздничное освещение в убежище, 
   изменяет поведение и спавны зрячего, добавляет тематический лут в ИИ</System:String>
- <System:String  xml:space="preserve" x:Key="DisableZombies_TT">Выключает зомби при хэллоуине, по умолчанию они есть.
-Само по себе ничего не делает если событие отключено Disable zombies</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Randomises infection level in locations on server startup</System:String>
+ <!--<System:String  xml:space="preserve" x:Key="DisableZombies_TT">Выключает зомби при хэллоуине, по умолчанию они есть.
+Само по себе ничего не делает если событие отключено Disable zombies</System:String>-->
+ <!--<System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Randomises infection level in locations on server startup</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">Включает праздничное освещение в убежище, дарит рождественнский подарок 
 Включает спавн Санты Клауса, добавляет тематический лут в ИИ</System:String>
  <System:String xml:space="preserve" x:Key="QuestSwitch_TT">ВНИМАНИЕ: Это не изменит недавно принятые квесты</System:String>

@@ -202,9 +202,14 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="RemoveConstructionsFIRRequirements">인레이드(FIR) 재료에 대한 요구 사항 제거</System:String>
  <System:String x:Key="RemoveSkillRequirements">시설 건설 스킬 요구사항 제거</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">시설 건설 상인 레벨 요구사항 제거</System:String>
- <System:String x:Key="CultistMaxRewards">컬티스트 서클 보상 횟수:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
+    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+    <System:String x:Key="CultistMaxRewards">컬티스트 서클 보상 횟수:</System:String>
  <System:String x:Key="CultistTime">컬티스트 서클 진행 시간:</System:String>
-
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">은신처 제작 시간 :</System:String>
  <System:String x:Key="HideoutConstMult">은신처 건설 시간 :</System:String>
@@ -431,8 +436,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="KillaFactory">킬라 팩토리(공장) 생성 확률 :</System:String>
  <System:String x:Key="CultistBosses">컬티스트 보스 및 생성 확률 활성화:</System:String>
  <System:String x:Key="Halloween">할로윈</System:String>
- <System:String x:Key="DisableZombies">좀비 이벤트 비활성화</System:String>
- <System:String x:Key="RandomInfectionLevel">좀비 감염 수준 랜덤 설정</System:String>
+ <!--<System:String x:Key="DisableZombies">좀비 이벤트 비활성화</System:String>
+ <System:String x:Key="RandomInfectionLevel">좀비 감염 수준 랜덤 설정</System:String>-->
  <System:String x:Key="DisableHalloweenAIFriendly">휴전 비활성화</System:String>
  <System:String x:Key="Christmas">크리스마스</System:String>
  <System:String x:Key="NonSeasonalQuests">비시즌 이벤트 퀘스트 활성화</System:String>
@@ -857,9 +862,9 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
 단일 지역에 30명 이상의 AI가 생성되니 주의하세요. 이 점을 명심하시기 바랍니다!</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">은신처에 이벤트 전용 조명을 활성화하고, 
 지라치의 생성과 행동을 변경하며, AI에 이벤트 전리품을 추가합니다.</System:String>
- <System:String  xml:space="preserve" x:Key="DisableZombies_TT">할로윈 이벤트가 활성화된 경우 좀비모드를 비활성화합니다. 기본적으로 좀비모드는 활성화되어 있습니다.
+ <!--<System:String  xml:space="preserve" x:Key="DisableZombies_TT">할로윈 이벤트가 활성화된 경우 좀비모드를 비활성화합니다. 기본적으로 좀비모드는 활성화되어 있습니다.
 할로윈 이벤트가 비활성화된 경우 이 설정은 아무런 영향을 미치지 않습니다.</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">서버 시작 시 각 위치의 감염 수준을 무작위로 설정합니다.</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">서버 시작 시 각 위치의 감염 수준을 무작위로 설정합니다.</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">은신처에 이벤트 전용 조명을 활성화하고, 크리스마스 선물을 제공하며, 
 눈을 활성화하고, 산타클로스가 생성될 수 있도록 하며, AI에 이벤트 전리품을 추가합니다.</System:String>
  <System:String  xml:space="preserve" x:Key="Types_TT">일일 미션은 3가지 유형으로 나뉩니다: 섬멸, 완료, 탐험

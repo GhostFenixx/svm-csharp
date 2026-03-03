@@ -18,76 +18,76 @@ namespace ServerValueModifier.Routers
     [Injectable]
     public class LocalRaidOverrider(ModHelper modhelper, ProfileHelper pf, HttpResponseUtil HttpResponseUtil, MatchController MatchController, DatabaseService DatabaseService) : MatchCallbacks(HttpResponseUtil, MatchController, DatabaseService)
     {
-        public override ValueTask<string> StartLocalRaid(string url, StartLocalRaidRequestData info, MongoId sessionID)
-        {
-            try
-            {
-                var locs = DatabaseService.GetLocations();
-                MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
-                Random rnd = new Random();
-                if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
-                {
-                    foreach (var loc in locs.GetDictionary().Values)
-                    {
-                        loc.Base.NewSpawn = false;
-                        loc.Base.OfflineNewSpawn = false;
-                        foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
-                        {
-                            int chance = rnd.Next(1, 101);
-                            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC") && (chance > (100 - cf.PMC.AItoPMC.PMCToScav)))
-                            {
-                                wave.BossName = "assault";
-                                wave.BossEscortType = "assault";
-                            }
-                        }
-                        foreach (var wave in loc.Base.Waves)
-                        {
-                            int chance = rnd.Next(1, 101);
-                            if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
-                            {
-                                WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
-                                wave.WildSpawnType = result;
-                            }
-                        }
-                    }
-                }
-            }
-            catch { }// handler for empty config.
-                return new ValueTask<string>(HttpResponseUtil.GetBody(MatchController.StartLocalRaid(sessionID, info)));
-        }
+        //public override ValueTask<string> StartLocalRaid(string url, StartLocalRaidRequestData info, MongoId sessionID)
+        //{
+        //    try
+        //    {
+        //        var locs = DatabaseService.GetLocations();
+        //        MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
+        //        Random rnd = new Random();
+        //        if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
+        //        {
+        //            foreach (var loc in locs.GetDictionary().Values)
+        //            {
+        //                loc.Base.NewSpawn = false;
+        //                loc.Base.OfflineNewSpawn = false;
+        //                foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
+        //                {
+        //                    int chance = rnd.Next(1, 101);
+        //                    if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC") && (chance > (100 - cf.PMC.AItoPMC.PMCToScav)))
+        //                    {
+        //                        wave.BossName = "assault";
+        //                        wave.BossEscortType = "assault";
+        //                    }
+        //                }
+        //                foreach (var wave in loc.Base.Waves)
+        //                {
+        //                    int chance = rnd.Next(1, 101);
+        //                    if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
+        //                    {
+        //                        WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
+        //                        wave.WildSpawnType = result;
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //    catch { }// handler for empty config.
+        //        return new ValueTask<string>(HttpResponseUtil.GetBody(MatchController.StartLocalRaid(sessionID, info)));
+        //}
         public override ValueTask<string> EndLocalRaid(string url, EndLocalRaidRequestData info, MongoId sessionID) //LocationLifeCycle
         {
             try
             {
                 MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();
-                Random rnd = new Random();
-                var locs = DatabaseService.GetLocations();
-                if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
-                {
-                    foreach (var loc in locs.GetDictionary().Values)
-                    {
-                        loc.Base.NewSpawn = false;
-                        loc.Base.OfflineNewSpawn = false;
-                        foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
-                        {
-                            int chance = rnd.Next(1, 101);
-                            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC")) // && (chance > (100 - svmcfg.PMC.AItoPMC.PMCToScav))
-                            {
-                                wave.BossName = "assault";
-                                wave.BossEscortType = "assault";
-                            }
-                        }
-                        foreach (var wave in loc.Base.Waves)
-                        {
-                            int chance = rnd.Next(1, 101);
-                            if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
-                            {
-                                WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
-                                wave.WildSpawnType = result;
-                            }
-                        }
-                    }
-                }
+                //Random rnd = new Random();
+                //var locs = DatabaseService.GetLocations();
+                //if (cf.PMC.AItoPMC.AIConverterEnable && cf.PMC.EnablePMC)
+                //{
+                //    foreach (var loc in locs.GetDictionary().Values)
+                //    {
+                //        loc.Base.NewSpawn = false;
+                //        loc.Base.OfflineNewSpawn = false;
+                //        foreach (var wave in loc.Base.BossLocationSpawn)//This is so wrong, not the code, but wave system.
+                //        {
+                //            int chance = rnd.Next(1, 101);
+                //            if (wave.BossName.Equals("pmcBEAR") || wave.BossName.Equals("pmcUSEC")) // && (chance > (100 - svmcfg.PMC.AItoPMC.PMCToScav))
+                //            {
+                //                wave.BossName = "assault";
+                //                wave.BossEscortType = "assault";
+                //            }
+                //        }
+                //        foreach (var wave in loc.Base.Waves)
+                //        {
+                //            int chance = rnd.Next(1, 101);
+                //            if ((wave.WildSpawnType == WildSpawnType.assault || wave.WildSpawnType == WildSpawnType.assaultGroup) && chance > (100 - cf.PMC.AItoPMC.ScavToPMC))
+                //            {
+                //                WildSpawnType result = rnd.Next(2) > 0 ? WildSpawnType.pmcBEAR : WildSpawnType.pmcUSEC;
+                //                wave.WildSpawnType = result;
+                //            }
+                //        }
+                //    }
+                //}
                 if (cf.Raids.RaidStartup.SaveLoot && cf.Raids.EnableRaids && cf.Raids.RaidStartup.EnableRaidStartup)
                 {
                     //Bad writing, still - if Section and subsection is on AND practice mode(saveloot) is on - ignore any changes to raid, including scav raids.

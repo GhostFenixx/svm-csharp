@@ -250,9 +250,14 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="RemoveConstructionsFIRRequirements">移除藏身处建材“在战局中找到”要求</System:String>
  <System:String x:Key="RemoveSkillRequirements">去除藏身处设施 技能 要求</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">去除藏身处设施 商人等级 要求</System:String>
- <System:String x:Key="CultistMaxRewards">邪教圈 奖励数量:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
+    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+    <System:String x:Key="CultistMaxRewards">邪教圈 奖励数量:</System:String>
  <System:String x:Key="CultistTime">邪教圈 供奉时间:</System:String>
-
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">藏身处 生产时间:</System:String>
  <System:String x:Key="HideoutConstMult">藏身处 建造时间:</System:String>
@@ -479,8 +484,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="GoonsFactory">工厂 三狗刷新概率:</System:String>
  <System:String x:Key="KillaFactory">工厂 Killa刷新概率:</System:String>
  <System:String x:Key="Halloween">万圣节活动</System:String>
- <System:String x:Key="DisableZombies">禁用丧尸</System:String>
- <System:String x:Key="RandomInfectionLevel">全图随机感染等级</System:String>
+ <!--<System:String x:Key="DisableZombies">禁用丧尸</System:String>
+ <System:String x:Key="RandomInfectionLevel">全图随机感染等级</System:String>-->
  <System:String x:Key="Christmas">圣诞节活动</System:String>
  <System:String x:Key="DisableEvents">关闭正在进行的活动事件</System:String>
  <System:String x:Key="GlukharLabs">实验室 生成格鲁哈</System:String>
@@ -893,9 +898,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
 会导致单个区域内出现超过30个AI，请慎重修改</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">万圣节活动：启动藏身处的活动专属灯光，
 修改兹利亚奇Zryachiy的行为和刷出，AI将携带活动物品</System:String>
- <System:String xml:space="preserve" x:Key="DisableZombies_TT">万圣节活动启用同时禁用丧尸，默认情况下它们属于同时开启状态
+ <!--<System:String xml:space="preserve" x:Key="DisableZombies_TT">万圣节活动启用同时禁用丧尸，默认情况下它们属于同时开启状态
 如果万圣节活动被禁用，则不会执行任何操作</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">服务器启动后每个地图的随机感染等级</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">服务器启动后每个地图的随机感染等级</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">圣诞节活动：启动藏身处的活动专属灯光，并赠送一个圣诞礼物，
 启动下雪天气，启动圣诞老人的概率刷新功能，AI将携带活动物品</System:String>
  <System:String  xml:space="preserve" x:Key="Types_TT">每日任务分为3种类型：歼灭、寻物上交、撤离地点

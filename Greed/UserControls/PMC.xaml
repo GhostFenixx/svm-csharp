@@ -45,7 +45,7 @@
                             <CheckBox Content="{DynamicResource DisableLowLevelPMC}" IsChecked="{Binding PMC.DisableLowLevelPMC}"/>
                         </StackPanel>
                     </Expander>
-                    <Expander>
+                    <!--<Expander>
                         <Expander.Header>
                             <DockPanel>
                                 <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource AIConverter}" VerticalAlignment="Center"  Foreground="RoyalBlue" FontSize="20"/>
@@ -64,7 +64,7 @@
                                 </ui:NumberBox.Header>
                             </ui:NumberBox>
                         </StackPanel>
-                    </Expander>
+                    </Expander>-->
                 </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Expander>

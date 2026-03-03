@@ -63,10 +63,12 @@ Everyone else who provided any kind of support to the project, whether bug repor
   Labyrinth Loose/Container loot
   Little touch to UI.
   Tooltip fields are highlighted now by different cursor
+     
   Reworked:
   IIC Can use expressions for editing filters and can affect more types
   Included bunch of handlers for missing loader/preset, and if trader missing quest assort.
   Repeatable quest types, money and standing cost on rerolls, attempting to make it work properly.
+     
   Fixed:
   Events and Mailbox missing functionality
   Post-Health treatment.
@@ -81,6 +83,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
   Reworked:
   Updated Boss values for AI and Bosses section
   Moved Scav/BP clothing to Fence
+     
   Fixed: 
   Trader Stock limits below 1 may cause an error on server
   If Preset is not present/null - it would cause the profile to not save after the raid
@@ -89,7 +92,32 @@ Everyone else who provided any kind of support to the project, whether bug repor
   Resort event lacking certain bosses
   Bitcoin time cycle was affected by production multiplier
   Refreshed some locales and fixed russian FAQ trader assort entry
- 
+     
+  2.1.0 For SPT 4.0.12+
+  Added:
+  Prestige Section
+  Disable Transits
+  Clothing naming (By Bushtail)
+  Tiered flea disabler
+  Separated clothing toggle
+  Barter offer chance in %
+  Remove arena crafts
+  Remove customization requirements
+     
+  Reworked:
+  UI backend
+  Handling of localization
+  Bot Equipment
+  Changed load order of 'Advanced Features' section
+  Soft-core/Safe-exit reworked into whole new separate section.
+     
+  Fixed:
+  Scav Pockets - was pointing to PMC ID instead of scav one.
+  PMC Names
+  Items/Filtering fixes - Trader barter, gun overheat, keys uses, etc.
+  Cultists chance wasn't affected by bots section in Ground Zero.
+  Shoreline/Streets exfil fixes 
+     
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
@@ -271,6 +299,14 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
     <System:String x:Key="Prestige">Prestige</System:String>
     <System:String x:Key="Skill">Skills</System:String>
     <System:String x:Key="Mastery">Mastery</System:String>
+    <System:String x:Key="PrestigeLevel">Level required to prestige:</System:String>
+    <System:String x:Key="PrestigeStrength">Strength required to prestige:</System:String>
+    <System:String x:Key="PrestigeCharisma">Endurance required to prestige:</System:String>
+    <System:String x:Key="PrestigeEndurance">Charisma required to prestige:</System:String>
+    <System:String x:Key="PrestigeCurrency">Roubles required to prestige:</System:String>
+    <System:String x:Key="PrestigeAreas">Disable the requirements of hideout zones</System:String>
+    <System:String x:Key="PrestigeCollector">Remove 'Collector' quest from requiremennts</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">Remove 'New beginnings' quest from requiremennts</System:String>
     <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Hideout production time:</System:String>
  <System:String x:Key="HideoutConstMult">Hideout construction time:</System:String>
@@ -512,8 +548,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
     <System:String x:Key="KillaFactory">Killa on Factory, with his spawn chance (in %):</System:String>
     <System:String x:Key="CultistBosses">Cultists bosses, with their spawn chance (in %):</System:String>
  <System:String x:Key="Halloween">Halloween</System:String>
- <System:String x:Key="DisableZombies">Disable zombies</System:String>
- <System:String x:Key="RandomInfectionLevel">Randomise infection level</System:String>
+ <!--<System:String x:Key="DisableZombies">Disable zombies</System:String>
+ <System:String x:Key="RandomInfectionLevel">Randomise infection level</System:String>-->
  <System:String x:Key="DisableHalloweenAIFriendly">Disable ceasefire</System:String>
  <System:String x:Key="Christmas">Christmas</System:String>
  <System:String x:Key="NonSeasonalQuests">Enable Non-Seasonal event quests</System:String>
@@ -811,8 +847,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="PMCAI">PMCs</System:String>
  <System:String x:Key="Bosses">Bosses</System:String>
  <System:String x:Key="Followers">Boss guards</System:String>
-
- <!--Tooltips-->
+ <System:String x:Key="Zombies">Zombies</System:String>
+    <!--Tooltips-->
  <System:String x:Key="EquipRigsWithArmors_TT">Allows equipping armored rigs such as AVS or Tac-Tec with armors such as the Trooper or Slick</System:String>
  <System:String  xml:space="preserve" x:Key="RemoveBackpacksRestrictions_TT">Allows you to put any item into any backpack.
  CAUTION: If you plan on putting in items that can't be discarded in raid, it is highly recommended to enable the "Remove 'Can't be dropped in Raid' tag" option - 
@@ -871,8 +907,21 @@ Smaller values result in faster construction times.</System:String>
 Smaller values result in faster Scav Case return times.</System:String>
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">Modifies the price for each Scav Case offer.
 The smaller the value, the less you pay. 
-Affects only currency-based offers.</System:String> 
- <System:String x:Key="FIRTrade_TT">Everything you purchase from traders will come with the `Found in Raid` tag.</System:String>
+Affects only currency-based offers.</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">WARNING: Section defaults are different from SPT
+Level 3 and 4 have Charisma requirement as 20 instead of 15, for convenience and ease of use - SVM overrides that with a single value
+Nothing too ground breaking, but keep that in mind</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeAreas_TT">By default prestige require you to have:
+Intellegence center Lvl 2
+Security Lvl 3
+Rest Space Lvl 3
+This feature removes this requirement</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">The % of the Skill your character will inherit at the moment of prestige</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">The % of the Gun Mastery your character will inherit at the moment of prestige</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSize_TT">The Vertical size of prestige inventory you'll have to transfer your items over</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeFilter_TT">Disables filters to allow moving over any item type,
+so yes, you can carry over thicc cases</System:String>
+    <System:String x:Key="FIRTrade_TT">Everything you purchase from traders will come with the `Found in Raid` tag.</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">Sets how long a repeatable quest remains active and when a new one becomes available.
 Be advised: It will only take effect when the current quests timers have run out.</System:String>
  <System:String xml:space="preserve" x:Key="QuestSwitch_TT">Be advised: It will not change newly accepted quests.</System:String>
@@ -941,9 +990,9 @@ Such exits are:
 You will have more than 30 AI in a single area. Enable at your own peril.</System:String>
  <System:String xml:space="preserve" x:Key="Halloween_TT">Halloween event - enables event exclusive lights in the hideout, 
 alters Zryachiy behavior/spawns, adds event loot to AI, as well as the ritual mechanic.</System:String>
- <System:String  xml:space="preserve" x:Key="DisableZombies_TT">Disable zombies when Halloween is enabled, as they are on by default.
- Will not work if Halloween is disabled.</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Randomises the infection level of various locations on server startup.</System:String>
+ <!--<System:String  xml:space="preserve" x:Key="DisableZombies_TT">Disable zombies when Halloween is enabled, as they are on by default.
+ Will not work if Halloween is disabled.</System:String>-->
+ <!--<System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">Randomises the infection level of various locations on server startup.</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">Christmas event - enables event exclusive lights in hideout, gives you a christmas gift, 
 allows for Santa Claus to spawn, and adds event loot to AI.</System:String>
  <System:String  xml:space="preserve" x:Key="Types_TT">Daily missions are split into 3 types: Extermination, Completion, and Exploration.
@@ -952,12 +1001,12 @@ allows for Santa Claus to spawn, and adds event loot to AI.</System:String>
  Exploration - Exfiltrate from specific a location with the 'Survived' tag. May require a specific exit.</System:String>
  <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">Removing certain IDs may result in an error on server launch. 
 Proceed with caution!</System:String>
- <System:String xml:space="preserve" x:Key="SafeExit_TT">Allows you to leave via menu to save gear/loot.
+ <!--<System:String xml:space="preserve" x:Key="SafeExit_TT">Allows you to leave via menu to save gear/loot.
 You will, however, be counted as 'Run Through' - stripping your loot from being FiR.
 Conflicts with the 'Softcore' option.</System:String>
  <System:String xml:space="preserve" x:Key="SaveGearAfterDeath_TT">Dying, leaving via menu or getting lost will be counted as 'Run Through'.
 Saves your things, but removes the 'Found in Raid' tag from items.
-Conflicts with the 'Safe Exit' option.</System:String>
+Conflicts with the 'Safe Exit' option.</System:String>-->
  <System:String  xml:space="preserve" x:Key="PMCHealth_TT">Allows you to edit the maximum health of your PMC.
 ATTENTION: Changes are saved to your profile, so disabling this function won't revert your health.
 To restore your health to default, re-enter the default values, save, launch the game, then close it.

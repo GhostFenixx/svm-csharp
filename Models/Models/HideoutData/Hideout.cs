@@ -20,6 +20,7 @@ namespace Greed.Models.HideoutData
         public double AirFilterRate { get; set; } = 1;
         public double CultistTime { get; set; } = 1;
         public int CultistMaxRewards { get; set; } = 5;
+        public double FuelConsumptionRate { get; set; } = 1;
         public bool RemoveConstructionsRequirements { get; set; }
         public bool RemoveConstructionsFIRRequirements { get; set; }
         public bool RemoveCustomizationRequirements { get; set; }
@@ -27,7 +28,15 @@ namespace Greed.Models.HideoutData
         public bool RemoveSkillRequirements { get; set; }
         public bool RemoveTraderLevelRequirements { get; set; }
         public bool EnableHideout { get; set; }
-        public double FuelConsumptionRate { get; set; } = 1;
+        public bool EnablePrestige { get; set; }
+        public bool PrestigeCollector { get; set; }
+        public bool PrestigeNewBeginnings { get; set; }
+        public bool PrestigeAreas { get; set; }
+        public int PrestigeLevel { get; set; } = 55;
+        public int PrestigeStrength { get; set; } = 20;
+        public int PrestigeEndurance { get; set; } = 20;
+        public int PrestigeCharisma { get; set; } = 15;
+        public int PrestigeCurrency { get; set; } = 20000000;
         public Prestige FirstPrestige { get; set; }
         public Prestige SecondPrestige { get; set; }
         public Prestige ThirdPrestige { get; set; }

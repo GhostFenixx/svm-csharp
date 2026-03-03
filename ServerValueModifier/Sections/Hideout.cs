@@ -29,9 +29,9 @@ namespace ServerValueModifier.Sections
             hideout.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
             hideout.Settings.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
             hideoutConfig.CultistCircle.MaxRewardItemCount = svmconfig.Hideout.CultistMaxRewards;
-            hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = Math.Max((int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime),1);
+            hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = Math.Max((int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime), 1);
             hideoutConfig.CultistCircle.CraftTimeThresholds.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime), 1); });
-            hideoutConfig.CultistCircle.DirectRewards.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime),1); });
+            hideoutConfig.CultistCircle.DirectRewards.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime), 1); });
             if (svmconfig.Hideout.RemoveCustomizationRequirements)
             {
                 foreach (var fancy in hideout.Customisation.Globals)
@@ -41,7 +41,7 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Hideout.RemoveArenaCrafts)
             {
-               MongoId[] toRemove = [ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_RARE,ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_BATTLEPASS_0, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_COMMON, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_COMMON, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_RARE, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_COMMON, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_EPIC, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_RARE, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_COMMON, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_EPIC, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_RARE];
+                MongoId[] toRemove = [ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_RARE, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_BATTLEPASS_0, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_COMMON, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_COMMON, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_RARE, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_COMMON, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_EPIC, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_RARE, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_COMMON, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_EPIC, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_RARE];
                 hideoutConfig.HideoutCraftsToAdd.Clear();
                 hideoutConfig.HideoutLootCrateCraftIdsToUnlockInHideout = [];
                 foreach (var crafts in hideout.Production.Recipes)
@@ -51,7 +51,7 @@ namespace ServerValueModifier.Sections
                     {
                         if (condition.TemplateId.HasValue)//Null check, otherwise will be throwing exception trying to get 'Value' that doesn't exist.
                         {
-                            if(toRemove.Any(ID => condition.TemplateId.Value.Equals(ID)))
+                            if (toRemove.Any(ID => condition.TemplateId.Value.Equals(ID)))
                             {
                                 //logger.Info("Craft removed: " + crafts.Id);
                                 crafts.Locked = true;
@@ -151,7 +151,7 @@ namespace ServerValueModifier.Sections
                 {
                     foreach (Stage stage in area.Stages.Values)
                     {
-                        Rewriter = _cloner.Clone(stage);
+                        Rewriter = _cloner.Clone(stage); //Since we're going thru foreach cycle, we edit the clone by adding stuff we want, ignoring stuff we don't want, then apply the clone.
                         Rewriter.Requirements.Clear();
                         foreach (StageRequirement requirements in stage.Requirements)
                         {
@@ -196,13 +196,87 @@ namespace ServerValueModifier.Sections
             globals.Configuration.Health.Effects.Regeneration.Hydration = svmconfig.Hideout.Regeneration.HydrationRegen;
 
             //Prestige
-            PrestigeEdit(prestige.Elements[0].TransferConfigs, svmconfig.Hideout.FirstPrestige.Height, svmconfig.Hideout.FirstPrestige.Skills, svmconfig.Hideout.FirstPrestige.Mastery, svmconfig.Hideout.FirstPrestige.Filter);
-            PrestigeEdit(prestige.Elements[1].TransferConfigs, svmconfig.Hideout.SecondPrestige.Height, svmconfig.Hideout.SecondPrestige.Skills, svmconfig.Hideout.SecondPrestige.Mastery, svmconfig.Hideout.SecondPrestige.Filter);
-            PrestigeEdit(prestige.Elements[2].TransferConfigs, svmconfig.Hideout.ThirdPrestige.Height, svmconfig.Hideout.ThirdPrestige.Skills, svmconfig.Hideout.ThirdPrestige.Mastery, svmconfig.Hideout.ThirdPrestige.Filter);
-            PrestigeEdit(prestige.Elements[3].TransferConfigs, svmconfig.Hideout.FourthPrestige.Height, svmconfig.Hideout.FourthPrestige.Skills, svmconfig.Hideout.FourthPrestige.Mastery, svmconfig.Hideout.FourthPrestige.Filter);
+            if (svmconfig.Hideout.EnablePrestige)
+            {
+                logger.Info("Prestige section is on");
+                //prestige.Elements[1].Conditions[1].ConditionType
+                //PrestigeSkillEdit();
+                PrestigeElement Rewriter = new();
+                foreach (PrestigeElement elem in prestige.Elements)
+                {
+                    logger.Success("Prestige cycling");
+                    Rewriter = _cloner.Clone(elem);
+                    Rewriter.Conditions.Clear();
+                    foreach (var condition in elem.Conditions)
+                    {
+                        if (condition.ConditionType.Equals("Level"))
+                        {
+                            logger.Success("Prestige Level");
+                            condition.Value = svmconfig.Hideout.PrestigeLevel;
+                            Rewriter.Conditions.Add(condition);
+                        }
+                        if (svmconfig.Hideout.PrestigeAreas && condition.ConditionType.Equals("HideoutArea"))
+                        {
+                            condition.Value = 0;
+                        }
+                        if (condition.Target != null)//Love them null checks
+                        {
+                            if (condition.Target.Item == "Strength" && svmconfig.Hideout.PrestigeStrength != 0)
+                            {
+                                condition.Value = svmconfig.Hideout.PrestigeStrength;
+                                Rewriter.Conditions.Add(condition);
+                            }
+                            if (condition.Target.Item == "Endurance" && svmconfig.Hideout.PrestigeEndurance != 0)
+                            {
+                                condition.Value = svmconfig.Hideout.PrestigeEndurance;
+                                Rewriter.Conditions.Add(condition);
+                            }
+                            if (condition.Target.Item == "Charisma" && svmconfig.Hideout.PrestigeCharisma != 0)
+                            {
+                                condition.Value = svmconfig.Hideout.PrestigeCharisma;
+                                Rewriter.Conditions.Add(condition);
+                            }
+                            if(condition.ConditionType == "HasItem" && svmconfig.Hideout.PrestigeCurrency != 0) //(condition.Target.Item == "5449016a4bdc2d6f028b456f") By weird circumstance i can't select it this way, so the only solution would be using "conditionType": "HasItem" in hopes no other mod touches prestige.
+                            {
+                                logger.Success("Currency check");
+                                condition.Value = svmconfig.Hideout.PrestigeCurrency;
+                                Rewriter.Conditions.Add(condition);
+                            }
+                            if (!svmconfig.Hideout.PrestigeCollector && condition.Target.Item == "5c51aac186f77432ea65c552")
+                            {
+                                logger.Success("Quest check");
+                                Rewriter.Conditions.Add(condition);
+
+                            }
+                            if (!svmconfig.Hideout.PrestigeNewBeginnings && condition.Target.Item == "6842f121c033d3512e2682d2")
+                            {
+                                Rewriter.Conditions.Add(condition);
+                            }
+                        }
+
+                    }
+                    elem.Conditions = Rewriter.Conditions;
+
+                    //if (condstoremove != null)
+                    //{
+                    //    logger.Warning("Quest Deletion");
+                    //    foreach (var item in condstoremove)
+                    //    {
+                    //        elem.Conditions.Remove(item);
+                    //    }
+                    //    condstoremove = [];
+                    //    // You know, this is pretty dumb, could be completely avoided doing, just makes so nano-optimisation for checking extra IDs that will never happen to encounter thru the list it's laughable
+                    //    // it would make sense IF i separated prestige levels and changes inbetween them, but i did not, but hey, something for you - random reader - to peek in.
+                    //}
+                }
+                PrestigeTransferEdit(prestige.Elements[0].TransferConfigs, svmconfig.Hideout.FirstPrestige.Height, svmconfig.Hideout.FirstPrestige.Skills, svmconfig.Hideout.FirstPrestige.Mastery, svmconfig.Hideout.FirstPrestige.Filter);
+                PrestigeTransferEdit(prestige.Elements[1].TransferConfigs, svmconfig.Hideout.SecondPrestige.Height, svmconfig.Hideout.SecondPrestige.Skills, svmconfig.Hideout.SecondPrestige.Mastery, svmconfig.Hideout.SecondPrestige.Filter);
+                PrestigeTransferEdit(prestige.Elements[2].TransferConfigs, svmconfig.Hideout.ThirdPrestige.Height, svmconfig.Hideout.ThirdPrestige.Skills, svmconfig.Hideout.ThirdPrestige.Mastery, svmconfig.Hideout.ThirdPrestige.Filter);
+                PrestigeTransferEdit(prestige.Elements[3].TransferConfigs, svmconfig.Hideout.FourthPrestige.Height, svmconfig.Hideout.FourthPrestige.Skills, svmconfig.Hideout.FourthPrestige.Mastery, svmconfig.Hideout.FourthPrestige.Filter);
+            }
             //Removing passive bonuses for Health/Energy/Hydration regeneration.
             if (svmconfig.Hideout.RemoveConstructionsRequirements || svmconfig.Hideout.RemoveSkillRequirements || svmconfig.Hideout.RemoveTraderLevelRequirements || svmconfig.Hideout.RemoveConstructionsFIRRequirements)
-            {   
+            {
                 foreach (HideoutArea area in hideout.Areas)
                 {
                     foreach (Stage stage in area.Stages.Values)
@@ -226,7 +300,7 @@ namespace ServerValueModifier.Sections
                 }
             }
         }
-        public void PrestigeEdit(TransferConfigs edit, int height, int skills, int mastery, bool filter)
+        public void PrestigeTransferEdit(TransferConfigs edit, int height, int skills, int mastery, bool filter)
         {
             edit.StashConfig.XCellCount = height;
             edit.SkillConfig.TransferMultiplier = skills;
@@ -236,5 +310,9 @@ namespace ServerValueModifier.Sections
                 edit.StashConfig.Filters.IncludedItems = [];
             }
         }
+        //public void PrestigeSkillEdit(prestige prestige, int skills, int mastery, bool filter)
+        //{
+        //    foreach
+        //}
     }
 }

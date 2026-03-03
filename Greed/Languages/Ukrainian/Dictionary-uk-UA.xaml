@@ -196,9 +196,15 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="RemoveConstructionsFIRRequirements">Не потребує матеріалів "Знайдених у рейді"</System:String>
  <System:String x:Key="RemoveSkillRequirements">Будівництво не потребує навичок</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Будівництво не потребує торговців</System:String>
- <System:String x:Key="CultistMaxRewards">Кількість нагород з кола культистів:</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">Видалити потреби для декорацій сховища</System:String>
+    <System:String x:Key="RemoveArenaCrafts">Видалити крафти пов'язані з кейсами із арени</System:String>
+    <System:String x:Key="CultistMaxRewards">Кількість нагород з кола культистів:</System:String>
  <System:String x:Key="CultistTime">Час для циклу кола культистів:</System:String>
- <!--Hideout Multipliers-->
+    <!--Prestige Section-->
+    <System:String x:Key="Prestige">Престиж</System:String>
+    <System:String x:Key="Skill">Навички</System:String>
+    <System:String x:Key="Mastery">Майстерність</System:String>
+    <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Час продукції:</System:String>
  <System:String x:Key="HideoutConstMult">Час будівництва:</System:String>
  <System:String x:Key="ScavCaseTime">Час для ящика Диких:</System:String>
@@ -411,8 +417,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="GoonsFactory">Головорізи на Заводі та їх шанс спавна:</System:String>
  <System:String x:Key="KillaFactory">Кілла на Заводі та його шанс спавна:</System:String>
  <System:String x:Key="Halloween">Хелловін</System:String>
- <System:String x:Key="DisableZombies">Вимкнути зомбі</System:String>
- <System:String x:Key="RandomInfectionLevel">Випадкові рівні інфекції</System:String>
+ <!--<System:String x:Key="DisableZombies">Вимкнути зомбі</System:String>-->
+ <!--<System:String x:Key="RandomInfectionLevel">Випадкові рівні інфекції</System:String>-->
  <System:String x:Key="Christmas">Різдво</System:String>
  <System:String x:Key="DisableEvents">Вимкнути поточні події</System:String>
  <System:String x:Key="TagillaInterchange">Тагілла сопроводжуе кіллу у Развязці</System:String>
@@ -825,9 +831,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 ШІ ПВК все ще можуть перетворитися з рейдерів, тому майте на увазі</System:String>
  <System:String x:Key="SnowEvent_TT">Змінює тільки погоду</System:String>
  <System:String x:Key="Halloween_TT">Вмикає святкове освітлення в сховищі, змінює поведінку та спавни Зрячого, добавляє тематичну здобич в ШІ.</System:String>
- <System:String x:Key="DisableZombies_TT">Вимикає зомбі під час свята, по замовчуванню вони є.
+ <!--<System:String x:Key="DisableZombies_TT">Вимикає зомбі під час свята, по замовчуванню вони є.
 Нічого не робить якщо свято не активно.</System:String>
- <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">При запуску сервера локації отримають випадкові рівні инфекції, окрім лабораторії</System:String>
+ <System:String  xml:space="preserve" x:Key="RandomInfectionLevel_TT">При запуску сервера локації отримають випадкові рівні инфекції, окрім лабораторії</System:String>-->
  <System:String xml:space="preserve" x:Key="Christmas_TT">Вмикає святкове освітлення, дарує різдвяний подарунок. Вмикає спавн Санта Клауса, добавляє тематичну здобич в ШІ. </System:String>
  <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">Дуже не рекомендується, це скоріше стрес тест ніж опція
 У вас буде більше 30 ШІ в одному місці, Я попередив</System:String>

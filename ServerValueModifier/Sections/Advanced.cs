@@ -214,6 +214,19 @@ namespace ServerValueModifier.Sections
                 {
                     variables[i] = "MaxCount";
                 }
+                if (variables[i].Contains("_mergeSlotWithChildren"))
+                {
+                    variables[i] = "MergeSlotWithChildren";
+                }
+                if (variables[i].Contains("effects_health"))
+                {
+                    variables[i] = "EffectsHealth";
+                }
+                if (variables[i].Contains("effects_damage"))
+                {
+                    variables[i] = "EffectsDamage";
+                }
+
             }
         }
         public void PriceChange(string[] variables)

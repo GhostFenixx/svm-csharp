@@ -276,13 +276,14 @@
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Events}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10">
-                    <CheckBox Content="{DynamicResource AITypeOverride}" Foreground="White" ToolTip="{DynamicResource AITypeOverride_TT}" IsChecked="{Binding Raids.RaidEvents.AITypeOverride}"/>
+                    <CheckBox Content="{DynamicResource AITypeOverride}" Foreground="#FFFFA73B" ToolTip="{DynamicResource AITypeOverride_TT}" IsChecked="{Binding Raids.RaidEvents.AITypeOverride}"/>
                     <ComboBox Foreground ="White" Width="250" SelectedIndex="{Binding Raids.RaidEvents.AIType, Mode=TwoWay}" SelectedValuePath="Content">
                         <ComboBoxItem Content="{DynamicResource Raiders}"/>
                         <ComboBoxItem Content="{DynamicResource Rogues}"/>
                         <ComboBoxItem Content="{DynamicResource Cultist}"/>
                         <ComboBoxItem Content="{DynamicResource Bear}"/>
                         <ComboBoxItem Content="{DynamicResource Usec}"/>
+                        <ComboBoxItem Foreground="Orange" Content="{DynamicResource Zombies}"/>
 
                     </ComboBox>
                     <CheckBox Content="{DynamicResource GlukharLabs}" IsChecked="{Binding Raids.RaidEvents.GlukharLabs}"/>
@@ -293,8 +294,8 @@
                     <CheckBox Margin="20,0,0,0" Content="{DynamicResource IncludeStreetBosses}" IsChecked="{Binding Raids.RaidEvents.IncludeStreetBosses}"/>
                     <CheckBox Content="{DynamicResource Christmas}" ToolTip="{DynamicResource Christmas_TT}" IsChecked="{Binding Raids.RaidEvents.Christmas}"/>
                     <CheckBox Content="{DynamicResource Halloween}" ToolTip="{DynamicResource Halloween_TT}" IsChecked="{Binding Raids.RaidEvents.Halloween}"/>
-                    <CheckBox Margin="20,0,0,0"  ToolTip="{DynamicResource DisableZombies_TT}" Content="{DynamicResource DisableZombies}" IsChecked="{Binding Raids.RaidEvents.DisableZombies}"/>
-                    <CheckBox  Foreground="#FFFFA73B" Margin="20,0,0,0"  ToolTip="{DynamicResource DisableHalloweenAIFriendly_TT}" Content="{DynamicResource DisableHalloweenAIFriendly}" IsChecked="{Binding Raids.RaidEvents.DisableHalloweenAIFriendly}"/>
+                    <!--<CheckBox Margin="20,0,0,0"  ToolTip="{DynamicResource DisableZombies_TT}" Content="{DynamicResource DisableZombies}" IsChecked="{Binding Raids.RaidEvents.DisableZombies}"/>-->
+                    <!--<CheckBox  Foreground="#FFFFA73B" Margin="20,0,0,0"  ToolTip="{DynamicResource DisableHalloweenAIFriendly_TT}" Content="{DynamicResource DisableHalloweenAIFriendly}" IsChecked="{Binding Raids.RaidEvents.DisableHalloweenAIFriendly}"/>-->
                     <CheckBox Content="{DynamicResource NonSeasonalQuests}" IsChecked="{Binding Raids.RaidEvents.NonSeasonalQuests}"/>
                     <CheckBox Content="{DynamicResource DisableEvents}" IsChecked="{Binding Raids.RaidEvents.DisableEvents}"/>
                     <CheckBox Content="{DynamicResource TagillaInterchange}" IsChecked="{Binding Raids.RaidEvents.TagillaInterchange}"/>

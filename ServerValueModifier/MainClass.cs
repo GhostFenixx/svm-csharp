@@ -35,8 +35,8 @@ namespace ServerValueModifier
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
                 //A list of features that should run before `PerformPostDbLoadActions`
                 //Will make into a separate section later.
-                //bots section
-                if (svmcfg.Bots.EnableBots)
+                //Raids/ Events section
+                if (svmcfg.Raids.EnableRaids)
                 {
                     BotConfig bots = configServer.GetConfig<BotConfig>();
                     bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
@@ -49,12 +49,11 @@ namespace ServerValueModifier
                             case 2: bots.ReplaceScavWith = WildSpawnType.sectantWarrior; break;
                             case 3: bots.ReplaceScavWith = WildSpawnType.pmcBEAR; break;
                             case 4: bots.ReplaceScavWith = WildSpawnType.pmcUSEC; break;
+                            case 5: bots.ReplaceScavWith = WildSpawnType.infectedAssault; break;
                         }
                     }
-                }
-                //Raids/ Events section
-                if (svmcfg.Raids.EnableRaids)
-                {
+
+
                     WeatherConfig weatherconfig = configServer.GetConfig<WeatherConfig>();
                     weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
                     if (svmcfg.Raids.ForceSeason)
@@ -82,37 +81,37 @@ namespace ServerValueModifier
                     var eventconfig = configServer.GetConfig<SeasonalEventConfig>();
                     var questconfig = configServer.GetConfig<QuestConfig>();
                     questconfig.ShowNonSeasonalEventQuests = svmcfg.Raids.RaidEvents.NonSeasonalQuests;
-                    foreach (var eventname in eventconfig.Events)//Very redundant tbh
-                    {
-                        if (eventname.Name == "halloween" && svmcfg.Raids.RaidEvents.DisableZombies)
-                        {
-                            eventname.Settings.ZombieSettings.Enabled = !svmcfg.Raids.RaidEvents.DisableZombies;
-                        }
-                    }
+                    //foreach (var eventname in eventconfig.Events)
+                    //{
+                    //    if (eventname.Name == "halloween" && svmcfg.Raids.RaidEvents.DisableZombies)
+                    //    {
+                    //        eventname.Settings.ZombieSettings.Enabled = !svmcfg.Raids.RaidEvents.DisableZombies;
+                    //    }
+                    //}
                     eventconfig.EnableSeasonalEventDetection = !svmcfg.Raids.RaidEvents.DisableEvents;
-                    if (svmcfg.Raids.RaidEvents.DisableHalloweenAIFriendly)
-                    {
-                        foreach (var bottype in eventconfig.HostilitySettingsForEvent["zombies"]["default"])
-                        {
-                            if (bottype.BotRole == "pmcBEAR")
-                            {
-                                bottype.SavagePlayerBehaviour = "AlwaysEnemies";
-                                bottype.Neutral.Remove("pmcUSEC");
-                                bottype.AlwaysEnemies.Add("pmcUSEC");
-                            }
-                            else if (bottype.BotRole == "pmcUSEC")
-                            {
-                                bottype.SavagePlayerBehaviour = "AlwaysEnemies";
-                                bottype.Neutral.Remove("pmcBEAR");
-                                bottype.AlwaysEnemies.Add("pmcBEAR");
-                            }
-                            else
-                            {
-                                bottype.BearPlayerBehaviour = "AlwaysEnemies";
-                                bottype.UsecPlayerBehaviour = "AlwaysEnemies";
-                            }
-                        }
-                    }
+                    //if (svmcfg.Raids.RaidEvents.DisableHalloweenAIFriendly)
+                    //{
+                    //    foreach (var bottype in eventconfig.HostilitySettingsForEvent["zombies"]["default"])
+                    //    {
+                    //        if (bottype.BotRole == "pmcBEAR")
+                    //        {
+                    //            bottype.SavagePlayerBehaviour = "AlwaysEnemies";
+                    //            bottype.Neutral.Remove("pmcUSEC");
+                    //            bottype.AlwaysEnemies.Add("pmcUSEC");
+                    //        }
+                    //        else if (bottype.BotRole == "pmcUSEC")
+                    //        {
+                    //            bottype.SavagePlayerBehaviour = "AlwaysEnemies";
+                    //            bottype.Neutral.Remove("pmcBEAR");
+                    //            bottype.AlwaysEnemies.Add("pmcBEAR");
+                    //        }
+                    //        else
+                    //        {
+                    //            bottype.BearPlayerBehaviour = "AlwaysEnemies";
+                    //            bottype.UsecPlayerBehaviour = "AlwaysEnemies";
+                    //        }
+                    //    }
+                    //}
                 }
                 //Flea section
                 if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
