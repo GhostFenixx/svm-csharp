@@ -31,10 +31,11 @@ BattleStateGames - За создание этих иконок
 KMC - Публикация мода на сайте SPT
 Nexus4880 - Создатель плагина 'Hide Special Icon' для Менеджера Кейсов
 Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - Тестеры
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, BiddinWar - Финансовая поддержка
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar, BushTail, RepublicanJesus - Финансовая поддержка
 Локализация:
 Корейский - 루퍼, 고라니
 Украинский - celebrutu
+Испанский - og_ruby
 И многие другие кто поддерживал разработку советами, баг репортами, хорошими словами или же рекламой.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
@@ -200,7 +201,15 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
     <!--Prestige Section-->
     <System:String x:Key="Prestige">Престиж</System:String>
     <System:String x:Key="Skill">Навыки</System:String>
-    <System:String x:Key="Mastery">Мастерство</System:String>
+    <System:String x:Key="Mastery">Маст-во</System:String>
+    <System:String x:Key="PrestigeLevel">Необходимый уровень для престижа:</System:String>
+    <System:String x:Key="PrestigeStrength">Требуемый навык силы:</System:String>
+    <System:String x:Key="PrestigeCharisma">Требуемый навык харизмы:</System:String>
+    <System:String x:Key="PrestigeEndurance">Требуемый навык выносливости:</System:String>
+    <System:String x:Key="PrestigeCurrency">Кол-во необходимых рублей:</System:String>
+    <System:String x:Key="PrestigeAreas">Отключить требование о зонах убежища</System:String>
+    <System:String x:Key="PrestigeCollector">Убрать квест 'Коллектор' с требований</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">Убрать квест 'Новое начало' с требований</System:String>
     <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Время продукции:</System:String>
  <System:String x:Key="HideoutConstMult">Время строительства:</System:String>
@@ -232,7 +241,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="RemoveTimeCondition">Убирает время между новыми квестами</System:String>
  <System:String x:Key="TradersLvl4">Все торговцы с короной</System:String>
  <System:String x:Key="FIRRestrictsQuests">Нету требований "Найдено в рейде" для квестов</System:String>
- <!--<System:String x:Key="RemoveTradeLimits">Убрать лимиты предметов у торговцев</System:String>
+ <System:String x:Key="RandomizeAssort">Случайное кол-во предложений у торговца</System:String>
+    <!--<System:String x:Key="RemoveTradeLimits">Убрать лимиты предметов у торговцев</System:String>
  <System:String x:Key="IncreaseAssort">Очень много предметов за завоз</System:String>-->
 
  <System:String x:Key="QuestRedeemTime">Время хранения наград:</System:String>
@@ -287,7 +297,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="NoPermDamageArmor">Починка брони не оставляет износ</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">Одежда</System:String>
- <System:String x:Key="ClothesAnySide">Доступ ко всей одежде</System:String>
+ <System:String x:Key="ScavClothes">Скупщик продает одежду диких и из БатлПасса</System:String>
+ <System:String x:Key="ClothesAnySide">Доступ ко всей одежды ЧВК</System:String>
  <System:String x:Key="ClothesFree">Одежда бесплатна</System:String>
  <System:String x:Key="ClothesLevelUnlock">Убирает ограничение по уровню ЧВК и Торговцев</System:String>
  <!--Healing Section-->
@@ -389,6 +400,20 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="ArmorExtract">Разрешить броню для выходов в горах</System:String>
  <System:String x:Key="NoBackpack">Убрать требование рюкзака на выходах</System:String>
  <System:String x:Key="ForceTransitStash">Переписывать размер инвентаря перехода</System:String>
+    <System:String x:Key="DisableTransits">Отключить переходы между локациями</System:String>
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">Статус рейда в конце</System:String>
+    <System:String x:Key="OnSurvivedState">Если выжил</System:String>
+    <System:String x:Key="OnRunnerState">Если пробежал</System:String>
+    <System:String x:Key="OnKilledState">Если умер</System:String>
+    <System:String x:Key="OnMIAState">Если пропал безвести</System:String>
+    <System:String x:Key="OnLeftState">Если вышел через меню</System:String>
+    <System:String x:Key="SurvivedRaid">Засчитать как выжил</System:String>
+    <System:String x:Key="MIARaid">Засчитать как пропал</System:String>
+    <System:String x:Key="RunnerRaid">Засчитать пробежкой</System:String>
+    <System:String x:Key="KilledRaid">Засчитать как умер</System:String>
+    <System:String x:Key="LeftRaid">Засчитать как вышел</System:String>
+    <System:String x:Key="IgnoreRaid">Рейд не будет засчитан</System:String>
     <!--Coop/Car Section-->
  <System:String x:Key="FreeCoop">Нет требований для совместных выходов</System:String>
  <System:String x:Key="CoopPaid">Сделать совместные выходы - Платными</System:String>
@@ -404,10 +429,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="ForceBTRFriendly">БТР по умолчанию дружелюбен</System:String>
  <System:String x:Key="BTRTaxiPrice">Цена такси:</System:String>
  <System:String x:Key="BTRCoverPrice">Цена огневой поддержки:</System:String>
- <System:String x:Key="BTRPriceMult">Price multiplier by faction:</System:String>
- <System:String x:Key="BTRTimeMin"> Minimum spawn time window (in minutes):</System:String>
- <System:String x:Key="BTRTimeMax">Maximum spawn time window (in minutes):</System:String>
- <System:String x:Key="BTRChance">BTR Spawn Chance (in %):</System:String>
+    <System:String x:Key="BTRPriceMult">Множитель цены от стороны:</System:String>
+ <System:String x:Key="BTRTimeMin">Минимальное окно спавна (в минутах):</System:String>
+ <System:String x:Key="BTRTimeMax">Максимальное окно спавна (в минутах):</System:String>
+    <System:String x:Key="BTRChance">Шанс спавна БТР (в %):</System:String>
  <System:String x:Key="Usec">USEC</System:String>
  <System:String x:Key="Bear">BEAR</System:String>
 
@@ -435,8 +460,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="Bloodhounds">Шанс спавна отряда курьеров</System:String>
  <System:String x:Key="RedBlueEvent">Шанс спавна отрядов лыжника/миротворца</System:String>
  <!--Raid Startup Section-->
- <System:String x:Key="Cursed">Помечен и проклят</System:String>
- <System:String x:Key="MIARaid">MIA в конце рейда</System:String>
+    <System:String x:Key="Cursed">Помечен и проклят</System:String>
     <System:String x:Key="LootRaid">Режим практики</System:String>
  <System:String x:Key="AIDifficulty">Сложность ИИ</System:String>
  <System:String x:Key="AIAmount">Количество ИИ</System:String>
@@ -488,8 +512,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="FleaConditions">Состояние товаров в %</System:String>
  <System:String x:Key="OffersRatio">Соотношение от типа валют (в %)</System:String>
  <System:String x:Key="ExpireThreshold">Создать новые предложения если истекших стало больше:</System:String>
- <System:String x:Key="BundleOfferChance">Шанс того что предложение будет с пачкой предметов в %:</System:String>
- <!--CSM Section-->
+    <System:String x:Key="BundleOfferChance">Шанс того что предложение будет с пачкой предметов (в %):</System:String>
+    <System:String x:Key="BarterChance">Шанс того что предложение будет бартерным (в %):</System:String>
+    <System:String x:Key="TieredFlea">Отключить уровневую барахолку</System:String>
+    <!--CSM Section-->
  <System:String x:Key="Cases">Контейнеры</System:String>
  <System:String x:Key="RemoveFilters">Удалить фильтры</System:String>
  <System:String x:Key="MoneyCase">Денежный кейс:</System:String>
@@ -633,6 +659,11 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
     <System:String x:Key="IDPrice">Добавить/Изменить цену предмета:</System:String>
     <System:String x:Key="IDFilter">Добавить ID в его Фильтр:</System:String>
     <System:String x:Key="FleaMultID">Добавить множитель цены на предмет:</System:String>
+    <!--Counting-->
+    <System:String x:Key="First">Первый:</System:String>
+    <System:String x:Key="Second">Второй:</System:String>
+    <System:String x:Key="Third">Третий:</System:String>
+    <System:String x:Key="Fourth">Четвертый:</System:String>
     <!--Unified name of Game objects-->
  <System:String x:Key="FleaWeapons">Оружие:</System:String>
  <System:String x:Key="FleaMedical">Медицина:</System:String>
@@ -707,7 +738,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="PMCAI">ЧВК:</System:String>
  <System:String x:Key="Bosses">Боссы:</System:String>
  <System:String x:Key="Followers">Свита:</System:String>
- <!--Tooltips-->
+ <System:String x:Key="Zombies">Зомби</System:String>
+    <!--Tooltips-->
  <System:String  xml:space="preserve" x:Key="Types_TT">Ежедневные миссии делятся на 3 типа: Убийство, Доставка и Исследование
  Убийство(Extermination) - убить ЧВК, Диких или боссов. Иногда в определенные части тела или из определенной дальности
  Доставка(Completion) - принести предметы найденные в рейде
@@ -769,7 +801,19 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">Умножает требуемое количество валюты для ящика диких.
 Меньше число - дешевле предложения
 Влияет только на предложения за валюту</System:String>
- <System:String x:Key="FIRTrade_TT">Всё купленное с торговцев будет считаться `Найдено в Рейде`</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">ВНИМАНИЕ: Секция по умолчанию отличается от SPT
+На 3 и 4 уровне требование к уровню харизмы: 20 уровень, вместо 15, но для удобства использования секции - SVM переписывает это до одного значения (15)
+Всё остальное по стандарту, имейте в виду.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeAreas_TT">По умолчанию престиж требует что бы у вас было:
+Разведцентр Lvl 2
+Безопасность Lvl 3
+Зона отдыха Lvl 3
+Эта опция отключает эту необходимость</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">% от навыков вашего персонажа будет унаследовано на момент престижа</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">% от оружейного мастерства будет унаследовано на момент престижа</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSize_TT">Вертикальний размер престижного схрона для передачи предметов в новую игру</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeFilter_TT">Отключает фильтры для схрона передачи предметов, хоть кейсы пихай.</System:String>
+    <System:String x:Key="FIRTrade_TT">Всё купленное с торговцев будет считаться `Найдено в Рейде`</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">Выставляет цикл времени жизни повторяемого квеста и через сколько появится новый.
 Внимание, изменение примет эффект только в новом цикле</System:String>
  <System:String xml:space="preserve" x:Key="RewardSpread_TT">При 0 разброса наград не будет.
@@ -779,7 +823,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 Не особо сбалансировано и может поднять загрузку на ПК</System:String>
  <!--<System:String x:Key="RemoveTradeLimits_TT">Убирает ограничение покупки предметов за завоз</System:String>
  <System:String x:Key="IncreaseAssort_TT">Функция совсем без баланса: у торговцев будет по миллиону каждого предмета из их ассортимента</System:String>-->
- <System:String x:Key="RemoveCurrencyOffers_TT">Исключая Скупщика</System:String>
+    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">НЕДОДЕЛАНО: изменяет количество доступных предложений в случайном порядке до 480
+На данний момент множитель размера не влияет на это поле
+В будущем планирую расширить этот функционал</System:String>
+    <System:String x:Key="RemoveCurrencyOffers_TT">Исключая Скупщика</System:String>
  <System:String x:Key="ClothesAnySide_TT">Позволяет купить одежду обоих фракций ЧВК</System:String>
  <System:String x:Key="ClothesFree_TT">Убирает ценник с предложений на одежду</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Убирает требования к квестам, уровню ЧВК или уровню Торговцев</System:String>
@@ -837,9 +884,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 В конечном итоге шанс продажи увеличится на 25%, чем больше разница, тем экстремальнее работает множитель.</System:String>
  <System:String x:Key="PriceRange_TT">Внимание, это не будет влиять на вашу среднюю цену для продажи.
   Если вы хотите продавать с завышенной ценой, советую использовать множитель шанса продажи</System:String>
- <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">Переопределяет все начальные появления ЧВК и Диких
-ИИ ЧВК все еще могут появится из рейдеров, поэтому имейте в виду</System:String>
- <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">Очень не рекомендуется, это скорее стресс тест чем опция
+ <!--<System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">Переопределяет все начальные появления ЧВК и Диких
+ИИ ЧВК все еще могут появится из рейдеров, поэтому имейте в виду</System:String>-->
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">Перепишет все спавны обычных диких(не влияет на боссов или ЧВК) в другой тип ИИ</System:String>
+    <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">Очень не рекомендуется, это скорее стресс тест чем опция
 У вас будет более 30 ИИ в одном месте, Я предупредил</System:String>
  <System:String x:Key="Halloween_TT">Включает праздничное освещение в убежище, 
   изменяет поведение и спавны зрячего, добавляет тематический лут в ИИ</System:String>

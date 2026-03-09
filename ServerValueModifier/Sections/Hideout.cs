@@ -198,20 +198,15 @@ namespace ServerValueModifier.Sections
             //Prestige
             if (svmconfig.Hideout.EnablePrestige)
             {
-                logger.Info("Prestige section is on");
-                //prestige.Elements[1].Conditions[1].ConditionType
-                //PrestigeSkillEdit();
                 PrestigeElement Rewriter = new();
                 foreach (PrestigeElement elem in prestige.Elements)
                 {
-                    logger.Success("Prestige cycling");
                     Rewriter = _cloner.Clone(elem);
                     Rewriter.Conditions.Clear();
                     foreach (var condition in elem.Conditions)
                     {
                         if (condition.ConditionType.Equals("Level"))
                         {
-                            logger.Success("Prestige Level");
                             condition.Value = svmconfig.Hideout.PrestigeLevel;
                             Rewriter.Conditions.Add(condition);
                         }
@@ -238,13 +233,11 @@ namespace ServerValueModifier.Sections
                             }
                             if(condition.ConditionType == "HasItem" && svmconfig.Hideout.PrestigeCurrency != 0) //(condition.Target.Item == "5449016a4bdc2d6f028b456f") By weird circumstance i can't select it this way, so the only solution would be using "conditionType": "HasItem" in hopes no other mod touches prestige.
                             {
-                                logger.Success("Currency check");
                                 condition.Value = svmconfig.Hideout.PrestigeCurrency;
                                 Rewriter.Conditions.Add(condition);
                             }
                             if (!svmconfig.Hideout.PrestigeCollector && condition.Target.Item == "5c51aac186f77432ea65c552")
                             {
-                                logger.Success("Quest check");
                                 Rewriter.Conditions.Add(condition);
 
                             }

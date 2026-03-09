@@ -90,18 +90,11 @@ namespace ServerValueModifier.Sections
 
             if (svmcfg.PMC.NameOverride && svmcfg.PMC.NamesEnable)
             {
-                string[] names = svmcfg.PMC.PMCNameList.Split("\r\n");
-                foreach (string name in names)
-                {
-                    bottypes.Types["pmcusec"].FirstNames = [];
-                    bottypes.Types["pmcusec"].FirstNames.Add(name);
-                    bottypes.Types["usec"].FirstNames = [];
-                    bottypes.Types["usec"].FirstNames.Add(name);
-                    bottypes.Types["pmcbear"].FirstNames = [];
-                    bottypes.Types["pmcbear"].FirstNames.Add(name);
-                    bottypes.Types["bear"].FirstNames = [];
-                    bottypes.Types["bear"].FirstNames.Add(name);
-                }
+                List<string> names = svmcfg.PMC.PMCNameList.Split("\r\n").ToList();
+                    bottypes.Types["pmcusec"].FirstNames = names;
+                    bottypes.Types["usec"].FirstNames = names;
+                    bottypes.Types["pmcbear"].FirstNames = names;
+                    bottypes.Types["bear"].FirstNames = names;
             }
             else if (svmcfg.PMC.NamesEnable)
             {

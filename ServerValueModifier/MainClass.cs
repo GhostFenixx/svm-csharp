@@ -42,7 +42,7 @@ namespace ServerValueModifier
                     bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
                     if (svmcfg.Raids.RaidEvents.AITypeOverride)
                     {
-                        switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now.
+                        switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now. Waiting for 4.0.14? Potentially to expand this with multiple types.
                         {
                             case 0: bots.ReplaceScavWith = WildSpawnType.pmcBot; break;
                             case 1: bots.ReplaceScavWith = WildSpawnType.exUsec; break;
@@ -57,7 +57,7 @@ namespace ServerValueModifier
                     WeatherConfig weatherconfig = configServer.GetConfig<WeatherConfig>();
                     weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
                     if (svmcfg.Raids.ForceSeason)
-                    {
+                    {   
                         switch (svmcfg.Raids.Season)
                         {
                             case 0:
@@ -122,9 +122,7 @@ namespace ServerValueModifier
                 //
 
             }
-            catch (FileNotFoundException)
-            {
-            }
+            catch (FileNotFoundException){}
             catch (Exception ex)
             {
                 logger.Error("[SVM] Pre-DB Initialization failed due to this error: " + ex);

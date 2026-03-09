@@ -32,11 +32,12 @@ KMC - Resubir el archivo en la web oficial de SPT.
 Volcano - Representante de Oddba en SVM
 Nexus4880 - Creador del plugin 'Hide Special Icon' para el apartado "Gestión de espacio de contenedores"
 Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - Testers, opiniones
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar - Donaciones
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar, BushTail, RepublicanJesus - Donaciones
 Localización:
 Koreano - 루퍼, 고라니
 Ukrainiano - celebrutu
 Chino - Volcano
+Español - og_ruby
 Todos aquellos que han mostrado apoyo al proyecto, ya sea informando sobre errores, aportando opiniones o ayudando a otros usuarios con sus preguntas.
 </System:String>
     <!--MessageBoxes and/or Exception handlers-->
@@ -84,6 +85,12 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
 [Aviso - Abrirá tu navegador]</System:String>
  <System:String xml:space="preserve" x:Key="WikiPage_Link">Pulsa 'Ok' para visitar la Wiki oficial de Escape from Tarkov,
 [Aviso - Abrirá tu navegador]</System:String>
+<!--Counting-->
+    <System:String x:Key="First">Primero:</System:String>
+    <System:String x:Key="Second">Segundo:</System:String>
+    <System:String x:Key="Third">Tercero:</System:String>
+    <System:String x:Key="Fourth">Cuarto:</System:String>
+
 
  <!--Buttons-->
  <System:String x:Key="ApplyButton">Aplicar</System:String>
@@ -205,14 +212,22 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Sin req. de "EER" para materiales de construcción</System:String>
  <System:String x:Key="RemoveSkillRequirements">Eliminar requisitos de habilidad para la construcción</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Eliminar Rep con comerciantes para construcción</System:String>
-    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
-    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">Elimina los requisitos de la personalización del escondite.</System:String>
+    <System:String x:Key="RemoveArenaCrafts">Elimina las creaciones relacionadas con los contenedores de "Arena"</System:String>
     <System:String x:Key="CultistMaxRewards">Cantidad de recompensas del círculo cultista:</System:String>
  <System:String x:Key="CultistTime">Tiempo de uso del círculo cultista:</System:String>
     <!--Prestige Section-->
-    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Prestige">Prestigio</System:String>
+    <System:String x:Key="Skill">Habilidad</System:String>
+    <System:String x:Key="Mastery">Maestría</System:String>
+    <System:String x:Key="PrestigeLevel">Nivel necesario para prestigiar:</System:String>
+    <System:String x:Key="PrestigeStrength">Fuerza necesaria para prestigiar:</System:String>
+    <System:String x:Key="PrestigeCharisma">Carisma necesario para prestigiar:</System:String>
+    <System:String x:Key="PrestigeEndurance">Resistencia necesaria para prestigiar:</System:String>
+    <System:String x:Key="PrestigeCurrency">Rublos necesarios para prestigiar:</System:String>
+    <System:String x:Key="PrestigeAreas">Desactiva los requisitos de zonas de escondite</System:String>
+    <System:String x:Key="PrestigeCollector">Elimina el requisito de "Coleccionista" para prestigiar</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">Elimina el requisito de "Nuevos Comienzos" para prestigiar</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Tiempo de producción en el Hideout:</System:String>
  <System:String x:Key="HideoutConstMult">Tiempo de construcción del Hideout:</System:String>
@@ -245,7 +260,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="RemoveTimeCondition">Eliminar la condición temporal para las quests </System:String>
  <System:String x:Key="TradersLvl4">Todos los comerciantes a nivel 4</System:String>
  <System:String x:Key="FIRRestrictsQuests">Sin requisito de "EER" para las quests</System:String>
- <System:String x:Key="RemoveTradeLimits">Eliminar los límites de comercio</System:String>
+    <System:String x:Key="RandomizeAssort">Aleatoriza el inventario del comerciante</System:String>
+    <System:String x:Key="RemoveTradeLimits">Eliminar los límites de comercio</System:String>
  <System:String x:Key="IncreaseAssort">Aumentar la cantidad de stock de los comerciantes </System:String>
  <System:String x:Key="QuestRedeemTime">Tiempo de recogida de recompensas en horas:</System:String>
  <System:String x:Key="StockTime">Tiempo en minutos para la reposición del stock:</System:String>
@@ -302,8 +318,9 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="NoPermDamageArmor">Reparar armaduras no reduce la durabilidad</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">Ropa</System:String>
- <System:String x:Key="ClothesAnySide">Desbloquear la ropa de cada bando</System:String>
- <System:String x:Key="ClothesFree">Toda la ropa es gratis</System:String>
+    <System:String x:Key="ScavClothes">Fence vende ropa del Pase de Batalla/Scav</System:String>
+    <System:String x:Key="ClothesAnySide">Desbloquea la ropa de ambas facciones</System:String>
+    <System:String x:Key="ClothesFree">Toda la ropa es gratis</System:String>
  <System:String x:Key="ClothesLevelUnlock">Eliminar los prerequisitos para comprar prendas</System:String>
  <!--Healing Section-->
  <System:String x:Key="HealthMarkup">Costes de curación</System:String>
@@ -406,7 +423,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="ArmorExtract">Permitir armadura con las extracciones de escalada</System:String>
  <System:String x:Key="NoBackpack">Permitir mochilas de las extracciones relacionadas</System:String>
  <System:String x:Key="ForceTransitStash">Forzar tamaño del inventario de las transiciones</System:String>
- <!--Coop/Car Section-->
+    <System:String x:Key="DisableTransits">Deshabilita las transiciones</System:String>
+    <!--Coop/Car Section-->
  <System:String x:Key="FreeCoop">Sin restricciones para las extracciones cooperativas</System:String>
  <System:String x:Key="CoopPaid">Convertir las extracciones cooperativas en extracciones de pago</System:String>
  <System:String x:Key="FenceGift">Sin regalo de Fence por el uso de las extracciones coop.</System:String>
@@ -414,7 +432,19 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="CarExtractTime">Tiempo de extracción en V-Ex:</System:String>
  <System:String x:Key="CoopExitPrices">Precios Coop</System:String>
  <System:String x:Key="CarAndCoop">Extracciones V-Ex/Cooperativas</System:String>
-
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">Estado de la raid al finalizar</System:String>
+    <System:String x:Key="OnSurvivedState">Si se ha sobrevivido</System:String>
+    <System:String x:Key="OnRunnerState">Si se ha huído</System:String>
+    <System:String x:Key="OnKilledState">Si se ha muerto</System:String>
+    <System:String x:Key="OnMIAState">Si se ha perdido en acción</System:String>
+    <System:String x:Key="OnLeftState">Si se ha desconectado</System:String>
+    <System:String x:Key="SurvivedRaid">Cuenta como sobrevivida</System:String>
+    <System:String x:Key="MIARaid">Cuenta como perdido en acción</System:String>
+    <System:String x:Key="RunnerRaid">Cuenta como huída</System:String>
+    <System:String x:Key="KilledRaid">Cuenta como muerto</System:String>
+    <System:String x:Key="LeftRaid">Cuenta como abandonada</System:String>
+    <System:String x:Key="IgnoreRaid">No se tiene en cuenta</System:String>
  <!--BTR Section-->
  <System:String x:Key="BTR">BTR</System:String>
  <System:String x:Key="ForceBTRStash">Forzar tamaño del inventario en el BTR</System:String>
@@ -453,9 +483,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="RedBlueEvent">Probabilidad de grupos de Skier/Peacekeeper</System:String>
  <!--Raid Startup Section-->
  <System:String x:Key="RaidStartup">Configuración de inicio de raid</System:String>
- <System:String x:Key="Cursed">Marcado y maldito</System:String>
- <System:String x:Key="MIARaid">MIA al final de la raid</System:String>
- <System:String x:Key="LootRaid">Modo práctica</System:String>
+    <System:String x:Key="Cursed">Marcado y maldito</System:String>
+    <System:String x:Key="LootRaid">Modo práctica</System:String>
  <System:String x:Key="AIDifficulty">Dificultad de la IA</System:String>
  <System:String x:Key="AIAmount">Cantidad de la IA</System:String>
  <System:String x:Key="DeployTimer">Tiempo de despliegue en la raid</System:String>
@@ -506,9 +535,9 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="OffersRatio">Reparto de ofertas entre distinta moneda (en %)</System:String>
  <System:String x:Key="ExpireThreshold">Generar nuevas ofertas si las antiguas sobrepasan:</System:String>
  <System:String x:Key="BundleOfferChance">Probabilidad de que la oferta sea un paquete en %:</System:String>
- 
- 
- <!--CSM Section-->
+    <System:String x:Key="BarterChance">Probabilidad de que una oferta sea un intercambio ( % ):</System:String>
+    <System:String x:Key="TieredFlea">Desactiva el mercadillo por niveles</System:String>
+    <!--CSM Section-->
  <System:String x:Key="Cases">Contenedores</System:String>
  <System:String x:Key="RemoveFilters">Sin restricciones</System:String>
  <System:String x:Key="MoneyCase">Maletín de dinero:</System:String>
@@ -791,8 +820,21 @@ Valores más bajos resultan en construcción más rápida</System:String>
 Valores menores resultan en un proceso más rápido</System:String>
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">Modifica el precio requerido para cada uso del Contenedor de SCAV.
 Valores menores resultan en un proceso más barato. 
-Solo afecta a las ofertas que requieren un pago en dinero</System:String> 
- <System:String x:Key="FIRTrade_TT">Todo lo que se compra a comerciantes cuenta con la etiqueta "Encontrado en raid".</System:String>
+Solo afecta a las ofertas que requieren un pago en dinero</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">ADVERTENCIA: "Por defecto" difiere del valor en SPT. 
+Nivel 3 y 4 tienen un requisito de "Carisma" de 20 en lugar de 15, por comodidad y facilidad de uso - SVM lo sustituye por un único valor
+Nada extremo, pero tenlo en cuenta.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeAreas_TT">Por defecto, prestigiar requiere las siguientes zonas:
+Centro de Inteligencia Nivel 2
+Seguridad Nivel 3
+Zona de descanso Nivel 3
+Este apartado elimina dichos requisitos.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">El % de habilidad que tu personaje "heredará" al prestigiar.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">El % de maestría de arma que tu personaje "heredará" al terminar.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSize_TT">El tamaño vertical de la ventana de inventario de prestigio disponible para transferir los objetos.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeFilter_TT">Deshabilita los filtros del inventario de prestigio,
+así que si, puedes transferirte contenedores THICC.</System:String>
+    <System:String x:Key="FIRTrade_TT">Todo lo que se compra a comerciantes cuenta con la etiqueta "Encontrado en raid".</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">Configura cuánto tiempo dura una quest repetible, y cuando recibirás una nueva.
 Advertencia, solo entrará en función cuando las quests en curso finalicen</System:String>
  <System:String xml:space="preserve" x:Key="QuestSwitch_TT">Advertencia: No cambiará las quest recientemente aceptadas</System:String>

@@ -1,4 +1,5 @@
 ﻿using Greed.Models;
+using HarmonyLib.Tools;
 using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -109,11 +110,17 @@ namespace ServerValueModifier.Sections
                 //Multiplier of a heat factor
                 if (basetemplate.Properties.HeatFactor is not null)
                 {
-                    basetemplate.Properties.HeatFactor *= svmconfig.Items.HeatFactor;
+                    // Oh boy, what a can of worms, BSG made that `1` is 0% net Heat, so to avoid making items that doesn't inherently give or reduce heat - we set this. 
+                    // It is still very punishing since even by multiplying something that is (1.1) 10% heat by 2 - we end up with (2.2) 220% heat.
+                    // Therefore we substract the multiplier out, even if we multiply 1.1 by 10 and then substract multiplier value - 1 (which is our 0% heat point) - we get somewhat close desirable result.
+                    if (basetemplate.Properties.HeatFactor > 1)
+                    { 
+                        basetemplate.Properties.HeatFactor = Math.Round(((double)basetemplate.Properties.HeatFactor * svmconfig.Items.HeatFactor) - (svmconfig.Items.HeatFactor-1),4);                                                        
+                    }
                 }
                 if (basetemplate.Properties.HeatFactorByShot is not null)
                 {
-                    basetemplate.Properties.HeatFactorByShot *= svmconfig.Items.HeatFactor;
+                    basetemplate.Properties.HeatFactorByShot = basetemplate.Properties.HeatFactorByShot * svmconfig.Items.HeatFactor;
                 }
                 //Remove in-raid restrictions
                 if (basetemplate.Type == "Item" && basetemplate.Properties.DiscardLimit is not null && svmconfig.Items.RaidDrop)
@@ -129,7 +136,7 @@ namespace ServerValueModifier.Sections
                // if (basetemplate.Parent.Equals(WeaponTypesID) && basetemplate.Properties.BaseMalfunctionChance is not null)
                if( SimpleFilter(WeaponTypesID, basetemplate.Parent))
                 {
-                    basetemplate.Properties.BaseMalfunctionChance *= svmconfig.Items.MalfunctChanceMult;
+                    basetemplate.Properties.BaseMalfunctionChance = Math.Round((double)basetemplate.Properties.BaseMalfunctionChance * svmconfig.Items.MalfunctChanceMult,4);
                 }
                 //same value.
                 if (basetemplate.Parent == "5448bc234bdc2d3c308b4569" && basetemplate.Properties.MalfunctionChance is not null)
@@ -137,9 +144,10 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.MalfunctionChance *= svmconfig.Items.MalfunctChanceMult;
                 }
                 //Multiplier of a chance to misfire
-                if (basetemplate.Parent == "5448bc234bdc2d3c308b4569" && basetemplate.Properties.MisfireChance is not null)
+                if (basetemplate.Parent == "5661632d4bdc2d903d8b456b" && (basetemplate.Properties.MisfireChance is not null || basetemplate.Properties.MisfireChance is not null)) 
                 {
-                    basetemplate.Properties.MalfunctionChance *= svmconfig.Items.MisfireChance;
+                    basetemplate.Properties.MalfMisfireChance *= svmconfig.Items.MisfireChance;
+                    basetemplate.Properties.MisfireChance *= svmconfig.Items.MisfireChance;
                 }
                 //Examine all items
                 if (basetemplate.Properties.ExaminedByDefault is not null && svmconfig.Items.AllExaminedItems && svmconfig.Items.ExamineKeys)
@@ -247,7 +255,7 @@ namespace ServerValueModifier.Sections
                             }
                         }
                         catch {
-                            logger.Warning("[SVM] Remove backpack restrictions - empty filters detected on ID - " + basetemplate.Id + " - Ignoring");
+                            logger.Warning("[SVM] Remove backpack restrictions - empty filters detected on ID - " + basetemplate.Id + " - Ignoring; Not an error, don't report it");
                         }
                     });
                     basetemplate.Properties.Grids = gridsfilters;

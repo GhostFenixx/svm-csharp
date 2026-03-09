@@ -32,11 +32,12 @@ KMC - Публікація мода на сайті SPT
 Volcano - Представник SVM на Oddba  
 Nexus4880 - Творець плагіна 'Hide Special Icon' для Менеджера Кейсов
 Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - Тестери
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, BiddinWar - Фінансова підтримка
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, BiddinWar, BushTail, RepublicanJesus - Фінансова підтримка
 Локалізація:
 Корейська - 루퍼, 고라니
 Українська - celebrutu
 Китайский - Volcano
+Іспаньска - og_Ruby
 І багато інших хто підтримував розробку порадами, баг репортами, хорошими словами або рекламою.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
@@ -77,7 +78,6 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 [Увага - Це запустить ваш браузер]</System:String>
  <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
 [Увага - Це запустить ваш браузер]</System:String>
- <!--Buttons-->
  <!--Buttons-->
  <System:String x:Key="Applied">Готово!</System:String>
  <System:String x:Key="Saved">Збережено!</System:String>
@@ -129,38 +129,38 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <!--Preset Notes Initial Text-->
  <System:String x:Key="PresetInitialText">Ваше полотно для нотаток. Використовуйте, як хочете. Воно буде збережено у пресеті</System:String>
  <!--Items Section-->
-    <System:String x:Key="ItemPriceMult">Ціни предметів:</System:String>
-    <System:String x:Key="CashStack">Стак валюти на слот:</System:String>
+ <System:String x:Key="ItemPriceMult">Ціни предметів:</System:String>
+ <System:String x:Key="CashStack">Стак валюти на слот:</System:String>
  <System:String x:Key="HeatFactor">Фактор перегріву від патронів:</System:String>
-    <System:String x:Key="ExamineTime">Час вивчення предметів:</System:String>
-    <System:String x:Key="AmmoLoadSpeed">Час зарядки магазинів у рейді:</System:String>
-    <System:String x:Key="LootExp">Досвід за підбір:</System:String>
-    <System:String x:Key="ExamineExp">Досвід за вивчення:</System:String>
+ <System:String x:Key="ExamineTime">Час вивчення предметів:</System:String>
+ <System:String x:Key="AmmoLoadSpeed">Час зарядки магазинів у рейді:</System:String>
+ <System:String x:Key="LootExp">Досвід за підбір:</System:String>
+ <System:String x:Key="ExamineExp">Досвід за вивчення:</System:String>
  <System:String x:Key="WeightChanger">Вага Предметів:</System:String>
  <System:String x:Key="MalfunctChanceMult">Шанс Заклинювання:</System:String>
  <System:String x:Key="MisfireChance">Шанс Осічки:</System:String>
  <System:String x:Key="FragmentMult">Шанс фрагментації пулі:</System:String>
  <System:String x:Key="ExamineKeys">Включая ключі</System:String>
  <System:String x:Key="WeaponHeatOff">Вимкнути перегрів зброї</System:String>
-    <System:String x:Key="SMGToHolster">Пістолети-Кулемети кладуться в кобуру</System:String>
+ <System:String x:Key="SMGToHolster">Пістолети-Кулемети кладуться в кобуру</System:String>
  <System:String x:Key="PistolToMain">Пістолет в основний слот</System:String>
-    <System:String x:Key="AllExaminedItems">Усі предмети вивчені</System:String>
+ <System:String x:Key="AllExaminedItems">Усі предмети вивчені</System:String>
  <System:String x:Key="EquipRigsWithArmors">Носіння броне-розгрузки разом з бронежилетом</System:String>
  <System:String x:Key="RemoveSecureContainerFilters">Прибрати фільтри для захищених контейнерів</System:String>
  <System:String x:Key="RemoveRaidRestr">Прибрати обмеження на внесення до рейду</System:String>
-    <System:String x:Key="RemoveBackpacksRestrictions">Прибрати фільтри рюкзаків</System:String>
+ <System:String x:Key="RemoveBackpacksRestrictions">Прибрати фільтри рюкзаків</System:String>
  <System:String x:Key="AddSignalPistolToSpec">Дозволити сигнальний пістолет у Спец.слот</System:String>
  <System:String x:Key="RaidDrop">Прибирає заборону на викид предметів у рейді</System:String>
  <System:String x:Key="NoGearPenalty">Спорядження без штрафів</System:String>
-    <System:String x:Key="SurvCMSToSpec">Дозволити Surv/CMS у спец.слоти</System:String>
-    <System:String x:Key="SurvCMSSecConBlock">Обмежити Surv/CMS в Зах.Контейнери</System:String>
-    <System:String x:Key="BackpackStacking">Обмеження рюкзаків в рюкзаках:</System:String>
+ <System:String x:Key="SurvCMSToSpec">Дозволити Surv/CMS у спец.слоти</System:String>
+ <System:String x:Key="SurvCMSSecConBlock">Обмежити Surv/CMS в Зах.Контейнери</System:String>
+ <System:String x:Key="BackpackStacking">Обмеження рюкзаків в рюкзаках:</System:String>
     <!--Keys Section-->
  <System:String x:Key="Keys">Ключі та ключ-картки:</System:String>
  <System:String x:Key="InfiniteKeycards">Нескінченні ключ-картки</System:String>
-    <System:String x:Key="IgnoreAccessKeycard">Не змінювати картку доступу до лаби</System:String>
-    <System:String x:Key="AvoidSingleKeyCards">Крім одноразових ключ-карт</System:String>
-    <System:String x:Key="InfiniteKeys">Нескінченні ключі</System:String>
+ <System:String x:Key="IgnoreAccessKeycard">Не змінювати картку доступу до лаби</System:String>
+ <System:String x:Key="AvoidSingleKeyCards">Крім одноразових ключ-карт</System:String>
+ <System:String x:Key="InfiniteKeys">Нескінченні ключі</System:String>
  <System:String x:Key="AvoidSingleKeys">Крім одноразових ключів</System:String>
  <System:String x:Key="AvoidMarkedKeys">Крім ключів від мічених кімнат</System:String>
  <System:String x:Key="AvoidResidential">Крім житлової картки</System:String>
@@ -168,14 +168,14 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="KeyUseMult">Множник використання ключів:</System:String>
  <System:String x:Key="KeycardUseMult">Множник використання Ключ-карт:</System:String>
  <System:String x:Key="KeyDurabilityThreshold">Кількість використання ключів не може бути вищою:</System:String>
-    <System:String x:Key="KeyCardDurabilityThreshold">Кількість використання ключ-карток не може бути вищою:</System:String>
+ <System:String x:Key="KeyCardDurabilityThreshold">Кількість використання ключ-карток не може бути вищою:</System:String>
     <!--Ammo Stack Section-->
-    <System:String x:Key="AmmoStack">Амуніції за слот</System:String>
-    <System:String x:Key="MarksmanRound">Гвинтівкові:</System:String>
-    <System:String x:Key="RifleRound">Штурмові:</System:String>
-    <System:String x:Key="ShotgunRound">Для Дробовиків:</System:String>
-    <System:String x:Key="PistolRound">Пістолетні:</System:String>
-    <System:String x:Key="LargeCaliberRound">Великокаліберні:</System:String>
+ <System:String x:Key="AmmoStack">Амуніції за слот</System:String>
+ <System:String x:Key="MarksmanRound">Гвинтівкові:</System:String>
+ <System:String x:Key="RifleRound">Штурмові:</System:String>
+ <System:String x:Key="ShotgunRound">Для Дробовиків:</System:String>
+ <System:String x:Key="PistolRound">Пістолетні:</System:String>
+ <System:String x:Key="LargeCaliberRound">Великокаліберні:</System:String>
     <!--Currency stack Section-->
     <System:String x:Key="CurrencyStack">Стак Валют</System:String>
  <System:String x:Key="DisableDefaultCashStack">Дотримуватись дизайну EFT за замовчуванням</System:String>
@@ -187,23 +187,31 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="FuelConsumptionRate">Споживання палива:</System:String>
  <System:String x:Key="NoFuelMult">Ефективність без палива:</System:String>
  <System:String x:Key="AirFilterRate">Ефективність повітряного фільтра:</System:String>
-    <System:String x:Key="GPUBoostRate">Множник швидкості видобутку від кількості відеокарт:</System:String>
-    <System:String x:Key="WaterFilterRate">Витрата фільтру на чисту воду:</System:String>
+ <System:String x:Key="GPUBoostRate">Множник швидкості видобутку від кількості відеокарт:</System:String>
+ <System:String x:Key="WaterFilterRate">Витрата фільтру на чисту воду:</System:String>
  <System:String x:Key="WaterFilterTime">Час очищення води за хвилини:</System:String>
-    <System:String x:Key="MaxBitcoins">Максимальна кількість біткоїнів:</System:String>
-    <System:String x:Key="BitcoinTime">Час необхідний для біткоїну в хвилинах:</System:String>
+ <System:String x:Key="MaxBitcoins">Максимальна кількість біткоїнів:</System:String>
+ <System:String x:Key="BitcoinTime">Час необхідний для біткоїну в хвилинах:</System:String>
  <System:String x:Key="RemoveConstructionsRequirements">Будівництво не вимагає матеріалів</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Не потребує матеріалів "Знайдених у рейді"</System:String>
  <System:String x:Key="RemoveSkillRequirements">Будівництво не потребує навичок</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Будівництво не потребує торговців</System:String>
-    <System:String x:Key="RemoveCustomizationRequirements">Видалити потреби для декорацій сховища</System:String>
-    <System:String x:Key="RemoveArenaCrafts">Видалити крафти пов'язані з кейсами із арени</System:String>
-    <System:String x:Key="CultistMaxRewards">Кількість нагород з кола культистів:</System:String>
+ <System:String x:Key="RemoveCustomizationRequirements">Видалити потреби для декорацій сховища</System:String>
+ <System:String x:Key="RemoveArenaCrafts">Видалити крафти пов'язані з кейсами із арени</System:String>
+ <System:String x:Key="CultistMaxRewards">Кількість нагород з кола культистів:</System:String>
  <System:String x:Key="CultistTime">Час для циклу кола культистів:</System:String>
     <!--Prestige Section-->
     <System:String x:Key="Prestige">Престиж</System:String>
     <System:String x:Key="Skill">Навички</System:String>
-    <System:String x:Key="Mastery">Майстерність</System:String>
+    <System:String x:Key="Mastery">Майс-ть</System:String>
+    <System:String x:Key="PrestigeLevel">Необхідний рівень для престижу:</System:String>
+    <System:String x:Key="PrestigeStrength">Необхідний рівень сили:</System:String>
+    <System:String x:Key="PrestigeCharisma">Необхідний рівень харизми:</System:String>
+    <System:String x:Key="PrestigeEndurance">Необхідний рівень витривалості:</System:String>
+    <System:String x:Key="PrestigeCurrency">Необхідна кількість рублів:</System:String>
+    <System:String x:Key="PrestigeAreas">Вимкнути необхідність зон у схроні</System:String>
+    <System:String x:Key="PrestigeCollector">Прибрати необхідність у квесті 'Коллектор'</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">Прибрати необхідність у квесті 'Новое начало'</System:String>
     <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Час продукції:</System:String>
  <System:String x:Key="HideoutConstMult">Час будівництва:</System:String>
@@ -235,7 +243,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="RemoveTimeCondition">Забирає час між новими квестами</System:String>
  <System:String x:Key="TradersLvl4">Усі торговці з короною</System:String>
  <System:String x:Key="FIRRestrictsQuests">Немає вимог "Знайдено в рейді" для квестів</System:String>
- <!--<System:String x:Key="RemoveTradeLimits">Прибрати ліміти предметів у торговців</System:String>
+    <System:String x:Key="RandomizeAssort">Випадкова кількість пропозицій у торговців</System:String>
+    <!--<System:String x:Key="RemoveTradeLimits">Прибрати ліміти предметів у торговців</System:String>
  <System:String x:Key="IncreaseAssort">Дуже багато предметів за завезення</System:String>-->
 
  <System:String x:Key="QuestRedeemTime">Час зберігання нагород:</System:String>
@@ -287,7 +296,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="NoPermDamageArmor">Ремонт броні не залишає знос</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">Одяг</System:String>
- <System:String x:Key="ClothesAnySide">Доступ до всього одягу</System:String>
+ <System:String x:Key="ScavClothes">Скупник продає одяг диких та з БатлПассу</System:String>
+ <System:String x:Key="ClothesAnySide">Доступ до всього одягу ПВК</System:String>
  <System:String x:Key="ClothesFree">Одяг безкоштовний</System:String>
  <System:String x:Key="ClothesLevelUnlock">Прибирає обмеження за рівнем ПВК та Торговців</System:String>
  <!--Healing Section-->
@@ -390,6 +400,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="ArmorExtract">Дозволити броню для виходів у горах</System:String>
  <System:String x:Key="NoBackpack">Прибрати вимогу рюкзака на виходах</System:String>
     <System:String x:Key="ForceTransitStash">Змінити розмір інвентаря у переході</System:String>
+    <System:String x:Key="DisableTransits">Ввимкнути переходи між локаціями</System:String>
     <System:String x:Key="FreeCoop">Немає вимог для спільних виходів</System:String>
  <System:String x:Key="CoopPaid">Зробити спільні виходи - Платними</System:String>
  <System:String x:Key="FenceGift">Вимкнути подарунки від Скупника за вихід диких</System:String>
@@ -397,13 +408,32 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="CoopExitPrices">Ціни за спільні</System:String>
  <System:String x:Key="CarExitPrices">Ціни за машини</System:String>
  <System:String x:Key="CarAndCoop">Виходи через машину</System:String>
- <!--BTR Section-->
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">Статус рейда у кінці</System:String>
+    <System:String x:Key="OnSurvivedState">Якщо вижив</System:String>
+    <System:String x:Key="OnRunnerState">Якщо пробіжав</System:String>
+    <System:String x:Key="OnKilledState">Якщо помер</System:String>
+    <System:String x:Key="OnMIAState">Якщо пропав безвесті</System:String>
+    <System:String x:Key="OnLeftState">Якщо вийшов через меню</System:String>
+    <System:String x:Key="SurvivedRaid">Зарахувати як вижив</System:String>
+    <System:String x:Key="MIARaid">Зарахувати як пропав</System:String>
+    <System:String x:Key="RunnerRaid">Зарахувати пробіжкою</System:String>
+    <System:String x:Key="KilledRaid">Зарахувати вбитим</System:String>
+    <System:String x:Key="LeftRaid">Зарахувати як вийшов</System:String>
+    <System:String x:Key="IgnoreRaid">Рейд не буде зарахованим</System:String>
+    <!--BTR Section-->
  <System:String x:Key="BTR">БТР</System:String>
  <System:String x:Key="ForceBTRStash">Перезаписати розмір інвентаря БТР</System:String>
  <System:String x:Key="ForceBTRFriendly">БТР по замовчуванню дружелюбний</System:String>
  <System:String x:Key="BTRTaxiPrice">Цена таксі:</System:String>
  <System:String x:Key="BTRCoverPrice">Цена вогневой підтримки:</System:String>
- <!--Events Section-->
+    <System:String x:Key="BTRPriceMult">Множник ціни від сторони:</System:String>
+    <System:String x:Key="BTRTimeMin">Мінімальне вікно спавну (в хвилинах):</System:String>
+    <System:String x:Key="BTRTimeMax">Максимальне вікно спавну (в хвилинах):</System:String>
+    <System:String x:Key="BTRChance">Шанс спавну БТР (в %):</System:String>
+    <System:String x:Key="Usec">USEC</System:String>
+    <System:String x:Key="Bear">BEAR</System:String>
+    <!--Events Section-->
  <System:String x:Key="Events">Події</System:String>
     <System:String x:Key="AITypeOverride">Перевизначити стандартні типи SCAV на:</System:String>
     <System:String x:Key="RaidersEverywhere">Рейдери замість Диких</System:String>
@@ -428,9 +458,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="NonSeasonalQuests">Увімкнути внесезонні квести</System:String>
  <!--Raid Startup Section-->
  <System:String x:Key="RaidStartup">Налаштування перед початком рейда</System:String>
- <System:String x:Key="Cursed">Позначений і проклятий</System:String>
- <System:String x:Key="MIARaid">MIA наприкінці рейду</System:String>
- <System:String x:Key="LootRaid">Зберігати спорядження наприкінці рейду</System:String>
+    <System:String x:Key="Cursed">Позначений і проклятий</System:String>
+    <System:String x:Key="LootRaid">Зберігати спорядження наприкінці рейду</System:String>
  <System:String x:Key="AIDifficulty">Складність ШІ</System:String>
  <System:String x:Key="AIAmount">Кількість ШІ</System:String>
  <System:String x:Key="DeployTimer">Таймер Висадки:</System:String>
@@ -479,8 +508,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="FleaConditions">Состояние товаров в %</System:String>
  <System:String x:Key="OffersRatio">Співвідношення від типу валют (у %)</System:String>
  <System:String x:Key="ExpireThreshold">Створити нові пропозиції, якщо минулих побільшало:</System:String>
- <System:String x:Key="BundleOfferChance">Шанс того що пропозиція буде з пачкою предметів у %:</System:String>
- <!--CSM Section-->
+    <System:String x:Key="BundleOfferChance">Шанс того що пропозиція буде з пачкою предметів (у %):</System:String>
+    <System:String x:Key="BarterChance">Шанс того що пропозиція буде бартерна (у %):</System:String>
+    <System:String x:Key="TieredFlea">Ввимкнути рівневу барахолку</System:String>
+    <!--CSM Section-->
  <System:String x:Key="Cases">Контейнери</System:String>
  <System:String x:Key="RemoveFilters">Видалити фільтри</System:String>
  <System:String x:Key="MoneyCase">Грошовий кейс:</System:String>
@@ -624,6 +655,12 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="IDParent">Зміна всього по ParentID:</System:String>
     <System:String x:Key="IDPrice">Зміна/Додавання ціни:</System:String>
     <System:String x:Key="IDFilter">Додати ID до фільтру:</System:String>
+    <System:String x:Key="FleaMultID">Додати множник ціни на предмет:</System:String>
+    <!--Counting-->
+    <System:String x:Key="First">Перший:</System:String>
+    <System:String x:Key="Second">Другий:</System:String>
+    <System:String x:Key="Third">Третій:</System:String>
+    <System:String x:Key="Fourth">Четвертий:</System:String>
     <!--Unified name of Game objects-->
  <System:String x:Key="FleaWeapons">Зброя:</System:String>
  <System:String x:Key="FleaMedical">Медицина:</System:String>
@@ -698,8 +735,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="Rogues">Відступники:</System:String>
  <System:String x:Key="PMCAI">PMC:</System:String>
  <System:String x:Key="Bosses">Боси:</System:String>
- <System:String x:Key="Followers">Світа:</System:String>
- <!--Tooltips-->
+    <System:String x:Key="Followers">Світа:</System:String>
+    <System:String x:Key="Zombies">Зомбі</System:String>
+    <!--Tooltips-->
  <System:String  xml:space="preserve" x:Key="Types_TT">Щоденні місії поділяються на 3 типи: Вбивство, Доставка та Дослідження
  Вбивство (Extermination) - вбити ПВК, Диких чи Босів. Іноді у певні частини тіла або з певної дальності
  Доставка(Completion) - принести предмети знайдені у рейді
@@ -761,7 +799,19 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">Помножує необхідну кількість валюти для диких ящика.
 Менше число - дешевше пропозиція
 Впливає лише на пропозиції за валюту.</System:String>
- <System:String x:Key="FIRTrade_TT">Все куплене з торговців буде вважатися "Знайдено в Рейді".</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">УВАГА: Секція по замовчуванню інша ніж в SPT
+На 3 та 4 рівні потребують 20 рівень навички харизми замість 15, але для зручності використання секції - SVM переписуе це до одного значення (15)
+Усе інше по классиці, майте на увазі.</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeAreas_TT">По замовчуванню престиж потребує щоб у вас було:
+Розвідцентр Lvl 2
+Охорона Lvl 3
+Зона відпочинку Lvl 3
+Це поле вимикає цю потребу</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">% від навичок вашого персонажа буде успадковано на момент престижу</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">% від збройної майстерності буде успадковано на момент престижу</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSize_TT">Вертикальний розмір престижного схрону для передачи предметів у нову гру</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeFilter_TT">Вимикає фільтри у схроні передачи предметів, і так, зможеш навіть кейси туди запхати</System:String>
+    <System:String x:Key="FIRTrade_TT">Все куплене з торговців буде вважатися "Знайдено в Рейді".</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">Виставляє цикл часу життя повторюваного квесту і через скільки з'явиться новий.
 Увага, зміна прийме ефект лише у новому циклі.</System:String>
  <System:String xml:space="preserve" x:Key="RewardSpread_TT">За 0 розкиду нагород не буде.
@@ -771,7 +821,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 Не надто збалансовано і може підняти завантаження на ПК.</System:String>
  <!--<System:String x:Key="RemoveTradeLimits_TT">Прибирає обмеження купівлі предметів за завезення.</System:String>
  <System:String x:Key="IncreaseAssort_TT">Функція зовсім без балансу: у торговців буде по мільйону кожного предмета з їхнього асортименту.</System:String>-->
- <System:String x:Key="RemoveCurrencyOffers_TT">Виключаючи Скупника.</System:String>
+    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">НЕДОРОБЛЕНО: змінюе кількість доступних товарів у випадковому порядку до 480
+На даний момент множник розміру не впливае на це поле
+У майбутьному я планую розширити цей функціонал</System:String>
+    <System:String x:Key="RemoveCurrencyOffers_TT">Виключаючи Скупника.</System:String>
  <System:String x:Key="ClothesAnySide_TT">Дозволяє купити одяг обох фракцій ПВК.</System:String>
  <System:String x:Key="ClothesFree_TT">Прибирає цінник із пропозицій на одяг.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Прибирає вимоги до квестів, рівня ПВК чи рівня Торговців.</System:String>
@@ -780,9 +833,12 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 Занадто малі значення можу уповільнити роботу сервера.</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceTimeOverride_TT">Перезаписує час страховки всім продавцям в секунди, це поле теж під ефектом інтервалу вище</System:String>
  <System:String xml:space="preserve" x:Key="InsuranceTradersPriceMult_TT">За умовчанням страховка коштує дорожче з кожним рівнем продавця</System:String>
- <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Прибирає прихований таймер між квестами щоб вони стали доступними</System:String>
- <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Ця опція може викинути уваження та не запрацювати на модівськіх торговців.</System:String>
- <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">За відсутності деяких полів - може не запуститься сервер
+    <System:String xml:space="preserve" x:Key="RemoveTimeCondition_TT">Прибирає прихований таймер між квестами щоб вони стали доступними</System:String>
+    <System:String xml:space="preserve" x:Key="UnlockQuestAssort_TT">Ця опція може викинути уваження та не запрацювати на модівськіх торговців.</System:String>
+    <!--LightKeeper Section -->
+    <System:String x:Key="LightKeeperEntry">Час візиту Наглядника:</System:String>
+    <System:String x:Key="LightKeeperLeave">Час для того щоб піти з миса:</System:String>
+    <System:String  xml:space="preserve" x:Key="FenceBlacklist_TT">За відсутності деяких полів - може не запуститься сервер
 Дійте обережно</System:String>
  <System:String xml:space="preserve" x:Key="SafeExit_TT">Дозволяє вийти з гри через меню із збереженням хабару
 проте статус рейду буде `Пробіжка` і не дасть предмети з галкою `Знайдено у рейді`.
@@ -827,9 +883,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="Sell_mult_TT">Чимало шансів зробити його нелінійним.
 Наприклад, якщо ви продаєте товар за ціною на 20% нижче, шанс збільшиться (якщо значення за замовчуванням) на 1,24.
 Зрештою шанс продажу збільшиться на 25%, чим більша різниця, тим екстремальніше працює множник.</System:String>
- <System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">Перевизначає всі початкові появи ПВК та Диких
-ШІ ПВК все ще можуть перетворитися з рейдерів, тому майте на увазі</System:String>
- <System:String x:Key="SnowEvent_TT">Змінює тільки погоду</System:String>
+    <System:String xml:space="preserve" x:Key="AITypeOverride_TT">Перепише усі спавні звичайних диких(не впливае на боссів та ПВК) в інший тип ШІ</System:String>
+    <!--<System:String xml:space="preserve" x:Key="RaidersEverywhere_TT">Перевизначає всі початкові появи ПВК та Диких
+ШІ ПВК все ще можуть перетворитися з рейдерів, тому майте на увазі</System:String>-->
+ <!--<System:String x:Key="SnowEvent_TT">Змінює тільки погоду</System:String>-->
  <System:String x:Key="Halloween_TT">Вмикає святкове освітлення в сховищі, змінює поведінку та спавни Зрячого, добавляє тематичну здобич в ШІ.</System:String>
  <!--<System:String x:Key="DisableZombies_TT">Вимикає зомбі під час свята, по замовчуванню вони є.
 Нічого не робить якщо свято не активно.</System:String>

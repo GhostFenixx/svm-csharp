@@ -15,10 +15,10 @@
         public bool DisableLowLevelPMC { get; set; }
         public bool LootableMelee { get; set; }
         public bool EnablePMC { get; set; }
-        //public PMC()
-        //{
-        //    PMCChance = new PMCChance();
+        public PMC()
+        {
+            PMCChance = new PMCChance();
         //    AItoPMC = new AItoPMC();
-        //}
+        }
     }
 }

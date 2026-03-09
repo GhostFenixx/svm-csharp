@@ -50,11 +50,12 @@ KMC - 将模组重新上传到SPT网站。
 Volcano - SVM的Oddba论坛代表
 Nexus4880 - '隐藏特殊图标'插件的创建者，为Case Space Manager提供支持
 Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - 测试人员，反馈
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar - 捐赠者
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar, BushTail, RepublicanJesus - 捐赠者
 本地化：
 韩文 - 루퍼, 고라니
 乌克兰文 - celebrutu
 中文 - Volcano
+西班牙语 - og_ruby
 所有为项目提供任何形式支持的人，无论是错误报告、与UI相关的反馈还是帮助解决问题。
 
 原文：
@@ -72,11 +73,12 @@ KMC - Reuploading the mod onto the SPT website.
 Volcano - Oddba representative of SVM
 Nexus4880 - Creator of 'Hide Special Icon' Plugin for Case Space Manager
 Fire Hawk, Z3R0, Tabi - Testers, feedback
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains - Donations
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar, BushTail, RepublicanJesus - Donations
 Localisation:
 Korean - 루퍼, 고라니
 Ukrainian - celebrutu
 Chinese - Volcano
+Spanish - og_ruby
 Everyone else who provided any kind of support to the project, whether bug reports, feedback related to UI or helped other to with issues.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
@@ -124,7 +126,13 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String xml:space="preserve" x:Key="WikiPage_Link">点击'Ok'访问官方Tarkov Wiki，
 [注意 - 这会打开您的浏览器]</System:String>
 
- <!--Buttons-->
+<!--Counting-->
+    <System:String x:Key="First">一转:</System:String>
+    <System:String x:Key="Second">二转:</System:String>
+    <System:String x:Key="Third">三转:</System:String>
+    <System:String x:Key="Fourth">四转:</System:String>
+
+    <!--Buttons-->
  <System:String x:Key="ApplyButton">应用</System:String>
  <System:String x:Key="Applied">已应用预设！</System:String>
  <System:String x:Key="LoadButton">加载预设</System:String>
@@ -248,16 +256,24 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="BitcoinTime">比特币 生产时间(分钟):</System:String>
  <System:String x:Key="RemoveConstructionsRequirements">去除藏身处设施 材料 要求</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">移除藏身处建材“在战局中找到”要求</System:String>
- <System:String x:Key="RemoveSkillRequirements">去除藏身处设施 技能 要求</System:String>
- <System:String x:Key="RemoveTraderLevelRequirements">去除藏身处设施 商人等级 要求</System:String>
-    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
-    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+ <System:String x:Key="RemoveSkillRequirements">移除藏身处设施 技能 要求</System:String>
+ <System:String x:Key="RemoveTraderLevelRequirements">移除藏身处设施 商人等级 要求</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">移除藏身处 装修样式 要求</System:String>
+    <System:String x:Key="RemoveArenaCrafts">移除 竞技场箱子 相关配方</System:String>
     <System:String x:Key="CultistMaxRewards">邪教圈 奖励数量:</System:String>
  <System:String x:Key="CultistTime">邪教圈 供奉时间:</System:String>
     <!--Prestige Section-->
-    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
+    <System:String x:Key="Prestige">转生</System:String>
+    <System:String x:Key="Skill">技能</System:String>
+    <System:String x:Key="Mastery">精通</System:String>
+    <System:String x:Key="PrestigeLevel">转生所需 等级:</System:String>
+    <System:String x:Key="PrestigeStrength">转生所需 力量:</System:String>
+    <System:String x:Key="PrestigeCharisma">转生所需 耐力:</System:String>
+    <System:String x:Key="PrestigeEndurance">转生所需 魅力:</System:String>
+    <System:String x:Key="PrestigeCurrency">转生所需 卢布:</System:String>
+    <System:String x:Key="PrestigeAreas">移除转生所需藏身处设施解锁限制</System:String>
+    <System:String x:Key="PrestigeCollector">移除转生“收藏家”任务限制</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">移除转生“新起点”任务限制</System:String>
  <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">藏身处 生产时间:</System:String>
  <System:String x:Key="HideoutConstMult">藏身处 建造时间:</System:String>
@@ -290,7 +306,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="RemoveTimeCondition">移除 新任务时间限制</System:String>
  <System:String x:Key="TradersLvl4">全商人 4(皇冠)等级</System:String>
  <System:String x:Key="FIRRestrictsQuests">移除 任务"在战局中找到"要求</System:String>
- <System:String x:Key="RemoveTradeLimits">移除 所有交易限制</System:String>
+    <System:String x:Key="RandomizeAssort">随机商品库存数量</System:String>
+    <System:String x:Key="RemoveTradeLimits">移除 所有交易限制</System:String>
  <System:String x:Key="IncreaseAssort">增加 商人库存数量</System:String>
  <System:String x:Key="QuestRedeemTime">任务奖励 保存时间 (小时):</System:String>
  <System:String x:Key="StockTime">商人 补货时间(分钟):</System:String>
@@ -346,7 +363,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="NoPermDamageArmor">护甲维修 不损耗耐久</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">服装</System:String>
- <System:String x:Key="ClothesAnySide">解锁 双方阵营服装</System:String>
+    <System:String x:Key="ScavClothes">黑商Fence 出售通行证/Scav服装</System:String>
+    <System:String x:Key="ClothesAnySide">解锁所有阵营服装</System:String>
  <System:String x:Key="ClothesFree">服装免费</System:String>
  <System:String x:Key="ClothesLevelUnlock">移除 服装等级/声望要求</System:String>
  <!--Healing Section-->
@@ -449,7 +467,21 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="ArmorExtract">移除 撤离点"不能穿护甲"限制</System:String>
  <System:String x:Key="NoBackpack">移除 撤离点"不能穿背包"限制</System:String>
  <System:String x:Key="ForceTransitStash">转移点仓库 尺寸</System:String>
- <!--Coop/Car Section-->
+    <System:String x:Key="DisableTransits">禁用 转移点</System:String>
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">战局结束状态结算</System:String>
+    <System:String x:Key="OnSurvivedState">若为 幸存</System:String>
+    <System:String x:Key="OnRunnerState">若为 匆匆逃离</System:String>
+    <System:String x:Key="OnKilledState">若为 阵亡</System:String>
+    <System:String x:Key="OnMIAState">若为 行动中失踪</System:String>
+    <System:String x:Key="OnLeftState">若为 擅离职守</System:String>
+    <System:String x:Key="SurvivedRaid">视为 幸存</System:String>
+    <System:String x:Key="MIARaid">视为 行动中失踪</System:String>
+    <System:String x:Key="RunnerRaid">视为 匆匆逃离</System:String>
+    <System:String x:Key="KilledRaid">视为 阵亡</System:String>
+    <System:String x:Key="LeftRaid">视为 擅离职守</System:String>
+    <System:String x:Key="IgnoreRaid">视为 战局作废/无事发生</System:String>
+    <!--Coop/Car Section-->
  <System:String x:Key="CarAndCoop">载具/合作撤离点</System:String>
  <System:String x:Key="FreeCoop">合作撤离点 无条件限制</System:String>
  <System:String x:Key="CoopPaid">合作撤离点 改为付费撤离</System:String>
@@ -489,16 +521,15 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="Christmas">圣诞节活动</System:String>
  <System:String x:Key="DisableEvents">关闭正在进行的活动事件</System:String>
  <System:String x:Key="GlukharLabs">实验室 生成格鲁哈</System:String>
- <System:String x:Key="Bloodhounds">寻血猎犬BloodHunter 生成概率</System:String>
+ <System:String x:Key="Bloodhounds">走私者 生成概率</System:String>
  <System:String x:Key="RedBlueEvent">配件商Skier/美商Peacekeepers 小队 生成概率</System:String>
  <System:String x:Key="DisableHalloweenAIFriendly">禁用停战状态</System:String>
  <System:String x:Key="NonSeasonalQuests">禁用季节活动任务</System:String>
  <System:String x:Key="CultistBosses">邪教徒Boss 及 生成概率:</System:String>
  <!--Raid Startup Section-->
  <System:String x:Key="RaidStartup">战局开局 设置</System:String>
- <System:String x:Key="Cursed">被标记诅咒</System:String>
- <System:String x:Key="MIARaid">战局结束时行动中消失(MIA)</System:String>
- <System:String x:Key="LootRaid">练习模式</System:String>
+    <System:String x:Key="Cursed">被标记诅咒</System:String>
+    <System:String x:Key="LootRaid">练习模式</System:String>
  <System:String x:Key="AIDifficulty">AI 难度</System:String>
  <System:String x:Key="AIAmount">AI 数量</System:String>
  <System:String x:Key="DeployTimer">战局部署倒计时</System:String>
@@ -550,7 +581,8 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="OffersRatio">各货币比例(百分比)</System:String>
  <System:String x:Key="ExpireThreshold">新报价覆盖旧报价 时间(分钟):</System:String>
     <System:String x:Key="BundleOfferChance">物品打包报价出售 概率(百分比):</System:String>
-
+    <System:String x:Key="BarterChance">以物易物 概率(%):</System:String>
+    <System:String x:Key="TieredFlea">移除 跳蚤市场分级</System:String>
     <!--CSM Section-->
  <System:String x:Key="Cases">容器 / 箱子</System:String>
  <System:String x:Key="RemoveFilters">移除限制</System:String>
@@ -763,7 +795,6 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="Bears">BEARs</System:String>
     <!--Unified names of Bots Types-->
  <System:String x:Key="SCAVAI">Scav</System:String>
- <!--NEED TRANSLATION (Proper one)-->
  <System:String x:Key="SCAVAIFactory">Scavs 工厂 白天</System:String>
  <System:String x:Key="CursedSCAV">诅咒Scav</System:String>
  <System:String x:Key="Raiders">掠夺者Raider</System:String>
@@ -772,6 +803,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="PMCAI">PMC</System:String>
  <System:String x:Key="Bosses">Boss</System:String>
  <System:String x:Key="Followers">Boss保镖</System:String>
+ <System:String x:Key="Zombies">丧尸</System:String>
 
 
  <!--Tooltips-->
@@ -831,8 +863,21 @@ Everyone else who provided any kind of support to the project, whether bug repor
 值越小，收集速度越快</System:String>
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">修改Scav宝箱所需的价格
 值越小，价格越便宜
-仅影响货币类的选项</System:String> 
- <System:String x:Key="FIRTrade_TT">从商人处购买的所有东西都为"在战局中找到"状态</System:String>
+仅影响货币类的选项</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">警告: 此版块与SPT默认情况有些不同
+正常情况下3转和4转会需要20级的魅力而非15级，但为了方便使用——SVM将统一覆盖只用单一相同的等级限制
+虽然没什么特别破坏平衡之处，但请记住这一点改动。</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeAreas_TT">默认情况下，转生需要您解锁:
+情报中心 2级
+安保 3级
+休息区 3级
+此功能将移除以上限制要求</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">角色转生时将继承的技能百分比%</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">角色转生时将继承的枪械精通百分比%</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeSize_TT">转生时转移仓库的物品栏垂直尺寸</System:String>
+    <System:String xml:space="preserve" x:Key="PrestigeFilter_TT">移除转生仓库的过滤限制，
+没错，你现在可以带着整个Thicc物品箱转生了</System:String>
+    <System:String x:Key="FIRTrade_TT">从商人处购买的所有东西都为"在战局中找到"状态</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">设置可重复任务的持续时间以及获得新任务的时间
 注意:只有当前任务结束后才开始生效</System:String>
  <System:String xml:space="preserve" x:Key="QuestSwitch_TT">注意:这不会改变刚接受的新任务</System:String>

@@ -31,13 +31,15 @@ BattleStateGames - 해당 아이콘들을 만든 회사.
 KMC - SPT 웹사이트에 모드 재업로드.
 Nexus4880 - 케이스 크기 설정용 'Hide Special Icon' 플러그인 제작자
 Fire Hawk, Z3R0, RakTheGoose, Morgan, Assassin, Tabi - 테스터, 피드백 제공
-G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, BiddinWar - Donations - 기부자
+G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, BiddinWar, BushTail, RepublicanJesus - Donations - 기부자
 현지화:
 한국어 - 루퍼, 고라니
 우크라이나어 - celebrutu
 중국어 - Volcano
+스페인 사람 - og_ruby
 버그 리포트, UI 관련 피드백 제공, 다른 사용자들의 문제 해결 지원 등 어떤 형태로든 프로젝트에 도움을 주신 모든 분들께 감사드립니다.
 </System:String>
+
  <!--MessageBoxes and/or Exception handlers-->
  <System:String xml:space="preserve" x:Key="SVMWrongInstallation">오류: Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 ServerValueModifier.dll 파일을 찾을 수 없습니다.
 모드가 올바르게 설치되었는지 확인하고, 이 프로그램(Greed.exe)이 게임 실행 파일과 동일한 위치에 있는지 확인해주세요.</System:String>
@@ -81,7 +83,11 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
 [주의 - 브라우저가 실행됩니다]</System:String>
  <System:String xml:space="preserve" x:Key="WikiPage_Link">'OK'버튼을 눌러 공식 타르코프 위키를 방문하세요.
 [주의 - 브라우저가 실행됩니다]</System:String>
-
+<!--Counting-->
+ <System:String x:Key="First">첫 번째:</System:String>
+ <System:String x:Key="Second">두 번째:</System:String>
+ <System:String x:Key="Third">세 번째:</System:String>
+ <System:String x:Key="Fourth">네 번째:</System:String>
  <!--Buttons-->
  <System:String x:Key="ApplyButton">적용</System:String>
  <System:String x:Key="Applied">적용되었습니다!</System:String>
@@ -179,7 +185,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
     <!--Ammo Stack Section-->
  <System:String x:Key="AmmoStack">탄약 칸당 최대 스택 수</System:String>
  <System:String x:Key="MarksmanRound">지정사수소총(DMR) 탄창 탄 수 :</System:String>
- <System:String x:Key="RifleRound">돌격소총 탄창 탄 수 :</System:String>
+	<System:String x:Key="LargeCaliberRound">대구경 탄창 탄 수 :</System:String>
+	<System:String x:Key="RifleRound">돌격소총 탄창 탄 수 :</System:String>
  <System:String x:Key="ShotgunRound">산탄총(샷건) 탄창 탄 수 :</System:String>
  <System:String x:Key="PistolRound">권총/기관단총(SMG) 탄창 탄 수 :</System:String>
  <!--Currency stack Section-->
@@ -202,15 +209,23 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="RemoveConstructionsFIRRequirements">인레이드(FIR) 재료에 대한 요구 사항 제거</System:String>
  <System:String x:Key="RemoveSkillRequirements">시설 건설 스킬 요구사항 제거</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">시설 건설 상인 레벨 요구사항 제거</System:String>
-    <System:String x:Key="RemoveCustomizationRequirements">NEEDTRANSLATION</System:String>
-    <System:String x:Key="RemoveArenaCrafts">NEEDTRANSLATION</System:String>
+    <System:String x:Key="RemoveCustomizationRequirements">은신처 커스터마이징 요구사항 제거</System:String>
+    <System:String x:Key="RemoveArenaCrafts">아레나 케이스 관련 제작법 제거</System:String>
     <System:String x:Key="CultistMaxRewards">컬티스트 서클 보상 횟수:</System:String>
  <System:String x:Key="CultistTime">컬티스트 서클 진행 시간:</System:String>
     <!--Prestige Section-->
-    <System:String x:Key="Prestige">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Skill">NEEDTRANSLATION</System:String>
-    <System:String x:Key="Mastery">NEEDTRANSLATION</System:String>
- <!--Hideout Multipliers-->
+    <System:String x:Key="Prestige">명성(Prestige)</System:String>
+    <System:String x:Key="Skill">스킬</System:String>
+    <System:String x:Key="Mastery">숙련도 </System:String>
+    <System:String x:Key="PrestigeLevel">명성에 필요한 레벨:</System:String>
+    <System:String x:Key="PrestigeStrength">명성에 필요한 힘 레벨:</System:String>
+    <System:String x:Key="PrestigeCharisma">명성에 필요한 카리스마 레벨:</System:String>
+    <System:String x:Key="PrestigeEndurance">명성에 필요한 지구력 레벨:</System:String>
+    <System:String x:Key="PrestigeCurrency">명성에 필요한 루블:</System:String>
+    <System:String x:Key="PrestigeAreas">은신처 구역 요구사항 비활성화</System:String>
+    <System:String x:Key="PrestigeCollector">'Collector' 퀘스트 요구사항 제거</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">'New beginnings' 퀘스트 요구사항 제거</System:String>
+    <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">은신처 제작 시간 :</System:String>
  <System:String x:Key="HideoutConstMult">은신처 건설 시간 :</System:String>
  <System:String x:Key="ScavCaseTime">스캐브(Scav) 케이스 시간 :</System:String>
@@ -242,7 +257,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="RemoveTimeCondition">신규 퀘스트 생성 시간 설정(24시간)제거</System:String>
  <System:String x:Key="TradersLvl4">모든 상인 레벨 4 등급</System:String>
  <System:String x:Key="FIRRestrictsQuests">퀘스트 "인 레이드" 조건 삭제</System:String>
- <System:String x:Key="RemoveTradeLimits">모든 거래 한도 삭제</System:String>
+    <System:String x:Key="RandomizeAssort">상점 재고 무작위화</System:String>
+    <System:String x:Key="RemoveTradeLimits">모든 거래 한도 삭제</System:String>
  <System:String x:Key="IncreaseAssort">거래 재고량 대폭 증가</System:String>
  <System:String x:Key="QuestRedeemTime">퀘스트 보상 교환 시간 (단위:시간) :</System:String>
  <System:String x:Key="StockTime">새로운 재고 들어오는 시간 (단위:분) :</System:String>
@@ -298,7 +314,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="NoPermDamageArmor">방어구 수리 시 내구도가 마모되지 않음</System:String>
  <!--Clothing Section-->
  <System:String x:Key="Clothing">의상 설정</System:String>
- <System:String x:Key="ClothesAnySide">각 진영 의상 잠금 해제</System:String>
+    <System:String x:Key="ScavClothes">펜스가 배틀패스/스캐브 의상을 판매함</System:String>
+    <System:String x:Key="ClothesAnySide">양쪽 진영의 의상 잠금 해제</System:String>
  <System:String x:Key="ClothesFree">모든 의상 무료</System:String>
  <System:String x:Key="ClothesLevelUnlock">의상의 레벨 및 평판 요구 사항 삭제</System:String>
  <!--Healing Section-->
@@ -400,8 +417,23 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="GearExtract">RR 및 파라코드 필요 탈출구 요구 조건 제거</System:String>
  <System:String x:Key="ArmorExtract">방어구 관련 탈출구 조건 제한 제거</System:String>
  <System:String x:Key="NoBackpack">배낭 관련 탈출구 조건 제한 제거</System:String>
- <System:String x:Key="ForceTransitStash">Transit 인벤토리 크기 강제 설정</System:String>
-  <!--Coop/Car Section-->
+ <System:String x:Key="ForceTransitStash">Transit(지역 이동) 인벤토리 크기 강제 설정</System:String>
+    <System:String x:Key="DisableTransits">Transit(지역 이동) 비활성화</System:String>
+    <!--Raid states section-->
+    <System:String x:Key="RaidStates">레이드 종료 시 레이드 상태 설정</System:String>
+    <System:String x:Key="OnSurvivedState">생존 시</System:String>
+    <System:String x:Key="OnRunnerState">런쓰루(도주) 시</System:String>
+    <System:String x:Key="OnKilledState">사망 시</System:String>
+    <System:String x:Key="OnMIAState">실종(MIA) 시</System:String>
+    <System:String x:Key="OnLeftState">메뉴를 통해 탈출 시</System:String>
+    <System:String x:Key="SurvivedRaid">생존으로 간주</System:String>
+    <System:String x:Key="MIARaid">실종(MIA)으로 간주</System:String>
+    <System:String x:Key="RunnerRaid">런쓰루(도주)로 간주</System:String>
+    <System:String x:Key="KilledRaid">전사(사망)로 간주</System:String>
+    <System:String x:Key="LeftRaid">탈주(중도 포기)로 간주</System:String>
+    <System:String x:Key="IgnoreRaid">레이드가 일어나지 않은 것으로 간주</System:String>
+
+    <!--Coop/Car Section-->
  <System:String x:Key="FreeCoop">협동 탈출구 제한 없음</System:String>
  <System:String x:Key="CoopPaid">협동 탈출구 화폐 지불</System:String>
  <System:String x:Key="FenceGift">협동 탈출구 탈출 시 펜스 선물 비활성화</System:String>
@@ -444,13 +476,12 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="DisableEvents">진행 중인 이벤트 비활성화</System:String>
  <System:String x:Key="TagillaInterchange">인터체인지에서 타길라와 함께 킬라 생성</System:String>
  <System:String x:Key="GlukharLabs">랩(연구실)에 글루하 생성</System:String>
- <System:String x:Key="Bloodhounds">블러드하운드 생성 확률</System:String>
+ <System:String x:Key="Bloodhounds">밀수꾼 생성 확률</System:String>
  <System:String x:Key="RedBlueEvent">스키어/피스키퍼 분대 스폰 확률</System:String>
  <!--Raid Startup Section-->
  <System:String x:Key="RaidStartup">레이드 시작 설정</System:String>
- <System:String x:Key="Cursed">태그 및 저주</System:String>
- <System:String x:Key="MIARaid">레이드 종료 시 실종</System:String>
- <System:String x:Key="LootRaid">연습 모드</System:String>
+    <System:String x:Key="Cursed">태그 및 저주</System:String>
+    <System:String x:Key="LootRaid">연습 모드</System:String>
  <System:String x:Key="DurabRaid">레이드 후 내구도 저장</System:String>
  <System:String x:Key="AIDifficulty">AI 난이도</System:String>
  <System:String x:Key="AIAmount">AI 규모</System:String>
@@ -503,8 +534,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="OffersRatio">매물 판매에 사용될 통화 비율 (단위:%)</System:String>
  <System:String x:Key="ExpireThreshold">만료된 매물이 n개 이상일 경우 새 매물 생성 :</System:String>
  <System:String x:Key="BundleOfferChance">아이템이 묶음으로 등장할 확률 (%):</System:String>
-
-
+    <System:String x:Key="BarterChance">물물교환 매물이 생성될 확률 (%):</System:String>
+    <System:String x:Key="TieredFlea">티어별 플리마켓 비활성화</System:String>
  <!--CSM Section-->
  <System:String x:Key="Cases">보관함 크기 설정</System:String>
  <System:String x:Key="RemoveFilters">필터 제거</System:String>
@@ -547,7 +578,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <!--PMC Pockets Section-->
  <System:String x:Key="Pockets">PMC 주머니 크기 설정 :</System:String>
  <System:String x:Key="SpecsAmount">스페셜(spec) 슬롯 개수 :</System:String>
- <System:String x:Key="Size">Size:</System:String>
+ <System:String x:Key="Size">크기:</System:String>
  <!--<System:String x:Key="Rows">열(세로) :</System:String>
  <System:String x:Key="Columns">행(가로) :</System:String>-->
  <System:String x:Key="Width">가로:</System:String>
@@ -597,7 +628,10 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="ItemsReward">아이템:</System:String>
  <System:String x:Key="Reputation">평판:</System:String>
  <System:String x:Key="SkillPoint">스킬 포인트 수량:</System:String>
- <System:String x:Key="SkillChance">스킬 포인트 획득 확률:</System:String>
+	<System:String x:Key="SkillChance">스킬 포인트 획득 확률:</System:String>
+	<System:String x:Key="SpecExtractsAmountLvl1">지정 출구 요구 횟수 [1-15레벨]:</System:String>
+	<System:String x:Key="SpecExtractsAmountLvl2">지정 출구 요구 횟수 [16-40레벨]:</System:String>
+	<System:String x:Key="SpecExtractsAmountLvl3">지정 출구 요구 횟수 [41-100레벨]:</System:String>
  <System:String x:Key="Types">퀘스트 임무 종류 :</System:String>
  <System:String x:Key="Reroll">무료 임무 갱신:</System:String>
 
@@ -694,6 +728,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="Streets">스오타 :</System:String>
  <System:String x:Key="StreetsShort">스오타 :</System:String>
  <System:String x:Key="Lab">랩 :</System:String>
+ <System:String x:Key="Labyrinth">미궁 :</System:String>
  <System:String x:Key="Interchange">인터체인지 :</System:String>
  <System:String x:Key="GroundZero">그라운드 제로 :</System:String>
  <System:String x:Key="GroundZeroHard">그라운드 제로 - 어려움 :</System:String>
@@ -732,6 +767,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko,MalecSP, Biddi
  <System:String x:Key="PMCAI">PMC:</System:String>
  <System:String x:Key="Bosses">보스</System:String>
  <System:String x:Key="Followers">보스 경비대</System:String>
+ <System:String x:Key="Zombies">좀비</System:String>
  <System:String x:Key="Usecs">USECs</System:String>
  <System:String x:Key="Bears">BEARs</System:String>
 
@@ -795,8 +831,14 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
 값이 작을수록 과정이 빨라집니다.</System:String>
  <System:String xml:space="preserve" x:Key="ScavCasePrice_TT">스캐브 케이스 사용 시 필요한 가격을 수정합니다.
 값이 작을수록 과정이 저렴해집니다.
-통화가 필요한 제안에만 영향을 줍니다.</System:String> 
- <System:String x:Key="FIRTrade_TT">상인에게서 구매하는 모든 물품에 '인 레이드' 태그가 붙습니다.</System:String>
+통화가 필요한 제안에만 영향을 줍니다.</System:String>
+    <System:String xml:space="preserve" x:Key="Prestige_TT">주의: 이 섹션의 기본값은 SPT와 다릅니다. 레벨 3과 4는 편의를 위해 카리스마 요구사항이 15가 아닌 20으로 설정되어 있습니다. SVM은 이를 단일 값으로 덮어씁니다. 큰 변화는 아니지만 참고하시기 바랍니다.</System:String>
+	<System:String xml:space="preserve" x:Key="PrestigeAreas_TT">기본적으로 명성에는 인텔리전스 센터 레벨 2, 보안 레벨 3, 휴게실 레벨 3이 필요합니다. 이 기능은 해당 요구사항을 제거합니다.</System:String>
+	<System:String xml:space="preserve" x:Key="PrestigeSkill_TT">명성 달성 시 캐릭터가 승계할 스킬의 백분율(%)</System:String>
+	<System:String xml:space="preserve" x:Key="PrestigeMastery_TT">명성 달성 시 캐릭터가 승계할 총기 숙련도의 백분율(%)</System:String>
+	<System:String xml:space="preserve" x:Key="PrestigeSize_TT">아이템을 옮기기 위해 제공되는 명성 인벤토리의 세로 크기</System:String>
+	<System:String xml:space="preserve" x:Key="PrestigeFilter_TT">필터를 비활성화하여 모든 유형의 아이템을 옮길 수 있게 합니다. 네, T H I C C 케이스도 옮길 수 있습니다.</System:String>
+    <System:String x:Key="FIRTrade_TT">상인에게서 구매하는 모든 물품에 '인 레이드' 태그가 붙습니다.</System:String>
  <System:String xml:space="preserve" x:Key="QuestLifespan_TT">반복 가능한 퀘스트가 활성화되고 새로운 퀘스트를 받을 때까지의 시간을 설정합니다.
 현재 퀘스트가 만료된 후에만 효과가 적용됩니다.</System:String>
  <System:String xml:space="preserve" x:Key="QuestSwitch_TT">주의: 새로 수락한 퀘스트에는 변경사항이 적용되지 않습니다!</System:String>
@@ -812,6 +854,9 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
 값이 높을수록 아이템이 더 비싸집니다.</System:String>
  <System:String xml:space="preserve" x:Key="PriceMarkup_TT">상인의 '할인'에 영향을 줍니다. 100은 아이템을 정가로 판매하는 것을 의미합니다.
 1은 최소 가능한 가격으로 구매하게 만듭니다.</System:String>
+<System:String xml:space="preserve" x:Key="RandomizeAssort_TT">개발 중인 기능: 상점의 재고 크기를 최대 480까지 무작위로 변경합니다.
+현재는 상단의 재고 배율 설정의 영향을 받지 않지만, 구매 제한과는 충돌하지 않습니다.
+향후 아이템에 따라 다른 무작위 제한을 적용할 수 있도록 확장할 예정입니다.</System:String>
  <System:String x:Key="ClothesAnySide_TT">USEC와 BEAR 복장 모두 구매할 수 있게 합니다.</System:String>
  <System:String x:Key="ClothesFree_TT">복장 구매에 필요한 현금 요구사항을 제거합니다.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">PMC 레벨, 상인 레벨, 퀘스트 요구사항을 제거합니다.</System:String>

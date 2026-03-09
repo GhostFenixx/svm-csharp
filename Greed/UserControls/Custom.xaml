@@ -31,17 +31,16 @@
                             <!--<TextBlock Text="{DynamicResource IDFilter}" VerticalAlignment="Center"  />
                                     <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDFilter}"/>-->
                             <TextBlock  Text="{DynamicResource IDPrice}" VerticalAlignment="Center"/>
-                            <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDPrice}"/>
-                            <TextBlock Margin="10" Text="effects_damage &gt; EffectsDamage, any similar field goes same way"/>
+                    <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDPrice}"/>
 
-                        </StackPanel>
+                </StackPanel>
                     </Expander>
                     <Expander>
                         <Expander.Header>
                             <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Fleamarket}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                         </Expander.Header>
                         <StackPanel Margin="10">
-                            <TextBlock Text="{DynamicResource FleaMultID}" Margin="5,0,5,0" Foreground="White" Width="250" VerticalAlignment="Center" HorizontalAlignment="Left"/>
+                            <TextBlock Text="{DynamicResource FleaMultID}" Margin="5,0,5,0" Foreground="White"/>
                             <TextBox Margin="5,5,0,5" MinHeight="150" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.FleaMultID}"/>
                         </StackPanel>
                     </Expander>

@@ -1,4 +1,5 @@
 ﻿using Greed.Models;
+using Microsoft.Extensions.Configuration.EnvironmentVariables;
 using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -121,27 +122,35 @@ namespace ServerValueModifier.Sections
                             "Skier" => "58330581ace78e27b8b10cee",
                             _ => variables[0]
                         };
-                        variables[1] = variables[1] switch
+                        if (variables[1] == "CLEAR")
                         {
-                            "USD" => ItemTpl.MONEY_DOLLARS,
-                            "RUB" => ItemTpl.MONEY_ROUBLES,
-                            "EUR" => ItemTpl.MONEY_EUROS,
-                            "GP" => ItemTpl.MONEY_GP_COIN,
-                            _ => variables[1]
-                        };
-                        Item item = new()
+                            traders[variables[0]].Assort.Items.Clear();
+                            traders[variables[0]].Assort.BarterScheme.Clear();
+                            traders[variables[0]].Assort.LoyalLevelItems.Clear();
+                        }
+                        else
                         {
-                            Upd = new Upd
+                            variables[1] = variables[1] switch
                             {
-                                UnlimitedCount = true,
-                                StackObjectsCount = 99999
-                            },
-                            Id = uid,
-                            Template = variables[3],
-                            ParentId = "hideout",
-                            SlotId = "hideout"
-                        };
-                        List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
+                                "USD" => ItemTpl.MONEY_DOLLARS,
+                                "RUB" => ItemTpl.MONEY_ROUBLES,
+                                "EUR" => ItemTpl.MONEY_EUROS,
+                                "GP" => ItemTpl.MONEY_GP_COIN,
+                                _ => variables[1]
+                            };
+                            Item item = new()
+                            {
+                                Upd = new Upd
+                                {
+                                    UnlimitedCount = true,
+                                    StackObjectsCount = 99999
+                                },
+                                Id = uid,
+                                Template = variables[3],
+                                ParentId = "hideout",
+                                SlotId = "hideout"
+                            };
+                            List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
                     {
                         new List<BarterScheme>
                         {
@@ -151,10 +160,11 @@ namespace ServerValueModifier.Sections
                                 Template = variables[1]
                             }
                         }
-                    };
-                        traders[variables[0]].Assort.Items.Add(item);
-                        traders[variables[0]].Assort.BarterScheme.Add(uid, barterScheme);
-                        traders[variables[0]].Assort.LoyalLevelItems.Add(uid, Convert.ToInt32(variables[4]));
+                            };
+                            traders[variables[0]].Assort.Items.Add(item);
+                            traders[variables[0]].Assort.BarterScheme.Add(uid, barterScheme);
+                            traders[variables[0]].Assort.LoyalLevelItems.Add(uid, Convert.ToInt32(variables[4]));
+                        }
                     }
                 }
                 catch (Exception ex)
@@ -333,7 +343,7 @@ namespace ServerValueModifier.Sections
                         object oldValue = items[index];
                         object newValue = ConvertStringToTypeOrCollection(stringValue, elementType, oldValue, operation);
 
-                        // Append/replace properly for HashSet, IList, Array
+                        // Append/remove/replace properly for HashSet, IList, Array
                         if (IsHashSet(oldValue))
                         {
                             var addMethod = oldValue.GetType().GetMethod("Add")!;
@@ -353,6 +363,12 @@ namespace ServerValueModifier.Sections
                                 if (newValue is IEnumerable enumerable)
                                     foreach (var e in enumerable) list.Add(e);
                                 else list.Add(newValue);
+                            }
+                            else if (operation == "-")//Added but did not test it
+                            {
+                                if (newValue is IEnumerable enumerable)
+                                    foreach (var e in enumerable) list.Remove(e);
+                                else list.Remove(newValue);
                             }
                             else
                             {
@@ -444,6 +460,31 @@ namespace ServerValueModifier.Sections
                     else
                     {
                         throw new InvalidOperationException($"Cannot add elements to {existingValue.GetType()}");
+                    }
+                }
+                else if (operation == "-") // Works, yay...
+                {
+                    if (existingValue == null)
+                        existingValue = CreateEmptyCollection(targetType, elementType);
+
+                    if (IsHashSet(existingValue))
+                    {
+                        var addMethod = existingValue.GetType().GetMethod("Remove")!;
+                        foreach (var e in newElements) addMethod.Invoke(existingValue, new[] { e });
+                        return existingValue;
+                    }
+                    else if (existingValue is IList list)
+                    {
+                        foreach (var e in newElements) list.Remove(e);
+                        return existingValue;
+                    }
+                    else
+                    {
+                        var arr = (Array)existingValue;
+                        var newArr = Array.CreateInstance(elementType, arr.Length + newElements.Count);
+                        arr.CopyTo(newArr, 0);
+                        for (int j = 0; j < newElements.Count; j++) newArr.SetValue(newElements[j], arr.Length + j);
+                        return newArr;
                     }
                 }
                 else // "=" or null operation => replace

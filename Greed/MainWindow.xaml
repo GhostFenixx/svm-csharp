@@ -9,7 +9,7 @@
         Title="Greed" ui:ThemeManager.RequestedTheme="Dark"
         Height="700" Width="1225" MinHeight="700" MinWidth="1225"
         xmlns:ui="http://schemas.modernwpf.com/2019"
-        Icon="Resources/SVMLOGO.png" Closing="WindowClosing" WindowStyle="None" MouseLeftButtonDown="Dragger" AllowsTransparency="True" ResizeMode="CanResizeWithGrip">
+        Icon="Resources/SVMLOGO.png" Closing="WindowClosing" WindowStyle="None" MouseLeftButtonDown="Dragger" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Loaded="MainGrid_Loaded">
     <Window.Resources>
         <Style x:Key="BackgroundGrid" TargetType="Grid">
             <Setter Property="Opacity" Value="0"/>

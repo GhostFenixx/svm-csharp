@@ -18,7 +18,6 @@ namespace ServerValueModifier.Sections
             {
                 foreach (var chances in loc.Base.BossLocationSpawn)
                 {
-                    logger.Warning(chances.BossChance + " " + chances.BossName);
                     switch (chances.BossName)
                     {
                         case "bossBoar":
@@ -156,7 +155,6 @@ namespace ServerValueModifier.Sections
                             }
                             break;
                     }
-                    logger.Success(chances.BossChance + " " + chances.BossName);
                 }
             }
             //bots.Durability.BotDurabilities

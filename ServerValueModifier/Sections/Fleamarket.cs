@@ -57,9 +57,16 @@ namespace ServerValueModifier.Sections
             fleaconfig.Dynamic.StackablePercent.Min = svmconfig.Fleamarket.DynamicOffers.Stack_min;
             fleaconfig.Dynamic.StackablePercent.Max = svmconfig.Fleamarket.DynamicOffers.Stack_max;
             //Currency Ratio
-            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_ROUBLES] = svmconfig.Fleamarket.DynamicOffers.Roubleoffers;
-            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_DOLLARS] = svmconfig.Fleamarket.DynamicOffers.Dollaroffers;
-            fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_EUROS] = svmconfig.Fleamarket.DynamicOffers.Eurooffers;
+            if (svmconfig.Fleamarket.DynamicOffers.Roubleoffers + svmconfig.Fleamarket.DynamicOffers.Dollaroffers + svmconfig.Fleamarket.DynamicOffers.Eurooffers == 100)
+            {
+                fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_ROUBLES] = svmconfig.Fleamarket.DynamicOffers.Roubleoffers;
+                fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_DOLLARS] = svmconfig.Fleamarket.DynamicOffers.Dollaroffers;
+                fleaconfig.Dynamic.OfferCurrencyChangePercent[ItemTpl.MONEY_EUROS] = svmconfig.Fleamarket.DynamicOffers.Eurooffers;
+            }
+            else
+            {
+                logger.Error("[SVM] Fleamarket - Offer ratio by currency - sum of currencies is not equals to 100, field is ignored, fix your preset!");
+            }
 
             if (svmconfig.Fleamarket.EnableFleaConditions)//Flea Section > Item Conditions, horrible, as usual
             {
