@@ -103,6 +103,10 @@ namespace ServerValueModifier.Routers
                                                                            // Very doohickey.
                         }
                     }
+                    else
+                    {
+                        MatchController.EndLocalRaid(sessionID, info);
+                    }
                     if (cf.Scav.EnableScav)
                     {
                         if (info.Results.Result != ExitStatus.SURVIVED && info.Results.Result != ExitStatus.TRANSIT && info.Results.Result != ExitStatus.RUNNER && info.Results.Profile.Info.Side == "Savage")//Cursed, i hate it.

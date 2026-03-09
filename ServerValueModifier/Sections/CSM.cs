@@ -95,6 +95,8 @@ namespace ServerValueModifier.Sections
 
             if (svmconfig.CSM.CustomPocket)
             {
+                var quests = databaseService.GetQuests();
+                quests[QuestTpl.OLD_PATTERNS].Rewards["Success"].RemoveAt(1);
                 Pockets pocketsize = svmconfig.CSM.Pockets;
                 //TemplateItem custompocket = _cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);
                 //custompocket.Id = "a8edfb0bce53d103d3f62b9b";
