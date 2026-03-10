@@ -212,31 +212,18 @@ namespace ServerValueModifier.Sections
         {
             for (int i = 0; i < variables.Length; i++)
             {
+                variables[i] = variables[i] switch
+                {
+                    "_props" => "Properties",
+                    "_max_count" => "MaxCount",
+                    "_mergeSlotWithChildren" => "MergeSlotWithChildren",
+                    "effects_health" => "EffectsHealth",
+                    "effects_damage" => "EffectsDamage"
+                };
                 if (!string.IsNullOrEmpty(variables[i]) && char.IsLower(variables[i][0]))
                 {
                     variables[i] = char.ToUpper(variables[i][0]) + variables[i].Substring(1); //Attempt to compensate that we require upper case while Item Finder provide lowercase.
                 }
-                if (variables[i].Contains("_props"))
-                {
-                    variables[i] = "Properties";
-                }
-                if (variables[i].Contains("_max_count"))
-                {
-                    variables[i] = "MaxCount";
-                }
-                if (variables[i].Contains("_mergeSlotWithChildren"))
-                {
-                    variables[i] = "MergeSlotWithChildren";
-                }
-                if (variables[i].Contains("effects_health"))
-                {
-                    variables[i] = "EffectsHealth";
-                }
-                if (variables[i].Contains("effects_damage"))
-                {
-                    variables[i] = "EffectsDamage";
-                }
-
             }
         }
         public void PriceChange(string[] variables)
