@@ -86,7 +86,7 @@ namespace ServerValueModifier.Sections
                         suit.Requirements.PrestigeLevel = 0;
                         suit.Requirements.QuestRequirements = [];
                         suit.Requirements.AchievementRequirements = [];
-                        suit.Requirements.RequiredTid = new MongoId("");
+                        //suit.Requirements.RequiredTid = new MongoId("");
                     }
                     if (svmcfg.Services.ClothesFree)
                     {
