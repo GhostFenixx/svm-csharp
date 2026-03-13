@@ -43,20 +43,6 @@ namespace ServerValueModifier.Sections
             if (svmconfig.Custom.IDChanger)
             {
                 logger.Info("[SVM] Custom Properties is loading");
-                if (svmconfig.Custom.IDDefault.Length > 0 && svmconfig.Custom.IDDefault != "")
-                {
-                    string[] defaultList = svmconfig.Custom.IDDefault.Split("\r\n");
-                    foreach (string line in defaultList)
-                    {
-                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
-                        {
-                            string[] variables = line.Split(":");
-                            Fixfields(variables);
-                            logger.Info("Default: " + line);
-                            IDChanger(variables, items);
-                        }
-                    }
-                }
                 if (svmconfig.Custom.IDParent.Length > 0 && svmconfig.Custom.IDParent != "")
                 {
                     string[] parentlist = svmconfig.Custom.IDParent.Split("\r\n");
@@ -67,7 +53,7 @@ namespace ServerValueModifier.Sections
                         {
                             var variables = line.Split(":");
                             Fixfields(variables);
-                            logger.Info("[SVM] Parent: " + line.ToString());
+                            logger.Info("[SVM] Parent IIC: " + line.ToString());
                             logger.Debug("[SVM] Affected by parent: ");
                             foreach (var ids in items)
                             {
@@ -82,6 +68,20 @@ namespace ServerValueModifier.Sections
                                 variables[0] = result;
                                 IDChanger(variables, items);
                             }
+                        }
+                    }
+                }
+                if (svmconfig.Custom.IDDefault.Length > 0 && svmconfig.Custom.IDDefault != "")
+                {
+                    string[] defaultList = svmconfig.Custom.IDDefault.Split("\r\n");
+                    foreach (string line in defaultList)
+                    {
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
+                        {
+                            string[] variables = line.Split(":");
+                            Fixfields(variables);
+                            logger.Info("[SVM] Default IIC: " + line);
+                            IDChanger(variables, items);
                         }
                     }
                 }
@@ -218,7 +218,8 @@ namespace ServerValueModifier.Sections
                     "_max_count" => "MaxCount",
                     "_mergeSlotWithChildren" => "MergeSlotWithChildren",
                     "effects_health" => "EffectsHealth",
-                    "effects_damage" => "EffectsDamage"
+                    "effects_damage" => "EffectsDamage",
+                    _ => variables[i]
                 };
                 if (!string.IsNullOrEmpty(variables[i]) && char.IsLower(variables[i][0]))
                 {

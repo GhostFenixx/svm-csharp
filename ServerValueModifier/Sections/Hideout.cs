@@ -300,7 +300,7 @@ namespace ServerValueModifier.Sections
             edit.MasteringConfig.TransferMultiplier = mastery;
             if (filter)
             {
-                edit.StashConfig.Filters.IncludedItems = [];
+                edit.StashConfig.Filters.IncludedItems = ["54009119af1c881c07000029"];
             }
         }
         //public void PrestigeSkillEdit(prestige prestige, int skills, int mastery, bool filter)
