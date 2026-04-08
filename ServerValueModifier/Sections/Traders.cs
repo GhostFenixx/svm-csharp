@@ -175,7 +175,7 @@ namespace ServerValueModifier.Sections
 
                         switch (barter)
                         {
-                            case "5449016a4bdc2d6f028b456f":
+                            case "5449016a4bdc2d6f028b456f"://Can't use Itemtpl here, therefore - just IDs, Roubles, Dollars, Euros, GP, Lega medals
                             case "569668774bdc2da2298b4568":
                             case "5696686a4bdc2da3298b456a":
                             case "5d235b4d86f7742e017bc88a":
@@ -190,20 +190,19 @@ namespace ServerValueModifier.Sections
                                             elem.Upd.StackObjectsCount = 999999;
                                             elem.Upd.UnlimitedCount = true;
                                         }
-                                        else if(svmcfg.Traders.RandomizeAssort && elem.Upd.UnlimitedCount is not null) //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
+                                        else if (svmcfg.Traders.RandomizeAssort && elem.Upd.UnlimitedCount is not null) //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
                                         {
                                             elem.Upd.UnlimitedCount = false;
-                                            elem.Upd.StackObjectsCount = rnd.Next(480);
+                                            elem.Upd.StackObjectsCount = rnd.Next(1440) * svmcfg.Traders.CurrencyOffers;
                                         }
+                                        else {
+                                            elem.Upd.UnlimitedCount = false;
+                                                }
                                             elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
                                         //Safety guard in case something hit less than 1
                                         if (elem.Upd.BuyRestrictionMax < 1 && svmcfg.Traders.CurrencyRestrictions > 0) // UPD: Trying to mitigate offers not being 0 in case it wasn't intended
                                         {
                                             elem.Upd.BuyRestrictionMax = 1;
-                                        }
-                                        if (elem.Upd.StackObjectsCount < 1 && !svmcfg.Traders.RandomizeAssort)
-                                        {
-                                            elem.Upd.StackObjectsCount = 1;
                                         }
                                     }
                                 }
@@ -219,20 +218,20 @@ namespace ServerValueModifier.Sections
                                             elem.Upd.StackObjectsCount = 999999;
                                             elem.Upd.UnlimitedCount = true;
                                         }
-                                        else //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
+                                        else if (svmcfg.Traders.RandomizeAssort && elem.Upd.UnlimitedCount is not null) //Randomize Assort - first cycle should be done here, the rest dynamically done in TraderOverride router.
                                         {
                                             elem.Upd.UnlimitedCount = false;
-                                            elem.Upd.StackObjectsCount = rnd.Next(480);
+                                            elem.Upd.StackObjectsCount = rnd.Next(1440) * svmcfg.Traders.BarterOffers;
                                         }
-                                        elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.BarterRestrictions);
+                                        else 
+                                        {
+                                            elem.Upd.UnlimitedCount = false;
+                                        }
+                                            elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.BarterRestrictions);
                                         //Safety guard in case something hit less than 1
                                         if (elem.Upd.BuyRestrictionMax < 1 && svmcfg.Traders.BarterRestrictions > 0)
                                         {
                                             elem.Upd.BuyRestrictionMax = 1;
-                                        }
-                                        if (elem.Upd.StackObjectsCount < 1 && !svmcfg.Traders.RandomizeAssort)
-                                        {
-                                            elem.Upd.StackObjectsCount = 1;
                                         }
                                     }
                                 }

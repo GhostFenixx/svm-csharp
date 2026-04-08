@@ -123,6 +123,14 @@ will be expanded in the future on next SPT update
   Cultists chance wasn't affected by bots section in Ground Zero.
   Shoreline/Streets exfil fixes 
      
+  2.1.1 For SPT 4.0.12+
+  Reworked:
+  Currency/Barter stock/limits can accept 0 as a value now and randomization field is affected by those fields too
+  Default value of randomization was increased from 480 to 1440.
+  Fixed:
+  Disable weekly boss - was only triggering if raids section was on instead of bots section
+  Car extracts - was disabled due to testing and forgot to turn them back
+  Tagilla chance on Factory day
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
@@ -441,7 +449,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="EnergyLoss">Energy loss rate:</System:String>
  <System:String x:Key="BlackStomach">Energy/Hydration rate with a blacked out stomach:</System:String>
 
- <System:String x:Key="Skills">Skill leveling effeciency</System:String>
+ <System:String x:Key="Skills">Skill leveling efficiency</System:String>
  <System:String x:Key="SkillMinEffect">Minimum skill XP gain while fatigued:</System:String>
  <System:String x:Key="SkillFatiguePerPoint">Skill fatigue added per point:</System:String>
  <System:String x:Key="SkillFreshEffect">XP gain multiplier while fresh:</System:String>
@@ -943,9 +951,7 @@ Not at all balanced and will increase the load on your PC.</System:String>
 The greater the value, the more expensive the items will be.</System:String>
  <System:String xml:space="preserve" x:Key="PriceMarkup_TT">Affects trader discount.
 A value of 100 means the items will be purchased by traders at full price; 1 means the lowest possible price.</System:String>
-    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">WIP Feature: alters available stock size randomly up to 480
-Currently not affected by stock multiplier field above but doesn't interfere with restrictions
-In the future i plan to expand it to be affected by it on top of different random limit depending on item</System:String>
+    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">Alters available stock size randomly up to 1440</System:String>
     <System:String x:Key="ClothesAnySide_TT">Allows you to purchase both USEC and BEAR apparel.</System:String>
  <System:String x:Key="ClothesFree_TT">Removes cash requirements for purchasing apparel.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">Removes quest, PMC level, and trader level requirements.</System:String>

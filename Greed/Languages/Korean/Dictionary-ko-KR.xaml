@@ -854,9 +854,7 @@ GPU당 약 1배 효율 증가를 달성하려면 24.26으로 설정하세요.</S
 값이 높을수록 아이템이 더 비싸집니다.</System:String>
  <System:String xml:space="preserve" x:Key="PriceMarkup_TT">상인의 '할인'에 영향을 줍니다. 100은 아이템을 정가로 판매하는 것을 의미합니다.
 1은 최소 가능한 가격으로 구매하게 만듭니다.</System:String>
-<System:String xml:space="preserve" x:Key="RandomizeAssort_TT">개발 중인 기능: 상점의 재고 크기를 최대 480까지 무작위로 변경합니다.
-현재는 상단의 재고 배율 설정의 영향을 받지 않지만, 구매 제한과는 충돌하지 않습니다.
-향후 아이템에 따라 다른 무작위 제한을 적용할 수 있도록 확장할 예정입니다.</System:String>
+ <System:String xml:space="preserve" x:Key="RandomizeAssort_TT">상점의 재고 크기를 최대 1440까지 무작위로 변경합니다.</System:String>
  <System:String x:Key="ClothesAnySide_TT">USEC와 BEAR 복장 모두 구매할 수 있게 합니다.</System:String>
  <System:String x:Key="ClothesFree_TT">복장 구매에 필요한 현금 요구사항을 제거합니다.</System:String>
  <System:String x:Key="ClothesLevelUnlock_TT">PMC 레벨, 상인 레벨, 퀘스트 요구사항을 제거합니다.</System:String>

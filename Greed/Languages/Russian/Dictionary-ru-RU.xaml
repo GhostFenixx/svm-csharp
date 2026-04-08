@@ -823,9 +823,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
 Не особо сбалансировано и может поднять загрузку на ПК</System:String>
  <!--<System:String x:Key="RemoveTradeLimits_TT">Убирает ограничение покупки предметов за завоз</System:String>
  <System:String x:Key="IncreaseAssort_TT">Функция совсем без баланса: у торговцев будет по миллиону каждого предмета из их ассортимента</System:String>-->
-    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">НЕДОДЕЛАНО: изменяет количество доступных предложений в случайном порядке до 480
-На данний момент множитель размера не влияет на это поле
-В будущем планирую расширить этот функционал</System:String>
+    <System:String  xml:space="preserve" x:Key="RandomizeAssort_TT">Изменяет количество доступных предложений в случайном порядке до 1440</System:String>
     <System:String x:Key="RemoveCurrencyOffers_TT">Исключая Скупщика</System:String>
  <System:String x:Key="ClothesAnySide_TT">Позволяет купить одежду обоих фракций ЧВК</System:String>
  <System:String x:Key="ClothesFree_TT">Убирает ценник с предложений на одежду</System:String>

@@ -169,7 +169,7 @@ namespace ServerValueModifier.Sections
                         {
                             exits.ExfiltrationTime = svmconfig.Raids.Exfils.CarExtractTime;
                             exits.ExfiltrationTimePVE = svmconfig.Raids.Exfils.CarExtractTime;
-                            //AdjustExit(names.Base.Id, exits, "Car");
+                            AdjustExit(names.Base.Id, exits, "Car");
                         }
                         if (svmconfig.Raids.Exfils.CoopPaid && svmconfig.Raids.EnableCarCoop && exits.PassageRequirement == RequirementState.ScavCooperation)
                         {

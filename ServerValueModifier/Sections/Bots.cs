@@ -87,7 +87,7 @@ namespace ServerValueModifier.Sections
                             {
                                 chances.BossChance = svmconfig.Bots.AIChance.TagillaNight;
                             }
-                            if (loc.Base.Name == "factory4_day")
+                            if (loc.Base.Id == "factory4_day")
                             {
                                 chances.BossChance = svmconfig.Bots.AIChance.Tagilla;
                             }

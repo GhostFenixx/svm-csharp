@@ -15,12 +15,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Events(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, SeasonalEventService seasonalEvent, ModHelper modhelper)
+    internal class Events(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ModHelper modhelper)
     {
         public void EventsSection()
         {
-            //globals init
-            Globals globals = databaseService.GetGlobals();
+            // init
             var locs = databaseService.GetLocations();
             var locsconfig = configServer.GetConfig<LocationConfig>();
             var botconfig = configServer.GetConfig<BotConfig>();
@@ -30,24 +29,13 @@ namespace ServerValueModifier.Sections
             BossLocationSpawn kolontay  = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kolontay"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
             BossLocationSpawn goons = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Goons"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
             BossLocationSpawn glukhar = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Glukhar"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;
-
-            SeasonalEventConfig season = configServer.GetConfig<SeasonalEventConfig>();
-            if (svmconfig.Raids.RaidEvents.Christmas && !svmconfig.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
-            {
-                seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
-            }
-            if (svmconfig.Raids.RaidEvents.Halloween && !svmconfig.Raids.RaidEvents.DisableEvents)
-            {
-                seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
-            }
-
             if (svmconfig.Raids.RaidEvents.KillaFactory)//Easier to create a standalone wave than finding existing one and editing follower, also handy if we want it to be a chance
             {
                 locs.Factory4Day.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", svmconfig.Raids.RaidEvents.KillaFactoryChance, locs.Factory4Day.Base.OpenZones, "followerBully", "0"));
                 locs.Factory4Night.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKilla", svmconfig.Raids.RaidEvents.KillaFactoryChance, locs.Factory4Day.Base.OpenZones, "followerBully", "0"));
             }
 
-            if (svmconfig.Raids.RaidEvents.TagillaInterchange)
+            if (svmconfig.Raids.RaidEvents.TagillaInterchange)//Funny i said that above and haven't altered this one, however there is a reason - this way they spawn close to each other and actually stick together
             {
                 foreach (var bosses in locs.Interchange.Base.BossLocationSpawn)
                 {

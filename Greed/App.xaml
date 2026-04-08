@@ -119,6 +119,13 @@
                 <Setter Property="Maximum" Value="100"/>
                 <Setter Property="Minimum" Value="0.01"/>
             </Style>
+            <Style x:Key="ZeroMults" TargetType="ui:NumberBox">
+                <Setter Property="NumberFormatter" Value="{StaticResource DecimalFormatter}"/>
+                <Setter Property="SmallChange" Value="0.25"/>
+                <Setter Property="Tag" Value="Mults"/>
+                <Setter Property="Maximum" Value="100"/>
+                <Setter Property="Minimum" Value="0"/>
+            </Style>
             <Style x:Key="ThreeMults" TargetType="ui:NumberBox">
                 <Setter Property="NumberFormatter" Value="{StaticResource ThreeDecimalFormatter}"/>
                 <Setter Property="SmallChange" Value="0.20"/>

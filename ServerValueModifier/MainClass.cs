@@ -33,13 +33,16 @@ namespace ServerValueModifier
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
+                BotConfig bots = configServer.GetConfig<BotConfig>();
+                if (svmcfg.Bots.EnableBots)
+                {
+                    bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
+                }
                 //A list of features that should run before `PerformPostDbLoadActions`
                 //Will make into a separate section later.
                 //Raids/ Events section
                 if (svmcfg.Raids.EnableRaids)
                 {
-                    BotConfig bots = configServer.GetConfig<BotConfig>();
-                    bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
                     if (svmcfg.Raids.RaidEvents.AITypeOverride)
                     {
                         switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now. Waiting for 4.0.14? Potentially to expand this with multiple types.
@@ -167,7 +170,7 @@ namespace ServerValueModifier
                 Sections.Fleamarket fleamarketLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Quests questsLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.CSM csmLoad = new(logger, configServer, databaseService, svmcfg, _cloner, custompocket);
-                Sections.Events eventsLoad = new(logger, configServer, databaseService, svmcfg, seasonalEvent, modhelper);
+                Sections.Events eventsLoad = new(logger, configServer, databaseService, svmcfg, modhelper);
                 Sections.Scav scavload = new(logger, configServer, databaseService, svmcfg, _cloner, scavcustompocket);
                 Sections.PMC pmcload = new(logger, configServer, databaseService, svmcfg);
 
@@ -181,7 +184,18 @@ namespace ServerValueModifier
                 if (svmcfg.Raids.EnableRaids)
                 {
                     raidsload.RaidsSection();
+                    if (svmcfg.Raids.RaidEvents.Christmas && !svmcfg.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
+                                                                                                    //UPD: Pushed them outside the events method 
+                                                                                                    //Because we'll re-utilize the events inside routes and those would be problematic to call later in the process
+                    {
+                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
+                    }
+                    if (svmcfg.Raids.RaidEvents.Halloween && !svmcfg.Raids.RaidEvents.DisableEvents)
+                    {
+                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
+                    }
                     eventsLoad.EventsSection();
+
                 }
                 if (svmcfg.Quests.EnableQuests) questsLoad.QuestSection();
                 if (svmcfg.Bots.EnableBots) botload.BotsSection();

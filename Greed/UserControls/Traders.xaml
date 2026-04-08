@@ -24,12 +24,12 @@
                     <StackPanel Margin="10">
                         <DockPanel Margin="5,5,0,5">
                             <TextBlock Margin="0,0,0,5" Width="200" TextWrapping="Wrap" Text="{DynamicResource TraderOffers}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                            <ui:NumberBox Width="120" Value="{Binding Traders.CurrencyOffers}"  Style="{StaticResource Mults}">
+                            <ui:NumberBox Width="120" Value="{Binding Traders.CurrencyOffers}" Style="{StaticResource ZeroMults}">
                                 <ui:NumberBox.Header>
                                     <TextBlock HorizontalAlignment="Center" Text="{DynamicResource CurrencyOffers}"/>
                                 </ui:NumberBox.Header>
                             </ui:NumberBox>
-                            <ui:NumberBox Width="120" Value="{Binding Traders.BarterOffers}" Style="{StaticResource Mults}">
+                            <ui:NumberBox Width="120" Value="{Binding Traders.BarterOffers}" Style="{StaticResource ZeroMults}">
                                 <ui:NumberBox.Header>
                                     <TextBlock HorizontalAlignment="Center" Text="{DynamicResource BarterOffers}"/>
                                 </ui:NumberBox.Header>
@@ -37,8 +37,8 @@
                         </DockPanel>
                         <DockPanel Margin="5,5,0,5">
                             <TextBlock Width="200" TextWrapping="Wrap" Text="{DynamicResource TraderRestrictions}" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
-                            <ui:NumberBox Width="120"  VerticalAlignment="Center" Value="{Binding Traders.CurrencyRestrictions}" Style="{StaticResource Mults}"/>
-                            <ui:NumberBox Width="120" VerticalAlignment="Center" Value="{Binding Traders.BarterRestrictions}" Style="{StaticResource Mults}"/>
+                            <ui:NumberBox Width="120"  VerticalAlignment="Center" Value="{Binding Traders.CurrencyRestrictions}" Style="{StaticResource ZeroMults}"/>
+                            <ui:NumberBox Width="120" VerticalAlignment="Center" Value="{Binding Traders.BarterRestrictions}" Style="{StaticResource ZeroMults}"/>
                         </DockPanel>
                         <DockPanel Margin="5,5,0,5">
                             <TextBlock Margin="0,0,0,5" Width="200" VerticalAlignment="Bottom" TextWrapping="Wrap" Text="{DynamicResource QuestRedeemTime}" HorizontalAlignment="Left"/>
