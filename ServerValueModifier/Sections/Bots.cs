@@ -192,10 +192,10 @@ namespace ServerValueModifier.Sections
         }
         public void AdjustDurab(BotConfig bots, string bottype, Greed.Models.AI.BotDurability type)
         {
-            Math.Clamp(bots.Durability.BotDurabilities[bottype].Weapon.HighestMax = type.WeaponMax, 0, 100); //Shitty bandaid - TODO proper clamp throughout whole app on fields that may affect each other(but not limited to), like minimum and maximums
-            Math.Clamp(bots.Durability.BotDurabilities[bottype].Weapon.LowestMax = type.WeaponMin, 0, 100);
-            Math.Clamp(bots.Durability.BotDurabilities[bottype].Armor.MinDelta = 100 - type.ArmorMin, 0, 100);
-            Math.Clamp(bots.Durability.BotDurabilities[bottype].Armor.MaxDelta = 100 - type.ArmorMax, 0, 100);
+           bots.Durability.BotDurabilities[bottype].Weapon.HighestMax = Math.Clamp(type.WeaponMax, 0, 100); //Shitty bandaid - TODO proper clamp throughout whole app on fields that may affect each other(but not limited to), like minimum and maximums
+           bots.Durability.BotDurabilities[bottype].Weapon.LowestMax = Math.Clamp(type.WeaponMin, 0, 100);
+           bots.Durability.BotDurabilities[bottype].Armor.MinDelta = Math.Clamp(100 - type.ArmorMin, 0, 100);
+           bots.Durability.BotDurabilities[bottype].Armor.MaxDelta = Math.Clamp(100 - type.ArmorMax, 0, 100);
         }
 
     }

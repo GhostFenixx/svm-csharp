@@ -195,10 +195,15 @@ namespace ServerValueModifier.Sections
                                             elem.Upd.UnlimitedCount = false;
                                             elem.Upd.StackObjectsCount = rnd.Next(1440) * svmcfg.Traders.CurrencyOffers;
                                         }
-                                        else {
+                                        else 
+                                        {
+                                            if (elem.Upd.StackObjectsCount < 1 && svmcfg.Traders.CurrencyOffers > 0)
+                                            {
+                                                elem.Upd.StackObjectsCount = 1;
+                                            }
                                             elem.Upd.UnlimitedCount = false;
-                                                }
-                                            elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
+                                        }
+                                        elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.CurrencyRestrictions);
                                         //Safety guard in case something hit less than 1
                                         if (elem.Upd.BuyRestrictionMax < 1 && svmcfg.Traders.CurrencyRestrictions > 0) // UPD: Trying to mitigate offers not being 0 in case it wasn't intended
                                         {
@@ -225,6 +230,10 @@ namespace ServerValueModifier.Sections
                                         }
                                         else 
                                         {
+                                            if (elem.Upd.StackObjectsCount < 1 && svmcfg.Traders.BarterOffers > 0)
+                                            {
+                                                elem.Upd.StackObjectsCount = 1;
+                                            }
                                             elem.Upd.UnlimitedCount = false;
                                         }
                                             elem.Upd.BuyRestrictionMax = (int?)(elem.Upd.BuyRestrictionMax * svmcfg.Traders.BarterRestrictions);
