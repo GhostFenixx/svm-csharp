@@ -16,7 +16,7 @@
         public double Sell_mult { get; set; } = 1.24;
         public int Tradeoffer_max { get; set; } = 1;
         public double Rep_loss { get; set; } = 0.03;
-        public bool TieredFlea { get; set; }
+        public bool TieredFlea { get; set; } = true;
         public double Rep_gain { get; set; } = 0.02;
         public int Tradeoffer_min { get; set; } = 0;
         public int Sell_chance { get; set; } = 50;

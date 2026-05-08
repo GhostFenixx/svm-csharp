@@ -20,7 +20,14 @@ namespace ServerValueModifier.Sections
                 fleaconfig.Dynamic.PurchasesAreFoundInRaid = svmconfig.Fleamarket.FleaFIR;
                 globals.Configuration.RagFair.IsOnlyFoundInRaidAllowed = svmconfig.Fleamarket.FleaNoFIRSell;
                 fleaconfig.Dynamic.Barter.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BarterChance;
-                fleaconfig.Sell.Fees = svmconfig.Fleamarket.EnableFees;
+                if (!svmconfig.Fleamarket.EnableFees)
+                {
+                    fleaconfig.Sell.Fees = false;
+                    globals.Configuration.RagFair.CommunityTax = float.Epsilon; // Hehe
+                    globals.Configuration.RagFair.CommunityItemTax = float.Epsilon;
+                    globals.Configuration.RagFair.CommunityRequirementTax = double.Epsilon;
+                }
+
                 fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
                 fleaconfig.Sell.Chance.SellMultiplier = svmconfig.Fleamarket.Sell_mult;
                 fleaconfig.Sell.Time.Min = svmconfig.Fleamarket.Tradeoffer_min;

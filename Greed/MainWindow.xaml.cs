@@ -74,7 +74,13 @@ namespace Greed
             
             if (!Directory.Exists(presetsFolder))
             {
-                throw new NullReferenceException($"{presetsFolder} does not exist.");
+                //throw new NullReferenceException($"{presetsFolder} does not exist.");
+                Popup message = new((string)Application.Current.FindResource("MissingPresetFolder"));
+                message.ShowDialog();
+                if (message.Confirm)
+                {
+                    Directory.CreateDirectory(presetsFolder);
+                }
             }
 
             object tempfield = Presets.SelectedItem;
@@ -341,6 +347,12 @@ namespace Greed
             //} TODO: Reimplement back OR do the check on SVM side
             try
             {
+                Popup message = new((string)Application.Current.FindResource("MissingLoaderFolder"));
+                message.ShowDialog();
+                if (message.Confirm)
+                {
+                    Directory.CreateDirectory(loaderFolder);
+                }
                 string savepath = Path.Combine(loaderFolder, "loader.json");
                 File.Delete(savepath);
                 if (Presets.Text == "")
