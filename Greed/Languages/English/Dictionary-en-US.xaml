@@ -243,8 +243,9 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="ItemPriceMult">Global price of items:</System:String>
  <System:String x:Key="HeatFactor">Heat Factor:</System:String>
  <System:String x:Key="ExamineTime">Time to examine an item:</System:String>
- <System:String x:Key="AmmoLoadSpeed">Time to load/unload magazines in the raid:</System:String>
- <System:String x:Key="LootExp">EXP Acquired for picking up items:</System:String>
+ <System:String x:Key="AmmoLoadSpeed">Time to load magazines in the raid:</System:String>
+ <System:String x:Key="AmmoUnLoadSpeed">Time to unload magazines in the raid:</System:String>
+    <System:String x:Key="LootExp">EXP Acquired for picking up items:</System:String>
  <System:String x:Key="ExamineExp">EXP Acquired for examining items:</System:String>
  <System:String x:Key="WeightChanger">Items Weight:</System:String>
  <System:String x:Key="MalfunctChanceMult">Weapon malfunction chance:</System:String>
@@ -607,6 +608,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">Player Selling/Buying</System:String>
  <System:String x:Key="FleaMarketLevel">Level to access the Flea market:</System:String>
+ <System:String x:Key="FeesMult">Fees multiplier</System:String>
  <System:String x:Key="EnableFees">Enable fees</System:String>
  <System:String x:Key="Sell_chance">Base Sell chance:</System:String>
  <System:String x:Key="Sell_mult">Sell chance multiplier:</System:String>

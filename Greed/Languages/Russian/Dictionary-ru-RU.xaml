@@ -130,6 +130,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="HeatFactor">Фактор перегрева от патронов:</System:String>
     <System:String x:Key="ExamineTime">Время изучения предметов:</System:String>
     <System:String x:Key="AmmoLoadSpeed">Время зарядки магазинов в рейде:</System:String>
+    <System:String x:Key="AmmoUnLoadSpeed">Время разарядки магазинов в рейде:</System:String>
     <System:String x:Key="LootExp">Опыт за подбор:</System:String>
     <System:String x:Key="ExamineExp">Опыт за изучение:</System:String>
  <System:String x:Key="WeightChanger">Вес Предметов:</System:String>
@@ -491,7 +492,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">Продажи/Покупки игрока</System:String>
  <System:String x:Key="FleaMarketLevel">Уровень для доступа к барахолке:</System:String>
- <System:String x:Key="EnableFees">Включить комиссию</System:String>
+    <System:String x:Key="FeesMult">Множитель комиссии:</System:String>
+    <System:String x:Key="EnableFees">Включить комиссию</System:String>
  <System:String x:Key="Sell_chance">Шанс продажи:</System:String>
  <System:String x:Key="Sell_mult">Множитель шанса от цены:</System:String>
  <System:String x:Key="RepGain">Кол-во получаемой репутации за 100 тысяч рублей дохода:</System:String>

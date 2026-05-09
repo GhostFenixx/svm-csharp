@@ -21,6 +21,7 @@
         public int Tradeoffer_min { get; set; } = 0;
         public int Sell_chance { get; set; } = 50;
         public bool EnableFees { get; set; } = true;
+        public double FeesMult { get; set; }
         public DynamicOffers DynamicOffers { get; set; }
 
         public Fleamarket()

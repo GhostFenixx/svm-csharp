@@ -23,6 +23,7 @@
         public int GPStack { get; set; } = 100;
         public int EuroStack { get; set; } = 50000;
         public double AmmoLoadSpeed { get; set; } = 1;
+        public double AmmoUnLoadSpeed { get; set; } = 1;
         public double LootExp { get; set; } = 1;
         public bool EnableItems { get; set; }
         public double ExamineExp { get; set; } = 1;

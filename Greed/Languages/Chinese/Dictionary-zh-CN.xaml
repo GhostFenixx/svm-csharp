@@ -189,6 +189,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="HeatFactor">武器发热 系数:</System:String>
  <System:String x:Key="ExamineTime">检视物品 时间:</System:String>
  <System:String x:Key="AmmoLoadSpeed">弹匣填充/卸下子弹 时间:</System:String>
+ <System:String x:Key="AmmoUnLoadSpeed">NEEDTRANSLATION:</System:String>
  <System:String x:Key="LootExp">拾取物品 经验:</System:String>
  <System:String x:Key="ExamineExp">检视物品 经验:</System:String>
  <System:String x:Key="WeightChanger">物品重量 系数:</System:String>
@@ -559,8 +560,9 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">跳蚤市场 玩家出售/购买</System:String>
  <System:String x:Key="FleaMarketLevel">跳蚤市场 解锁等级:</System:String>
- <System:String x:Key="EnableFees">启动 跳蚤税</System:String>
- <System:String x:Key="Sell_chance">物品 基础出售概率(百分比):</System:String>
+ <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
+    <System:String x:Key="EnableFees">启动 跳蚤税</System:String>
+    <System:String x:Key="Sell_chance">物品 基础出售概率(百分比):</System:String>
  <System:String x:Key="Sell_mult">出售概率 倍率:</System:String>
  <System:String x:Key="RepGain">每赚取10万卢布 评价增加:</System:String>
  <System:String x:Key="RepLoss">每花费10万卢布"跳蚤税" 评价损失:</System:String>

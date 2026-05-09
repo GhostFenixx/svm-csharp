@@ -20,15 +20,21 @@ namespace ServerValueModifier.Sections
                 fleaconfig.Dynamic.PurchasesAreFoundInRaid = svmconfig.Fleamarket.FleaFIR;
                 globals.Configuration.RagFair.IsOnlyFoundInRaidAllowed = svmconfig.Fleamarket.FleaNoFIRSell;
                 fleaconfig.Dynamic.Barter.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BarterChance;
-                if (!svmconfig.Fleamarket.EnableFees)
+                if (!svmconfig.Fleamarket.EnableFees) // By default it's on, that's why "!"
                 {
                     fleaconfig.Sell.Fees = false;
                     globals.Configuration.RagFair.CommunityTax = float.Epsilon; // Hehe
                     globals.Configuration.RagFair.CommunityItemTax = float.Epsilon;
                     globals.Configuration.RagFair.CommunityRequirementTax = double.Epsilon;
                 }
+                else
+                {
+                    globals.Configuration.RagFair.CommunityTax = (float)svmconfig.Fleamarket.FeesMult;
+                    globals.Configuration.RagFair.CommunityItemTax = (float)svmconfig.Fleamarket.FeesMult;
+                    globals.Configuration.RagFair.CommunityRequirementTax = svmconfig.Fleamarket.FeesMult;
+                }
 
-                fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
+                    fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
                 fleaconfig.Sell.Chance.SellMultiplier = svmconfig.Fleamarket.Sell_mult;
                 fleaconfig.Sell.Time.Min = svmconfig.Fleamarket.Tradeoffer_min;
                 fleaconfig.Sell.Time.Max = svmconfig.Fleamarket.Tradeoffer_max;

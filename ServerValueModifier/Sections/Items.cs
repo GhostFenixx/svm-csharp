@@ -30,7 +30,7 @@ namespace ServerValueModifier.Sections
         public void ItemsSection()
         {
             //Speed to load/unload magazines in raid.
-            globals.Configuration.BaseUnloadTime *= svmconfig.Items.AmmoLoadSpeed;
+            globals.Configuration.BaseUnloadTime *= svmconfig.Items.AmmoUnLoadSpeed;
             globals.Configuration.BaseLoadTime *= svmconfig.Items.AmmoLoadSpeed;
             globals.Configuration.ItemsCommonSettings.MaxBackpackInserting = svmconfig.Items.BackpackStacking;
             //Remove raid restrictions.

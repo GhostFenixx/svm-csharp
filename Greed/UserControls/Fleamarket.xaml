@@ -34,12 +34,17 @@
                     </ui:NumberBox>
                     <ui:NumberBox Value="{Binding Fleamarket.Sell_chance}"  ToolTip="{DynamicResource Sell_chance_TT}" Style="{StaticResource FlatsSmall}">
                         <ui:NumberBox.Header>
-                            <TextBlock Text="{DynamicResource Sell_chance}" Cursor=""/>
+                            <TextBlock Text="{DynamicResource Sell_chance}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
                     <ui:NumberBox Value="{Binding Fleamarket.Sell_mult}" ToolTip="{DynamicResource Sell_mult_TT}" Style="{StaticResource Mults}">
                         <ui:NumberBox.Header>
-                            <TextBlock Text="{DynamicResource Sell_mult}" Cursor=""/>
+                            <TextBlock Text="{DynamicResource Sell_mult}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Fleamarket.FeesMult}" Style="{StaticResource Mults}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource FeesMult}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
                     <ui:NumberBox Value="{Binding Fleamarket.Rep_gain}" Style="{StaticResource Mults}">

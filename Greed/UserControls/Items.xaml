@@ -161,6 +161,11 @@
                             <TextBlock Text="{DynamicResource AmmoLoadSpeed}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.AmmoUnLoadSpeed}" ToolTip="{DynamicResource AmmoLoadSpeed_TT}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource AmmoUnLoadSpeed}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
                     <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.ExamineTime}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource ExamineTime}"/>

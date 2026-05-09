@@ -134,7 +134,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="HeatFactor">Фактор перегріву від патронів:</System:String>
  <System:String x:Key="ExamineTime">Час вивчення предметів:</System:String>
  <System:String x:Key="AmmoLoadSpeed">Час зарядки магазинів у рейді:</System:String>
- <System:String x:Key="LootExp">Досвід за підбір:</System:String>
+ <System:String x:Key="AmmoUnLoadSpeed">Час розарядки магазинів у рейді:</System:String>
+  <System:String x:Key="LootExp">Досвід за підбір:</System:String>
  <System:String x:Key="ExamineExp">Досвід за вивчення:</System:String>
  <System:String x:Key="WeightChanger">Вага Предметів:</System:String>
  <System:String x:Key="MalfunctChanceMult">Шанс Заклинювання:</System:String>
@@ -487,7 +488,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">Продажі/Покупки гравця</System:String>
  <System:String x:Key="FleaMarketLevel">Рівень доступу до барахолки:</System:String>
- <System:String x:Key="EnableFees">Включити комісію</System:String>
+    <System:String x:Key="FeesMult">Множник комісії:</System:String>
+    <System:String x:Key="EnableFees">Включити комісію</System:String>
  <System:String x:Key="Sell_chance">Шанс продажу:</System:String>
  <System:String x:Key="Sell_mult">Множник шансу від ціни:</System:String>
  <System:String x:Key="RepGain">Кількість одержуваної репутації за 100 тисяч рублів доходу:</System:String>
