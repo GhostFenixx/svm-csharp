@@ -204,7 +204,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <System:String x:Key="EquipRigsWithArmors">允许 同时穿戴 防弹背心 和 防弹胸挂</System:String>
  <System:String x:Key="RemoveSecureContainerFilters">移除安全箱限制</System:String>
  <System:String x:Key="AddSignalPistolToSpec">允许 信号枪 放入 特殊装备栏</System:String>
- <System:String x:Key="SurvCMSToSpec">允许 手术包 放入 特殊装备栏</System:String>
+ <System:String x:Key="SurvCMSToSpec">限制 手术包 放入 特殊装备栏</System:String>
  <System:String x:Key="SurvCMSSecConBlock">限制 手术包 放入 安全箱</System:String>
  <System:String x:Key="BackpackStacking">背包堆叠数量限制</System:String>
  <System:String x:Key="RemoveRaidRestr">移除 物品带入战局限制</System:String>

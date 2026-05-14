@@ -153,7 +153,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="AddSignalPistolToSpec">Дозволити сигнальний пістолет у Спец.слот</System:String>
  <System:String x:Key="RaidDrop">Прибирає заборону на викид предметів у рейді</System:String>
  <System:String x:Key="NoGearPenalty">Спорядження без штрафів</System:String>
- <System:String x:Key="SurvCMSToSpec">Дозволити Surv/CMS у спец.слоти</System:String>
+ <System:String x:Key="SurvCMSToSpec">Обмежити Surv/CMS у спец.слоти</System:String>
  <System:String x:Key="SurvCMSSecConBlock">Обмежити Surv/CMS в Зах.Контейнери</System:String>
  <System:String x:Key="BackpackStacking">Обмеження рюкзаків в рюкзаках:</System:String>
     <!--Keys Section-->

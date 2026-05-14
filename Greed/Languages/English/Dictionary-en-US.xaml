@@ -258,7 +258,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="AllExaminedItems">All items examined</System:String>
  <System:String x:Key="EquipRigsWithArmors">Allow armored rigs with armors</System:String>
     <System:String x:Key="RemoveSecureContainerFilters">Remove secure container filters</System:String>
-    <System:String x:Key="SurvCMSToSpec">Allow Surv/CMS in the Special slots</System:String>
+    <System:String x:Key="SurvCMSToSpec">Restrict Surv/CMS in the Special slots</System:String>
     <System:String x:Key="SurvCMSSecConBlock">Restrict Surv/CMS from Secure Containers</System:String>
     <System:String x:Key="BackpackStacking">Backpack stacking limit:</System:String>
     <System:String x:Key="RemoveRaidRestr">Remove In-raid restrictions</System:String>

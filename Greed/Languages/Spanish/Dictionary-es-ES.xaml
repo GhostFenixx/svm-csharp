@@ -165,7 +165,7 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="AllExaminedItems">Todos los objetos examinados</System:String>
  <System:String x:Key="EquipRigsWithArmors">Permitir el uso de portaplacas con armaduras</System:String>
  <System:String x:Key="RemoveSecureContainerFilters">Eliminar filtros del Contenedor Seguro</System:String>
- <System:String x:Key="SurvCMSToSpec">Permite el Surv/CMS en los bolsillos especiales</System:String>
+ <System:String x:Key="SurvCMSToSpec">Impide guardar el Surv/CMS en los bolsillos especiales</System:String>
  <System:String x:Key="SurvCMSSecConBlock">Impide guardar el Surv/CMS en los contenedores seguros</System:String>
  <System:String x:Key="BackpackStacking">Apilado de mochilas:</System:String>
  <System:String x:Key="RemoveRaidRestr">Eliminar las restricciones dentro de raid</System:String>

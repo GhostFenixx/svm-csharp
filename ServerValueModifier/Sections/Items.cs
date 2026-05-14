@@ -49,7 +49,6 @@ namespace ServerValueModifier.Sections
             //Main cycle that goes once in items.json
             foreach (TemplateItem basetemplate in items.Values)
             {
-                if((svmconfig.Items.RemoveRaidRestr && (basetemplate.Parent == "57864a3d24597754843f8721"  || basetemplate.Parent == ""))) //Shitty attempt to fix BSG insurance filters.
                 //Add Signal Pistol to PMC's Standard/Unheard/CSM's Custom special slots
                 if (basetemplate.Id == "a8edfb0bce53d103d3f62b9b" || basetemplate.Id == ItemTpl.POCKETS_1X4_SPECIAL || basetemplate.Id == ItemTpl.POCKETS_1X4_TUE)
                 {
@@ -67,18 +66,15 @@ namespace ServerValueModifier.Sections
                     // Add Surv and CMS to PMC's Standard/Unheard/CSM's Custom special slots //5448bf274bdc2dfc2f8b456a
                     if (svmconfig.Items.SurvCMSToSpec)
                     {
-                        var slotfilters = basetemplate.Properties.Slots.ToList();
-                        slotfilters.ForEach(slot => {
-                            var filter = slot.Properties.Filters.ToList();
-                            filter[0].Filter.Add(new MongoId(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT));
-                            slot.Properties.Filters = filter;
-                        });
-                        slotfilters.ForEach(slot => {
-                            var filter = slot.Properties.Filters.ToList();
-                            filter[0].Filter.Add(new MongoId(ItemTpl.MEDICAL_CMS_SURGICAL_KIT));
-                            slot.Properties.Filters = filter;
-                        });
-                        basetemplate.Properties.Slots = slotfilters;
+                    var slotfilters = basetemplate.Properties.Slots.ToList();
+                    slotfilters.ForEach(slot =>
+                    {
+                        var filter = slot.Properties.Filters.ToHashSet();
+                        filter.First().Filter.Remove(ItemTpl.MEDICAL_CMS_SURGICAL_KIT);
+                        filter.First().Filter.Remove(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT);
+                        slot.Properties.Filters = filter;
+                    });
+                    basetemplate.Properties.Slots = slotfilters;
                     }
                 }
                 // Restrict Surv and CMS from all the Special Containers.
@@ -88,10 +84,6 @@ namespace ServerValueModifier.Sections
                     gridsfilters.ForEach(grid => {
                         var filter = grid.Properties.Filters.ToList();
                         filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT));
-                        grid.Properties.Filters = filter;
-                    });
-                    gridsfilters.ForEach(grid => {
-                        var filter = grid.Properties.Filters.ToList();
                         filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_CMS_SURGICAL_KIT));
                         grid.Properties.Filters = filter;
                     });

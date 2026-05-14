@@ -147,7 +147,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="RemoveRaidRestr">Убрать ограничение на внос в рейд</System:String>
     <System:String x:Key="RemoveBackpacksRestrictions">Убрать фильтры рюкзаков</System:String>
  <System:String x:Key="AddSignalPistolToSpec">Разрешить сигнальный пистолет в Спец.слот</System:String>
-    <System:String x:Key="SurvCMSToSpec">Разрешить Surv/CMS в спец слоты</System:String>
+    <System:String x:Key="SurvCMSToSpec">Запретить Surv/CMS в спец слоты</System:String>
     <System:String x:Key="SurvCMSSecConBlock">Запретить Surv/CMS в защ.контейнерах</System:String>
     <System:String x:Key="BackpackStacking">Ограничение рюкзаков в рюкзаке:</System:String>
     <System:String x:Key="RaidDrop">Убирает запрет на выброс предметов в рейде</System:String>

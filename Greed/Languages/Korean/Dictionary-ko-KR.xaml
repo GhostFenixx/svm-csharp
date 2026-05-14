@@ -161,7 +161,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="AllExaminedItems">모든 아이템 조사 완료</System:String>
  <System:String x:Key="EquipRigsWithArmors">방탄 착용 시 방탄 리그 장착 허용</System:String>
     <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
-    <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 허용</System:String>
+    <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 제한</System:String>
  <System:String x:Key="SurvCMSSecConBlock">보안 컨테이너에 Surv/CMS 수술킷 보관 제한</System:String>
     <System:String x:Key="BackpackStacking">가방 중첩 제한:</System:String>
     <System:String x:Key="RemoveRaidRestr">레이드 진입 전 레이드 소지 아이템 제한 제거</System:String>

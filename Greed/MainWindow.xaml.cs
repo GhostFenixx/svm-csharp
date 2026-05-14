@@ -347,11 +347,14 @@ namespace Greed
             //} TODO: Reimplement back OR do the check on SVM side
             try
             {
-                Popup message = new((string)Application.Current.FindResource("MissingLoaderFolder"));
-                message.ShowDialog();
-                if (message.Confirm)
+                if (!Directory.Exists(presetsFolder))
                 {
-                    Directory.CreateDirectory(loaderFolder);
+                    Popup message = new((string)Application.Current.FindResource("MissingLoaderFolder"));
+                    message.ShowDialog();
+                    if (message.Confirm)
+                    {
+                        Directory.CreateDirectory(loaderFolder);
+                    }
                 }
                 string savepath = Path.Combine(loaderFolder, "loader.json");
                 File.Delete(savepath);

@@ -102,6 +102,7 @@ namespace ServerValueModifier.Sections
             }
             string[] offers = svmconfig.Custom.AddTraderAssort.Split("\r\n");
             var traders = databaseService.GetTraders();
+            //var items = databaseService.GetItems();
             foreach (string line in offers)
             {
                 try
@@ -109,7 +110,6 @@ namespace ServerValueModifier.Sections
                     if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':') && svmconfig.Custom.AddTraderAssort != "")
                     {
                         string[] variables = line.Split(":");
-                        MongoId uid = new();
                         variables[0] = variables[0] switch
                         {
                             "Therapist" => "54cb57776803fa99248b456e",
@@ -145,25 +145,58 @@ namespace ServerValueModifier.Sections
                                     UnlimitedCount = true,
                                     StackObjectsCount = 99999
                                 },
-                                Id = uid,
+                                Id = new MongoId(),
                                 Template = variables[3],
                                 ParentId = "hideout",
                                 SlotId = "hideout"
                             };
                             List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
-                    {
-                        new List<BarterScheme>
-                        {
-                            new BarterScheme
                             {
-                                Count = Convert.ToDouble(variables[2]),
-                                Template = variables[1]
-                            }
-                        }
+                                new List<BarterScheme>
+                                {
+                                    new BarterScheme
+                                    {
+                                        Count = Convert.ToDouble(variables[2]),
+                                        Template = variables[1]
+                                    }
+                                }
                             };
                             traders[variables[0]].Assort.Items.Add(item);
-                            traders[variables[0]].Assort.BarterScheme.Add(uid, barterScheme);
-                            traders[variables[0]].Assort.LoyalLevelItems.Add(uid, Convert.ToInt32(variables[4]));
+                            if (items[variables[3]].Properties.Slots != null && (items[variables[3]].Parent == "5448e54d4bdc2dcc718b4568" || items[variables[3]].Parent == "5448e5284bdc2dcb718b4567"))
+                            {
+                                foreach (var slot in items[variables[3]].Properties.Slots)
+                                {
+                                    if (slot.Name != "Left_side_plate" && slot.Name != "Right_side_plate" && slot.Name != "Front_plate" && slot.Name != "Back_plate" && slot.Properties.Filters.First().Plate.Value != "")
+                                    {//This might be modified in future to make an option
+                                        Item subitem = new()
+                                        {
+                                            Id = new MongoId(),
+                                            Template = slot.Properties.Filters.First().Plate.Value,
+                                            ParentId = item.Id,
+                                            SlotId = slot.Name,
+                                        };
+                                        traders[variables[0]].Assort.Items.Add(subitem);
+                                    }
+                                }
+                            }
+                            else if (items[variables[3]].Properties.StackSlots != null)
+                            {
+                                Item subitem = new()
+                                {
+                                    Id = new MongoId(),
+                                    ParentId = item.Id,
+                                    Template = items[variables[3]].Properties.StackSlots.First().Properties.Filters.First().Filter.First(),
+                                    SlotId = "cartridges",
+                                    Location = 0,
+                                    Upd = new Upd
+                                    {
+                                        StackObjectsCount = items[variables[3]].Properties.StackSlots.First().MaxCount.Value,
+                                    },
+                                };
+                                traders[variables[0]].Assort.Items.Add(subitem);
+                            }
+                            traders[variables[0]].Assort.BarterScheme.Add(item.Id, barterScheme);
+                            traders[variables[0]].Assort.LoyalLevelItems.Add(item.Id, Convert.ToInt32(variables[4]));
                         }
                     }
                 }
