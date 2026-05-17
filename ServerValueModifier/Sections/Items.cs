@@ -69,7 +69,7 @@ namespace ServerValueModifier.Sections
                     var slotfilters = basetemplate.Properties.Slots.ToList();
                     slotfilters.ForEach(slot =>
                     {
-                        var filter = slot.Properties.Filters.ToHashSet();
+                        var filter = slot.Properties.Filters.ToList();
                         filter.First().Filter.Remove(ItemTpl.MEDICAL_CMS_SURGICAL_KIT);
                         filter.First().Filter.Remove(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT);
                         slot.Properties.Filters = filter;
@@ -83,8 +83,8 @@ namespace ServerValueModifier.Sections
                     var gridsfilters = basetemplate.Properties.Grids.ToList();
                     gridsfilters.ForEach(grid => {
                         var filter = grid.Properties.Filters.ToList();
-                        filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT));
-                        filter[0].ExcludedFilter.Add(new MongoId(ItemTpl.MEDICAL_CMS_SURGICAL_KIT));
+                        filter.First().ExcludedFilter.Add(ItemTpl.MEDICAL_SURV12_FIELD_SURGICAL_KIT);
+                        filter.First().ExcludedFilter.Add(ItemTpl.MEDICAL_CMS_SURGICAL_KIT);
                         grid.Properties.Filters = filter;
                     });
                     basetemplate.Properties.Grids = gridsfilters;

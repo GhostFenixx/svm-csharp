@@ -122,8 +122,6 @@ namespace ServerValueModifier
                     var fleaconfig = configServer.GetConfig<RagfairConfig>();
                     fleaconfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
                 }
-                //
-
             }
             catch (FileNotFoundException){}
             catch (Exception ex)
@@ -156,9 +154,9 @@ namespace ServerValueModifier
                 TemplateItem scavcustompocket = _cloner.Clone(items["557ffd194bdc2d28148b457f"]);
                 scavcustompocket.Id = "a8edfb0bce53d103d3f6219b";
                 items["a8edfb0bce53d103d3f6219b"] = scavcustompocket;
-                //Creating Ragman offers for SCAV apparels
+                //Creating Ragman offers for SCAV/BP apparels
                 DeclareModdedAssort(svmcfg);
-                //Initialization
+                //Sections Initialization
                 Sections.Items itemLoad = new(logger, configServer, databaseService, svmcfg);
                 Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, _cloner, svmcfg);
                 Sections.Traders tradersLoad = new(logger, configServer, databaseService, svmcfg);
@@ -333,7 +331,7 @@ namespace ServerValueModifier
         //    public string CurrentlySelectedPreset { get; set; }
         //}
     }
-    [Injectable(TypePriority = OnLoadOrder.PostSptModLoader + 100)]
+    [Injectable(TypePriority = OnLoadOrder.HandbookCallbacks +1)]
     public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper) : IOnLoad
     {
         public Task OnLoad() //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.

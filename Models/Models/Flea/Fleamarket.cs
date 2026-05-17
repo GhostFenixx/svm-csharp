@@ -20,8 +20,7 @@
         public double Rep_gain { get; set; } = 0.02;
         public int Tradeoffer_min { get; set; } = 0;
         public int Sell_chance { get; set; } = 50;
-        public bool EnableFees { get; set; } = true;
-        public double FeesMult { get; set; }
+        public double FeesMult { get; set; } = 1;
         public DynamicOffers DynamicOffers { get; set; }
 
         public Fleamarket()

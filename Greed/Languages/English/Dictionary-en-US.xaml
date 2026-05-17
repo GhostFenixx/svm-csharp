@@ -608,9 +608,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">Player Selling/Buying</System:String>
  <System:String x:Key="FleaMarketLevel">Level to access the Flea market:</System:String>
- <System:String x:Key="FeesMult">Fees multiplier</System:String>
- <System:String x:Key="EnableFees">Enable fees</System:String>
- <System:String x:Key="Sell_chance">Base Sell chance:</System:String>
+    <System:String x:Key="FeesMult">Fees multiplier:</System:String>
+    <System:String x:Key="Sell_chance">Base Sell chance:</System:String>
  <System:String x:Key="Sell_mult">Sell chance multiplier:</System:String>
  <System:String x:Key="RepGain">Reputation gain per 100k roubles of profit:</System:String>
  <System:String x:Key="RepLoss">Reputation loss per 100k roubles of fees:</System:String>

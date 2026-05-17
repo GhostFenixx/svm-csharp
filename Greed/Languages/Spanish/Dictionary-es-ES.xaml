@@ -515,8 +515,7 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="PlayerFlea">Venta/Compra del jugador</System:String>
  <System:String x:Key="FleaMarketLevel">Nivel de acceso al mercadillo:</System:String>
     <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
-    <System:String x:Key="EnableFees">Habilitar impuestos</System:String>
- <System:String x:Key="Sell_chance">Probabilidad base de venta:</System:String>
+    <System:String x:Key="Sell_chance">Probabilidad base de venta:</System:String>
  <System:String x:Key="Sell_mult">Multiplicador de probabilidad de venta:</System:String>
  <System:String x:Key="RepGain">Ganancia de reputación por beneficios de 100k rublos:</System:String>
  <System:String x:Key="RepLoss">Pérdida de reputación por cada 100k Rublos de impuestos:</System:String>

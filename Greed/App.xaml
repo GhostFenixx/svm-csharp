@@ -2,17 +2,11 @@
              xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="clr-namespace:Greed"
-             StartupUri="MainWindow.xaml"
              xmlns:ui="http://schemas.modernwpf.com/2019">
     <Application.Resources>
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ui:ThemeResources />
-                <ResourceDictionary Source="/Languages/English/Dictionary-en-US.xaml"/>
-                <!--<ResourceDictionary Source="/Resources/Dictionary-uk-UA.xaml"/>
-                <ResourceDictionary Source="/Resources/Dictionary-ru-RU.xaml"/>
-                <ResourceDictionary Source="/Resources/Dictionary-zh-CN.xaml"/>
-                <ResourceDictionary Source="/Resources/Dictionary-ko-KR.xaml"/>-->
                 <ui:ThemeResources />
                 <ui:XamlControlsResources />
             </ResourceDictionary.MergedDictionaries>

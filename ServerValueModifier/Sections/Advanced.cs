@@ -22,9 +22,8 @@ namespace ServerValueModifier.Sections
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             Thread.CurrentThread.CurrentCulture = customCulture;
             Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
-
-            //Mailbox related
-            var coreConfig = configServer.GetConfig<CoreConfig>();
+                //Mailbox related
+                var coreConfig = configServer.GetConfig<CoreConfig>();
             if (svmconfig.Custom.DisableCommando) // Made it this way in case other mods will override these fields, like Fika
             {
                 coreConfig.Features.ChatbotFeatures.EnabledBots["6723fd51c5924c57ce0ca01e"] = false;
@@ -38,6 +37,42 @@ namespace ServerValueModifier.Sections
                 var chatConfig = configServer.GetConfig<PmcChatResponse>();
                 chatConfig.Victim.ResponseChancePercent = 0;
                 chatConfig.Killer.ResponseChancePercent = 0;
+            }
+            //Flea options
+            if (svmconfig.Custom.FleaMultID != "" && svmconfig.Custom.FleaMultID.Length > 1)
+            {
+                try
+                {
+                    string[] IDlist = svmconfig.Custom.FleaMultID.Split("\r\n");
+                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
+                    fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride = [];
+                    foreach (string line in IDlist)
+                    {
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
+                        {
+                            string[] variables = line.Split(":");
+                            if (variables[1].Contains(','))
+                            {
+                                variables[1] = variables[1].Replace(',', '.');
+                            }
+                            fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride.Add(variables[0], Convert.ToDouble(variables[1]));
+                        }
+                    }
+                }
+                catch (Exception ex)
+                {
+                    logger.Error("[SVM] Advanced Features - Flea Market - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
+                }
+            }
+
+            //Blacklist, will rewrite it later
+            if (svmconfig.Custom.Blacklist != "" && svmconfig.Custom.Blacklist.Length > 1)
+            {
+                TraderConfig traderConfig = configServer.GetConfig<TraderConfig>();
+                foreach (string item in svmconfig.Custom.Blacklist.Split("\r\n"))
+                {
+                    traderConfig.Fence.Blacklist.Add(item);
+                }
             }
             //IIC
             if (svmconfig.Custom.IDChanger)
@@ -203,40 +238,6 @@ namespace ServerValueModifier.Sections
                 catch (Exception ex)
                 {
                     logger.Error("[SVM] Advanced Features - Add trader sort - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
-                }
-            }
-            if (svmconfig.Custom.FleaMultID != "" && svmconfig.Custom.FleaMultID.Length > 1)
-            {
-                try
-                {
-                    string[] IDlist = svmconfig.Custom.FleaMultID.Split("\r\n");
-                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
-                    fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride = [];
-                    foreach (string line in IDlist)
-                    {
-                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
-                        {
-                            string[] variables = line.Split(":");
-                            if (variables[1].Contains(','))
-                            {
-                                variables[1] = variables[1].Replace(',', '.');
-                            }
-                            fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride.Add(variables[0], Convert.ToDouble(variables[1]));
-                        }
-                    }
-                }
-                catch (Exception ex)
-                {
-                    logger.Error("[SVM] Advanced Features - Flea Market - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
-                }
-            }
-            //Blacklist, will rewrite it later
-            if (svmconfig.Custom.Blacklist != "" && svmconfig.Custom.Blacklist.Length > 1)
-            {
-                TraderConfig traderConfig = configServer.GetConfig<TraderConfig>();
-                foreach (string item in svmconfig.Custom.Blacklist.Split("\r\n"))
-                {
-                    traderConfig.Fence.Blacklist.Add(item);
                 }
             }
         }

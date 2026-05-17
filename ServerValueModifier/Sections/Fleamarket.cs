@@ -20,7 +20,7 @@ namespace ServerValueModifier.Sections
                 fleaconfig.Dynamic.PurchasesAreFoundInRaid = svmconfig.Fleamarket.FleaFIR;
                 globals.Configuration.RagFair.IsOnlyFoundInRaidAllowed = svmconfig.Fleamarket.FleaNoFIRSell;
                 fleaconfig.Dynamic.Barter.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BarterChance;
-                if (!svmconfig.Fleamarket.EnableFees) // By default it's on, that's why "!"
+                if (svmconfig.Fleamarket.FeesMult == 0) // By default it's on, that's why "!"
                 {
                     fleaconfig.Sell.Fees = false;
                     globals.Configuration.RagFair.CommunityTax = float.Epsilon; // Hehe
@@ -34,12 +34,12 @@ namespace ServerValueModifier.Sections
                     globals.Configuration.RagFair.CommunityRequirementTax = svmconfig.Fleamarket.FeesMult;
                 }
 
-                    fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
+                fleaconfig.Sell.Chance.Base = svmconfig.Fleamarket.Sell_chance;
                 fleaconfig.Sell.Chance.SellMultiplier = svmconfig.Fleamarket.Sell_mult;
                 fleaconfig.Sell.Time.Min = svmconfig.Fleamarket.Tradeoffer_min;
                 fleaconfig.Sell.Time.Max = svmconfig.Fleamarket.Tradeoffer_max;
                 fleaconfig.Dynamic.RemoveSeasonalItemsWhenNotInEvent = !svmconfig.Fleamarket.EventOffers;
-                globals.Configuration.RagFair.RatingIncreaseCount = svmconfig.Fleamarket.Rep_gain;
+                globals.Configuration.RagFair.RatingIncreaseCount = svmconfig.Fleamarket.Rep_gain;  
                 globals.Configuration.RagFair.RatingDecreaseCount = svmconfig.Fleamarket.Rep_loss;
                 if (svmconfig.Fleamarket.OverrideOffers)
                 {

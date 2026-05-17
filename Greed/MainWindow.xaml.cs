@@ -30,32 +30,32 @@ namespace Greed
        readonly string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT", "user", "mods", "[SVM] Server Value Modifier", "Loader");
         public MainWindow()
         {
-            InitializeComponent();
+                InitializeComponent();
 
-                    EventManager.RegisterClassHandler(typeof(FrameworkElement),
-            FrameworkElement.MouseEnterEvent,
-            new RoutedEventHandler(OnMouseEnter));
-            EventManager.RegisterClassHandler(typeof(FrameworkElement),
-                FrameworkElement.MouseLeaveEvent,
-                new RoutedEventHandler(OnMouseLeave));
-            ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
-                new FrameworkPropertyMetadata(int.MaxValue));
-            LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
-            if (!File.Exists(Path.Combine(modFolder, "ServerValueModifier.dll")))
-            {
-                Popup message = new((string)Application.Current.FindResource("SVMWrongInstallation"));
-                message.ShowDialog();
-                if (!message.Confirm)
+                EventManager.RegisterClassHandler(typeof(FrameworkElement),
+        FrameworkElement.MouseEnterEvent,
+        new RoutedEventHandler(OnMouseEnter));
+                EventManager.RegisterClassHandler(typeof(FrameworkElement),
+                    FrameworkElement.MouseLeaveEvent,
+                    new RoutedEventHandler(OnMouseLeave));
+                ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
+                    new FrameworkPropertyMetadata(int.MaxValue));
+                LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
+                if (!File.Exists(Path.Combine(modFolder, "ServerValueModifier.dll")))
                 {
-                    Close();
+                    Popup message = new((string)Application.Current.FindResource("SVMWrongInstallation"));
+                    message.ShowDialog();
+                    if (!message.Confirm)
+                    {
+                        Close();
+                    }
                 }
-            }
-            else//If there is proper folder structure - this will yield in a exception, we can handle it here so app at least would be browsable
-            {
-                ToList();
-            }
-            MainClass.MainConfig mainConfig = new();
-            DataContext = mainConfig;
+                else//If there is proper folder structure - this will yield in a exception, we can handle it here so app at least would be browsable
+                {
+                    ToList();
+                }
+                MainClass.MainConfig mainConfig = new();
+                DataContext = mainConfig;
         }
 
         private void LangSwitchClick(object sender, RoutedEventArgs e)

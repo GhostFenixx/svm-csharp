@@ -513,9 +513,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">플레이어 판매/구매</System:String>
  <System:String x:Key="FleaMarketLevel">플리마켓 활성화 레벨</System:String>
- <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
- <System:String x:Key="EnableFees">수수료 활성화</System:String>
- <System:String x:Key="Sell_chance">아이템 기본 판매 확률 :</System:String>
+    <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
+    <System:String x:Key="Sell_chance">아이템 기본 판매 확률 :</System:String>
  <System:String x:Key="Sell_mult">판매 확률 배율 :</System:String>
  <System:String x:Key="RepGain">10만 루블 이익당 명성 증가율 :</System:String>
  <System:String x:Key="RepLoss">10만 루블 수수료당 명성 손실률 :</System:String>

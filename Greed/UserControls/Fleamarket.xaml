@@ -42,7 +42,7 @@
                             <TextBlock Text="{DynamicResource Sell_mult}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
-                    <ui:NumberBox Value="{Binding Fleamarket.FeesMult}" Style="{StaticResource Mults}">
+                    <ui:NumberBox Value="{Binding Fleamarket.FeesMult}" Style="{StaticResource ZeroMults}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource FeesMult}"/>
                         </ui:NumberBox.Header>
@@ -75,7 +75,6 @@
                     <CheckBox Content="{DynamicResource FleaNoFIRSell}" IsChecked="{Binding Fleamarket.FleaNoFIRSell}"/>
                     <CheckBox Foreground="#FFFFA73B" Content="{DynamicResource DisableBSGList}" ToolTip="{DynamicResource DisableBSGList_TT}" IsChecked="{Binding Fleamarket.DisableBSGList}"/>
                     <CheckBox Content="{DynamicResource EventOffers}" IsChecked="{Binding Fleamarket.EventOffers}"/>
-                    <CheckBox Content="{DynamicResource EnableFees}" IsChecked="{Binding Fleamarket.EnableFees}"/>
                     <CheckBox Content="{DynamicResource OverrideOffers}" IsChecked="{Binding Fleamarket.OverrideOffers}"/>
                     <ui:NumberBox Value="{Binding Fleamarket.SellOffersAmount}" Style="{StaticResource FlatsSmall}">
                         <ui:NumberBox.Header>

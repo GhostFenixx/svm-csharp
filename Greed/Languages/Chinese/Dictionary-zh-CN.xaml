@@ -560,8 +560,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">跳蚤市场 玩家出售/购买</System:String>
  <System:String x:Key="FleaMarketLevel">跳蚤市场 解锁等级:</System:String>
- <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
-    <System:String x:Key="EnableFees">启动 跳蚤税</System:String>
+    <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
     <System:String x:Key="Sell_chance">物品 基础出售概率(百分比):</System:String>
  <System:String x:Key="Sell_mult">出售概率 倍率:</System:String>
  <System:String x:Key="RepGain">每赚取10万卢布 评价增加:</System:String>
