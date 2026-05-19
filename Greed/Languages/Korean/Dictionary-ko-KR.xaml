@@ -43,7 +43,11 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <!--MessageBoxes and/or Exception handlers-->
  <System:String xml:space="preserve" x:Key="SVMWrongInstallation">오류: Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 ServerValueModifier.dll 파일을 찾을 수 없습니다.
 모드가 올바르게 설치되었는지 확인하고, 이 프로그램(Greed.exe)이 게임 실행 파일과 동일한 위치에 있는지 확인해주세요.</System:String>
- <System:String x:Key="FileNotFoundException">로드하려는 파일이 존재하지 않습니다.</System:String>
+<System:String xml:space="preserve" x:Key="MissingPresetFolder">Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 Preset 폴더를 찾을 수 없습니다.
+모드가 올바르게 설치되었는지 확인하세요. 이 폴더는 모드가 정상적으로 작동하는 데 필수입니다. 해당 경로에 폴더를 생성하시겠습니까?</System:String>
+<System:String xml:space="preserve" x:Key="MissingLoaderFolder">Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 Loader 폴더를 찾을 수 없습니다.
+모드가 올바르게 설치되었는지 확인하세요. 이 폴더는 모드가 정상적으로 작동하는 데 필수입니다. 해당 경로에 폴더를 생성하시겠습니까?</System:String>
+    <System:String x:Key="FileNotFoundException">로드하려는 파일이 존재하지 않습니다.</System:String>
  <System:String x:Key="CorruptedJSON">이 파일이 손상되었거나 프리셋으로 로드할 수 없습니다.</System:String>
  <System:String x:Key="NoAccess">파일을 읽을 수 없습니다. Windows 권한 문제인가요?</System:String>
  <System:String x:Key="NothingToLoad">로드할 내용이 없습니다. 무명 프리셋도 찾을 수 없습니다. 먼저 프리셋을 생성하거나 선택하세요.</System:String>
@@ -147,7 +151,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="HeatFactor">과열 계수 :</System:String>
  <System:String x:Key="ExamineTime">아이템 조사하는 시간 :</System:String>
  <System:String x:Key="AmmoLoadSpeed">레이드에서 탄창 삽탄 시간 :</System:String>
-    <System:String x:Key="AmmoUnLoadSpeed">NEEDTRANSLATION:</System:String>
+    <System:String x:Key="AmmoUnLoadSpeed">레이드 중 탄창 탄약 제거 시간:</System:String>
     <System:String x:Key="LootExp">아이템 획득을 통해 얻는 경험치 :</System:String>
  <System:String x:Key="ExamineExp">아이템 조사로 얻는 경험치 :</System:String>
  <System:String x:Key="WeightChanger">아이템 무게 :</System:String>
@@ -161,7 +165,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="AllExaminedItems">모든 아이템 조사 완료</System:String>
  <System:String x:Key="EquipRigsWithArmors">방탄 착용 시 방탄 리그 장착 허용</System:String>
     <System:String x:Key="RemoveSecureContainerFilters">보안 컨테이너 보관 제한 필터 제거</System:String>
-    <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 사용 제한</System:String>
+    <System:String x:Key="SurvCMSToSpec">특수 슬롯에 Surv/CMS 수술킷 보관 제한</System:String>
  <System:String x:Key="SurvCMSSecConBlock">보안 컨테이너에 Surv/CMS 수술킷 보관 제한</System:String>
     <System:String x:Key="BackpackStacking">가방 중첩 제한:</System:String>
     <System:String x:Key="RemoveRaidRestr">레이드 진입 전 레이드 소지 아이템 제한 제거</System:String>
@@ -513,7 +517,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">플레이어 판매/구매</System:String>
  <System:String x:Key="FleaMarketLevel">플리마켓 활성화 레벨</System:String>
-    <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
+    <System:String x:Key="FeesMult">수수료 배율:</System:String>
     <System:String x:Key="Sell_chance">아이템 기본 판매 확률 :</System:String>
  <System:String x:Key="Sell_mult">판매 확률 배율 :</System:String>
  <System:String x:Key="RepGain">10만 루블 이익당 명성 증가율 :</System:String>

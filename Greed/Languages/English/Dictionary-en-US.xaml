@@ -131,6 +131,19 @@ will be expanded in the future on next SPT update
   Disable weekly boss - was only triggering if raids section was on instead of bots section
   Car extracts - was disabled due to testing and forgot to turn them back
   Tagilla chance on Factory day
+     
+  2.1.2 For SPT 4.0.12+
+  Added: 
+  Additional handlers in case UI refuses to load
+  Add trader assort now has additional features: ability to remove existing offers and add offers that requests for multiple items
+  Reworked:
+  Disable Fees - reworked into multiplier, thanks to Vanderx_x
+  Add Surv/CMS into special slots - now does exact opposite, because they are allowed in SPT 4.0+ by default
+  Ammo Load/Unload Speed - Was separated by user request
+  Fixed:
+  Changed load order of Advanced loadouts, that should fix flea related IIC uses and Flea market options.
+  Tiered flea is disabled by default - it should've been like that.
+  Add trader assort now properly sells armored rigs/vests and ammo boxes.
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier

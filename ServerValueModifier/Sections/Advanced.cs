@@ -1,4 +1,6 @@
 ﻿using Greed.Models;
+using HarmonyLib;
+using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Configuration.EnvironmentVariables;
 using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
@@ -7,6 +9,8 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Utils.Cloners;
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Globalization;
@@ -14,8 +18,10 @@ using System.Reflection;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Advanced(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Advanced(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ICloner _cloner)
     {
+        private List<List<BarterScheme>> barterScheme;
+
         public void ItemChangerSection()
         {
             CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
@@ -163,40 +169,48 @@ namespace ServerValueModifier.Sections
                             traders[variables[0]].Assort.BarterScheme.Clear();
                             traders[variables[0]].Assort.LoyalLevelItems.Clear();
                         }
+                        if (variables[1] == "REMOVE")
+                        {
+                            var templist = _cloner.Clone(traders[variables[0]].Assort); //Clone, remove, apply, classic cycle
+                            List<string> toremove = new();
+                            int i = 0;
+                            foreach (var offer in traders[variables[0]].Assort.Items)
+                            {
+                                if (offer.Template == variables[2])
+                                {
+                                    templist.BarterScheme.Remove(offer.Id);
+                                    templist.LoyalLevelItems.Remove(offer.Id);
+                                    templist.Items.Remove(offer);
+                                    i++;
+                                }
+                            }
+                            if (i == 0)
+                            {
+                                logger.Warning("[SVM] REMOVE: No offers fitting the ID: " + variables[2] + " Were found on trader: " + variables[0] + ". User error?");
+                            }
+                            traders[variables[0]].Assort = templist;
+                        }
                         else
                         {
-                            variables[1] = variables[1] switch
-                            {
-                                "USD" => ItemTpl.MONEY_DOLLARS,
-                                "RUB" => ItemTpl.MONEY_ROUBLES,
-                                "EUR" => ItemTpl.MONEY_EUROS,
-                                "GP" => ItemTpl.MONEY_GP_COIN,
-                                _ => variables[1]
-                            };
-                            Item item = new()
-                            {
-                                Upd = new Upd
-                                {
-                                    UnlimitedCount = true,
-                                    StackObjectsCount = 99999
-                                },
-                                Id = new MongoId(),
-                                Template = variables[3],
-                                ParentId = "hideout",
-                                SlotId = "hideout"
-                            };
+                            Item item = AddAssortItem(variables[3]);
                             List<List<BarterScheme>> barterScheme = new() // Holy shit BSG.
+                            {new List<BarterScheme>{}};
+                            if (variables[1].StartsWith("["))
                             {
-                                new List<BarterScheme>
+                                string[] reqs = variables[1].Trim('[', ']').Split(",");
+                                string[] count = variables[2].Trim('[', ']').Split(",");
+                                for (int i = 0; i < reqs.Length; i++)
                                 {
-                                    new BarterScheme
-                                    {
-                                        Count = Convert.ToDouble(variables[2]),
-                                        Template = variables[1]
-                                    }
+                                    barterScheme[0].Add(AddAssortBarter(reqs[i], count[i]));
                                 }
-                            };
+                                traders[variables[0]].Assort.BarterScheme.Add(item.Id, barterScheme);
+                            }
+                            else
+                            {
+                                traders[variables[0]].Assort.BarterScheme.Add(item.Id, barterScheme);
+                            }
                             traders[variables[0]].Assort.Items.Add(item);
+                            //Additional conditions check, Ammo stack check, Integrated armor check
                             if (items[variables[3]].Properties.Slots != null && (items[variables[3]].Parent == "5448e54d4bdc2dcc718b4568" || items[variables[3]].Parent == "5448e5284bdc2dcb718b4567"))
                             {
                                 foreach (var slot in items[variables[3]].Properties.Slots)
@@ -230,17 +244,50 @@ namespace ServerValueModifier.Sections
                                 };
                                 traders[variables[0]].Assort.Items.Add(subitem);
                             }
-                            traders[variables[0]].Assort.BarterScheme.Add(item.Id, barterScheme);
                             traders[variables[0]].Assort.LoyalLevelItems.Add(item.Id, Convert.ToInt32(variables[4]));
                         }
                     }
                 }
                 catch (Exception ex)
                 {
-                    logger.Error("[SVM] Advanced Features - Add trader sort - Item's multipliers: Syntax error? read about the error below \n\n" + ex);
+                    logger.Error("[SVM] Advanced Features - Add trader assort: Syntax error? read about the error below \n\n" + ex);
                 }
             }
         }
+        public BarterScheme AddAssortBarter(string id, string value)
+        {
+            id = id switch
+            {
+                "USD" => ItemTpl.MONEY_DOLLARS,
+                "RUB" => ItemTpl.MONEY_ROUBLES,
+                "EUR" => ItemTpl.MONEY_EUROS,
+                "GP" => ItemTpl.MONEY_GP_COIN,
+                _ => (MongoId)id
+            };
+             BarterScheme barterScheme = new()
+            {
+                Count = Convert.ToDouble(value),
+                Template = id
+            };
+            return barterScheme;
+        }
+        public Item AddAssortItem(string tpl)
+        {
+            Item item = new()
+            {
+                Upd = new Upd
+                {
+                    UnlimitedCount = true,
+                    StackObjectsCount = 99999
+                },
+                Id = new MongoId(),
+                Template = tpl,
+                ParentId = "hideout",
+                SlotId = "hideout"
+            };
+            return item;
+        }
+
 
         public void Fixfields(string[] variables)
         {

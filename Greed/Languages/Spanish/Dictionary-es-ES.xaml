@@ -151,8 +151,9 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="HeatFactor">Factor de Temperatura:</System:String>
  <System:String x:Key="ExamineTime">Tiempo para examinar un item:</System:String>
  <System:String x:Key="AmmoLoadSpeed">Tiempo de carga de munición en raid:</System:String>
-    <System:String x:Key="AmmoUnLoadSpeed">Tiempo de descarga de munición en raid:</System:String>
-    <System:String x:Key="LootExp">XP adquirida por recoger objetos:</System:String>
+    <!-- NEEDTRANSLATION -->
+ <System:String x:Key="AmmoUnLoadSpeed">Tiempo de descarga de munición en raid:</System:String>
+ <System:String x:Key="LootExp">XP adquirida por recoger objetos:</System:String>
  <System:String x:Key="ExamineExp">XP adquirida por examinar objetos:</System:String>
  <System:String x:Key="WeightChanger">Peso de objetos:</System:String>
  <System:String x:Key="MalfunctChanceMult">Probabilidad de malfuncionamiento:</System:String>
@@ -514,7 +515,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <!--Fleamarket Section-->
  <System:String x:Key="PlayerFlea">Venta/Compra del jugador</System:String>
  <System:String x:Key="FleaMarketLevel">Nivel de acceso al mercadillo:</System:String>
-    <System:String x:Key="FeesMult">NEEDTRANSLATION:</System:String>
+    <!-- NEEDTRANSLATION -->
+    <System:String x:Key="FeesMult">Multiplicador de tarifas:</System:String>
     <System:String x:Key="Sell_chance">Probabilidad base de venta:</System:String>
  <System:String x:Key="Sell_mult">Multiplicador de probabilidad de venta:</System:String>
  <System:String x:Key="RepGain">Ganancia de reputación por beneficios de 100k rublos:</System:String>

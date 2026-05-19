@@ -332,7 +332,7 @@ namespace ServerValueModifier
         //}
     }
     [Injectable(TypePriority = OnLoadOrder.HandbookCallbacks +1)]
-    public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper) : IOnLoad
+    public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper, ICloner _cloner) : IOnLoad
     {
         public Task OnLoad() //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
         {
@@ -340,7 +340,7 @@ namespace ServerValueModifier
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg);
+                Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg, _cloner);
                 if (svmcfg.Custom.EnableCustom)
                 {
                     logger.LogWithColor("[SVM] Advanced Section is enabled, Loads post init to affect other mods if present", SPTarkov.Server.Core.Models.Logging.LogTextColor.Magenta);
