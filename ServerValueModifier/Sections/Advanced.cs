@@ -75,9 +75,12 @@ namespace ServerValueModifier.Sections
             if (svmconfig.Custom.Blacklist != "" && svmconfig.Custom.Blacklist.Length > 1)
             {
                 TraderConfig traderConfig = configServer.GetConfig<TraderConfig>();
-                foreach (string item in svmconfig.Custom.Blacklist.Split("\r\n"))
+                foreach (string line in svmconfig.Custom.Blacklist.Split("\r\n"))
                 {
-                    traderConfig.Fence.Blacklist.Add(item);
+                    if (!line.StartsWith("#") && !line.StartsWith("//") && line.Length > 1)
+                    {
+                        traderConfig.Fence.Blacklist.Add(line);
+                    }
                 }
             }
             //IIC
@@ -207,6 +210,7 @@ namespace ServerValueModifier.Sections
                             }
                             else
                             {
+                                barterScheme[0].Add(AddAssortBarter(variables[1], variables[2]));
                                 traders[variables[0]].Assort.BarterScheme.Add(item.Id, barterScheme);
                             }
                             traders[variables[0]].Assort.Items.Add(item);
