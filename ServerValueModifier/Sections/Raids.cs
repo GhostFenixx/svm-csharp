@@ -147,9 +147,10 @@ namespace ServerValueModifier.Sections
                 }
                 if (svmconfig.Raids.RaidTime != 0)
                 {
-                    names.Base.ExitAccessTime += svmconfig.Raids.RaidTime;
+                    names.Base.AveragePlayTime += svmconfig.Raids.RaidTime; //Just visual IIRC, added by a user request, no point even listing in changelog
                     names.Base.EscapeTimeLimit += svmconfig.Raids.RaidTime;
-                    names.Base.EscapeTimeLimitCoop += svmconfig.Raids.RaidTime;
+                    names.Base.ExitAccessTime += svmconfig.Raids.RaidTime;
+                    names.Base.EscapeTimeLimitCoop += svmconfig.Raids.RaidTime;//According to server build - those are basically useless
                     names.Base.EscapeTimeLimitPVE += svmconfig.Raids.RaidTime;
                 }
                 var ExitNames = names.Base.Exits;

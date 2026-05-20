@@ -895,7 +895,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="SMGToHolster_TT">This includes every SMG in the game.</System:String>
  <System:String x:Key="ItemPriceMult_TT">Multiplies the base price for the item. Affects buying/selling on the flea market and sales to traders.</System:String>
  <System:String x:Key="ExamineTime_TT">Affects how quickly unexamined items are inspected. Does not impact general search speed.</System:String>
- <System:String  xml:space="preserve" x:Key="AmmoLoadSpeed_TT">Multiplies the required time to load or unload a round into a magazine. 
+ <System:String  xml:space="preserve" x:Key="AmmoLoadSpeed_TT">Multiplies the required time to load or unload a round into or out of a magazine. 
 The smaller the value, the faster the process.</System:String>
  <System:String xml:space="preserve" x:Key="PistolRound_TT">Sets the maximum ammunition stack size 
 per cell for these calibers: 9x18, 9x19, 9x21, 7.62x25, .357(9x33), .45ACP(11.43x23ACP), 46x30, 5.7x28</System:String>

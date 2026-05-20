@@ -190,9 +190,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="AirFilterRate">Ефективність повітряного фільтра:</System:String>
  <System:String x:Key="GPUBoostRate">Множник швидкості видобутку від кількості відеокарт:</System:String>
  <System:String x:Key="WaterFilterRate">Витрата фільтру на чисту воду:</System:String>
- <System:String x:Key="WaterFilterTime">Час очищення води за хвилини:</System:String>
+ <System:String x:Key="WaterFilterTime">Час очищення води (у хвилинах):</System:String>
  <System:String x:Key="MaxBitcoins">Максимальна кількість біткоїнів:</System:String>
- <System:String x:Key="BitcoinTime">Час необхідний для біткоїну в хвилинах:</System:String>
+ <System:String x:Key="BitcoinTime">Час необхідний для біткоїну (в хвилинах):</System:String>
  <System:String x:Key="RemoveConstructionsRequirements">Будівництво не вимагає матеріалів</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Не потребує матеріалів "Знайдених у рейді"</System:String>
  <System:String x:Key="RemoveSkillRequirements">Будівництво не потребує навичок</System:String>
@@ -241,14 +241,14 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="UnlockRef">Відкрити Рефа за замовчуванням</System:String>
  <System:String x:Key="FIRTrade">Куплені предмети з галкою "Знайдені в рейді"</System:String>
  <System:String x:Key="AllQuestsAvailable">Усі квести доступні</System:String>
- <System:String x:Key="RemoveTimeCondition">Забирає час між новими квестами</System:String>
+    <System:String x:Key="RemoveTimeCondition">Видаляє потребу у часі між новими квестами</System:String>
  <System:String x:Key="TradersLvl4">Усі торговці з короною</System:String>
  <System:String x:Key="FIRRestrictsQuests">Немає вимог "Знайдено в рейді" для квестів</System:String>
     <System:String x:Key="RandomizeAssort">Випадкова кількість пропозицій у торговців</System:String>
     <!--<System:String x:Key="RemoveTradeLimits">Прибрати ліміти предметів у торговців</System:String>
  <System:String x:Key="IncreaseAssort">Дуже багато предметів за завезення</System:String>-->
 
- <System:String x:Key="QuestRedeemTime">Час зберігання нагород:</System:String>
+ <System:String x:Key="QuestRedeemTime">Час зберігання нагород (у годинах):</System:String>
  <System:String x:Key="MinDurabSell">Мінімальна міцність для продажу:</System:String>
     <System:String x:Key="PlantingTime">Множник часу на сховку квестових предметів:</System:String>
  <System:String x:Key="PriceMarkup">Націнка (Продаж)</System:String>
@@ -272,13 +272,13 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <!--Services Section-->
  <!--insurance Section-->
  <System:String x:Key="Insurance">Страхування</System:String>
- <System:String x:Key="InsuranceStorageTime">Час зберігання страховки в годинах:</System:String>
- <System:String x:Key="InsuranceTradersTime">Час повернення в годинах:</System:String>
+ <System:String x:Key="InsuranceStorageTime">Час зберігання страховки (в годинах):</System:String>
+ <System:String x:Key="InsuranceTradersTime">Час повернення (в годинах):</System:String>
  <System:String x:Key="InsuranceTradersChance">Шанс повернення в %:</System:String>
  <System:String x:Key="InsuranceTradersPriceMult">Множник ціни на страхування</System:String>
- <System:String x:Key="InsuranceMinimumTime">Мінімальний час повернення страхування в годинах:</System:String>
- <System:String x:Key="InsuranceMaximumTime">Максимальний час повернення страхування в годинах:</System:String>
- <System:String x:Key="InsuranceInterval">Часовий інтервал перевірки на страхування за секунди:</System:String>
+ <System:String x:Key="InsuranceMinimumTime">Мінімальний час повернення страхування (в годинах):</System:String>
+ <System:String x:Key="InsuranceMaximumTime">Максимальний час повернення страхування (в годинах):</System:String>
+ <System:String x:Key="InsuranceInterval">Часовий інтервал перевірки на страхування (у секундах):</System:String>
  <System:String x:Key="InsuranceTimeOverride">Змінити страхування, щоб працювало в секундах:</System:String>
  <System:String x:Key="InsuranceAttachmentChance">Шанс того що у вас не знімуть модулі з зброї в %</System:String>
  <System:String x:Key="HealMarkup">Націнка на лікування</System:String>
@@ -317,7 +317,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="LocationsLoot">Множник здобичі в локаціях</System:String>
  <!--Airdrop Section-->
  <System:String x:Key="Airdrops">Скид с повітря (Airdrop)</System:String>
- <System:String x:Key="AirdropsTimeMinMax">Час для прибуття літака в хвилинах:</System:String>
+ <System:String x:Key="AirdropsTimeMinMax">Час для прибуття літака (в хвилинах):</System:String>
  <System:String x:Key="AirdropChance">Шанс появи Скиду на локацію (%)</System:String>
 
  <!--Unified names of fields inside crates and expander headers-->
@@ -343,7 +343,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="SkillFreshEffect">Множина досвіду протягом бадьорості:</System:String>
  <System:String x:Key="SkillFPoints">Кількість очок бадьорості:</System:String>
  <System:String x:Key="SkillPointsBeforeFatigue">Кількість очок перед втомою:</System:String>
- <System:String x:Key="SkillFatigueReset">Скидання втоми через час у секундах:</System:String>
+ <System:String x:Key="SkillFatigueReset">Скидання втоми через час (у секундах):</System:String>
 
  <System:String x:Key="DiedHealth">Статус здоров'я після рейду</System:String>
  <System:String x:Key="Death">Множник здоров'я після смерті:</System:String>
@@ -393,7 +393,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <!--<System:String x:Key="SandboxAddLevel">Додати обмеження за рівнем для Епіцентру</System:String>-->
  <System:String x:Key="SandboxAccessLevel">Максимальний рівень ПВК для допуску до Эпицентру для новачків</System:String>
  <System:String x:Key="ExtractsSettings">Налаштування Виходів</System:String>
- <System:String x:Key="RaidTime">Додатковий час у рейдах:</System:String>
+ <System:String x:Key="RaidTime">Додатковий час у рейдах (у хвилинах):</System:String>
  <System:String x:Key="Timeacceleration">Множник швидкості часу у рейді:</System:String>
  <System:String x:Key="ChanceExtracts">Усі виходи з шансом завжди доступні</System:String>
  <System:String x:Key="ExtendedExtracts">Стандартні виходи доступні з будь-якої сторони</System:String>
@@ -405,7 +405,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="FreeCoop">Немає вимог для спільних виходів</System:String>
  <System:String x:Key="CoopPaid">Зробити спільні виходи - Платними</System:String>
  <System:String x:Key="FenceGift">Вимкнути подарунки від Скупника за вихід диких</System:String>
- <System:String x:Key="CarExtractTime">Час для виходу через машиниc:</System:String>
+ <System:String x:Key="CarExtractTime">Час старту машини (у секундах):</System:String>
  <System:String x:Key="CoopExitPrices">Ціни за спільні</System:String>
  <System:String x:Key="CarExitPrices">Ціни за машини</System:String>
  <System:String x:Key="CarAndCoop">Виходи через машину</System:String>
@@ -613,7 +613,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
  <System:String x:Key="FriendlyScavs">Всі інші Дикі завжди дружелюбні</System:String>
  <System:String x:Key="FriendlyBosses">Всі Боси завжди ворожі</System:String>
  <System:String x:Key="HostileBosses">Всі Боси завжди дружелюбні</System:String>
- <System:String x:Key="ScavTimer">Час відкату Дикого в секундах:</System:String>
+ <System:String x:Key="ScavTimer">Час відкату Дикого (в секундах):</System:String>
  <System:String x:Key="ScavStats">Характеристики Дикого</System:String>
  <System:String x:Key="CarBaseStanding">Репутація за спільний/машина вихід:</System:String>
  <!--Bots Section-->
