@@ -29,7 +29,7 @@ namespace ServerValueModifier.Sections
 
                 if (svmconfig.Scav.HostileScavs)
                 {
-                    level.Value.AreHostileBossesPresent = svmconfig.Scav.HostileScavs;
+                    level.Value.AreHostileScavsPresent = svmconfig.Scav.HostileScavs;
                 }
                 if (svmconfig.Scav.HostileBosses)
                 {
@@ -37,7 +37,7 @@ namespace ServerValueModifier.Sections
                 }
                 if (svmconfig.Scav.FriendlyScavs)
                 {
-                    level.Value.AreHostileBossesPresent = !svmconfig.Scav.FriendlyScavs;
+                    level.Value.AreHostileScavsPresent = !svmconfig.Scav.FriendlyScavs;
                 }
                 if (svmconfig.Scav.FriendlyBosses)
                 {

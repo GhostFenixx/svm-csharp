@@ -336,8 +336,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
     <System:String x:Key="PrestigeEndurance">Endurance required to prestige:</System:String>
     <System:String x:Key="PrestigeCurrency">Roubles required to prestige:</System:String>
     <System:String x:Key="PrestigeAreas">Disable the requirements of hideout zones</System:String>
-    <System:String x:Key="PrestigeCollector">Remove 'Collector' quest from requiremennts</System:String>
-    <System:String x:Key="PrestigeNewBeginnings">Remove 'New beginnings' quest from requiremennts</System:String>
+    <System:String x:Key="PrestigeCollector">Remove 'Collector' quest from requirements</System:String>
+    <System:String x:Key="PrestigeNewBeginnings">Remove 'New beginnings' quest from requirements</System:String>
     <!--Hideout Multipliers-->
  <System:String x:Key="HideoutProdMult">Hideout production time:</System:String>
  <System:String x:Key="HideoutConstMult">Hideout construction time:</System:String>

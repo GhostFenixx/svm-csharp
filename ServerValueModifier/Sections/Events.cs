@@ -90,7 +90,7 @@ namespace ServerValueModifier.Sections
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossTagilla", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerBully", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossSanitar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKojaniy", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerKojaniy", "0"));
-                    locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossSanitar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "0"));
+                    locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossBully", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerBully", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossBoar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerKojaniy", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossKolontay", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerSanitar", "0"));
                     locs.Shoreline.Base.BossLocationSpawn.Add(CreateBasicBossWave("bossGluhar", 100, "ZoneSanatorium1,ZoneSanatorium2", "followerGluharSecurity", "0"));
