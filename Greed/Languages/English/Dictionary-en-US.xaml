@@ -925,10 +925,9 @@ Such exits are:
   Lighthouse: Mountain Pass
   Reserve: Cliff Descent
  </System:String>
-    <System:String xml:space="preserve" x:Key="FenceRep_TT">This fields alter the relation between you and NPS using same way as Fence repution does
+    <System:String xml:space="preserve" x:Key="FenceRep_TT">This fields alter the relation between you and NPCs using same way as Fence repution does
 It will not disable traitorous scavs and won't alter bosses mind to not attack you after warn etc.
-Those fields exist to set specific behavior towards you while ignoring your scav reputation level.
- </System:String>
+Those fields exist to set specific behavior towards you while ignoring your scav reputation level.</System:String>
     <System:String xml:space="preserve" x:Key="AITypeOverride_TT">Will override all initial SCAV spawns into selected type of AI</System:String>
  <System:String xml:space="preserve" x:Key="HealthResortIncludeGuards_TT">Not recommended! This is more of a stress test than a feature.
 You will have more than 30 AI in a single area. Enable at your own peril.</System:String>
