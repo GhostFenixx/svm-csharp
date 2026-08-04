@@ -1,25 +1,22 @@
 ﻿using Greed.Models;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 
 namespace ServerValueModifier.Sections
 {
-    internal class PMC(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmcfg)
+    internal class PMC(ISptLogger<SVM> logger, TemplateTable templateTable, PmcConfig pmc, BotConfig bot, BotTable bottypes, LocationTable locs, MainClass.MainConfig svmcfg)
     {
         public void PMCSection()
         {
-            var items = databaseService.GetItems();
-            var pmc = configServer.GetConfig<PmcConfig>();
-            var bot = configServer.GetConfig<BotConfig>();
-            var bottypes = databaseService.GetBots();
+            var items = templateTable.Items;
             pmc.IsUsec = svmcfg.PMC.PMCRatio;
             pmc.BotRelativeLevelDelta.Min = svmcfg.PMC.LevelDownMargin;
             pmc.BotRelativeLevelDelta.Max = svmcfg.PMC.LevelUpMargin;
-            var locs = databaseService.GetLocations();
-
 
             if (svmcfg.PMC.ChancesEnable)
             {

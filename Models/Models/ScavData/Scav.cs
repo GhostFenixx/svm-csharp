@@ -13,8 +13,6 @@ namespace Greed.Models.ScavData
         public bool ScavLab { get; set; }
         public bool FriendlyScavs { get; set; }
         public bool HostileScavs { get; set; }
-        public double StandingFriendlyKill { get; set; } = -0.04;
-        public double StandingPMCKill { get; set; } = 0.01;
         public Health Health { get; set; }
         public bool EnableScavHealth { get; set; }
         public bool EnableScav { get; set; }

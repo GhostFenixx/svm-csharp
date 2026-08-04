@@ -59,13 +59,9 @@
             </MenuItem>
             <MenuItem Header="{DynamicResource Changelog}" Click="ChangelogOpen"/>
             <MenuItem Header="{DynamicResource Links}">
-                <MenuItem Header="{DynamicResource SPTHUB}" Click="SPTDiscord"/>
-                <MenuItem Header="{DynamicResource SPTWEB}" Click="SPTWEB"/>
-                <MenuItem Header="{DynamicResource ModWeb}" Click="ModLink"/>
                 <MenuItem Header="{DynamicResource WikiPage}" Click="WikiPage"/>
                 <MenuItem Header="{DynamicResource ItemIDWeb}" Click="ItemFinder"/>
                 <MenuItem Header="{DynamicResource GitHub}" Click="GitHubLink"/>
-                <MenuItem Header="{DynamicResource KoFi}" Click="KofiLink"/>
                 <MenuItem Header="{DynamicResource Fika}" Click="FikaDiscord"/>
             </MenuItem>
             <MenuItem Header="{DynamicResource Info}">
@@ -324,6 +320,6 @@
             </Button>
             <ComboBox Name="Presets" Width="350" Height="30"  PreviewTextInput="TextValidationTextBox" VerticalAlignment="Center" IsEditable="True"/>
         </StackPanel>
-        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.1.2  Hotfix #2" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
+        <TextBlock Grid.Row="2" Grid.Column="3" Margin="0,0,15,15" FontWeight="Bold" FontFamily="{StaticResource Bender}" Foreground="#FFC5C3B2" Style="{StaticResource TabText}" TextWrapping="Wrap" Text="Version № 2.2.0 WIP" VerticalAlignment="Bottom" HorizontalAlignment="Right"/>
     </Grid>
 </Window>

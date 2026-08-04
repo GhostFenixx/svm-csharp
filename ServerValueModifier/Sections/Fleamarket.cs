@@ -1,19 +1,20 @@
 ﻿using Greed.Models;
 using HarmonyLib;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Eft.Common;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Fleamarket(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Fleamarket(ISptLogger<SVM> logger, GlobalTable globals, RagfairConfig fleaconfig, MainClass.MainConfig svmconfig)
     {
         public void FleamarketSection()
         {
-            var fleaconfig = configServer.GetConfig<RagfairConfig>();
-            Globals globals = databaseService.GetGlobals();
             if (svmconfig.Fleamarket.EnablePlayerOffers)
             {
                 globals.Configuration.RagFair.MinUserLevel = svmconfig.Fleamarket.FleaMarketLevel;
@@ -55,8 +56,13 @@ namespace ServerValueModifier.Sections
             fleaconfig.TieredFlea.Enabled = !svmconfig.Fleamarket.TieredFlea;
             fleaconfig.Dynamic.Pack.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BundleOfferChance;
             fleaconfig.Dynamic.ExpiredOfferThreshold = svmconfig.Fleamarket.DynamicOffers.ExpireThreshold;
-            fleaconfig.Dynamic.OfferItemCount["default"].Min = svmconfig.Fleamarket.DynamicOffers.PerOffer_min;
-            fleaconfig.Dynamic.OfferItemCount["default"].Max = svmconfig.Fleamarket.DynamicOffers.PerOffer_max;
+            foreach (var uids in fleaconfig.Dynamic.OfferItemCount)
+            {
+                    uids.Value.Min = svmconfig.Fleamarket.DynamicOffers.PerOffer_min;
+                    uids.Value.Max = svmconfig.Fleamarket.DynamicOffers.PerOffer_max;
+            }
+            //fleaconfig.Dynamic.OfferItemCount["543be5cb4bdc2deb348b4568"].Max = Math.Min(3, svmconfig.Fleamarket.DynamicOffers.PerOffer_max);
+
             fleaconfig.Dynamic.PriceRanges.Default.Min = svmconfig.Fleamarket.DynamicOffers.Price_min;//Maybe someday i'll make a field for each one of them.
             fleaconfig.Dynamic.PriceRanges.Default.Max = svmconfig.Fleamarket.DynamicOffers.Price_max;
             fleaconfig.Dynamic.PriceRanges.Pack.Min = svmconfig.Fleamarket.DynamicOffers.Price_min;

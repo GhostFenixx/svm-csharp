@@ -1,10 +1,12 @@
 ﻿using Greed.Models;
 using Greed.Models.CaseSpaceManager;
 using SPTarkov.Common.Extensions;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -12,12 +14,9 @@ using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Scav(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ICloner cloner, TemplateItem custompocket)
+    internal class Scav(ISptLogger<SVM> logger, GlobalTable globals, TemplateTable templateTable, InRaidConfig inraid, LocationTable locationsdb, MainClass.MainConfig svmconfig, ICloner cloner, TemplateItem custompocket)
     {
-        private readonly Globals globals = databaseService.GetGlobals();
-        private readonly InRaidConfig inraid = configServer.GetConfig<InRaidConfig>();
-        private readonly SPTarkov.Server.Core.Models.Spt.Server.Locations locationsdb = databaseService.GetLocations();
-        Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
+        Dictionary<MongoId, TemplateItem> items = templateTable.Items;
         public void ScavSection() //Shortest section by now, lul.
         {
             globals.Configuration.SavagePlayCooldown = svmconfig.Scav.ScavTimer;

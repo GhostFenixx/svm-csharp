@@ -1,20 +1,23 @@
 ﻿using Greed.Models;
+using ServerValueModifier.HarmonyOverrides;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Player(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig Config)
+    internal class Player(ISptLogger<SVM> logger, GlobalTable globals, HealthConfig healthconfig, TemplateTable templateTable, MainClass.MainConfig Config)
     {
         public void PlayerSection()
         {
-            Globals globals = databaseService.GetGlobals();
-            HealthConfig healthconfig = configServer.GetConfig<HealthConfig>();
-            Dictionary<string, ProfileSides> playertemplates = databaseService.GetProfileTemplates();
+            //Globals globals = databaseService.GetGlobals();
+           // HealthConfig healthconfig = configServer.GetConfig<HealthConfig>();
+            Dictionary<string, ProfileSides> playertemplates = templateTable.Profiles;
             globals.Configuration.SkillsSettings.SkillProgressRate = Config.Player.SkillProgMult;
             globals.Configuration.SkillsSettings.WeaponSkillProgressRate = Config.Player.WeaponSkillMult;
            // healthconfig.HealthMultipliers.Death = Config.Player.DiedHealth.Health_death; TODO: REMOVED
@@ -29,16 +32,16 @@ namespace ServerValueModifier.Sections
                 {
                     var usec = player.Usec.Character.Health.BodyParts;
                     var bear = player.Bear.Character.Health.BodyParts;
-                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(usec, Config.Player.Health, "Current");//using existing method, overriding both usec/bear setups and current/maximum
-                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(usec, Config.Player.Health, "Maximum");
-                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(bear, Config.Player.Health, "Current");
-                    ServerValueModifier.Routers.LocalRaidOverrider.HealthEdit(bear, Config.Player.Health, "Maximum");
+                    LocalRaidPatch.HealthEdit(usec, Config.Player.Health, "Current");//using existing method, overriding both usec/bear setups and current/maximum
+                    LocalRaidPatch.HealthEdit(usec, Config.Player.Health, "Maximum");
+                    LocalRaidPatch.HealthEdit(bear, Config.Player.Health, "Current");
+                    LocalRaidPatch.HealthEdit(bear, Config.Player.Health, "Maximum");
                 }
             }
             if (Config.Player.EnableFatigue)
             {
                 globals.Configuration.SkillMinEffectiveness = Config.Player.Skills.SkillMinEffect;
-                globals.Configuration.SkillFatiguePerPoint = Config.Player.Skills.SkillFatiguePerPoint;
+                globals.Configuration   .SkillFatiguePerPoint = Config.Player.Skills.SkillFatiguePerPoint;
                 globals.Configuration.SkillFreshEffectiveness = Config.Player.Skills.SkillFreshEffect;
                 globals.Configuration.SkillFreshPoints = Config.Player.Skills.SkillFPoints;
                 globals.Configuration.SkillPointsBeforeFatigue = Config.Player.Skills.SkillPointsBeforeFatigue;
@@ -66,16 +69,34 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.Stamina.Capacity = Config.Player.MaxStaminaLegs;
                 globals.Configuration.Stamina.BaseRestorationRate = Config.Player.RegenStaminaLegs;
                 globals.Configuration.Stamina.JumpConsumption = Config.Player.JumpConsumption;
-                globals.Configuration.Stamina.StandupConsumption.X = Config.Player.LayToStand;
-                globals.Configuration.Stamina.PoseLevelConsumptionPerNotch.X = Config.Player.CrouchToStand / 10;
+
+                Vector3 vectorstand = new Vector3//TODO: somehow alter all 3 fields properly.
+                {
+                    X = (float)Config.Player.LayingDown,
+                    Y = 20,
+                    Z = 0,
+                };
+                globals.Configuration.Stamina.StandupConsumption = vectorstand;
+                Vector3 vectorpose = new Vector3
+                {
+                    X = (float)Config.Player.CrouchToStand / 10,
+                    Y = 3,
+                    Z = 0,
+                };
+                globals.Configuration.Stamina.PoseLevelConsumptionPerNotch = vectorpose;
+
             }
             if (Config.Player.EnableStaminaHands)
             {
                 globals.Configuration.Stamina.HandsCapacity = Config.Player.MaxStaminaHands;
                 globals.Configuration.Stamina.HandsRestoration = Config.Player.RegenStaminaHands;
-                globals.Configuration.Stamina.AimConsumptionByPose.X = Config.Player.LayingDown;
-                globals.Configuration.Stamina.AimConsumptionByPose.Y = Config.Player.Crouching;
-                globals.Configuration.Stamina.AimConsumptionByPose.Z = Config.Player.Standing;
+                Vector3 vectorstance = new Vector3
+                {
+                    X = (float)Config.Player.LayingDown,
+                    Y = (float)Config.Player.Crouching,
+                    Z = (float)Config.Player.Standing
+                };
+                globals.Configuration.Stamina.AimConsumptionByPose = vectorstance;
             }
             if (Config.Player.UnlimitedStamina)
             {

@@ -1,10 +1,14 @@
 ﻿using Greed.Models;
 using Greed.Models.Raiding;
+using Microsoft.AspNetCore.Routing.Template;
+using Microsoft.Extensions.Configuration;
 using SPTarkov.Common.Extensions;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Enums.RaidSettings;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -12,14 +16,12 @@ using SPTarkov.Server.Core.Services;
 namespace ServerValueModifier.Sections
 {
     //Safe exit and Softcore located in Routers.ValidateOverrider
-    internal class Raids(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService,  MainClass.MainConfig svmconfig)
+    internal class Raids(ISptLogger<SVM> logger, GlobalTable globals, InRaidConfig inraid, LostOnDeathConfig midcore, LocationTable locationsdb, TraderConfig trader, TemplateTable templateTable, MainClass.MainConfig svmconfig)
     {
-        private readonly Globals globals = databaseService.GetGlobals();
-        private readonly TraderConfig trader = configServer.GetConfig<TraderConfig>();
-        private readonly LostOnDeathConfig midcore = configServer.GetConfig<LostOnDeathConfig>();
-        private readonly SPTarkov.Server.Core.Models.Spt.Server.Locations locationsdb = databaseService.GetLocations();
-        private readonly SPTarkov.Server.Core.Models.Eft.Common.Tables.LocationServices locationservices = databaseService.GetLocationServices();
-        private readonly InRaidConfig inraid = configServer.GetConfig<InRaidConfig>();
+        //private readonly TraderConfig trader = configServer.GetConfig<TraderConfig>();
+        //private readonly LostOnDeathConfig midcore = configServer.GetConfig<LostOnDeathConfig>();
+        //private readonly SPTarkov.Server.Core.Models.Spt.Server.Locations locationsdb = templateTable.lo //databaseService.GetLocations();
+       // private readonly SPTarkov.Server.Core.Models.Eft.Common.Tables.LocationServices locationservices = templateTable.LocationServices; //databaseService.GetLocationServices();
         public void RaidsSection()
         {
 
@@ -95,8 +97,12 @@ namespace ServerValueModifier.Sections
             {
                 foreach (var level in globals.Configuration.FenceSettings.Levels)
                 {
-                    level.Value.TransitGridSize.X = svmconfig.Raids.TransitWidth;
-                    level.Value.TransitGridSize.Y = svmconfig.Raids.TransitHeight;
+                    Vector3 v = new Vector3
+                    {
+                        X = svmconfig.Raids.TransitWidth,
+                        Y = svmconfig.Raids.TransitHeight
+                    };
+                    level.Value.TransitGridSize = v;
                 }
             }
             if (svmconfig.Raids.EnableBTR)
@@ -106,19 +112,32 @@ namespace ServerValueModifier.Sections
                 globals.Configuration.BTRSettings.BearPriceMod = svmconfig.Raids.BearMult;
                 globals.Configuration.BTRSettings.UsecPriceMod = svmconfig.Raids.UsecMult;
                 globals.Configuration.BTRSettings.ScavPriceMod = svmconfig.Raids.ScavMult;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].ChanceSpawn = (double)svmconfig.Raids.BTRWoodsChance;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.X = (double)svmconfig.Raids.BTRWoodsTimeMin * 60;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod.Y = (double)svmconfig.Raids.BTRWoodsTimeMax * 60;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].ChanceSpawn = (double)svmconfig.Raids.BTRStreetsChance;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.X = (double)svmconfig.Raids.BTRStreetsTimeMin * 60;
-                locationservices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod.Y = (double)svmconfig.Raids.BTRStreetsTimeMax * 60;
+                Vector3 vectorwoods = new Vector3
+                {
+                    X = (float)svmconfig.Raids.BTRWoodsTimeMin * 60,
+                    Y = (float)svmconfig.Raids.BTRWoodsTimeMax * 60
+                };
+                templateTable.LocationServices.BtrServerSettings.ServerMapBTRSettings["Woods"].ChanceSpawn = (double)svmconfig.Raids.BTRWoodsChance;
+                templateTable.LocationServices.BtrServerSettings.ServerMapBTRSettings["Woods"].SpawnPeriod = vectorwoods;
+
+                Vector3 vectorstreets = new Vector3
+                {
+                    X = (float)svmconfig.Raids.BTRStreetsTimeMin * 60,
+                    Y = (float)svmconfig.Raids.BTRStreetsTimeMin * 60
+                };
+                templateTable.LocationServices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].ChanceSpawn = (double)svmconfig.Raids.BTRStreetsChance;
+                templateTable.LocationServices.BtrServerSettings.ServerMapBTRSettings["TarkovStreets"].SpawnPeriod = vectorstreets;
                 {
                     foreach (var level in globals.Configuration.FenceSettings.Levels)
                     {
                         if (svmconfig.Raids.ForceBTRStash)
                         {
-                            level.Value.DeliveryGridSize.X = svmconfig.Raids.BTRWidth;
-                            level.Value.DeliveryGridSize.Y = svmconfig.Raids.BTRHeight;
+                            Vector3 v = new Vector3
+                            {
+                                X = svmconfig.Raids.BTRWidth,
+                                Y = svmconfig.Raids.BTRHeight
+                            };
+                            level.Value.DeliveryGridSize = v;
                         }
                         if (svmconfig.Raids.ForceBTRFriendly)
                         {
@@ -127,7 +146,7 @@ namespace ServerValueModifier.Sections
                     }
                 }
             }
-            if (svmconfig.Raids.Exfils.ArmorExtract)
+            if (svmconfig.Raids.Exfils.ArmorExtract)// TODO - turn into a method with try catch, apparently a certain mod exist that acts before SVM and causes it to cause an exception.
             {
                 var allowexfil = globals.Configuration.RequirementReferences.Alpinists.ToList();
                 allowexfil.Splice(2, 1);

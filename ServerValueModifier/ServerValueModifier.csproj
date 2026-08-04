@@ -1,17 +1,17 @@
 ﻿<Project Sdk="Microsoft.NET.Sdk">
   <PropertyGroup>
-    <TargetFramework>net9.0</TargetFramework>
+    <TargetFramework>net10.0</TargetFramework>
 	  <RootNamespace>ServerValueModifier</RootNamespace>
     <ImplicitUsings>enable</ImplicitUsings>
     <Nullable>enable</Nullable>
 	  <OutputType>Library</OutputType>
-	  <Version>2.1.2</Version>
+	  <Version>2.2.0</Version>
   </PropertyGroup>
 	<ItemGroup>
-		<PackageReference Include="SPTarkov.Common" Version="4.0.12" />
-		<PackageReference Include="SPTarkov.DI" Version="4.0.12" />
-		<PackageReference Include="SPTarkov.Server.Core" Version="4.0.12" />
-		<PackageReference Include="SPTarkov.Reflection" Version="4.0.12" />
+		<PackageReference Include="SPTarkov.Common" Version="4.1.0" />
+		<PackageReference Include="SPTarkov.DI" Version="4.1.0" />
+		<PackageReference Include="SPTarkov.Server.Core" Version="4.1.0" />
+		<PackageReference Include="SPTarkov.Reflection" Version="4.1.0" />
 	</ItemGroup>
 	<Import Project="..\Models\Models.projitems" Label="Shared" />
 </Project>

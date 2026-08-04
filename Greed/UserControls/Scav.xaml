@@ -35,10 +35,11 @@
                             </ui:NumberBox>
 
                             <CheckBox Content="{DynamicResource ScavLab}" IsChecked="{Binding Scav.ScavLab}"/>
-                            <CheckBox Content="{DynamicResource HostileScavs}" x:Name="HostileScav" IsChecked="{Binding Scav.HostileScavs}" Click="HostilitySwitchers"/>
-                            <CheckBox Content="{DynamicResource FriendlyScavs}" x:Name="FriendlyScav" IsChecked="{Binding Scav.FriendlyScavs}" Click="FriendlySwitchers"/>
-                            <CheckBox Content="{DynamicResource HostileBosses}" x:Name="HostileBoss" IsChecked="{Binding Scav.HostileBosses}" Click="FriendlyBossSwitchers"/>
-                            <CheckBox Content="{DynamicResource FriendlyBosses}" x:Name="FriendlyBoss" IsChecked="{Binding Scav.FriendlyBosses}" Click="HostilityBossSwitchers"/>
+
+                    <CheckBox Content="{DynamicResource HostileScavs}" x:Name="HostileScav" ToolTip="{DynamicResource FenceRep_TT}" IsChecked="{Binding Scav.HostileScavs}" Click="HostilitySwitchers"/>
+                    <CheckBox Content="{DynamicResource FriendlyScavs}" x:Name="FriendlyScav" ToolTip="{DynamicResource FenceRep_TT}" IsChecked="{Binding Scav.FriendlyScavs}" Click="FriendlySwitchers"/>
+                    <CheckBox Content="{DynamicResource HostileBosses}" x:Name="HostileBoss" ToolTip="{DynamicResource FenceRep_TT}" IsChecked="{Binding Scav.HostileBosses}" Click="FriendlyBossSwitchers"/>
+                    <CheckBox Content="{DynamicResource FriendlyBosses}" x:Name="FriendlyBoss" ToolTip="{DynamicResource FenceRep_TT}" IsChecked="{Binding Scav.FriendlyBosses}" Click="HostilityBossSwitchers"/>
                             <!--<TextBox Margin="0,10" Text="{Binding Raids.RaidStartup.AIAmount}"/>-->
                         </StackPanel>
                     </Expander>

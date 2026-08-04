@@ -66,15 +66,9 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll вдало встановленно в теку. \BepInEx\plugins.</System:String>
  <System:String x:Key="InstallPluginFailed">Встановлення не завершене, не знайдена тека. \BepInEx\plugins.</System:String>
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll вже існує в теці. \BepInEx\plugins, встановлення відмінене.</System:String>
- <System:String xml:space="preserve" x:Key="SPTLink">Натисніть 'Ок' щоб відкрити Діскорд SPT Hub - Поточний хаб розробників SPT,
+    <System:String xml:space="preserve" x:Key="FikaLink">Натисніть 'Ок' щоб відкрити Дискорд Project Fika - Одне з Таркових спільнот в якому так само є GhostFenixx,
 [Увага - Це запустить ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="KofiLink">Натисніть 'Ок', щоб перейти на сторінку Kofi.com - Де ви можете підтримати розробника,
-[Увага - Це запустить ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="FikaLink">Натисніть 'Ок' щоб відкрити Дискорд Project Fika - Одне з Таркових спільнот в якому так само є GhostFenixx,
-[Увага - Це запустить ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="SPTWeb">Натисніть 'Ок' щоб відкрити сайт SPT - Майданчик з усіма модами та релізами,
-[Увага - Це запустить ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="IDFinder">Натисніть 'Ок' щоб відкрити сайт SPT для пошуку ID - Зручна оболонка для перегляду БД
+    <System:String xml:space="preserve" x:Key="IDFinder">Натисніть 'Ок' щоб відкрити сайт Tarkynator для пошуку ID - Зручна оболочка для перегляду БД
 [Увага - Це запустить ваш браузер]</System:String>
  <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
 [Увага - Це запустить ваш браузер]</System:String>

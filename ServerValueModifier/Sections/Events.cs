@@ -1,9 +1,12 @@
 ﻿using Greed.Models;
 using SPTarkov.Common.Extensions;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -15,14 +18,11 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Events(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ModHelper modhelper)
+    internal class Events(ISptLogger<SVM> logger, TemplateTable templateTable, LocationTable locs, BotConfig botconfig, MainClass.MainConfig svmconfig, ModHelper modhelper)
     {
         public void EventsSection()
         {
             // init
-            var locs = databaseService.GetLocations();
-            var locsconfig = configServer.GetConfig<LocationConfig>();
-            var botconfig = configServer.GetConfig<BotConfig>();
             string wavesfile = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
             JsonNode loadName = JsonNode.Parse(File.ReadAllText( Path.Combine(wavesfile, "Misc", "Waves.json")));//This is for more complex setups with guards
             BossLocationSpawn kaban = JsonSerializer.Deserialize<BossLocationSpawn>(loadName!["Kaban"]!.ToString(), JsonUtil.JsonSerializerOptionsIndented)!;

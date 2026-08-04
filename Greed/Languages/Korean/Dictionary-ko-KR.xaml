@@ -71,21 +71,13 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
     <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll이 \BepInEx\plugins 폴더에 성공적으로 설치되었습니다.</System:String>
  <System:String x:Key="InstallPluginFailed">설치 실패, \BepInEx\plugins 폴더를 찾을 수 없습니다.</System:String>
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll이 이미 \BepInEx\plugins 폴더에 존재합니다. 설치가 취소되었습니다.</System:String>
- <System:String xml:space="preserve" x:Key="SPTLink">'OK'버튼을 눌러 SPT Hub(현재 SPT 개발 허브)를 방문하세요.
+    <System:String xml:space="preserve" x:Key="GitHubLink">'OK'버튼을 눌러 Github.com을 방문하세요. - 발견한 문제를 보고할 수 있습니다.
 [주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="KofiLink">'OK'버튼을 눌러 Kofi.com(개발자를 후원할 수 있는 곳)을 방문하세요.
+    <System:String xml:space="preserve" x:Key="FikaLink">'OK'버튼을 눌러 Project Fika Discord(GhostFenixx가 속한 SPT 커뮤니티 중 하나)를 방문하세요.
 [주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="GitHubLink">'OK'버튼을 눌러 Github.com을 방문하세요. - 발견한 문제를 보고할 수 있습니다.
+    <System:String xml:space="preserve" x:Key="IDFinder">'OK'버튼을 눌러 Tarkynator 웹사이트(EFT 아이템 DB)를 방문하세요.
 [주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="FikaLink">'OK'버튼을 눌러 Project Fika Discord(GhostFenixx가 속한 SPT 커뮤니티 중 하나)를 방문하세요.
-[주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="SPTWeb">'OK'버튼을 눌러 SPT 웹사이트(모든 모드가 있는 SPT 커뮤니티 사이트)를 방문하세요.
-[주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="IDFinder">'OK'버튼을 눌러 SPT의 Item Finder 웹사이트(SPT 아이템 DB)를 방문하세요.
-[주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="ModPage">'OK'버튼을 눌러 SVM 모드 페이지를 방문하세요.
-[주의 - 브라우저가 실행됩니다]</System:String>
- <System:String xml:space="preserve" x:Key="WikiPage_Link">'OK'버튼을 눌러 공식 타르코프 위키를 방문하세요.
+    <System:String xml:space="preserve" x:Key="WikiPage_Link">'OK'버튼을 눌러 공식 타르코프 위키를 방문하세요.
 [주의 - 브라우저가 실행됩니다]</System:String>
 <!--Counting-->
  <System:String x:Key="First">첫 번째:</System:String>

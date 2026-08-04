@@ -8,8 +8,6 @@
         public Exfils Exfils { get; set; }
         public bool NoRunThrough { get; set; }
         public int Timeacceleration { get; set; } = 7;
-        public bool SafeExit { get; set; }
-        public bool SaveGearAfterDeath { get; set; }
         public RaidEvents RaidEvents { get; set; }
         public bool LabInsurance { get; set; }
         public bool EnableRaids { get; set; }

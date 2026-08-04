@@ -62,19 +62,11 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
     <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll успешно установлено в папку \BepInEx\plugins.</System:String>
  <System:String x:Key="InstallPluginFailed">Установка не завершена, не найдена папка \BepInEx\plugins.</System:String>
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll уже существует в папке \BepInEx\plugins, установка отменена.</System:String>
- <System:String xml:space="preserve" x:Key="SPTLink">Нажмите 'Ок' что бы открыть Дискорд SPT Hub - Текущий хаб разработчиков SPT,
+    <System:String xml:space="preserve" x:Key="FikaLink">Нажмите 'Ок' что бы открыть Дискорд Project Fika - Одно из Сообществ Таркова в котором так же есть GhostFenixx,
 [Внимание - Это запустит ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="KofiLink">Нажмите 'Ок' что бы перейти на страницу Kofi.com - Где вы можете поддержать разработчика,
+    <System:String xml:space="preserve" x:Key="IDFinder">Нажмите 'Ок' что бы открыть сайт Tarkynator для поиска ID - Удобная оболочка для просмотра БД
 [Внимание - Это запустит ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="FikaLink">Нажмите 'Ок' что бы открыть Дискорд Project Fika - Одно из Сообществ Таркова в котором так же есть GhostFenixx,
-[Внимание - Это запустит ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="SPTWeb">Нажмите 'Ок' что бы открыть сайт SPT  - Площадка со всеми модами и релизами,
-[Внимание - Это запустит ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="IDFinder">Нажмите 'Ок' что бы открыть сайт SPT для поиска ID - Удобная оболочка для просмотра БД
-[Внимание - Это запустит ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="ModPage">Нажмите 'Ок' что бы открыть веб-страницу мода,
-[Внимание - Это запустит ваш браузер]</System:String>
- <!--Buttons-->
+    <!--Buttons-->
  <System:String x:Key="Applied">Готово!</System:String>
  <System:String x:Key="Saved">Сохранено!</System:String>
  <System:String x:Key="Loaded">Загружено!</System:String>

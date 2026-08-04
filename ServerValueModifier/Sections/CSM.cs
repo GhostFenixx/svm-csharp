@@ -6,24 +6,25 @@ using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
-using SPTarkov.Server.Core.Services.Mod;
 using SPTarkov.Server.Core.Utils;
 using System.Text.Json;
 using SPTarkov.Server.Core.Utils.Cloners;
 using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 
 
 
 namespace ServerValueModifier.Sections
 {
-    internal class CSM(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig,ICloner cloner, TemplateItem custompocket)
+    internal class CSM(ISptLogger<SVM> logger, TemplateTable templateTable, InsuranceConfig insurance, MainClass.MainConfig svmconfig,ICloner cloner, TemplateItem custompocket)
     {
 
         public void CSMSection()//Will probably separate pockets and cases.
         {
-            Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = databaseService.GetItems();
-            InsuranceConfig insurance = configServer.GetConfig<InsuranceConfig>();
+            Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = templateTable.Items;
             //Temporary TODO: rework this when CSM is fully implemented
             //List of Cases IDs, order is important since used in cycles
             MongoId[] casesID = ["59fb016586f7746d0d4b423a", "5783c43d2459774bbe137486", "60b0f6c058e0b0481a09ad11", "5e2af55f86f7746d4159f07c", "59fb042886f7746c5005a7b2", "59fb023c86f7746d0d4b423c", "5b7c710788a4506dec015957", "5aafbde786f774389d0cbc0f", "5c127c4486f7745625356c13", "5c093e3486f77430cb02e593", "5aafbcd986f7745e590fff23", "5c0a840b86f7742ffa4f2482", "5b6d9ce188a4501afc1b2b25", "5d235bb686f77443f4331278", "59fafd4b86f7745ca07e1232", "590c60fc86f77412b13fddcf", "567143bf4bdc2d1a0f8b4567", "5c093db286f7740a1b2617e3", "619cbf7d23893217ec30b689", "619cbf9e0a7c3a1a2731940a", "62a09d3bcf4a99369e262447", "66bc98a01a47be227a5e956e", "67600929bd0a0549d70993f6", "67d3ed3271c17ff82e0a5b0b"];
@@ -95,7 +96,7 @@ namespace ServerValueModifier.Sections
 
             if (svmconfig.CSM.CustomPocket)
             {
-                var quests = databaseService.GetQuests();
+                var quests = templateTable.Quests;
                 quests[QuestTpl.OLD_PATTERNS].Rewards["Success"].RemoveAt(1);
                 Pockets pocketsize = svmconfig.CSM.Pockets;
                 //TemplateItem custompocket = _cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);

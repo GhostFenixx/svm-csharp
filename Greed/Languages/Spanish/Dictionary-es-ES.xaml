@@ -69,21 +69,15 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
     <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll se ha instalado con éxito en \BepInEx\plugins .</System:String>
  <System:String x:Key="InstallPluginFailed">Instalación fallida, no se ha podido encontrar la carpeta \BepInEx\plugins.</System:String>
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll ya existe en \BepInEx\plugins. Instalación cancelada.</System:String>
- <System:String xml:space="preserve" x:Key="SPTLink">Pulsa 'Ok' para visitar el HUB de SPT - El actual HUB de desarrollo de SPT,
-[Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="KofiLink">Pulsa 'Ok' para visitar Kofi.com - Un lugar dónde apoyar al creador,
+    <System:String xml:space="preserve" x:Key="KofiLink">Pulsa 'Ok' para visitar Kofi.com - Un lugar dónde apoyar al creador,
 [Aviso - Abrirá tu navegador]</System:String>
  <System:String xml:space="preserve" x:Key="GitHubLink">Pulsa 'Ok' para visitar Github.com - Ahí puedes informar de cualquier error con el que te hayas encontrado,
 [Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="FikaLink">Pulsa 'Ok' para visitar el Discord de Project Fika - Una de las comunidades de SPT en las que GhostFenixx suele encontrarse,
+    <System:String xml:space="preserve" x:Key="FikaLink">Pulsa 'Ok' para visitar el Discord de Project Fika - Una de las comunidades de SPT en las que GhostFenixx suele encontrarse,
 [Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="SPTWeb">Pulsa 'Ok' para visitar la web de SPT - El dominio oficial de SPT, y sus mods,
+    <System:String xml:space="preserve" x:Key="IDFinder">Pulsa 'Ok' para visitar la web de búsqueda de objetos de EFT - Una base de datos de EFT fácil de navegar
 [Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="IDFinder">Pulsa 'Ok' para visitar la web de búsqueda de objetos de SPT - Una base de datos de SPT fácil de navegar
-[Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="ModPage">Pulsa 'Ok' para visitar la página de GREED,
-[Aviso - Abrirá tu navegador]</System:String>
- <System:String xml:space="preserve" x:Key="WikiPage_Link">Pulsa 'Ok' para visitar la Wiki oficial de Escape from Tarkov,
+    <System:String xml:space="preserve" x:Key="WikiPage_Link">Pulsa 'Ok' para visitar la Wiki oficial de Escape from Tarkov,
 [Aviso - Abrirá tu navegador]</System:String>
 <!--Counting-->
     <System:String x:Key="First">Primero:</System:String>

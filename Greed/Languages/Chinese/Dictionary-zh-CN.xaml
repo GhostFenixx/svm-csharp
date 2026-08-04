@@ -111,11 +111,7 @@ Everyone else who provided any kind of support to the project, whether bug repor
     <System:String x:Key="InstallPluginComplete">"HideSpecialIconGrids.dll"已成功安装到您的"\BepInEx\plugins"文件夹中</System:String>
  <System:String x:Key="InstallPluginFailed">安装失败，找不到"\BepInEx\plugins"文件夹。</System:String>
     <System:String x:Key="InstallationAlreadyDone">"HideSpecialIconGrids.dll"已经存在于您的"\BepInEx\plugins"文件夹中，已取消安装。</System:String>
- <System:String xml:space="preserve" x:Key="SPTLink">点击'Ok'访问SPT Hub - 当前SPT的开发网页，
-[注意 - 这会打开您的浏览器]</System:String>
- <System:String xml:space="preserve" x:Key="KofiLink">点击'Ok'访问Kofi.com - 一个支持开发者的平台，
-[注意 - 这会打开您的浏览器]</System:String>
- <System:String xml:space="preserve" x:Key="FikaLink">点击'Ok'访问Project Fika Discord - SPT的社区之一，GhostFenixx在其中，
+    <System:String xml:space="preserve" x:Key="FikaLink">点击'Ok'访问Project Fika Discord - SPT的社区之一，GhostFenixx在其中，
 [注意 - 这会打开您的浏览器]</System:String>
  <System:String xml:space="preserve" x:Key="SPTWeb">点击'Ok'访问SPT网站 - 所有模组的SPT网页，
 [注意 - 这会打开您的浏览器]</System:String>

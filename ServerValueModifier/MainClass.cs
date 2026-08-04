@@ -1,8 +1,14 @@
 ﻿using Greed.Models;
+using Greed.Models.AI;
 using Greed.Models.Flea;
+using HarmonyLib;
+using Spectre.Console;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
+using SPTarkov.Reflection.Patching;
 using SPTarkov.Server.Core.DI;
 using SPTarkov.Server.Core.Helpers;
+using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -10,30 +16,48 @@ using SPTarkov.Server.Core.Models.Eft.Weather;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Repeatable;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils.Cloners;
+using System.Drawing;
 using System.Globalization;
 using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 using System.Xml;
+using static ServerValueModifier.SVMPreLoad;
 using static System.Net.WebRequestMethods;
 using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier
 {
-    [Injectable(TypePriority = OnLoadOrder.PreSptModLoader + 5)]
-    public class SVMPreLoad(ISptLogger<SVM> logger, ModHelper modhelper, ConfigServer configServer) : IOnLoad
+   [Injectable(TypePriority = OnLoadOrder.Preload + 5)]
+    public class SVMPreLoad(ISptLogger<SVM> logger, ModHelper modhelper, BotConfig bots, WeatherConfig weatherconfig, SeasonalEventConfig eventconfig, QuestConfig questconfig, RagfairConfig ragfairConfig, IEnumerable<IRuntimePatch> patches) : IOnLoad
     {
-        public Task OnLoad()
+        public Task OnLoadAsync(CancellationToken cancellationToken)
         {
+
+            try
+            {
+                foreach (var patch in patches)
+                {
+                    patch.Enable();
+                }
+            }
+            catch (Exception ex)
+            {
+                logger.Error($"Error applying patch: {ex.Message}");
+                throw;
+            }
             try
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                BotConfig bots = configServer.GetConfig<BotConfig>();
+                //BotConfig bots = configServer.GetConfig<BotConfig>();
+
                 if (svmcfg.Bots.EnableBots)
                 {
                     bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
@@ -45,20 +69,22 @@ namespace ServerValueModifier
                 {
                     if (svmcfg.Raids.RaidEvents.AITypeOverride)
                     {
-                        switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now. Waiting for 4.0.14? Potentially to expand this with multiple types.
-                        {
-                            case 0: bots.ReplaceScavWith = WildSpawnType.pmcBot; break;
-                            case 1: bots.ReplaceScavWith = WildSpawnType.exUsec; break;
-                            case 2: bots.ReplaceScavWith = WildSpawnType.sectantWarrior; break;
-                            case 3: bots.ReplaceScavWith = WildSpawnType.pmcBEAR; break;
-                            case 4: bots.ReplaceScavWith = WildSpawnType.pmcUSEC; break;
-                            case 5: bots.ReplaceScavWith = WildSpawnType.infectedAssault; break;
-                        }
+                        bots.ReplaceScavWith = WildSpawnType.followerTest;//This is just a placeholder to trigger our harmony method to override it with multiple options rather default one type.
                     }
+                        //if (svmcfg.Raids.RaidEvents.AITypeOverride)
+                        //{
+                        //    switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now. Waiting for 4.0.14? Potentially to expand this with multiple types.
+                        //    {
+                        //        case 0: bots.ReplaceScavWith = WildSpawnType.pmcBot; break;
+                        //        case 1: bots.ReplaceScavWith = WildSpawnType.exUsec; break;
+                        //        case 2: bots.ReplaceScavWith = WildSpawnType.sectantWarrior; break;
+                        //        case 3: bots.ReplaceScavWith = WildSpawnType.pmcBEAR; break;
+                        //        case 4: bots.ReplaceScavWith = WildSpawnType.pmcUSEC; break;
+                        //        case 5: bots.ReplaceScavWith = WildSpawnType.infectedAssault; break;
+                        //    }
+                        //}
 
-
-                    WeatherConfig weatherconfig = configServer.GetConfig<WeatherConfig>();
-                    weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
+                        weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
                     if (svmcfg.Raids.ForceSeason)
                     {   
                         switch (svmcfg.Raids.Season)
@@ -80,9 +106,6 @@ namespace ServerValueModifier
                                 break;
                         }
                     }
-
-                    var eventconfig = configServer.GetConfig<SeasonalEventConfig>();
-                    var questconfig = configServer.GetConfig<QuestConfig>();
                     questconfig.ShowNonSeasonalEventQuests = svmcfg.Raids.RaidEvents.NonSeasonalQuests;
                     //foreach (var eventname in eventconfig.Events)
                     //{
@@ -119,8 +142,7 @@ namespace ServerValueModifier
                 //Flea section
                 if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
                 {
-                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
-                    fleaconfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
+                    ragfairConfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
                 }
             }
             catch (FileNotFoundException){}
@@ -131,12 +153,12 @@ namespace ServerValueModifier
             return Task.CompletedTask;
         }
     }
-    [Injectable(TypePriority = OnLoadOrder.PostDBModLoader + 5)]
-    public class SVM(ISptLogger<SVM> logger, ModHelper modhelper, ConfigServer configServer, SeasonalEventService seasonalEvent, DatabaseService databaseService, LocaleService localeService, ICloner _cloner) : IOnLoad
+    [Injectable(TypePriority = OnLoadOrder.PostLoad+ 5)]
+    public class SVM(ISptLogger<SVM> logger, ModHelper modhelper, TemplateTable templateTable, HideoutConfig hideoutConfig, SeasonalEventService seasonalEvent, BotTable botTable, PmcConfig pmcConfig, InRaidConfig inRaidConfig, LocaleTable localeTable, RagfairConfig fleaconfig, LostOnDeathConfig midcore, AirdropConfig airdropConfig, HealthConfig healthConfig, BotConfig botConfig, LocationConfig locationConfig, LocationTable locationTable, TraderConfig traderConfig, InsuranceConfig insurance, RepairConfig repair, TradersTable tradersTable, QuestConfig questConfig, HideoutTable hideoutTable, GlobalTable globals, ICloner _cloner) : IOnLoad
     {
 
         public static string ffolder; // TODO - Wait until changes are done about GetExecutingAssembly, create a new method to point to mod folder
-        public Task OnLoad()
+        public Task OnLoadAsync(CancellationToken cancellationToken)
         {
 
             string folder = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
@@ -146,7 +168,7 @@ namespace ServerValueModifier
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
                 //Predefining modded items to avoid profile "corruption" if certain fields were removed
-                Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = databaseService.GetItems();
+                Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = templateTable.Items;
                 //Creating Pockets here to exist whether section ON or OFF so we won't have an issue when modded item not found if section is off
                 TemplateItem custompocket = _cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);
                 custompocket.Id = "a8edfb0bce53d103d3f62b9b";
@@ -157,20 +179,20 @@ namespace ServerValueModifier
                 //Creating Ragman offers for SCAV/BP apparels
                 DeclareModdedAssort(svmcfg);
                 //Sections Initialization
-                Sections.Items itemLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Hideout hideoutLoad = new(logger, configServer, databaseService, _cloner, svmcfg);
-                Sections.Traders tradersLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Services servicesLoad = new(logger, configServer, databaseService, _cloner, localeService, svmcfg);
-                Sections.Loot lootLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Bots botload = new(logger, configServer, databaseService, svmcfg);
-                Sections.Player playerLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Raids raidsload = new(logger, configServer, databaseService, svmcfg);
-                Sections.Fleamarket fleamarketLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.Quests questsLoad = new(logger, configServer, databaseService, svmcfg);
-                Sections.CSM csmLoad = new(logger, configServer, databaseService, svmcfg, _cloner, custompocket);
-                Sections.Events eventsLoad = new(logger, configServer, databaseService, svmcfg, modhelper);
-                Sections.Scav scavload = new(logger, configServer, databaseService, svmcfg, _cloner, scavcustompocket);
-                Sections.PMC pmcload = new(logger, configServer, databaseService, svmcfg);
+                Sections.Items itemLoad = new(logger, templateTable, globals, svmcfg);
+                Sections.Hideout hideoutLoad = new(logger, globals, hideoutConfig, hideoutTable, templateTable, _cloner, svmcfg);
+                Sections.Traders tradersLoad = new(logger, globals, templateTable, traderConfig, tradersTable, questConfig, svmcfg);
+                Sections.Services servicesLoad = new(logger, globals, _cloner, insurance, repair, templateTable, tradersTable, svmcfg);
+                Sections.Loot lootLoad = new(logger, airdropConfig, templateTable, locationConfig, locationTable, svmcfg);
+                Sections.Bots botload = new(logger, locationTable, botConfig, svmcfg);
+                Sections.Player playerLoad = new(logger, globals, healthConfig, templateTable, svmcfg);
+                Sections.Raids raidsload = new(logger, globals, inRaidConfig, midcore,locationTable,traderConfig, templateTable, svmcfg);
+                Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, svmcfg);
+                Sections.Quests questsLoad = new(logger, templateTable, questConfig, svmcfg);
+                Sections.CSM csmLoad = new(logger, templateTable, insurance, svmcfg, _cloner, custompocket);
+                Sections.Events eventsLoad = new(logger, templateTable, locationTable, botConfig, svmcfg, modhelper);
+                Sections.Scav scavload = new(logger, globals, templateTable, inRaidConfig, locationTable, svmcfg, _cloner, scavcustompocket);
+                Sections.PMC pmcload = new(logger, templateTable, pmcConfig, botConfig, botTable, locationTable, svmcfg);
 
                 if (svmcfg.Items.EnableItems) itemLoad.ItemsSection();
                 if (svmcfg.Hideout.EnableHideout) hideoutLoad.HideoutSection();
@@ -203,8 +225,8 @@ namespace ServerValueModifier
 
                 string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder, "Misc", "MOTD.txt")).Split("\n");
                 Random rnd = new Random();
-                logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
-                logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", SPTarkov.Server.Core.Models.Logging.LogTextColor.Blue);
+                logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], Spectre.Console.Color.Blue);
+                logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", Spectre.Console.Color.Blue);
             }
             catch (FileNotFoundException)
             {
@@ -245,9 +267,9 @@ namespace ServerValueModifier
 
         public void CreateUpperSuitAndAddIntoAssort(MongoId upKitID, MongoId body, MongoId hands, MongoId lowKitID, MongoId tradeUpperUID, MainClass.MainConfig cfg)
         {
-            var suits = databaseService.GetCustomization();//Maybe i shouldn't call them here, TODO
-            var traders = databaseService.GetTraders();
-            var locales = databaseService.GetTables().Locales.Global;
+            var suits = templateTable.Customization;//Maybe i shouldn't call them here, TODO
+            var traders = tradersTable;
+            var locales = localeTable.Global;  //databaseService.GetTables().Locales.Global;
             if (traders[TraderID.FENCE].Suits is null) //Horrible temporary solution, will make it outside cycle. later, TODO
             {
                 traders[TraderID.FENCE].Base.CustomizationSeller = true;
@@ -266,7 +288,7 @@ namespace ServerValueModifier
             }
             suits[upKitID] = uppercustom;
             //MongoId originallocale = 
-            if (databaseService.GetLocales().Global.TryGetValue("en", out var lazyloadedValue))
+            if (localeTable.Global.TryGetValue("en", out var lazyloadedValue))
             {
                 lazyloadedValue.AddTransformer(lazyloadedLocaleData =>
                 {
@@ -288,9 +310,9 @@ namespace ServerValueModifier
         }
         public void CreateLowerSuitAndAddIntoAssort(MongoId lowKitID, MongoId feet, MongoId tradeLowerUID, MainClass.MainConfig cfg)
         {
-            var suits = databaseService.GetCustomization();//Maybe i shouldn't call them here, TODO
-            var traders = databaseService.GetTraders();
-            var locales = databaseService.GetTables().Locales.Global;
+            var suits = templateTable.Customization;//Maybe i shouldn't call them here, TODO
+            var traders = tradersTable;
+            var locales = localeTable.Global;
 
             Suit lowerassort = _cloner.Clone(traders[TraderID.RAGMAN].Suits[1]);//
             CustomizationItem? lowercustom = _cloner.Clone(suits["66043e047502eca33a08cad6"]);
@@ -304,7 +326,7 @@ namespace ServerValueModifier
             }
             suits[lowKitID] = lowercustom;
 
-            if (databaseService.GetLocales().Global.TryGetValue("en", out var lazyloadedValue))
+            if (localeTable.Global.TryGetValue("en", out var lazyloadedValue))
             {
                 lazyloadedValue.AddTransformer(lazyloadedLocaleData =>
                 {
@@ -332,18 +354,30 @@ namespace ServerValueModifier
         //}
     }
     [Injectable(TypePriority = OnLoadOrder.HandbookCallbacks +1)]
-    public class SVMPostLoad(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ModHelper modhelper, ICloner _cloner) : IOnLoad
+    public class SVMPostLoad(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig ragfairConfig, TraderConfig traderConfig, TradersTable traderstable, ModHelper modhelper, ICloner _cloner) : IOnLoad
     {
-        public Task OnLoad() //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
+        public Task OnLoadAsync(CancellationToken cancellationToken) //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
         {
             try
             {
+
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                Sections.Advanced advLoad = new(logger, configServer, databaseService, svmcfg, _cloner);
+                Sections.Advanced advLoad = new(logger, templateTable, coreConfig, chatConfig, ragfairConfig, traderConfig, traderstable, svmcfg, _cloner);
+                if (svmcfg.Items.EnableItems)
+                {
+                    var handbook = templateTable.Handbook.Items;
+                    foreach (var ele in handbook)
+                    {
+                        if (ele.ParentId != "5b5f78b786f77447ed5636af" && ele.Price != null)
+                        {
+                            ele.Price = ele.Price * svmcfg.Items.ItemPriceMult;
+                        }
+                    }
+                }
                 if (svmcfg.Custom.EnableCustom)
                 {
-                    logger.LogWithColor("[SVM] Advanced Section is enabled, Loads post init to affect other mods if present", SPTarkov.Server.Core.Models.Logging.LogTextColor.Magenta);
+                    logger.LogWithColor("[SVM] Advanced Section is enabled, loads pre-init to affect handbook", Spectre.Console.Color.Magenta);
                     advLoad.ItemChangerSection();
                 }
                 return Task.CompletedTask;

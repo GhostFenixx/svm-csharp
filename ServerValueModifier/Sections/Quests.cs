@@ -1,8 +1,10 @@
 ﻿using Greed.Models;
 using Greed.Models.Questing;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Repeatable;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -11,7 +13,7 @@ using static System.Net.Mime.MediaTypeNames;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Quests(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Quests(ISptLogger<SVM> logger, TemplateTable templateTable, QuestConfig quest, MainClass.MainConfig svmconfig)
     {
         public void QuestSection()
         {
@@ -23,8 +25,7 @@ namespace ServerValueModifier.Sections
             Greed.Models.Questing.DailyQuests weekly = svmconfig.Quests.WeeklyQuests;
             Greed.Models.Questing.DailyQuests scavdaily = svmconfig.Quests.ScavQuests;
 
-            SPTarkov.Server.Core.Models.Spt.Templates.Templates questdb = databaseService.GetTemplates();
-            SPTarkov.Server.Core.Models.Eft.Common.Tables.RepeatableTemplates? questtemplate = questdb.RepeatableQuests.Templates;
+            SPTarkov.Server.Core.Models.Eft.Common.Tables.RepeatableTemplates? questtemplate = templateTable.RepeatableQuests.Templates;
 
             if (svmconfig.Quests.EnableQuestsMisc)//Awful, TODO rewrite into cycle somehow.
             {
@@ -50,7 +51,6 @@ namespace ServerValueModifier.Sections
         }
         public void QuestRewards(DailyQuests type, int digit)
         {
-            var quest = configServer.GetConfig<QuestConfig>();
             string[] levels = type.Levels.Split(',');
             string[] exp = type.Experience.Split(",");
             string[] rep = type.Reputation.Split(",");
@@ -78,7 +78,6 @@ namespace ServerValueModifier.Sections
         }
         public void QuestDetails(DailyQuests type, int digit)
         {
-            var quest = configServer.GetConfig<QuestConfig>();
             string[] arrays = ["Elimination", "Completion", "Exploration"]; 
             quest.RepeatableQuests[digit].ResetTime = (long)type.Lifespan * 60;
             quest.RepeatableQuests[digit].NumQuests = type.QuestAmount;

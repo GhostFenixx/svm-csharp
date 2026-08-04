@@ -1,8 +1,10 @@
 ﻿using Greed.Models;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -11,15 +13,12 @@ using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Services(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ICloner _cloner, LocaleService localeService, MainClass.MainConfig svmcfg)
+    internal class Services(ISptLogger<SVM> logger, GlobalTable globals,  ICloner _cloner, InsuranceConfig insurance, RepairConfig repair, TemplateTable templateTable, TradersTable traders, MainClass.MainConfig svmcfg)
     {
         public void ServicesSection()
         {
-            var repair = configServer.GetConfig<RepairConfig>();
-            var insurance = configServer.GetConfig<InsuranceConfig>();
-            var traders = databaseService.GetTraders();
-            var suits = databaseService.GetCustomization();
-            Globals globals = databaseService.GetGlobals();
+            var suits = templateTable.Customization;
+
             //Insurance section
             if (svmcfg.Services.EnableInsurance)
             {
@@ -114,8 +113,6 @@ namespace ServerValueModifier.Sections
                 repair.WeaponTreatment.PointGainMultiplier = svmcfg.Services.RepairBox.WeaponMaintenanceSkillMult;
                 repair.RepairKitIntellectGainMultiplier.Weapon = svmcfg.Services.RepairBox.IntellectSkillMultWeaponKit;
                 repair.RepairKitIntellectGainMultiplier.Armor = svmcfg.Services.RepairBox.IntellectSkillMultArmorKit;
-                repair.MaxIntellectGainPerRepair.Kit = svmcfg.Services.RepairBox.IntellectSkillLimitKit;
-                repair.MaxIntellectGainPerRepair.Trader = svmcfg.Services.RepairBox.IntellectSkillLimitTraders;
                 repair.ApplyRandomizeDurabilityLoss = !svmcfg.Services.RepairBox.NoRandomRepair;
                 foreach (var trader in traders)
                 {
@@ -141,7 +138,7 @@ namespace ServerValueModifier.Sections
                 }
                 if (svmcfg.Services.RepairBox.OpGunRepair)
                 {
-                    Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
+                    Dictionary<MongoId, TemplateItem> items = templateTable.Items;
                     foreach (TemplateItem basetemplate in items.Values)
                     {
                         if (basetemplate.Properties.MaxRepairDegradation is not null && basetemplate.Properties.MaxRepairKitDegradation is not null)

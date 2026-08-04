@@ -1,12 +1,15 @@
 ﻿using Greed.Models;
 using HarmonyLib;
 using SPTarkov.Common.Extensions;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Hideout;
 using SPTarkov.Server.Core.Models.Enums;
+using SPTarkov.Server.Core.Models.Enums.Hideout;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -14,27 +17,24 @@ using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Hideout(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, ICloner _cloner, MainClass.MainConfig svmconfig)
+    internal class Hideout(ISptLogger<SVM> logger, GlobalTable globals, HideoutConfig hideoutConfig, HideoutTable hideoutTable, TemplateTable templateTable, ICloner _cloner, MainClass.MainConfig svmconfig)
     {
         public void HideoutSection()
         {
             // Init
-            HideoutConfig hideoutConfig = configServer.GetConfig<HideoutConfig>();
-            Prestige prestige = databaseService.GetTemplates().Prestige;
-            Globals globals = databaseService.GetGlobals();
-            SPTarkov.Server.Core.Models.Spt.Hideout.Hideout hideout = databaseService.GetHideout();
+            Prestige prestige = templateTable.Prestige;
             //
-            hideout.Settings.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
-            hideout.Settings.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
-            hideout.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
-            hideout.Settings.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
+            hideoutTable.Settings.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
+            hideoutTable.Settings.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
+            hideoutTable.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;
+            hideoutTable.Settings.GpuBoostRate *= svmconfig.Hideout.GPUBoostRate;
             hideoutConfig.CultistCircle.MaxRewardItemCount = svmconfig.Hideout.CultistMaxRewards;
             hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds = Math.Max((int)(hideoutConfig.CultistCircle.HideoutTaskRewardTimeSeconds * svmconfig.Hideout.CultistTime), 1);
             hideoutConfig.CultistCircle.CraftTimeThresholds.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime), 1); });
             hideoutConfig.CultistCircle.DirectRewards.ForEach(c => { c.CraftTimeSeconds = Math.Max((int)(c.CraftTimeSeconds * svmconfig.Hideout.CultistTime), 1); });
             if (svmconfig.Hideout.RemoveCustomizationRequirements)
             {
-                foreach (var fancy in hideout.Customisation.Globals)
+                foreach (var fancy in hideoutTable.Customisation.Globals)
                 {
                     fancy.Conditions = [];
                 }
@@ -44,7 +44,7 @@ namespace ServerValueModifier.Sections
                 MongoId[] toRemove = [ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_RARE, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_BATTLEPASS_0, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_COMMON, ItemTpl.BARTER_LOCKED_EQUIPMENT_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_COMMON, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_EPIC, ItemTpl.BARTER_LOCKED_SUPPLY_CRATE_RARE, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_COMMON, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_EPIC, ItemTpl.BARTER_LOCKED_VALUABLES_CRATE_RARE, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_COMMON, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_EPIC, ItemTpl.BARTER_LOCKED_WEAPON_CRATE_RARE];
                 hideoutConfig.HideoutCraftsToAdd.Clear();
                 hideoutConfig.HideoutLootCrateCraftIdsToUnlockInHideout = [];
-                foreach (var crafts in hideout.Production.Recipes)
+                foreach (var crafts in hideoutTable.Production.Recipes)
                 {
 
                     foreach (var condition in crafts.Requirements)
@@ -61,7 +61,7 @@ namespace ServerValueModifier.Sections
                     }
                 }
             }
-            var itemsdb = databaseService.GetItems();
+            var itemsdb = templateTable.Items;
             //Stash size section with all 5 editions.
             if (svmconfig.Hideout.EnableStash)
             {
@@ -92,7 +92,7 @@ namespace ServerValueModifier.Sections
             //    }
             //}
             //Hideout Construction time multiplier
-            foreach (HideoutArea area in hideout.Areas)
+            foreach (var area in hideoutTable.Areas)
             {
                 foreach (Stage stage in area.Stages.Values)
                 {
@@ -107,7 +107,7 @@ namespace ServerValueModifier.Sections
                 }
             }
             //Production time multipliers including water and bitcoin generation
-            foreach (HideoutProduction production in hideout.Production.Recipes)
+            foreach (HideoutProduction production in hideoutTable.Production.Recipes)
             {
                 if (production.Id == "5d5589c1f934db045e6c5492")
                 {
@@ -129,7 +129,7 @@ namespace ServerValueModifier.Sections
                 }
             }
             //Hideout's scav case price modifiers for cash offers.
-            foreach (ScavRecipe production in hideout.Production.ScavRecipes)
+            foreach (ScavRecipe production in hideoutTable.Production.ScavRecipes)
             {
                 //Hideout's Scav case 'crafts' time multiplier
                 production.ProductionTime *= svmconfig.Hideout.ScavCaseTime;
@@ -147,7 +147,7 @@ namespace ServerValueModifier.Sections
             if (svmconfig.Hideout.RemoveConstructionsRequirements || svmconfig.Hideout.RemoveSkillRequirements || svmconfig.Hideout.RemoveTraderLevelRequirements || svmconfig.Hideout.RemoveConstructionsFIRRequirements)
             {
                 Stage Rewriter = new();
-                foreach (HideoutArea area in hideout.Areas)
+                foreach (HideoutArea area in hideoutTable.Areas)
                 {
                     foreach (Stage stage in area.Stages.Values)
                     {
@@ -231,7 +231,7 @@ namespace ServerValueModifier.Sections
                                 condition.Value = svmconfig.Hideout.PrestigeCharisma;
                                 Rewriter.Conditions.Add(condition);
                             }
-                            if(condition.ConditionType == "HasItem" && svmconfig.Hideout.PrestigeCurrency != 0) //(condition.Target.Item == "5449016a4bdc2d6f028b456f") By weird circumstance i can't select it this way, so the only solution would be using "conditionType": "HasItem" in hopes no other mod touches prestige.
+                            if (condition.ConditionType == "HasItem" && svmconfig.Hideout.PrestigeCurrency != 0) //(condition.Target.Item == "5449016a4bdc2d6f028b456f") By weird circumstance i can't select it this way, so the only solution would be using "conditionType": "HasItem" in hopes no other mod touches prestige.
                             {
                                 condition.Value = svmconfig.Hideout.PrestigeCurrency;
                                 Rewriter.Conditions.Add(condition);
@@ -270,7 +270,7 @@ namespace ServerValueModifier.Sections
             //Removing passive bonuses for Health/Energy/Hydration regeneration.
             if (svmconfig.Hideout.RemoveConstructionsRequirements || svmconfig.Hideout.RemoveSkillRequirements || svmconfig.Hideout.RemoveTraderLevelRequirements || svmconfig.Hideout.RemoveConstructionsFIRRequirements)
             {
-                foreach (HideoutArea area in hideout.Areas)
+                foreach (HideoutArea area in hideoutTable.Areas)
                 {
                     foreach (Stage stage in area.Stages.Values)
                     {
@@ -296,8 +296,8 @@ namespace ServerValueModifier.Sections
         public void PrestigeTransferEdit(TransferConfigs edit, int height, int skills, int mastery, bool filter)
         {
             edit.StashConfig.XCellCount = height;
-            edit.SkillConfig.TransferMultiplier = skills;
-            edit.MasteringConfig.TransferMultiplier = mastery;
+            edit.SkillConfig.TransferMultiplier = (double)(skills / 100);
+            edit.MasteringConfig.TransferMultiplier = (double)(mastery / 100);
             if (filter)
             {
                 edit.StashConfig.Filters.IncludedItems = ["54009119af1c881c07000029"];

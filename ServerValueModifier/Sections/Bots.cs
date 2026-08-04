@@ -1,17 +1,17 @@
 ﻿using Greed.Models;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Bots(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Bots(ISptLogger<SVM> logger, LocationTable locs, BotConfig bots, MainClass.MainConfig svmconfig)
     {
         public void BotsSection()
         {
-            var locs = databaseService.GetLocations();
-            BotConfig bots = configServer.GetConfig<BotConfig>();
             //Double cycle to go through every location and every boss wave,
             //using switch to sort through boss names to adjust their spawn chances accordingly
             foreach (var loc in locs.GetDictionary().Values)

@@ -281,9 +281,9 @@
                         <ComboBoxItem Content="{DynamicResource Raiders}"/>
                         <ComboBoxItem Content="{DynamicResource Rogues}"/>
                         <ComboBoxItem Content="{DynamicResource Cultist}"/>
-                        <ComboBoxItem Content="{DynamicResource Bear}"/>
-                        <ComboBoxItem Content="{DynamicResource Usec}"/>
                         <ComboBoxItem Foreground="Orange" Content="{DynamicResource Zombies}"/>
+                        <ComboBoxItem Content="{DynamicResource Bosses}"/>
+                        <ComboBoxItem Content="{DynamicResource PMCAI}"/>
 
                     </ComboBox>
                     <CheckBox Content="{DynamicResource GlukharLabs}" IsChecked="{Binding Raids.RaidEvents.GlukharLabs}"/>

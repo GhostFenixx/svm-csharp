@@ -1,9 +1,11 @@
 ﻿using Greed.Models;
 using Greed.Models.Questing;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -11,17 +13,14 @@ using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Traders(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmcfg)
+    internal class Traders(ISptLogger<SVM> logger, GlobalTable globals, TemplateTable templateTable, TraderConfig traderConfig, TradersTable traderstable, QuestConfig questConfig, MainClass.MainConfig svmcfg)
     {
 
         public void TradersSection()
         {
             //Defining Globals, SPT's config of traders and traders database
-            Globals globals = databaseService.GetGlobals();
-            TraderConfig traderConfig = configServer.GetConfig<TraderConfig>();
-            QuestConfig questConfig = configServer.GetConfig<QuestConfig>();
-            Dictionary<MongoId, Quest> quests = databaseService.GetQuests();
-            Dictionary<MongoId, Trader> traders = databaseService.GetTraders();
+            Dictionary<MongoId, Quest> quests = templateTable.Quests;
+            Dictionary<MongoId, Trader> traders = traderstable;
             //Need to move trader array outside the method
             string[] traderArray = [TraderID.PRAPOR, TraderID.THERAPIST, TraderID.SKIER, TraderID.PEACEKEEPER, TraderID.MECHANIC, TraderID.RAGMAN, TraderID.JAEGER, TraderID.REF, TraderID.FENCE];
             Greed.Models.Trading.TraderMarkup traderMarkupList = svmcfg.Traders.TraderMarkup;

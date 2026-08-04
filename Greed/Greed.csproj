@@ -15,10 +15,10 @@
     <PackageIcon>SVMLOGO.png</PackageIcon>
     <PlatformTarget>x64</PlatformTarget>
     <PackageLicenseFile>LICENSE</PackageLicenseFile>
-    <FileVersion>2.1.2</FileVersion>
+    <FileVersion>2.2.0</FileVersion>
     <EnableNETAnalyzers>False</EnableNETAnalyzers>
     <CETCompat>false</CETCompat>
-    <Version>2.1.2</Version>
+    <Version>2.2.0</Version>
   </PropertyGroup>
 
   <ItemGroup>

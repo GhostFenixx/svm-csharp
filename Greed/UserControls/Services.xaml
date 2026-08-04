@@ -146,18 +146,6 @@
                             </ui:NumberBox>
                         </DockPanel>
                         <TextBlock Text="{DynamicResource IntellectSkillLimit}" Margin="10" HorizontalAlignment="Center"/>
-                        <DockPanel>
-                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillLimitTraders}" Width="200" Style="{StaticResource Mults}">
-                                <ui:NumberBox.Header>
-                                    <TextBlock Text="{DynamicResource TradersGroup}"/>
-                                </ui:NumberBox.Header>
-                            </ui:NumberBox>
-                            <ui:NumberBox Value="{Binding Services.RepairBox.IntellectSkillLimitKit}" Width="200" Style="{StaticResource Mults}">
-                                <ui:NumberBox.Header>
-                                    <TextBlock Text="{DynamicResource RepairKit}"/>
-                                </ui:NumberBox.Header>
-                            </ui:NumberBox>
-                        </DockPanel>
                         <CheckBox Content="{DynamicResource NoRandomDamageOnRepair}" IsChecked="{Binding Services.RepairBox.NoRandomRepair}"/>
                         <CheckBox Content="{DynamicResource NoPermDamageWeapon}" IsChecked="{Binding Services.RepairBox.OpGunRepair}"/>
                         <CheckBox Content="{DynamicResource NoPermDamageArmor}" IsChecked="{Binding Services.RepairBox.OpArmorRepair}"/>

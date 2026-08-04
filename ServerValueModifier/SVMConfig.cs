@@ -4,6 +4,7 @@ using SPTarkov.Server.Core.Helpers;
 using System.Reflection;
 using System.Text.Json;
 using System.Text.Json.Nodes;
+using SPTarkov.Server.Core.Helpers.Server;
 
 namespace ServerValueModifier
 {

@@ -1,6 +1,7 @@
 ﻿using Greed.Models;
 using HarmonyLib.Tools;
 using SPTarkov.Server.Core.Constants;
+using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
@@ -8,10 +9,12 @@ using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using SPTarkov.Common.Models.Logging;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Items(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig)
+    internal class Items(ISptLogger<SVM> logger, TemplateTable templateTable, GlobalTable globals, MainClass.MainConfig svmconfig)
     {
         //TODO: Follow the example - either follow SPT's ENUM where available or create such variables for own use.
         //private  MongoId KEYCARD_PARENT = "5c164d2286f774194c5e69fa"; can be only string if used with const TODO
@@ -24,9 +27,6 @@ namespace ServerValueModifier.Sections
         private readonly string[] LCRifle = ["127x55", "127x99", "86x70", "BMG"];
         private readonly MongoId[] OddKeys = ["5448ba0b4bdc2d02308b456c", "63a399193901f439517cafb6", "63a39fc0af870e651d58e6ae", "63a39fdf1e21260da44a0256", "6582dbf0b8d7830efc45016f", "664d3db6db5dea2bad286955", "664d3dd590294949fe2d81b7", "664d3ddfdda2e85aca370d75", "664d3de85f2355673b09aed5", "664d4b0103ef2c61246afb56", "6761a6ccd9bbb27ad703c48a", "6761a6f90575f25e020816a4"];
         private readonly MongoId[] MarkedKeys = ["5780cf7f2459777de4559322", "5d80c60f86f77440373c4ece", "5d80c62a86f7744036212b3f", "5ede7a8229445733cb4c18e2", "63a3a93f8a56922e82001f5d", "64ccc25f95763a1ae376e447", "62987dfc402c7f69bf010923"];
-        private readonly Globals globals = databaseService.GetGlobals();
-        Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
-        HandbookBase handbook = databaseService.GetHandbook();
         public void ItemsSection()
         {
             //Speed to load/unload magazines in raid.
@@ -38,16 +38,8 @@ namespace ServerValueModifier.Sections
             {
                 globals.Configuration.RestrictionsInRaid = [];
             }
-            foreach (var ele in handbook.Items)
-            {
-                if (ele.Id != "5b5f78b786f77447ed5636af" && ele.Price != null)
-                {
-                    ele.Price = ele.Price * svmconfig.Items.ItemPriceMult;
-                }
-            }
-            
             //Main cycle that goes once in items.json
-            foreach (TemplateItem basetemplate in items.Values)
+            foreach (TemplateItem basetemplate in templateTable.Items.Values)
             {
                 //Add Signal Pistol to PMC's Standard/Unheard/CSM's Custom special slots
                 if (basetemplate.Id == "a8edfb0bce53d103d3f62b9b" || basetemplate.Id == ItemTpl.POCKETS_1X4_SPECIAL || basetemplate.Id == ItemTpl.POCKETS_1X4_TUE)

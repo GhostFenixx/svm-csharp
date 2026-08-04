@@ -25,9 +25,9 @@ namespace Greed
     public partial class MainWindow : Window
     {
        readonly string currDir = Directory.GetCurrentDirectory();
-       readonly string modFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier");
-       readonly string presetsFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT", "user", "mods", "[SVM] Server Value Modifier", "Presets");
-       readonly string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT", "user", "mods", "[SVM] Server Value Modifier", "Loader");
+       readonly string modFolder = Path.Combine(Directory.GetCurrentDirectory(),"SPT_Runtime", "user", "mods", "[SVM] Server Value Modifier");
+       readonly string presetsFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT_Runtime", "user", "mods", "[SVM] Server Value Modifier", "Presets");
+       readonly string loaderFolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT_Runtime", "user", "mods", "[SVM] Server Value Modifier", "Loader");
         public MainWindow()
         {
                 InitializeComponent();
@@ -279,8 +279,8 @@ namespace Greed
 
                     StartInfo = new ProcessStartInfo
                     {
-                        FileName = Path.Combine(currDir, "SPT", "SPT.Server.exe"),
-                        WorkingDirectory = Path.Combine(currDir, "SPT"),
+                        FileName = Path.Combine(currDir, "SPT_Runtime", "SPT.Server.exe"),
+                        WorkingDirectory = Path.Combine(currDir, "SPT_Runtime"),
                     }
                 };
                 serverProcess.Start();
@@ -289,8 +289,8 @@ namespace Greed
 
                     StartInfo = new ProcessStartInfo
                     {
-                        FileName = Path.Combine(currDir, "SPT", "SPT.Launcher.exe"),
-                        WorkingDirectory = Path.Combine(currDir, "SPT"),
+                        FileName = Path.Combine(currDir, "SPT_Runtime", "SPT.Launcher.exe"),
+                        WorkingDirectory = Path.Combine(currDir, "SPT_Runtime"),
                     }
                 };
                 launcherprocess.Start();
@@ -303,7 +303,7 @@ namespace Greed
         }
         private void CloseEverything(object sender, RoutedEventArgs e)
         {
-            string exefolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT");
+            string exefolder = Path.Combine(Directory.GetCurrentDirectory(), "SPT_Runtime");
 
             Process[] serverProcesses = Process.GetProcessesByName("SPT.Server");
             {
@@ -423,19 +423,9 @@ namespace Greed
             if (Message.Confirm == true)
             {
                 string browserPath = ("C:/Windows/explorer.exe");
-                string argUrl = "https://db.sp-tarkov.com/search";
+                string argUrl = "https://tarkynator.com/";
                 Process.Start(browserPath, argUrl);
             }
-        }
-
-        private void SPTDiscord(object sender, EventArgs e)//TODO: Maybe in future rework as one method and do a switch? Not like it matters really.
-        {
-            RunURL("SPTLink", "https://discord.gg/Xn9msqQZan");
-        }
-
-        private void SPTWEB(object sender, EventArgs e)
-        {
-            RunURL("SPTWeb", "https://hub.sp-tarkov.com");
         }
 
         private void KofiLink(object sender, EventArgs e)
@@ -446,11 +436,6 @@ namespace Greed
         private void GitHubLink(object sender, EventArgs e)
         {
             RunURL("GitHubLink", "https://github.com/GhostFenixx?tab=repositories");
-        }
-
-        private void ModLink(object sender, EventArgs e)
-        {
-            RunURL("ModPage", "https://hub.sp-tarkov.com/files/file/379-kmc-server-value-modifier");
         }
 
         private void FikaDiscord(object sender, EventArgs e)

@@ -2,10 +2,13 @@
 using HarmonyLib;
 using Microsoft.AspNetCore.Mvc.ModelBinding.Validation;
 using Microsoft.Extensions.Configuration.EnvironmentVariables;
+using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Constants;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
+using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
@@ -18,7 +21,7 @@ using System.Reflection;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Advanced(ISptLogger<SVM> logger, ConfigServer configServer, DatabaseService databaseService, MainClass.MainConfig svmconfig, ICloner _cloner)
+    internal class Advanced(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig fleaconfig, TraderConfig traderConfig, TradersTable traders, MainClass.MainConfig svmconfig, ICloner _cloner)
     {
         private List<List<BarterScheme>> barterScheme;
 
@@ -27,9 +30,8 @@ namespace ServerValueModifier.Sections
             CultureInfo customCulture = (CultureInfo)Thread.CurrentThread.CurrentCulture.Clone();
             customCulture.NumberFormat.NumberDecimalSeparator = ".";
             Thread.CurrentThread.CurrentCulture = customCulture;
-            Dictionary<MongoId, TemplateItem> items = databaseService.GetItems();
+            Dictionary<MongoId, TemplateItem> items = templateTable.Items;
                 //Mailbox related
-                var coreConfig = configServer.GetConfig<CoreConfig>();
             if (svmconfig.Custom.DisableCommando) // Made it this way in case other mods will override these fields, like Fika
             {
                 coreConfig.Features.ChatbotFeatures.EnabledBots["6723fd51c5924c57ce0ca01e"] = false;
@@ -40,7 +42,6 @@ namespace ServerValueModifier.Sections
             }
             if (svmconfig.Custom.DisablePMCMessages)
             {
-                var chatConfig = configServer.GetConfig<PmcChatResponse>();
                 chatConfig.Victim.ResponseChancePercent = 0;
                 chatConfig.Killer.ResponseChancePercent = 0;
             }
@@ -50,7 +51,6 @@ namespace ServerValueModifier.Sections
                 try
                 {
                     string[] IDlist = svmconfig.Custom.FleaMultID.Split("\r\n");
-                    var fleaconfig = configServer.GetConfig<RagfairConfig>();
                     fleaconfig.Dynamic.GenerateBaseFleaPrices.ItemTplMultiplierOverride = [];
                     foreach (string line in IDlist)
                     {
@@ -74,7 +74,6 @@ namespace ServerValueModifier.Sections
             //Blacklist, will rewrite it later
             if (svmconfig.Custom.Blacklist != "" && svmconfig.Custom.Blacklist.Length > 1)
             {
-                TraderConfig traderConfig = configServer.GetConfig<TraderConfig>();
                 foreach (string line in svmconfig.Custom.Blacklist.Split("\r\n"))
                 {
                     if (!line.StartsWith("#") && !line.StartsWith("//") && line.Length > 1)
@@ -145,8 +144,6 @@ namespace ServerValueModifier.Sections
                 logger.Success("[SVM] Custom properties successfully loaded");
             }
             string[] offers = svmconfig.Custom.AddTraderAssort.Split("\r\n");
-            var traders = databaseService.GetTraders();
-            //var items = databaseService.GetItems();
             foreach (string line in offers)
             {
                 try
@@ -301,12 +298,14 @@ namespace ServerValueModifier.Sections
                 {
                     "_props" => "Properties",
                     "_max_count" => "MaxCount",
+                    "_required" => "Required",
+                    "_proto" => "Prototype",
                     "_mergeSlotWithChildren" => "MergeSlotWithChildren",
                     "effects_health" => "EffectsHealth",
                     "effects_damage" => "EffectsDamage",
                     _ => variables[i]
                 };
-                if (!string.IsNullOrEmpty(variables[i]) && char.IsLower(variables[i][0]))
+                if (!string.IsNullOrEmpty(variables[i]) && char.IsLower(variables[i][0]) && variables[i] != "shotgunDispersion" && variables[i] != "explDelay") //Last two because there is uppercase and lower case variants exist in DB.
                 {
                     variables[i] = char.ToUpper(variables[i][0]) + variables[i].Substring(1); //Attempt to compensate that we require upper case while Item Finder provide lowercase.
                 }
@@ -314,7 +313,7 @@ namespace ServerValueModifier.Sections
         }
         public void PriceChange(string[] variables)
         {
-            var handbook = databaseService.GetHandbook();
+            var handbook = templateTable.Handbook;
             handbook.Items.ForEach(item =>
             {
                 if (item.Id == variables[0])
