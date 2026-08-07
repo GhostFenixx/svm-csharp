@@ -19,7 +19,7 @@ using SPTarkov.Server.Core.Models.Spt.Tables;
 
 namespace ServerValueModifier.Sections
 {
-    internal class CSM(ISptLogger<SVM> logger, TemplateTable templateTable, InsuranceConfig insurance, MainClass.MainConfig svmconfig,ICloner cloner, TemplateItem custompocket)
+    internal class CSM(ISptLogger<SVM> logger, TemplateTable templateTable, InsuranceConfig insurance, MainClass.MainConfig svmconfig,ICloner cloner)
     {
 
         public void CSMSection()//Will probably separate pockets and cases.
@@ -99,7 +99,7 @@ namespace ServerValueModifier.Sections
                 var quests = templateTable.Quests;
                 quests[QuestTpl.OLD_PATTERNS].Rewards["Success"].RemoveAt(1);
                 Pockets pocketsize = svmconfig.CSM.Pockets;
-                //TemplateItem custompocket = _cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);
+                TemplateItem custompocket = items["a8edfb0bce53d103d3f62b9b"];
                 //custompocket.Id = "a8edfb0bce53d103d3f62b9b";
                 foreach (var cell in custompocket.Properties.Grids)
                 {

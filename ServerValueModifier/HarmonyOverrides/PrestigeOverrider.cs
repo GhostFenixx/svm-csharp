@@ -21,7 +21,7 @@ using System.Xml.Linq;
 
 namespace ServerValueModifier.HarmonyOverrides
 {
-    [Injectable]
+    [Injectable(TypePriority = OnLoadOrder.Preload)]
     public sealed class PrestigeAsyncPatch : AbstractPatch
     {
 

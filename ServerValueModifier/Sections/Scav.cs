@@ -14,7 +14,7 @@ using SPTarkov.Server.Core.Utils.Cloners;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Scav(ISptLogger<SVM> logger, GlobalTable globals, TemplateTable templateTable, InRaidConfig inraid, LocationTable locationsdb, MainClass.MainConfig svmconfig, ICloner cloner, TemplateItem custompocket)
+    internal class Scav(ISptLogger<SVM> logger, GlobalTable globals, TemplateTable templateTable, InRaidConfig inraid, LocationTable locationsdb, MainClass.MainConfig svmconfig, ICloner cloner)
     {
         Dictionary<MongoId, TemplateItem> items = templateTable.Items;
         public void ScavSection() //Shortest section by now, lul.
@@ -46,6 +46,7 @@ namespace ServerValueModifier.Sections
 
             if (svmconfig.Scav.ScavCustomPockets)
             {
+                TemplateItem custompocket = items["a8edfb0bce53d103d3f6219b"];
                 Greed.Models.ScavData.SCAVPockets pocketsize = svmconfig.Scav.SCAVPockets;
                 foreach (var cell in custompocket.Properties.Grids)
                 {

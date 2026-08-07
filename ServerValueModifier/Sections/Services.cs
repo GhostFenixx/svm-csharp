@@ -23,6 +23,14 @@ namespace ServerValueModifier.Sections
             if (svmcfg.Services.EnableInsurance)
             {
                 insurance.ReturnChancePercent[TraderID.PRAPOR] = svmcfg.Services.ReturnChancePrapor;
+                if (svmcfg.Services.ReturnChancePrapor == 0) // additional check to disable insurance from a trader
+                {
+                    traders[TraderID.PRAPOR].Base.Insurance.Availability = false;
+                }
+                if (svmcfg.Services.ReturnChanceTherapist == 0)
+                {
+                    traders[TraderID.THERAPIST].Base.Insurance.Availability = false;
+                }
                 insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
                 TraderInsurance? praporinsurance = traders[TraderID.PRAPOR].Base.Insurance;
                 TraderInsurance? therapistinsurance = traders[TraderID.THERAPIST].Base.Insurance;

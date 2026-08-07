@@ -36,36 +36,43 @@ namespace ServerValueModifier.HarmonyOverrides
         [PatchPrefix]
         public static bool Prefix(WildSpawnType newScavRole)
         {
-            MainClass.MainConfig svmcfg = new SVMConfig(_modhelper).CallConfig();
-            if (svmcfg.Raids.RaidEvents.AITypeOverride && svmcfg.Raids.EnableRaids) //Not sure we need to check for this but for sanity and possible mod compat? maybe?
+            try
             {
-                WildSpawnType[] zombies = { WildSpawnType.infectedAssault, WildSpawnType.infectedPmc, WildSpawnType.infectedCivil, WildSpawnType.infectedLaborant };
-                WildSpawnType[] bosses = { WildSpawnType.bossTagilla, WildSpawnType.bossKilla, WildSpawnType.bossKolontay, WildSpawnType.bossSanitar, WildSpawnType.bossKojaniy, WildSpawnType.bossGluhar, WildSpawnType.bossBoar, WildSpawnType.bossKnight, WildSpawnType.followerBirdEye, WildSpawnType.followerBigPipe, WildSpawnType.bossZryachiy, WildSpawnType.bossBully };
-                WildSpawnType[] pmcs = { WildSpawnType.pmcBEAR, WildSpawnType.pmcUSEC };
-                Random rnd = new Random();
-                foreach (var location in _locationTable.GetDictionary().Values)
+                MainClass.MainConfig svmcfg = new SVMConfig(_modhelper).CallConfig();
+                if (svmcfg.Raids.RaidEvents.AITypeOverride && svmcfg.Raids.EnableRaids) //Not sure we need to check for this but for sanity and possible mod compat? maybe?
                 {
-                    if (location.Base?.Waves is null)
+                    WildSpawnType[] zombies = { WildSpawnType.infectedAssault, WildSpawnType.infectedPmc, WildSpawnType.infectedCivil, WildSpawnType.infectedLaborant };
+                    WildSpawnType[] bosses = { WildSpawnType.bossTagilla, WildSpawnType.bossKilla, WildSpawnType.bossKolontay, WildSpawnType.bossSanitar, WildSpawnType.bossKojaniy, WildSpawnType.bossGluhar, WildSpawnType.bossBoar, WildSpawnType.bossKnight, WildSpawnType.followerBirdEye, WildSpawnType.followerBigPipe, WildSpawnType.bossZryachiy, WildSpawnType.bossBully };
+                    WildSpawnType[] pmcs = { WildSpawnType.pmcBEAR, WildSpawnType.pmcUSEC };
+                    Random rnd = new Random();
+                    foreach (var location in _locationTable.GetDictionary().Values)
                     {
-                        continue;
-                    }
-
-                    foreach (var wave in location.Base.Waves)
-                    {
-                        switch (svmcfg.Raids.RaidEvents.AIType)
+                        if (location.Base?.Waves is null)
                         {
-                            case 0: wave.WildSpawnType = WildSpawnType.pmcBot; break;
-                            case 1: wave.WildSpawnType = WildSpawnType.exUsec; break;
-                            case 2: wave.WildSpawnType = WildSpawnType.sectantWarrior; break;
-                            case 3: wave.WildSpawnType = zombies[rnd.Next(zombies.Length)]; break;
-                            case 4: wave.WildSpawnType = bosses[rnd.Next(bosses.Length)]; break;
-                            case 5: wave.WildSpawnType = pmcs[rnd.Next(pmcs.Length)]; break;
+                            continue;
+                        }
+
+                        foreach (var wave in location.Base.Waves)
+                        {
+                            switch (svmcfg.Raids.RaidEvents.AIType)
+                            {
+                                case 0: wave.WildSpawnType = WildSpawnType.pmcBot; break;
+                                case 1: wave.WildSpawnType = WildSpawnType.exUsec; break;
+                                case 2: wave.WildSpawnType = WildSpawnType.sectantWarrior; break;
+                                case 3: wave.WildSpawnType = zombies[rnd.Next(zombies.Length)]; break;
+                                case 4: wave.WildSpawnType = bosses[rnd.Next(bosses.Length)]; break;
+                                case 5: wave.WildSpawnType = pmcs[rnd.Next(pmcs.Length)]; break;
+                            }
                         }
                     }
+                    return false;
                 }
-                return false;
+                else
+                {
+                    return true;
+                }
             }
-            else
+            catch //in case config returns null to not break people's spawns.
             {
                 return true;
             }

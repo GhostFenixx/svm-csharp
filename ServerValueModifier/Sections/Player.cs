@@ -41,7 +41,7 @@ namespace ServerValueModifier.Sections
             if (Config.Player.EnableFatigue)
             {
                 globals.Configuration.SkillMinEffectiveness = Config.Player.Skills.SkillMinEffect;
-                globals.Configuration   .SkillFatiguePerPoint = Config.Player.Skills.SkillFatiguePerPoint;
+                globals.Configuration.SkillFatiguePerPoint = Config.Player.Skills.SkillFatiguePerPoint;
                 globals.Configuration.SkillFreshEffectiveness = Config.Player.Skills.SkillFreshEffect;
                 globals.Configuration.SkillFreshPoints = Config.Player.Skills.SkillFPoints;
                 globals.Configuration.SkillPointsBeforeFatigue = Config.Player.Skills.SkillPointsBeforeFatigue;
