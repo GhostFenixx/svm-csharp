@@ -82,7 +82,7 @@ Spanish - og_ruby
 Everyone else who provided any kind of support to the project, whether bug reports, feedback related to UI or helped other to with issues.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed 在 SPT/user/mods/[SVM] Server Value Modifier 下找不到 ServerValueModifier.dll
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed 在 SPT_Runtime/user/mods/[SVM] Server Value Modifier 下找不到 ServerValueModifier.dll
 请确保您正确安装了 mod，此应用程序 (Greed.exe) 应与游戏可执行文件位于同一位置
 按照Oddba论坛的服务器配置修改器帖子中的安装教程进行操作
 您仍然可以通过单击“Ok”继续，但不要指望 SVM 能够正常工作

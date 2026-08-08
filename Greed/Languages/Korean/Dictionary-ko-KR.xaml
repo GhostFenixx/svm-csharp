@@ -41,11 +41,11 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
 </System:String>
 
  <!--MessageBoxes and/or Exception handlers-->
- <System:String xml:space="preserve" x:Key="SVMWrongInstallation">오류: Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 ServerValueModifier.dll 파일을 찾을 수 없습니다.
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">오류: Greed가 SPT_Runtime/user/mods/[SVM] Server Value Modifier 경로에서 ServerValueModifier.dll 파일을 찾을 수 없습니다.
 모드가 올바르게 설치되었는지 확인하고, 이 프로그램(Greed.exe)이 게임 실행 파일과 동일한 위치에 있는지 확인해주세요.</System:String>
-<System:String xml:space="preserve" x:Key="MissingPresetFolder">Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 Preset 폴더를 찾을 수 없습니다.
+    <System:String xml:space="preserve" x:Key="MissingPresetFolder">Greed가 SPT_Runtime/user/mods/[SVM] Server Value Modifier 경로에서 Preset 폴더를 찾을 수 없습니다.
 모드가 올바르게 설치되었는지 확인하세요. 이 폴더는 모드가 정상적으로 작동하는 데 필수입니다. 해당 경로에 폴더를 생성하시겠습니까?</System:String>
-<System:String xml:space="preserve" x:Key="MissingLoaderFolder">Greed가 SPT/user/mods/[SVM] Server Value Modifier 경로에서 Loader 폴더를 찾을 수 없습니다.
+    <System:String xml:space="preserve" x:Key="MissingLoaderFolder">Greed가 SPT_Runtime/user/mods/[SVM] Server Value Modifier 경로에서 Loader 폴더를 찾을 수 없습니다.
 모드가 올바르게 설치되었는지 확인하세요. 이 폴더는 모드가 정상적으로 작동하는 데 필수입니다. 해당 경로에 폴더를 생성하시겠습니까?</System:String>
     <System:String x:Key="FileNotFoundException">로드하려는 파일이 존재하지 않습니다.</System:String>
  <System:String x:Key="CorruptedJSON">이 파일이 손상되었거나 프리셋으로 로드할 수 없습니다.</System:String>

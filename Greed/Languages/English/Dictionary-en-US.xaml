@@ -64,11 +64,11 @@ Everyone else who provided any kind of support to the project, whether bug repor
      
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
-    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT/user/mods/[SVM] Server Value Modifier
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT_Runtime/user/mods/[SVM] Server Value Modifier
 Be sure you installed mod correctly, this application (Greed.exe) should be located on same place as game executable</System:String>
-    <System:String xml:space="preserve" x:Key="MissingPresetFolder">Greed couldn't find Preset folder under SPT/user/mods/[SVM] Server Value Modifier
+    <System:String xml:space="preserve" x:Key="MissingPresetFolder">Greed couldn't find Preset folder under SPT_Runtime/user/mods/[SVM] Server Value Modifier
 Be sure you installed mod correctly, this folder is mandatory for mod to function properly, would you like to create one under that path?</System:String>
-    <System:String xml:space="preserve" x:Key="MissingLoaderFolder">Greed couldn't find Loader folder under SPT/user/mods/[SVM] Server Value Modifier
+    <System:String xml:space="preserve" x:Key="MissingLoaderFolder">Greed couldn't find Loader folder under SPT_Runtime/user/mods/[SVM] Server Value Modifier
 Be sure you installed mod correctly, this folder is mandatory for mod to function properly, would you like to create one under that path?</System:String>
     <System:String x:Key="FileNotFoundException">File you're trying to load does not exist.</System:String>
  <System:String x:Key="CorruptedJSON">This file is either corrupted or not applicable to load as a preset</System:String>

@@ -42,7 +42,7 @@ Todos aquellos que han mostrado apoyo al proyecto, ya sea informando sobre error
 </System:String>
     <!--MessageBoxes and/or Exception handlers-->
  <System:String xml:space="preserve" x:Key="SVMWrongInstallation">GREED no ha podido encontrar el archivo ServerValueModifier.dll"
-en la carpeta SPT/user/mods/[SVM] Server Value Modifier.
+en la carpeta SPT_Runtime/user/mods/[SVM] Server Value Modifier.
 Puedes continuar presionando OK, pero no esperes que el mod funcione.
 Asegúrate de que has instalado el mod correctamente, la aplicación (Greed.exe) ha de estar en la misma carpeta que el ejecutable del juego.</System:String>
  <System:String x:Key="FileNotFoundException">El archivo que intentas cargar no existe.</System:String>

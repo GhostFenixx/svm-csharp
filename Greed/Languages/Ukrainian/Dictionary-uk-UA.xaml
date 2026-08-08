@@ -41,7 +41,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 І багато інших хто підтримував розробку порадами, баг репортами, хорошими словами або рекламою.
 </System:String>
  <!--MessageBoxes and/or Exception handlers-->
-    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed не зміг знайти ServerValueModifier.dll у SPT/user/mods/[SVM] Server Value Modifier
+    <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed не зміг знайти ServerValueModifier.dll у SPT_Runtime/user/mods/[SVM] Server Value Modifier
 Переконайтеся, що ви правильно встановили мод, ця програма має знаходитися там же, де й виконуваний файл гри.
 Ви можете продовжити використовувати програму, якщо натиснути `Ok`, але працювати вона не буде.
 Натисніть 'Cancel' щоб закрити програму.

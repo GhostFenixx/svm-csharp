@@ -25,12 +25,19 @@ public class HealthAsyncPatch : AbstractPatch
     [PatchPrefix]
     public static bool Prefix()
     {
-        MainClass.MainConfig cf = new SVMConfig(_modHelper).CallConfig();
-        if (cf.Hideout.Regeneration.OfflineRegen)
+        try
         {
-            return false;
+            MainClass.MainConfig cf = new SVMConfig(_modHelper).CallConfig();
+            if (cf.Hideout.Regeneration.OfflineRegen)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
-        else
+        catch
         {
             return true;
         }

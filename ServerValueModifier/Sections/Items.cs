@@ -118,7 +118,7 @@ namespace ServerValueModifier.Sections
                 }
                 //Base malfunctions chance in each weapon class
                // if (basetemplate.Parent.Equals(WeaponTypesID) && basetemplate.Properties.BaseMalfunctionChance is not null)
-               if( SimpleFilter(WeaponTypesID, basetemplate.Parent))
+               if( SimpleFilter(WeaponTypesID, basetemplate.Parent) && basetemplate.Properties.BaseMalfunctionChance is not null)
                 {
                     basetemplate.Properties.BaseMalfunctionChance = Math.Round((double)basetemplate.Properties.BaseMalfunctionChance * svmconfig.Items.MalfunctChanceMult,4);
                 }
