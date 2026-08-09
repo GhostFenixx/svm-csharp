@@ -675,7 +675,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="Levels">Alpha:</System:String>-->
 
  <!--Bots Section-->
- <System:String x:Key="BotsSpawnChance">Bosses and Special types spawn chances</System:String>
+    <System:String x:Key="EqualHealth">Equalises health of AI to default 440</System:String>
+    <System:String x:Key="BotsSpawnChance">Bosses and Special types spawn chances</System:String>
  <System:String x:Key="BotsArmorDurab">AI armor durability</System:String>
  <System:String x:Key="BotsWeaponDurab">AI weapon durability</System:String>
  <System:String x:Key="ForcePartisan">Change Partisan's spawn behavior</System:String>

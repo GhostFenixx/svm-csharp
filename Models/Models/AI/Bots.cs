@@ -2,6 +2,7 @@
 {
     public class Bots
     {
+        public bool EqualHealth { get; set; }
         public AIChance AIChance { get; set; }
         public BotDurability PMC { get; set; }
         public BotDurability SCAV { get; set; }

@@ -1,4 +1,5 @@
 ﻿using Greed.Models;
+using SPTarkov.Common.Extensions;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Reflection.Patching;
 using SPTarkov.Server.Core.Callbacks;
@@ -146,26 +147,14 @@ namespace ServerValueModifier.HarmonyOverrides
         }
         public static void HealthEdit(Dictionary<string, BodyPartHealth>? Data, Greed.Models.PlayerData.Health values, string type)
         {
-            if (type == "Current")
-            {
-                Data["Head"].Health.Current = values.Head;
-                Data["Chest"].Health.Current = values.Chest;
-                Data["Stomach"].Health.Current = values.Stomach;
-                Data["LeftArm"].Health.Current = values.LeftArm;
-                Data["LeftLeg"].Health.Current = values.LeftLeg;
-                Data["RightArm"].Health.Current = values.RightArm;
-                Data["RightLeg"].Health.Current = values.RightLeg;
-            }
-            if (type == "Maximum") //Horrible, TODO reflection with [Current/Maximum]
-            {
-                Data["Head"].Health.Maximum = values.Head;
-                Data["Chest"].Health.Maximum = values.Chest;
-                Data["Stomach"].Health.Maximum = values.Stomach;
-                Data["LeftArm"].Health.Maximum = values.LeftArm;
-                Data["LeftLeg"].Health.Maximum = values.LeftLeg;
-                Data["RightArm"].Health.Maximum = values.RightArm;
-                Data["RightLeg"].Health.Maximum = values.RightLeg;
-            }
+            PropertyInfo? healthData = typeof(Health).GetProperty(type);
+            healthData.SetValue(Data["Head"].Health, values.Head);
+            healthData.SetValue(Data["Chest"].Health, values.Chest);
+            healthData.SetValue(Data["Stomach"].Health, values.Stomach);
+            healthData.SetValue(Data["LeftArm"].Health, values.LeftArm);
+            healthData.SetValue(Data["LeftLeg"].Health, values.LeftLeg);
+            healthData.SetValue(Data["RightArm"].Health, values.RightArm);
+            healthData.SetValue(Data["RightLeg"].Health, values.RightLeg);
         }
     }
 }
