@@ -25,8 +25,8 @@ namespace ServerValueModifier.Sections
                     {
                         foreach (var bodypart in bottype.Value.BotHealth.BodyParts) // cycles thru multiple health options (some AI types has more than one)
                         {
-                            EqualizeHealth(bodypart, "min");
-                            EqualizeHealth(bodypart, "max");
+                            EqualizeHealth(bodypart, "Max");
+                            EqualizeHealth(bodypart, "Min");
                         }
                     }
                 }
@@ -217,8 +217,8 @@ namespace ServerValueModifier.Sections
             value.SetValue(body.Stomach, 70);
             value.SetValue(body.LeftArm, 60);
             value.SetValue(body.RightArm, 60);
-            value.SetValue(body.LeftArm, 65);
-            value.SetValue(body.RightArm, 65);
+            value.SetValue(body.LeftLeg, 65);
+            value.SetValue(body.RightLeg, 65);
         }
         public void AdjustDurab(BotConfig bots, string bottype, Greed.Models.AI.BotDurability type)
         {

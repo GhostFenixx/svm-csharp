@@ -23,7 +23,6 @@
                 </Expander.Header>
                 <StackPanel Margin="10">
                     <CheckBox Content="{DynamicResource DisableWeeklyBoss}" IsChecked="{Binding Bots.AIChance.DisableWeeklyBoss}"/>
-                    <CheckBox Content="{DynamicResource EqualHealth}" IsChecked="{Binding Bots.EqualHealth}"/>
                     <DockPanel>
                         <ui:NumberBox Value="{Binding Bots.AIChance.Sanitar}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                             <ui:NumberBox.Header>
@@ -198,6 +197,12 @@
             </Expander>
         </StackPanel>
         <StackPanel Grid.Column="1" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="#FFFFA73B" FontSize="20"/>
+                </Expander.Header>
+                <CheckBox Content="{DynamicResource EqualHealth}" IsChecked="{Binding Bots.EqualHealth}"/>
+            </Expander>
             <Expander>
                 <Expander.Header>
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsArmorDurab}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
