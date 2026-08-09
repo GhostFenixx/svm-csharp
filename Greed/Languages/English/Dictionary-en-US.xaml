@@ -62,6 +62,21 @@ Everyone else who provided any kind of support to the project, whether bug repor
  Assort Randomisation > inconsistent value between first and next restocks
  Offline regeneration disabler field being always active.
      
+ 2.2.1 for SPT 4.1.0+
+     
+ Added:
+ Bots section > Misc > Equalise health - user request
+     
+ Reworked:
+ On 0 in the insurance return chance trader’s insurance service won’t be accessible, to avoid paying by accident with 0 return rate. - suggestion by ffloid
+
+ Fixed:
+ Couple of override methods weren’t handled via try-catch, causing the game to hang if no preset exist - why would you run svm without it?
+ Custom Pocket fix that will stop throwing out items from pockets into filtering table.
+ Locales were still pointing to SPT and not SPT_Runtime
+ Extra checks in Item section to avoid mod incompats.
+ 
+     
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT_Runtime/user/mods/[SVM] Server Value Modifier
@@ -860,6 +875,8 @@ Intellegence center Lvl 2
 Security Lvl 3
 Rest Space Lvl 3
 This feature removes this requirement</System:String>
+    <System:String xml:space="preserve" x:Key="EqualHealth_TT">By default - different types of AI have wildly different health values (up to 4x from default player PMC)
+This field alters every AI to have default PMC health, except couple of event based AI such as zombie types and vengeful zryachiy</System:String>
     <System:String xml:space="preserve" x:Key="PrestigeSkill_TT">The % of the Skill your character will inherit at the moment of prestige</System:String>
     <System:String xml:space="preserve" x:Key="PrestigeMastery_TT">The % of the Gun Mastery your character will inherit at the moment of prestige</System:String>
     <System:String xml:space="preserve" x:Key="PrestigeSize_TT">The Vertical size of prestige inventory you'll have to transfer your items over</System:String>

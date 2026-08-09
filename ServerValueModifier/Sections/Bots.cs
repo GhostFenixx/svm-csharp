@@ -21,9 +21,9 @@ namespace ServerValueModifier.Sections
             {
                 foreach (var bottype in botTable.Types)
                 {
-                    if (bottype.Value.BotHealth.BodyParts is not null) // probably redundant check
+                    if (bottype.Value.BotHealth.BodyParts is not null && bottype.Key != "ravangezryachiyevent" && !bottype.Key.Contains("infected")) // Excluded some event based AI
                     {
-                        foreach (var bodypart in bottype.Value.BotHealth.BodyParts) // cycles thru multiple health options (some AI types has more than one)
+                        foreach (var bodypart in bottype.Value.BotHealth.BodyParts) // cycles thru multiple health options if any AI has more than one (turns out by default - none)
                         {
                             EqualizeHealth(bodypart, "Max");
                             EqualizeHealth(bodypart, "Min");

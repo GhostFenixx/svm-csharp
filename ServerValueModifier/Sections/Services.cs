@@ -3,6 +3,7 @@ using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
+using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Spt.Tables;
 using SPTarkov.Server.Core.Models.Utils;
@@ -23,13 +24,27 @@ namespace ServerValueModifier.Sections
             if (svmcfg.Services.EnableInsurance)
             {
                 insurance.ReturnChancePercent[TraderID.PRAPOR] = svmcfg.Services.ReturnChancePrapor;
-                if (svmcfg.Services.ReturnChancePrapor == 0) // additional check to disable insurance from a trader
+                if (svmcfg.Services.ReturnChanceTherapist == 0 && svmcfg.Services.ReturnChancePrapor == 0)//Convoluted system, if no traders with insurance enabled - game acts wonky,
+                                                                                                          //inserting default_trader object, which by interacting with you cause server to hang.
+                                                                                                          //Therefore, solution is either disable insurance on items or disable one trader (or the other)
                 {
-                    traders[TraderID.PRAPOR].Base.Insurance.Availability = false;
+                    logger.Warning("[SVM] Insurance - both traders return chance are 0%, disabling insurance availability - it will affect other traders");
+                    //var baseitem = templateTable.Items;
+                    foreach (var item in templateTable.Items)
+                    {
+                        if (item.Value.Properties.InsuranceDisabled is not null)
+                        {
+                            item.Value.Properties.InsuranceDisabled = true;
+                        }
+                    }
                 }
-                if (svmcfg.Services.ReturnChanceTherapist == 0)
+                else if (svmcfg.Services.ReturnChanceTherapist == 0)
                 {
                     traders[TraderID.THERAPIST].Base.Insurance.Availability = false;
+                }
+                else if (svmcfg.Services.ReturnChancePrapor == 0)
+                {
+                    traders[TraderID.PRAPOR].Base.Insurance.Availability = false;
                 }
                 insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
                 TraderInsurance? praporinsurance = traders[TraderID.PRAPOR].Base.Insurance;
