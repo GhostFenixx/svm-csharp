@@ -304,6 +304,8 @@ namespace ServerValueModifier.Sections
                     "_mergeSlotWithChildren" => "MergeSlotWithChildren",
                     "effects_health" => "EffectsHealth",
                     "effects_damage" => "EffectsDamage",
+                    "_required" => "Required",
+                    "_proto" => "Prototype",
                     _ => variables[i]
                 };
                 if (!string.IsNullOrEmpty(variables[i]) && char.IsLower(variables[i][0]))

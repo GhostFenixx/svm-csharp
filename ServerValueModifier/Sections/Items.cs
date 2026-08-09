@@ -40,7 +40,7 @@ namespace ServerValueModifier.Sections
             }
             foreach (var ele in handbook.Items)
             {
-                if (ele.Id != "5b5f78b786f77447ed5636af" && ele.Price != null)
+                if (ele.ParentId != "5b5f78b786f77447ed5636af" && ele.Price != null)
                 {
                     ele.Price = ele.Price * svmconfig.Items.ItemPriceMult;
                 }
@@ -126,7 +126,7 @@ namespace ServerValueModifier.Sections
                 }
                 //Base malfunctions chance in each weapon class
                // if (basetemplate.Parent.Equals(WeaponTypesID) && basetemplate.Properties.BaseMalfunctionChance is not null)
-               if( SimpleFilter(WeaponTypesID, basetemplate.Parent))
+               if( SimpleFilter(WeaponTypesID, basetemplate.Parent) && basetemplate.Properties.BaseMalfunctionChance is not null)
                 {
                     basetemplate.Properties.BaseMalfunctionChance = Math.Round((double)basetemplate.Properties.BaseMalfunctionChance * svmconfig.Items.MalfunctChanceMult,4);
                 }
@@ -136,7 +136,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.MalfunctionChance *= svmconfig.Items.MalfunctChanceMult;
                 }
                 //Multiplier of a chance to misfire
-                if (basetemplate.Parent == "5661632d4bdc2d903d8b456b" && (basetemplate.Properties.MisfireChance is not null || basetemplate.Properties.MisfireChance is not null)) 
+                if (basetemplate.Parent == "5661632d4bdc2d903d8b456b" && basetemplate.Properties.MisfireChance is not null)
                 {
                     basetemplate.Properties.MalfMisfireChance *= svmconfig.Items.MisfireChance;
                     basetemplate.Properties.MisfireChance *= svmconfig.Items.MisfireChance;

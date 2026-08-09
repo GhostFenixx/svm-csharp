@@ -296,8 +296,8 @@ namespace ServerValueModifier.Sections
         public void PrestigeTransferEdit(TransferConfigs edit, int height, int skills, int mastery, bool filter)
         {
             edit.StashConfig.XCellCount = height;
-            edit.SkillConfig.TransferMultiplier = skills;
-            edit.MasteringConfig.TransferMultiplier = mastery;
+            edit.SkillConfig.TransferMultiplier = (double)(skills / 100);
+            edit.MasteringConfig.TransferMultiplier = (double)(mastery / 100);
             if (filter)
             {
                 edit.StashConfig.Filters.IncludedItems = ["54009119af1c881c07000029"];

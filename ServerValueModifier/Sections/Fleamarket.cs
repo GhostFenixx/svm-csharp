@@ -55,8 +55,11 @@ namespace ServerValueModifier.Sections
             fleaconfig.TieredFlea.Enabled = !svmconfig.Fleamarket.TieredFlea;
             fleaconfig.Dynamic.Pack.ChancePercent = svmconfig.Fleamarket.DynamicOffers.BundleOfferChance;
             fleaconfig.Dynamic.ExpiredOfferThreshold = svmconfig.Fleamarket.DynamicOffers.ExpireThreshold;
-            fleaconfig.Dynamic.OfferItemCount["default"].Min = svmconfig.Fleamarket.DynamicOffers.PerOffer_min;
-            fleaconfig.Dynamic.OfferItemCount["default"].Max = svmconfig.Fleamarket.DynamicOffers.PerOffer_max;
+            foreach (var uids in fleaconfig.Dynamic.OfferItemCount)
+            {
+                uids.Value.Min = svmconfig.Fleamarket.DynamicOffers.PerOffer_min;
+                uids.Value.Max = svmconfig.Fleamarket.DynamicOffers.PerOffer_max;
+            }
             fleaconfig.Dynamic.PriceRanges.Default.Min = svmconfig.Fleamarket.DynamicOffers.Price_min;//Maybe someday i'll make a field for each one of them.
             fleaconfig.Dynamic.PriceRanges.Default.Max = svmconfig.Fleamarket.DynamicOffers.Price_max;
             fleaconfig.Dynamic.PriceRanges.Pack.Min = svmconfig.Fleamarket.DynamicOffers.Price_min;
