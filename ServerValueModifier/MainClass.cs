@@ -290,7 +290,7 @@ namespace ServerValueModifier
                 Sections.Traders tradersLoad = new(logger, globals, templateTable, traderConfig, tradersTable, questConfig, svmcfg);
                 Sections.Services servicesLoad = new(logger, globals, _cloner, insurance, repair, templateTable, tradersTable, svmcfg);
                 Sections.Loot lootLoad = new(logger, airdropConfig, templateTable, locationConfig, locationTable, svmcfg);
-                Sections.Bots botload = new(logger, locationTable, botConfig, svmcfg);
+                Sections.Bots botload = new(logger, locationTable, botConfig, botTable, svmcfg);
                 Sections.Player playerLoad = new(logger, globals, healthConfig, templateTable, svmcfg);
                 Sections.Raids raidsload = new(logger, globals, inRaidConfig, midcore,locationTable,traderConfig, templateTable, svmcfg);
                 Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, svmcfg);
