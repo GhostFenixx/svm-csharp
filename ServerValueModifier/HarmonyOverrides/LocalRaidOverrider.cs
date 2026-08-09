@@ -145,16 +145,16 @@ namespace ServerValueModifier.HarmonyOverrides
                     break;
             }
         }
-        public static void HealthEdit(Dictionary<string, BodyPartHealth>? Data, Greed.Models.PlayerData.Health values, string type)
+        public static void HealthEdit(Dictionary<string, BodyPartHealth> Data, Greed.Models.PlayerData.Health values, string type)
         {
-            PropertyInfo? healthData = typeof(Health).GetProperty(type);
-            healthData.SetValue(Data["Head"].Health, values.Head);
-            healthData.SetValue(Data["Chest"].Health, values.Chest);
-            healthData.SetValue(Data["Stomach"].Health, values.Stomach);
-            healthData.SetValue(Data["LeftArm"].Health, values.LeftArm);
-            healthData.SetValue(Data["LeftLeg"].Health, values.LeftLeg);
-            healthData.SetValue(Data["RightArm"].Health, values.RightArm);
-            healthData.SetValue(Data["RightLeg"].Health, values.RightLeg);
+            PropertyInfo healthData = typeof(CurrentMinMax).GetProperty(type);
+            healthData.SetValue(Data["Head"].Health, (double)values.Head);
+            healthData.SetValue(Data["Chest"].Health, (double)values.Chest);
+            healthData.SetValue(Data["Stomach"].Health, (double)values.Stomach);
+            healthData.SetValue(Data["LeftArm"].Health, (double)values.LeftArm);
+            healthData.SetValue(Data["LeftLeg"].Health, (double)values.LeftLeg);
+            healthData.SetValue(Data["RightArm"].Health, (double)values.RightArm);
+            healthData.SetValue(Data["RightLeg"].Health, (double)values.RightLeg);
         }
     }
 }
