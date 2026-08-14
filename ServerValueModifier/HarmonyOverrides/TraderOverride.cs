@@ -31,7 +31,7 @@ using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier.HarmonyOverrides
 {
-    [Injectable(TypePriority = OnLoadOrder.Preload)]
+    [Injectable]
     public class TraderPatch : AbstractPatch
     {
         private static ModHelper modhelper;

@@ -24,6 +24,7 @@ namespace ServerValueModifier.Sections
             // Init
             Prestige prestige = templateTable.Prestige;
             //
+            hideoutTable.Qte[0].Results[0].RewardEffects[0].Time = svmconfig.Hideout.MusclePainTime * 60;    //.Results[0].RewardEffects[0].Time = svmconfig.Hideout.MusclePainTime * 60;
             hideoutTable.Settings.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
             hideoutTable.Settings.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
             hideoutTable.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;

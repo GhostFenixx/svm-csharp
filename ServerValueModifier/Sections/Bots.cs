@@ -188,12 +188,12 @@ namespace ServerValueModifier.Sections
                 switch (bottype)
                 {
                     case "assault" or "crazyassaultevent" or "cursedassault":
-                        AdjustDurab(bots,bottype, svmconfig.Bots.SCAV);
+                        AdjustDurab(bots, bottype, svmconfig.Bots.SCAV);
                         break;
-                    case "boss" or "sectantpriest":
+                    case "boss" or "sectantpriest" or "sectantpredvestnik" or "sectantprizrak" or "sectantoni":
                         AdjustDurab(bots, bottype, svmconfig.Bots.Boss);
                         break;
-                    case "pmcbot":
+                    case "pmcbot" or "arenafighterevent" or "arenafighter":
                         AdjustDurab(bots, bottype, svmconfig.Bots.Raider);
                         break;
                     case "follower" or "sectantwarrior":

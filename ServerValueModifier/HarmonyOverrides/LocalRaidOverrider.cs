@@ -22,68 +22,59 @@ using SPTarkov.Server.Core.Services.Bot;
 using SPTarkov.Server.Core.Services.InRaid;
 using SPTarkov.Server.Core.Services.Profile;
 using SPTarkov.Server.Core.Utils;
+using System.ComponentModel;
 using System.Linq.Expressions;
 using System.Reflection;
 
 namespace ServerValueModifier.HarmonyOverrides
 {
-    [Injectable(TypePriority = OnLoadOrder.Preload)]
+    [Injectable]
 
     public class LocalRaidPatch : AbstractPatch
     {
-
-        private static LocationLifecycleService _locationLifeCycleService = default!;
-        private static GlobalTable _globalTable = default!;
-        private static TemplateTable _templateTable = default!;
-        private static SeasonalEventConfig _seasonalEventConfig = default!;
-        private static ProfileHelper _profileHelper = default!;
-        private static TimeUtil _timeUtil = default!;
-        private static ProfileActivityService _profileActivityService = default!;
-        private static BotNameService _botNameService = default!;
-        private static ModHelper _modHelper = default!;
-
-
-        public LocalRaidPatch(LocationLifecycleService locationLifecycleService, GlobalTable globalTable, TemplateTable templateTable, SeasonalEventConfig seasonalEventConfig,
-            ProfileHelper profileHelper, TimeUtil timeUtil, ProfileActivityService profileActivityService, ModHelper modHelper, BotNameService botNameService)
+        private static ProfileHelper _profileHelper;
+        private static ModHelper _modHelper;
+        private static HttpResponseUtil _httpResponseUtil;
+        private static MatchController _matchController;
+        public LocalRaidPatch(ProfileHelper profileHelper, ModHelper modHelper, HttpResponseUtil httpResponseUtil)
         {
-            _locationLifeCycleService = locationLifecycleService;
-            _globalTable = globalTable;
-            _templateTable = templateTable;
-            _seasonalEventConfig = seasonalEventConfig;
             _profileHelper = profileHelper;
-            _timeUtil = timeUtil;
-            _profileActivityService = profileActivityService;
-            _botNameService = botNameService;
             _modHelper = modHelper;
+            _httpResponseUtil = httpResponseUtil;
         }
         protected override MethodBase GetTargetMethod()
         {
             return typeof(MatchCallbacks).GetMethod(nameof(MatchCallbacks.EndLocalRaidAsync));
         }
         [PatchPrefix]
-        public static bool Prefix(string url, EndLocalRaidRequestData info, MongoId sessionID)
+        public static bool Prefix(ref ValueTask<string> __result, MongoId sessionID, EndLocalRaidRequestData info, CancellationToken cancellationToken)
         {
-            try
+            try//try-catch in case no config
             {
                 MainClass.MainConfig cf = new SVMConfig(_modHelper).CallConfig();
                 if (cf.Raids.RaidStartup.SaveLoot && cf.Raids.EnableRaids && cf.Raids.RaidStartup.EnableRaidStartup)
                 {
-                    //Bad writing, still - if Section and subsection is on AND practice mode(saveloot) is on - ignore any changes to raid, including scav raids.
+
+                    __result = new ValueTask<string>(_httpResponseUtil.NullResponse());
+                    //_httpResponseUtil.NullResponse();   //Bad writing, still - if Section and subsection is on AND practice mode(saveloot) is on - ignore any changes to raid, including scav raids.
+                    return false;
                 }
                 else
                 {
                     if (info.Results.Profile.Info.Side != "Savage" && info.Results.Result != ExitStatus.TRANSIT && cf.Raids.EnableRaids)
                     {
                         DefineRaidStatus(cf, info);
-                        if (info.Results.Result != ExitStatus.TRANSIT)
-                        {                                                  // So, this is funny case, since my field is int converting to ExitStatus, my 'ignore raid' state hits same number as Transit,
-                            return true; // therefore knowing that initially it can't roll transit exit on entry i utilise it to ignore raid altogether
-                                         // Very doohickey.
+                        if (info.Results.Result == ExitStatus.TRANSIT)
+                        {
+                            __result = new ValueTask<string>(_httpResponseUtil.NullResponse());
+                            return false;// So, this is funny case, since my field is int converting to ExitStatus, my 'ignore raid' state hits same number as Transit,
+                             // therefore knowing that initially it can't roll transit exit on entry i utilise it to ignore raid altogether
+                             // Very doohickey.
                         }
-                    }
-                    else
-                    {
-                        return true;
+                        else
+                        {
+                            return true;
+                        }
                     }
                     if (cf.Scav.EnableScav)
                     {
@@ -116,13 +107,14 @@ namespace ServerValueModifier.HarmonyOverrides
                             }
                         }
                     }
+                    return true;
                 }
             }
-            catch
+            catch (Exception ex) 
             {
+                Console.WriteLine("ERROR ERROR: " + ex);
                 return true;
             }
-            return true;
         }
         public static void DefineRaidStatus(MainClass.MainConfig svmconfig, EndLocalRaidRequestData info)
         {

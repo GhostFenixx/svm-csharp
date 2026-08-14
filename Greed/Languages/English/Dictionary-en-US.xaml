@@ -245,7 +245,8 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="WaterFilterTime">Time spent (in minutes) to create purified water:</System:String>
  <System:String x:Key="MaxBitcoins">Maximum amount of stored bitcoins:</System:String>
  <System:String x:Key="BitcoinTime">Time required to generate a bitcoin in minutes:</System:String>
- <System:String x:Key="RemoveConstructionsRequirements">Remove construction item requirements</System:String>
+    <System:String x:Key="MusclePainTime">Time required to recover from muscle pain:</System:String>
+    <System:String x:Key="RemoveConstructionsRequirements">Remove construction item requirements</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Remove the FiR requirement</System:String>
  <System:String x:Key="RemoveSkillRequirements">Remove the character skill requirement</System:String>
  <System:String x:Key="RemoveTraderLevelRequirements">Remove trader standing construction requirement</System:String>

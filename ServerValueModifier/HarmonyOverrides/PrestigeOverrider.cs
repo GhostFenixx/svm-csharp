@@ -21,13 +21,13 @@ using System.Xml.Linq;
 
 namespace ServerValueModifier.HarmonyOverrides
 {
-    [Injectable(TypePriority = OnLoadOrder.Preload)]
+    [Injectable]
     public sealed class PrestigeAsyncPatch : AbstractPatch
     {
 
-        private static ModHelper _modhelper = default!;
-        private static ISptLogger<SVM> _logger = default!;
-        private static ProfileHelper _profilehelper = default!;
+        private static ModHelper _modhelper;
+        private static ISptLogger<SVM> _logger;
+        private static ProfileHelper _profilehelper;
 
         public PrestigeAsyncPatch(ModHelper modHelper, ProfileHelper profileHelper, ISptLogger<SVM> logger)
         {
@@ -50,7 +50,7 @@ namespace ServerValueModifier.HarmonyOverrides
         [PatchPrefix]
         public static bool Prefix(MongoId sessionId)
         {
-            try
+            try//try-catch in case no config
             {
                 MainClass.MainConfig cf = new SVMConfig(_modhelper).CallConfig();
                 PmcData? pmcdata = _profilehelper.GetPmcProfile(sessionId);

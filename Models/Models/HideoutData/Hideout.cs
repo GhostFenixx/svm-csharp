@@ -20,6 +20,7 @@ namespace Greed.Models.HideoutData
         public double AirFilterRate { get; set; } = 1;
         public double CultistTime { get; set; } = 1;
         public int CultistMaxRewards { get; set; } = 5;
+        public int MusclePainTime { get; set; } = 1440;
         public double FuelConsumptionRate { get; set; } = 1;
         public bool RemoveConstructionsRequirements { get; set; }
         public bool RemoveConstructionsFIRRequirements { get; set; }

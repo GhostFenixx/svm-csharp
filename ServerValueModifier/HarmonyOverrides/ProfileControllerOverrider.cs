@@ -30,7 +30,7 @@ using static System.Runtime.InteropServices.JavaScript.JSType;
 
 namespace ServerValueModifier.HarmonyOverrides
 {
-    [Injectable(TypePriority = OnLoadOrder.Preload)]
+    [Injectable]
 
     public class ProfileControllerAsyncPatch : AbstractPatch
     {
@@ -44,7 +44,7 @@ namespace ServerValueModifier.HarmonyOverrides
         [PatchPrefix]
         public static bool Prefix(MongoId sessionId)
         {
-            try
+            try//try-catch in case no config
             {
                 PmcData scavdata = _playerScavGenerator.Generate(sessionId);
                 MainClass.MainConfig cf = new SVMConfig(modhelper).CallConfig();

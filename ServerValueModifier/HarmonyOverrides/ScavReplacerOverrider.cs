@@ -18,12 +18,11 @@ using System.Text;
 namespace ServerValueModifier.HarmonyOverrides
 {
 
-    [Injectable(TypePriority = OnLoadOrder.Preload)]
+    [Injectable]
     public class ScavReplacerOverrider : AbstractPatch
     {
-        private static ModHelper _modhelper = default!;
-        private static LocationTable _locationTable = default!;
-
+        private static ModHelper _modhelper;
+        private static LocationTable _locationTable;
         public ScavReplacerOverrider(ModHelper modHelper, LocationTable locationTable, ISptLogger<SVM> logger)
         {
             _modhelper = modHelper;
@@ -36,7 +35,7 @@ namespace ServerValueModifier.HarmonyOverrides
         [PatchPrefix]
         public static bool Prefix(WildSpawnType newScavRole)
         {
-            try
+            try //try-catch in case no config
             {
                 MainClass.MainConfig svmcfg = new SVMConfig(_modhelper).CallConfig();
                 if (svmcfg.Raids.RaidEvents.AITypeOverride && svmcfg.Raids.EnableRaids) //Not sure we need to check for this but for sanity and possible mod compat? maybe?
@@ -72,7 +71,7 @@ namespace ServerValueModifier.HarmonyOverrides
                     return true;
                 }
             }
-            catch //in case config returns null to not break people's spawns.
+            catch
             {
                 return true;
             }

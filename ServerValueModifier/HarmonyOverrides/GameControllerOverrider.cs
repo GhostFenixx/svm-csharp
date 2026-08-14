@@ -9,7 +9,7 @@ using System.Reflection;
 
 namespace ServerValueModifier.HarmonyOverrides;
 
-[Injectable(TypePriority = OnLoadOrder.Preload)]
+[Injectable]
 public class HealthAsyncPatch : AbstractPatch
 {
     private static ModHelper _modHelper;
@@ -25,7 +25,7 @@ public class HealthAsyncPatch : AbstractPatch
     [PatchPrefix]
     public static bool Prefix()
     {
-        try
+        try//try-catch in case no config
         {
             MainClass.MainConfig cf = new SVMConfig(_modHelper).CallConfig();
             if (cf.Hideout.Regeneration.OfflineRegen)
