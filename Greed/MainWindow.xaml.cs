@@ -19,9 +19,6 @@ using System.Windows.Media.Imaging;
 
 namespace Greed
 {
-    /// <summary>
-    /// Interaction logic for MainWindow.xaml
-    /// </summary>
     public partial class MainWindow : Window
     {
        readonly string currDir = Directory.GetCurrentDirectory();
@@ -33,13 +30,14 @@ namespace Greed
                 InitializeComponent();
 
                 EventManager.RegisterClassHandler(typeof(FrameworkElement),
-        FrameworkElement.MouseEnterEvent,
-        new RoutedEventHandler(OnMouseEnter));
+                FrameworkElement.MouseEnterEvent,
+                new RoutedEventHandler(OnMouseEnter));
                 EventManager.RegisterClassHandler(typeof(FrameworkElement),
-                    FrameworkElement.MouseLeaveEvent,
-                    new RoutedEventHandler(OnMouseLeave));
+                FrameworkElement.MouseLeaveEvent,
+                new RoutedEventHandler(OnMouseLeave));
+
                 ToolTipService.ShowDurationProperty.OverrideMetadata(typeof(DependencyObject),
-                    new FrameworkPropertyMetadata(int.MaxValue));
+                new FrameworkPropertyMetadata(int.MaxValue));
                 LangSwitch(Thread.CurrentThread.CurrentCulture.Name);
                 if (!File.Exists(Path.Combine(modFolder, "ServerValueModifier.dll")))
                 {
@@ -74,7 +72,6 @@ namespace Greed
             
             if (!Directory.Exists(presetsFolder))
             {
-                //throw new NullReferenceException($"{presetsFolder} does not exist.");
                 Popup message = new((string)Application.Current.FindResource("MissingPresetFolder"));
                 message.ShowDialog();
                 if (message.Confirm)
@@ -105,7 +102,6 @@ namespace Greed
         {
             Thread.CurrentThread.CurrentCulture = new CultureInfo(lang);
             Thread.CurrentThread.CurrentUICulture = new CultureInfo(lang);
-            //Application.Current.Resources.MergedDictionaries.Clear();
             switch (lang)
             {
                 case "ru-RU":
@@ -416,7 +412,7 @@ namespace Greed
             }
         }
 
-        private void ItemFinder(object sender, EventArgs e)//TODO Route to tarkynator maybe? Although Item Finder is SPT domain, best to leave as is.
+        private void ItemFinder(object sender, EventArgs e)
         {
             Popup Message = new((string)Application.Current.FindResource("IDFinder"));
             Message.ShowDialog();
