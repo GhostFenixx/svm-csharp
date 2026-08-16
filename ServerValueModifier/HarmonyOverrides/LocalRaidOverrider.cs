@@ -56,7 +56,6 @@ namespace ServerValueModifier.HarmonyOverrides
                 {
 
                     __result = new ValueTask<string>(_httpResponseUtil.NullResponse());
-                    //_httpResponseUtil.NullResponse();   //Bad writing, still - if Section and subsection is on AND practice mode(saveloot) is on - ignore any changes to raid, including scav raids.
                     return false;
                 }
                 else
@@ -112,7 +111,6 @@ namespace ServerValueModifier.HarmonyOverrides
             }
             catch (Exception ex) 
             {
-                Console.WriteLine("ERROR ERROR: " + ex);
                 return true;
             }
         }
