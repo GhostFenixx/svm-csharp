@@ -54,9 +54,9 @@ namespace ServerValueModifier.Sections
             airdrop.PlaneAirdropChance = (double)chance / 100;
             airdrop.PlaneAirdropStartMin = min * 60;
             airdrop.PlaneAirdropStartMax = max * 60;
-            airdrop.PlaneAirdropCooldownMax = 9999; // Requested by user - removing useless extra complexity to the system, First is the range when you can get an airdrop,
-            airdrop.PlaneAirdropCooldownMin = 9999; // then there's where another can be spawned which takes effect in Ground Zero and Streets, discarded that.
-                                                    // Not entirely sure how that would work with calling quest/supply drops using flares however.
+            //airdrop.PlaneAirdropCooldownMax = 9999; // Requested by user - removing useless extra complexity to the system, First is the range when you can get an airdrop,
+            //airdrop.PlaneAirdropCooldownMin = 9999; // then there's where another can be spawned which takes effect in Ground Zero and Streets, discarded that.
+            //                                        // Not entirely sure how that would work with calling quest/supply drops using flares however.
             if (enabled)
             {
                 airdrop.PlaneAirdropEnd = time * 60;

@@ -68,9 +68,15 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll вже існує в теці. \BepInEx\plugins, встановлення відмінене.</System:String>
     <System:String xml:space="preserve" x:Key="FikaLink">Натисніть 'Ок' щоб відкрити Дискорд Project Fika - Одне з Таркових спільнот в якому так само є GhostFenixx,
 [Увага - Це запустить ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
+[Увага - Це запустить ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTWeb">Натисніть 'Ок' щоб відкрити сайт SPT - Майданчик з усіма модами та релізами,
+[Увага - Це запустить ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTLink">Натисніть 'Ок' щоб відкрити Діскорд SPT Hub - Поточний хаб розробників SPT,
+[Увага - Це запустить ваш браузер]</System:String>
     <System:String xml:space="preserve" x:Key="IDFinder">Натисніть 'Ок' щоб відкрити сайт Tarkynator для пошуку ID - Зручна оболочка для перегляду БД
 [Увага - Це запустить ваш браузер]</System:String>
- <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
+    <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
 [Увага - Це запустить ваш браузер]</System:String>
  <!--Buttons-->
  <System:String x:Key="Applied">Готово!</System:String>

@@ -428,11 +428,18 @@ namespace Greed
             }
         }
 
-        private void KofiLink(object sender, EventArgs e)
+        private void SPTDiscord(object sender, EventArgs e)
         {
-            RunURL("KofiLink", "https://ko-fi.com/ghostfenixx");
+            RunURL("SPTLink", "https://discord.gg/Xn9msqQZan");
         }
-
+        private void SPTWEB(object sender, EventArgs e)
+        {
+            RunURL("SPTWeb", "https://sp-mod.com");
+        }
+        private void ModLink(object sender, EventArgs e)
+        {
+            RunURL("ModPage", "https://sp-mod.com/mod/236/server-value-modifier-svm");
+        }
         private void GitHubLink(object sender, EventArgs e)
         {
             RunURL("GitHubLink", "https://github.com/GhostFenixx?tab=repositories");

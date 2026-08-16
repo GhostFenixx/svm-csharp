@@ -77,6 +77,17 @@ Everyone else who provided any kind of support to the project, whether bug repor
  Extra checks in Item section to avoid mod incompats.
  
      
+ 2.2.2 for SPT 4.1.0+    
+     
+ Added:
+ Returned links to SPT domains back (Discord server, main page and mod page) since everything is back as it was.
+ Muscle pain duration in hideout section - user request
+
+ Fixed:
+ Removed experimental thing from aidrops, didn’t expect it to break them altogether.
+ In raid states - count as raid never happened.
+     
+     
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
     <System:String xml:space="preserve" x:Key="SVMWrongInstallation">Greed couldn't find ServerValueModifier.dll under SPT_Runtime/user/mods/[SVM] Server Value Modifier
@@ -111,7 +122,13 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll already exist in your \BepInEx\plugins folder, installation cancelled.</System:String>
     <System:String xml:space="preserve" x:Key="KofiLink">Press 'Ok' To visit Kofi.com - A place where you can support the developer,
 [Be advised - it will launch your browser]</System:String>
- <System:String xml:space="preserve" x:Key="GitHubLink">Press 'Ok' To visit Github.com - There you can report any issues you've encountered,
+    <System:String xml:space="preserve" x:Key="SPTLink">Press 'Ok' To visit SPT Hub - current SPT development hub,
+[Be advised - it will launch your browser]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTWeb">Press 'Ok' To visit Forge - SPT Domain with all the mods,
+[Be advised - it will launch your browser]</System:String>
+    <System:String xml:space="preserve" x:Key="ModPage">Press 'Ok' To visit SVM Modpage,
+[Be advised - it will launch your browser]</System:String>
+    <System:String xml:space="preserve" x:Key="GitHubLink">Press 'Ok' To visit Github.com - There you can report any issues you've encountered,
 [Be advised - it will launch your browser]</System:String>
     <System:String xml:space="preserve" x:Key="FikaLink">Press 'Ok' To visit Project Fika Discord - One of communities of SPT where GhostFenixx happen to be in,
 [Be advised - it will launch your browser]</System:String>
@@ -173,7 +190,6 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="ModWeb">Mod's Webpage</System:String>
  <System:String x:Key="KoFi">Ko-Fi Donation link</System:String>
  <System:String x:Key="GitHub">Report an issue on GitHub</System:String>
- <System:String x:Key="EmuRC">EmutarkovRC Discord</System:String>
  <System:String x:Key="Fika">Project Fika Discord</System:String>
  <System:String x:Key="WikiPage">Tarkov Wiki</System:String>
 
@@ -245,7 +261,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="WaterFilterTime">Time spent (in minutes) to create purified water:</System:String>
  <System:String x:Key="MaxBitcoins">Maximum amount of stored bitcoins:</System:String>
  <System:String x:Key="BitcoinTime">Time required to generate a bitcoin in minutes:</System:String>
-    <System:String x:Key="MusclePainTime">Time required to recover from muscle pain:</System:String>
+    <System:String x:Key="MusclePainTime">Muscle pain duration in minutes:</System:String>
     <System:String x:Key="RemoveConstructionsRequirements">Remove construction item requirements</System:String>
  <System:String x:Key="RemoveConstructionsFIRRequirements">Remove the FiR requirement</System:String>
  <System:String x:Key="RemoveSkillRequirements">Remove the character skill requirement</System:String>

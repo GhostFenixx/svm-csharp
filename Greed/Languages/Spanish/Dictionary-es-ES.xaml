@@ -69,6 +69,12 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
     <System:String x:Key="InstallPluginComplete">HideSpecialIconGrids.dll se ha instalado con éxito en \BepInEx\plugins .</System:String>
  <System:String x:Key="InstallPluginFailed">Instalación fallida, no se ha podido encontrar la carpeta \BepInEx\plugins.</System:String>
     <System:String x:Key="InstallationAlreadyDone">HideSpecialIconGrids.dll ya existe en \BepInEx\plugins. Instalación cancelada.</System:String>
+    <System:String xml:space="preserve" x:Key="SPTWeb">Pulsa 'Ok' para visitar la web de SPT - El dominio oficial de SPT, y sus mods,
+[Aviso - Abrirá tu navegador]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTLink">Pulsa 'Ok' para visitar el HUB de SPT - El actual HUB de desarrollo de SPT,
+[Aviso - Abrirá tu navegador]</System:String>
+    <System:String xml:space="preserve" x:Key="ModPage">Pulsa 'Ok' para visitar la página de GREED,
+[Aviso - Abrirá tu navegador]</System:String>
     <System:String xml:space="preserve" x:Key="KofiLink">Pulsa 'Ok' para visitar Kofi.com - Un lugar dónde apoyar al creador,
 [Aviso - Abrirá tu navegador]</System:String>
  <System:String xml:space="preserve" x:Key="GitHubLink">Pulsa 'Ok' para visitar Github.com - Ahí puedes informar de cualquier error con el que te hayas encontrado,
@@ -133,9 +139,8 @@ Algo ha ido mal. Hay algo mal escrito o está el campo vacío?</System:String>
  <System:String x:Key="ItemIDWeb">Web buscadora de ID de objetos</System:String>
  <System:String x:Key="ModWeb">Web del Mod</System:String>
  <System:String x:Key="KoFi">Enlace de donaciones de Ko-Fi</System:String>
- <System:String x:Key="GitHub">Informa de un problema en GitHub</System:String>
- <System:String x:Key="EmuRC">Discord de EmutarkovRC </System:String>
- <System:String x:Key="Fika">Discord de Project Fika </System:String>
+    <System:String x:Key="GitHub">Informa de un problema en GitHub</System:String>
+    <System:String x:Key="Fika">Discord de Project Fika </System:String>
  <System:String x:Key="WikiPage">Wiki de Tarkov</System:String>
 
  <!--Preset Notes Initial Text-->

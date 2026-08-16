@@ -79,7 +79,13 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
 [주의 - 브라우저가 실행됩니다]</System:String>
     <System:String xml:space="preserve" x:Key="WikiPage_Link">'OK'버튼을 눌러 공식 타르코프 위키를 방문하세요.
 [주의 - 브라우저가 실행됩니다]</System:String>
-<!--Counting-->
+    <System:String xml:space="preserve" x:Key="SPTWeb">'OK'버튼을 눌러 SPT 웹사이트(모든 모드가 있는 SPT 커뮤니티 사이트)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+    <System:String xml:space="preserve" x:Key="ModPage">'OK'버튼을 눌러 SVM 모드 페이지를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTLink">'OK'버튼을 눌러 SPT Hub(현재 SPT 개발 허브)를 방문하세요.
+[주의 - 브라우저가 실행됩니다]</System:String>
+    <!--Counting-->
  <System:String x:Key="First">첫 번째:</System:String>
  <System:String x:Key="Second">두 번째:</System:String>
  <System:String x:Key="Third">세 번째:</System:String>
@@ -131,9 +137,8 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
  <System:String x:Key="ItemIDWeb">ID Item Finder 사이트</System:String>
  <System:String x:Key="ModWeb">모드 페이지</System:String>
  <System:String x:Key="KoFi">Ko-Fi 기부 링크</System:String>
- <System:String x:Key="GitHub">GitHub 이슈(issue) 보고하기</System:String>
- <System:String x:Key="EmuRC">EmutarkovRC 디스코드</System:String>
-  <System:String x:Key="Fika">Project Fika 디스코드</System:String>
+    <System:String x:Key="GitHub">GitHub 이슈(issue) 보고하기</System:String>
+    <System:String x:Key="Fika">Project Fika 디스코드</System:String>
  <System:String x:Key="WikiPage">타르코프 위키</System:String>
 
  <!--Preset Notes Initial Text-->

@@ -66,6 +66,12 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, Kiriko, MalecSP, Bidd
 [Внимание - Это запустит ваш браузер]</System:String>
     <System:String xml:space="preserve" x:Key="IDFinder">Нажмите 'Ок' что бы открыть сайт Tarkynator для поиска ID - Удобная оболочка для просмотра БД
 [Внимание - Это запустит ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="ModPage">Нажмите 'Ок' что бы открыть веб-страницу мода,
+[Внимание - Это запустит ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTWeb">Нажмите 'Ок' что бы открыть сайт SPT  - Площадка со всеми модами и релизами,
+[Внимание - Это запустит ваш браузер]</System:String>
+    <System:String xml:space="preserve" x:Key="SPTLink">Нажмите 'Ок' что бы открыть Дискорд SPT Hub - Текущий хаб разработчиков SPT,
+[Внимание - Это запустит ваш браузер]</System:String>
     <!--Buttons-->
  <System:String x:Key="Applied">Готово!</System:String>
  <System:String x:Key="Saved">Сохранено!</System:String>
