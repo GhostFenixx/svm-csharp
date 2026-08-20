@@ -24,6 +24,7 @@ namespace ServerValueModifier.Sections
             Globals globals = databaseService.GetGlobals();
             SPTarkov.Server.Core.Models.Spt.Hideout.Hideout hideout = databaseService.GetHideout();
             //
+            hideout.Qte[0].Results[0].RewardEffects[0].Time = svmconfig.Hideout.MusclePainTime * 60;
             hideout.Settings.GeneratorFuelFlowRate *= svmconfig.Hideout.FuelConsumptionRate;
             hideout.Settings.GeneratorSpeedWithoutFuel *= svmconfig.Hideout.NoFuelMult;
             hideout.Settings.AirFilterUnitFlowRate *= svmconfig.Hideout.AirFilterRate;

@@ -199,6 +199,12 @@
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Expander>
                 <Expander.Header>
+                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Misc}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                </Expander.Header>
+                <CheckBox Content="{DynamicResource EqualHealth}" ToolTip="{DynamicResource EqualHealth_TT}" IsChecked="{Binding Bots.EqualHealth}"/>
+            </Expander>
+            <Expander>
+                <Expander.Header>
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource BotsArmorDurab}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10" HorizontalAlignment="Left">

@@ -53,7 +53,7 @@ namespace ServerValueModifier.Routers
                                 if (elem.Id == scheme.Key)
                                 {
                                     elem.Upd.UnlimitedCount = false;
-                                    elem.Upd.StackObjectsCount = rnd.Next(480);//Major TODO
+                                    elem.Upd.StackObjectsCount = rnd.Next(1440);//Major TODO
                                                                                //PLANS: Separate assort by IDs to apply different random ranges.
                                                                                // Weight system to roll 'Out of stock often' maybe?
                                 }

@@ -1,8 +1,11 @@
 ﻿using Greed.Models;
+using SPTarkov.Server.Core.Models.Common;
+using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Spt.Config;
 using SPTarkov.Server.Core.Models.Utils;
 using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
+using System.Reflection;
 
 namespace ServerValueModifier.Sections
 {
@@ -12,6 +15,21 @@ namespace ServerValueModifier.Sections
         {
             var locs = databaseService.GetLocations();
             BotConfig bots = configServer.GetConfig<BotConfig>();
+
+            if (svmconfig.Bots.EqualHealth)
+            {
+                foreach (var bottype in databaseService.GetBots().Types)
+                {
+                    if (bottype.Value.BotHealth.BodyParts is not null && bottype.Key != "ravangezryachiyevent" && !bottype.Key.Contains("infected")) // Excluded some event based AI
+                    {
+                        foreach (var bodypart in bottype.Value.BotHealth.BodyParts) // cycles thru multiple health options if any AI has more than one (turns out by default - none)
+                        {
+                            EqualizeHealth(bodypart, "Max");
+                            EqualizeHealth(bodypart, "Min");
+                        }
+                    }
+                }
+            }
             //Double cycle to go through every location and every boss wave,
             //using switch to sort through boss names to adjust their spawn chances accordingly
             foreach (var loc in locs.GetDictionary().Values)
@@ -189,6 +207,17 @@ namespace ServerValueModifier.Sections
                 }
             }
 
+        }
+        public void EqualizeHealth(BodyPart body, string minmax)
+        {
+            PropertyInfo? value = typeof(MinMax<double>).GetProperty(minmax);
+            value.SetValue(body.Head, 35);
+            value.SetValue(body.Chest, 85);
+            value.SetValue(body.Stomach, 70);
+            value.SetValue(body.LeftArm, 60);
+            value.SetValue(body.RightArm, 60);
+            value.SetValue(body.LeftLeg, 65);
+            value.SetValue(body.RightLeg, 65);
         }
         public void AdjustDurab(BotConfig bots, string bottype, Greed.Models.AI.BotDurability type)
         {

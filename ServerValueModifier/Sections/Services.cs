@@ -25,6 +25,29 @@ namespace ServerValueModifier.Sections
             {
                 insurance.ReturnChancePercent[TraderID.PRAPOR] = svmcfg.Services.ReturnChancePrapor;
                 insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
+                if (svmcfg.Services.ReturnChanceTherapist == 0 && svmcfg.Services.ReturnChancePrapor == 0)//Convoluted system, if no traders with insurance enabled - game acts wonky,
+                                                                                                          //inserting default_trader object, which by interacting with you cause server to hang.
+                                                                                                          //Therefore, solution is either disable insurance on items or disable one trader (or the other)
+                {
+                    logger.Warning("[SVM] Insurance - both traders return chance are 0%, disabling insurance availability - it will affect other traders");
+                    //var baseitem = templateTable.Items;
+                    foreach (var item in databaseService.GetItems())
+                    {
+                        if (item.Value.Properties.InsuranceDisabled is not null)
+                        {
+                            item.Value.Properties.InsuranceDisabled = true;
+                        }
+                    }
+                }
+                else if (svmcfg.Services.ReturnChanceTherapist == 0)
+                {
+                    traders[TraderID.THERAPIST].Base.Insurance.Availability = false;
+                }
+                else if (svmcfg.Services.ReturnChancePrapor == 0)
+                {
+                    traders[TraderID.PRAPOR].Base.Insurance.Availability = false;
+                }
+
                 TraderInsurance? praporinsurance = traders[TraderID.PRAPOR].Base.Insurance;
                 TraderInsurance? therapistinsurance = traders[TraderID.THERAPIST].Base.Insurance;
                 praporinsurance.MaxStorageTime = svmcfg.Services.PraporStorageTime;

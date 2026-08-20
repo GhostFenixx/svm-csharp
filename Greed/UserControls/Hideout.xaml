@@ -53,6 +53,11 @@
                             <TextBlock Text="{DynamicResource CultistMaxRewards}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
+                    <ui:NumberBox Maximum="2880" Value="{Binding Hideout.MusclePainTime}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource MusclePainTime}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
                 </StackPanel>
             </Expander>
             <Expander>

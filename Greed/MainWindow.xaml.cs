@@ -416,41 +416,27 @@ namespace Greed
             }
         }
 
-        private void ItemFinder(object sender, EventArgs e)//TODO Route to tarkynator maybe? Although Item Finder is SPT domain, best to leave as is.
+        private void ItemFinder(object sender, EventArgs e)
         {
-            Popup Message = new((string)Application.Current.FindResource("IDFinder"));
-            Message.ShowDialog();
-            if (Message.Confirm == true)
-            {
-                string browserPath = ("C:/Windows/explorer.exe");
-                string argUrl = "https://db.sp-tarkov.com/search";
-                Process.Start(browserPath, argUrl);
-            }
+            RunURL("IDFinder", "https://tarkynator.com/");
         }
-
-        private void SPTDiscord(object sender, EventArgs e)//TODO: Maybe in future rework as one method and do a switch? Not like it matters really.
+        private void SPTDiscord(object sender, EventArgs e)
         {
             RunURL("SPTLink", "https://discord.gg/Xn9msqQZan");
         }
 
         private void SPTWEB(object sender, EventArgs e)
         {
-            RunURL("SPTWeb", "https://hub.sp-tarkov.com");
+            RunURL("SPTWeb", "https://sp-mod.com/");
         }
-
-        private void KofiLink(object sender, EventArgs e)
-        {
-            RunURL("KofiLink", "https://ko-fi.com/ghostfenixx");
-        }
-
         private void GitHubLink(object sender, EventArgs e)
         {
-            RunURL("GitHubLink", "https://github.com/GhostFenixx?tab=repositories");
+            RunURL("GitHubLink", "https://github.com/GhostFenixx/svm-csharp");
         }
 
         private void ModLink(object sender, EventArgs e)
         {
-            RunURL("ModPage", "https://hub.sp-tarkov.com/files/file/379-kmc-server-value-modifier");
+            RunURL("ModPage", "https://sp-mod.com/mod/236/server-value-modifier-svm");
         }
 
         private void FikaDiscord(object sender, EventArgs e)
@@ -462,7 +448,6 @@ namespace Greed
         {
             RunURL("WikiPage_Link", "https://escapefromtarkov.fandom.com/wiki/Escape_from_Tarkov_Wiki");
         }
-
 
         private void Disclaimer(object sender, RoutedEventArgs e)
         {
