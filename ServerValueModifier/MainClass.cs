@@ -55,8 +55,31 @@ namespace ServerValueModifier
             }
             try
             {
+
+
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
+
+                //Creating Ragman offers for SCAV/BP apparels
+                DeclareModdedAssort(svmcfg);
+                //Predefining modded items to avoid profile "corruption" if certain fields were removed
+                Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = templateTable.Items;
+                //Creating Pockets here to exist whether section ON or OFF so we won't have an issue when modded item not found if section is off
+                TemplateItem custompocket = cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);
+                custompocket.Id = "a8edfb0bce53d103d3f62b9b";
+                items["a8edfb0bce53d103d3f62b9b"] = custompocket;
+                TemplateItem scavcustompocket = cloner.Clone(items["557ffd194bdc2d28148b457f"]);
+                scavcustompocket.Id = "a8edfb0bce53d103d3f6219b";
+                items["a8edfb0bce53d103d3f6219b"] = scavcustompocket;
+                if (svmcfg.Bots.EnableBots)
+                {
+                    botConfig.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
+                }
+                //Flea section
+                if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
+                {
+                    ragfairConfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
+                }
                 //Sections Initialization
                 Sections.Items itemLoad = new(logger, templateTable, globals, svmcfg);
                 Sections.Hideout hideoutLoad = new(logger, globals, hideoutConfig, hideoutTable, templateTable, cloner, svmcfg);
@@ -138,27 +161,6 @@ namespace ServerValueModifier
                 Random rnd = new Random();
                 logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], Spectre.Console.Color.Blue);
                 logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", Spectre.Console.Color.Blue);
-
-                //Creating Ragman offers for SCAV/BP apparels
-                DeclareModdedAssort(svmcfg);
-                //Predefining modded items to avoid profile "corruption" if certain fields were removed
-                Dictionary<SPTarkov.Server.Core.Models.Common.MongoId, TemplateItem> items = templateTable.Items;
-                //Creating Pockets here to exist whether section ON or OFF so we won't have an issue when modded item not found if section is off
-                TemplateItem custompocket = cloner.Clone(items["627a4e6b255f7527fb05a0f6"]);
-                custompocket.Id = "a8edfb0bce53d103d3f62b9b";
-                items["a8edfb0bce53d103d3f62b9b"] = custompocket;
-                TemplateItem scavcustompocket = cloner.Clone(items["557ffd194bdc2d28148b457f"]);
-                scavcustompocket.Id = "a8edfb0bce53d103d3f6219b";
-                items["a8edfb0bce53d103d3f6219b"] = scavcustompocket;
-                if (svmcfg.Bots.EnableBots)
-                {
-                    botConfig.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
-                }
-                //Flea section
-                if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
-                {
-                    ragfairConfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
-                }
             }
             catch (FileNotFoundException)
             {

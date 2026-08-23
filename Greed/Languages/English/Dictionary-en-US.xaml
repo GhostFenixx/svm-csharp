@@ -88,8 +88,10 @@ Everyone else who provided any kind of support to the project, whether bug repor
  In raid states - count as raid never happened.
      
  2.2.3 for SPT 4.1.3+
+     
  Reworked:
  Traders section > Traders LV4 turned into separate fields for each requirements
+     
  Fixed:
  Airdrops
  UA Locale error

@@ -108,7 +108,7 @@
                     <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Loot.EnableAirdrops}"/>
                     </DockPanel>
                 </Expander.Header>
-                <StackPanel Margin="10">
+                <StackPanel  Margin="10" IsEnabled="{Binding Loot.EnableAirdrops}">
                     <DockPanel Margin="5,5,0,5">
                         <TextBlock Text="{DynamicResource AirdropsTimeMinMax}" TextWrapping="Wrap" Width="200" VerticalAlignment="Center" Padding="0,20,0,0"/>
                         <ui:NumberBox Value="{Binding Loot.Airdrops.AirtimeMin}" Width="100" Style="{StaticResource FlatsSmall}">
@@ -124,48 +124,48 @@
                     </DockPanel>
                     <TextBlock Text="{DynamicResource AirdropChance}" HorizontalAlignment="center" VerticalAlignment="Center" Margin="0,5,0,5"/>
                     <DockPanel>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Bigmap_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Bigmap_air}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Customs}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Interchange_air}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Interchange_air}" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Interchange}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                     </DockPanel>
                     <DockPanel>
-                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Woods_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Woods_air}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Woods}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Shoreline_air}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox  Value="{Binding Loot.Airdrops.Shoreline_air}" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Shoreline}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                     </DockPanel>
                     <DockPanel>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Reserve_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Reserve_air}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Reserve}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Lighthouse_air}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Lighthouse_air}" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Lighthouse}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
                     </DockPanel>
                     <DockPanel>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Streets_air}" Style="{StaticResource FlatsSmall}" Width="200" Margin="0,0,5,0">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Streets_air}" Style="{StaticResource MinMax}" Width="200" Margin="0,0,5,0">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource Streets}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Loot.Airdrops.Sandbox_air}" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox Value="{Binding Loot.Airdrops.Sandbox_air}" Style="{StaticResource MinMax}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource GroundZero}"/>
                             </ui:NumberBox.Header>
