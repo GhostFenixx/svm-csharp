@@ -76,9 +76,7 @@ G10rgos, DaveyB0y, Fortis, olli991, Kain187, GamesB4Gains, MalecSP, Kiriko, Bidd
 [Увага - Це запустить ваш браузер]</System:String>
     <System:String xml:space="preserve" x:Key="IDFinder">Натисніть 'Ок' щоб відкрити сайт Tarkynator для пошуку ID - Зручна оболочка для перегляду БД
 [Увага - Це запустить ваш браузер]</System:String>
-    <System:String xml:space="preserve" x:Key="ModPage">Натисніть 'Ок' щоб відкрити веб-сторінку мода,
-[Увага - Це запустить ваш браузер]</System:String>
- <!--Buttons-->
+    <!--Buttons-->
  <System:String x:Key="Applied">Готово!</System:String>
  <System:String x:Key="Saved">Збережено!</System:String>
  <System:String x:Key="Loaded">Завантажено!</System:String>

@@ -13,6 +13,7 @@ using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
 using SPTarkov.Server.Core.Models.Eft.Hideout;
+using SPTarkov.Server.Core.Models.Eft.Profile;
 using SPTarkov.Server.Core.Models.Eft.Weather;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
@@ -29,14 +30,13 @@ using System.Reflection;
 using System.Runtime.InteropServices;
 using System.Runtime.Intrinsics.Arm;
 using System.Xml;
-using static ServerValueModifier.SVMPreLoad;
 using static System.Net.WebRequestMethods;
 using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier
 {
    [Injectable(TypePriority = OnLoadOrder.Preload + 5)]
-    public class SVMPreLoad(ISptLogger<SVM> logger, ModHelper modhelper, BotConfig bots, WeatherConfig weatherconfig, TradersTable tradersTable, TemplateTable templateTable, LocaleTable localeTable, SeasonalEventConfig eventconfig, ICloner cloner, QuestConfig questconfig, RagfairConfig ragfairConfig, IEnumerable<IRuntimePatch> patches) : IOnLoad
+    public class SVM(ISptLogger<SVM> logger, ModHelper modhelper, TemplateTable templateTable, HideoutConfig hideoutConfig, WeatherConfig weatherConfig, LocaleTable localeTable, RagfairConfig ragfairConfig, SeasonalEventConfig eventConfig, SeasonalEventService seasonalEvent, BotTable botTable, PmcConfig pmcConfig, InRaidConfig inRaidConfig, RagfairConfig fleaconfig, LostOnDeathConfig midcore, AirdropConfig airdropConfig, HealthConfig healthConfig, BotConfig botConfig, LocationConfig locationConfig, LocationTable locationTable, TraderConfig traderConfig, InsuranceConfig insurance, RepairConfig repair, TradersTable tradersTable, QuestConfig questConfig, HideoutTable hideoutTable, GlobalTable globals, ICloner cloner, IEnumerable<IRuntimePatch> patches) : IOnLoad
     {
         public Task OnLoadAsync(CancellationToken cancellationToken)
         {
@@ -50,13 +50,95 @@ namespace ServerValueModifier
             }
             catch (Exception ex)
             {
-                logger.Error($"Error applying patch: {ex.Message}");
+                logger.Error($"[SVM] Error applying harmony patches, check the error: {ex.Message}");
                 throw;
             }
             try
             {
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
+                //Sections Initialization
+                Sections.Items itemLoad = new(logger, templateTable, globals, svmcfg);
+                Sections.Hideout hideoutLoad = new(logger, globals, hideoutConfig, hideoutTable, templateTable, cloner, svmcfg);
+                Sections.Traders tradersLoad = new(logger, globals, templateTable, traderConfig, tradersTable, questConfig, svmcfg);
+                Sections.Services servicesLoad = new(logger, globals, cloner, insurance, repair, templateTable, tradersTable, svmcfg);
+                Sections.Loot lootLoad = new(logger, airdropConfig, templateTable, locationConfig, locationTable, svmcfg);
+                Sections.Bots botload = new(logger, locationTable, botConfig, botTable, svmcfg);
+                Sections.Player playerLoad = new(logger, globals, healthConfig, templateTable, svmcfg);
+                Sections.Raids raidsload = new(logger, globals, inRaidConfig, midcore, locationTable, traderConfig, templateTable, svmcfg);
+                Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, svmcfg);
+                Sections.Quests questsLoad = new(logger, templateTable, questConfig, svmcfg);
+                Sections.CSM csmLoad = new(logger, templateTable, insurance, svmcfg, cloner);
+                Sections.Events eventsLoad = new(logger, templateTable, locationTable, botConfig, svmcfg, modhelper);
+                Sections.Scav scavload = new(logger, globals, templateTable, inRaidConfig, locationTable, svmcfg, cloner);
+                Sections.PMC pmcload = new(logger, templateTable, pmcConfig, botConfig, botTable, locationTable, svmcfg);
+
+                if (svmcfg.Items.EnableItems) itemLoad.ItemsSection();
+                if (svmcfg.Hideout.EnableHideout) hideoutLoad.HideoutSection();
+                if (svmcfg.Traders.EnableTraders) tradersLoad.TradersSection();
+                if (svmcfg.Services.EnableServices) servicesLoad.ServicesSection();
+                if (svmcfg.Loot.EnableLoot) lootLoad.LootSection();
+                if (svmcfg.Fleamarket.EnableFleamarket) fleamarketLoad.FleamarketSection();
+                if (svmcfg.Player.EnablePlayer) playerLoad.PlayerSection();
+                if (svmcfg.Raids.EnableRaids) // Since i moved everything into single pre-load, i need to show the rest of things into section later, TODO.
+                {
+                    raidsload.RaidsSection();
+                    if (svmcfg.Raids.RaidEvents.AITypeOverride)
+                    {
+                        botConfig.ReplaceScavWith = WildSpawnType.followerTest;//This is just a placeholder to trigger our harmony method to override it with multiple options rather default one type.
+                    }
+                    weatherConfig.Acceleration = svmcfg.Raids.Timeacceleration;
+                    if (svmcfg.Raids.ForceSeason)
+                    {
+                        switch (svmcfg.Raids.Season)
+                        {
+                            case 0:
+                                weatherConfig.OverrideSeason = Season.SUMMER;
+                                break;
+                            case 1:
+                                weatherConfig.OverrideSeason = Season.AUTUMN;
+                                break;
+                            case 2:
+                                weatherConfig.OverrideSeason = Season.WINTER;
+                                break;
+                            case 3:
+                                weatherConfig.OverrideSeason = Season.SPRING;
+                                break;
+                            case 4:
+                                weatherConfig.OverrideSeason = Season.STORM;
+                                break;
+                        }
+                    }
+                    questConfig.ShowNonSeasonalEventQuests = svmcfg.Raids.RaidEvents.NonSeasonalQuests;
+                    eventConfig.EnableSeasonalEventDetection = !svmcfg.Raids.RaidEvents.DisableEvents;
+                    if (svmcfg.Raids.RaidEvents.Christmas && !svmcfg.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
+                                                                                                    //UPD: Pushed them outside the events method 
+                                                                                                    //Because we'll re-utilize the events inside routes and those would be problematic to call later in the process
+                    {
+                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
+                    }
+                    if (svmcfg.Raids.RaidEvents.Halloween && !svmcfg.Raids.RaidEvents.DisableEvents)
+                    {
+                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
+                    }
+                    eventsLoad.EventsSection();
+
+                }
+                if (svmcfg.Quests.EnableQuests) questsLoad.QuestSection();
+                if (svmcfg.Bots.EnableBots)
+                {
+                    botConfig.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
+                    botload.BotsSection();
+                }
+                if (svmcfg.CSM.EnableCSM) csmLoad.CSMSection();
+                if (svmcfg.Scav.EnableScav) scavload.ScavSection();
+                if (svmcfg.PMC.EnablePMC) pmcload.PMCSection();
+
+                string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine( modhelper.GetAbsolutePathToModFolder(), "Misc", "MOTD.txt")).Split("\n"); //System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder, "Misc", "MOTD.txt")).Split("\n");
+                Random rnd = new Random();
+                logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], Spectre.Console.Color.Blue);
+                logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", Spectre.Console.Color.Blue);
+
                 //Creating Ragman offers for SCAV/BP apparels
                 DeclareModdedAssort(svmcfg);
                 //Predefining modded items to avoid profile "corruption" if certain fields were removed
@@ -70,84 +152,7 @@ namespace ServerValueModifier
                 items["a8edfb0bce53d103d3f6219b"] = scavcustompocket;
                 if (svmcfg.Bots.EnableBots)
                 {
-                    bots.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
-                }
-                //A list of features that should run before `PerformPostDbLoadActions`
-                //Will make into a separate section later.
-                //Raids/ Events section
-                if (svmcfg.Raids.EnableRaids)
-                {
-                    if (svmcfg.Raids.RaidEvents.AITypeOverride)
-                    {
-                        bots.ReplaceScavWith = WildSpawnType.followerTest;//This is just a placeholder to trigger our harmony method to override it with multiple options rather default one type.
-                    }
-                        //if (svmcfg.Raids.RaidEvents.AITypeOverride)
-                        //{
-                        //    switch (svmcfg.Raids.RaidEvents.AIType) //2.0.1 change - using SPT functionality now. Waiting for 4.0.14? Potentially to expand this with multiple types.
-                        //    {
-                        //        case 0: bots.ReplaceScavWith = WildSpawnType.pmcBot; break;
-                        //        case 1: bots.ReplaceScavWith = WildSpawnType.exUsec; break;
-                        //        case 2: bots.ReplaceScavWith = WildSpawnType.sectantWarrior; break;
-                        //        case 3: bots.ReplaceScavWith = WildSpawnType.pmcBEAR; break;
-                        //        case 4: bots.ReplaceScavWith = WildSpawnType.pmcUSEC; break;
-                        //        case 5: bots.ReplaceScavWith = WildSpawnType.infectedAssault; break;
-                        //    }
-                        //}
-
-                        weatherconfig.Acceleration = svmcfg.Raids.Timeacceleration;
-                    if (svmcfg.Raids.ForceSeason)
-                    {   
-                        switch (svmcfg.Raids.Season)
-                        {
-                            case 0:
-                                weatherconfig.OverrideSeason = Season.SUMMER;
-                                break;
-                            case 1:
-                                weatherconfig.OverrideSeason = Season.AUTUMN;
-                                break;
-                            case 2:
-                                weatherconfig.OverrideSeason = Season.WINTER;
-                                break;
-                            case 3:
-                                weatherconfig.OverrideSeason = Season.SPRING;
-                                break;
-                            case 4:
-                                weatherconfig.OverrideSeason = Season.STORM;
-                                break;
-                        }
-                    }
-                    questconfig.ShowNonSeasonalEventQuests = svmcfg.Raids.RaidEvents.NonSeasonalQuests;
-                    //foreach (var eventname in eventconfig.Events)
-                    //{
-                    //    if (eventname.Name == "halloween" && svmcfg.Raids.RaidEvents.DisableZombies)
-                    //    {
-                    //        eventname.Settings.ZombieSettings.Enabled = !svmcfg.Raids.RaidEvents.DisableZombies;
-                    //    }
-                    //}
-                    eventconfig.EnableSeasonalEventDetection = !svmcfg.Raids.RaidEvents.DisableEvents;
-                    //if (svmcfg.Raids.RaidEvents.DisableHalloweenAIFriendly)
-                    //{
-                    //    foreach (var bottype in eventconfig.HostilitySettingsForEvent["zombies"]["default"])
-                    //    {
-                    //        if (bottype.BotRole == "pmcBEAR")
-                    //        {
-                    //            bottype.SavagePlayerBehaviour = "AlwaysEnemies";
-                    //            bottype.Neutral.Remove("pmcUSEC");
-                    //            bottype.AlwaysEnemies.Add("pmcUSEC");
-                    //        }
-                    //        else if (bottype.BotRole == "pmcUSEC")
-                    //        {
-                    //            bottype.SavagePlayerBehaviour = "AlwaysEnemies";
-                    //            bottype.Neutral.Remove("pmcBEAR");
-                    //            bottype.AlwaysEnemies.Add("pmcBEAR");
-                    //        }
-                    //        else
-                    //        {
-                    //            bottype.BearPlayerBehaviour = "AlwaysEnemies";
-                    //            bottype.UsecPlayerBehaviour = "AlwaysEnemies";
-                    //        }
-                    //    }
-                    //}
+                    botConfig.WeeklyBoss.Enabled = !svmcfg.Bots.AIChance.DisableWeeklyBoss;
                 }
                 //Flea section
                 if (svmcfg.Fleamarket.EnablePlayerOffers && svmcfg.Fleamarket.EnableFleamarket)
@@ -155,10 +160,13 @@ namespace ServerValueModifier
                     ragfairConfig.Dynamic.Blacklist.EnableBsgList = !svmcfg.Fleamarket.DisableBSGList;
                 }
             }
-            catch (FileNotFoundException){}
+            catch (FileNotFoundException)
+            {
+                logger.Error("[SVM] Initialization cancelled: Preset or/and Loader is not found or null\nBe sure you clicked Save and Apply in Greed.exe\nMod is disabled");
+            }
             catch (Exception ex)
             {
-                logger.Error("[SVM] Pre-DB Initialization failed due to this error: " + ex);
+                logger.Error("[SVM] Initialization failed. Check the error: " + ex);
             }
             return Task.CompletedTask;
         }
@@ -271,82 +279,8 @@ namespace ServerValueModifier
             }
         }
     }
-    [Injectable(TypePriority = OnLoadOrder.PostLoad+ 5)]
-    public class SVM(ISptLogger<SVM> logger, ModHelper modhelper, TemplateTable templateTable, HideoutConfig hideoutConfig, SeasonalEventService seasonalEvent, BotTable botTable, PmcConfig pmcConfig, InRaidConfig inRaidConfig, RagfairConfig fleaconfig, LostOnDeathConfig midcore, AirdropConfig airdropConfig, HealthConfig healthConfig, BotConfig botConfig, LocationConfig locationConfig, LocationTable locationTable, TraderConfig traderConfig, InsuranceConfig insurance, RepairConfig repair, TradersTable tradersTable, QuestConfig questConfig, HideoutTable hideoutTable, GlobalTable globals, ICloner _cloner) : IOnLoad
-    {
 
-        public static string ffolder; // TODO - Wait until changes are done about GetExecutingAssembly, create a new method to point to mod folder
-        public Task OnLoadAsync(CancellationToken cancellationToken)
-        {
-
-            string folder = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
-            ffolder = folder;
-            try
-            {
-                //Load Preset
-                MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                //Sections Initialization
-                Sections.Items itemLoad = new(logger, templateTable, globals, svmcfg);
-                Sections.Hideout hideoutLoad = new(logger, globals, hideoutConfig, hideoutTable, templateTable, _cloner, svmcfg);
-                Sections.Traders tradersLoad = new(logger, globals, templateTable, traderConfig, tradersTable, questConfig, svmcfg);
-                Sections.Services servicesLoad = new(logger, globals, _cloner, insurance, repair, templateTable, tradersTable, svmcfg);
-                Sections.Loot lootLoad = new(logger, airdropConfig, templateTable, locationConfig, locationTable, svmcfg);
-                Sections.Bots botload = new(logger, locationTable, botConfig, botTable, svmcfg);
-                Sections.Player playerLoad = new(logger, globals, healthConfig, templateTable, svmcfg);
-                Sections.Raids raidsload = new(logger, globals, inRaidConfig, midcore,locationTable,traderConfig, templateTable, svmcfg);
-                Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, svmcfg);
-                Sections.Quests questsLoad = new(logger, templateTable, questConfig, svmcfg);
-                Sections.CSM csmLoad = new(logger, templateTable, insurance, svmcfg, _cloner);
-                Sections.Events eventsLoad = new(logger, templateTable, locationTable, botConfig, svmcfg, modhelper);
-                Sections.Scav scavload = new(logger, globals, templateTable, inRaidConfig, locationTable, svmcfg, _cloner);
-                Sections.PMC pmcload = new(logger, templateTable, pmcConfig, botConfig, botTable, locationTable, svmcfg);
-
-                if (svmcfg.Items.EnableItems) itemLoad.ItemsSection();
-                if (svmcfg.Hideout.EnableHideout) hideoutLoad.HideoutSection();
-                if (svmcfg.Traders.EnableTraders) tradersLoad.TradersSection();
-                if (svmcfg.Services.EnableServices) servicesLoad.ServicesSection();
-                if (svmcfg.Loot.EnableLoot) lootLoad.LootSection();
-                if (svmcfg.Fleamarket.EnableFleamarket) fleamarketLoad.FleamarketSection();
-                if (svmcfg.Player.EnablePlayer) playerLoad.PlayerSection();
-                if (svmcfg.Raids.EnableRaids)
-                {
-                    raidsload.RaidsSection();
-                    if (svmcfg.Raids.RaidEvents.Christmas && !svmcfg.Raids.RaidEvents.DisableEvents)//Avoid forcing events if we want to avoid detecting them as well
-                                                                                                    //UPD: Pushed them outside the events method 
-                                                                                                    //Because we'll re-utilize the events inside routes and those would be problematic to call later in the process
-                    {
-                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Christmas);
-                    }
-                    if (svmcfg.Raids.RaidEvents.Halloween && !svmcfg.Raids.RaidEvents.DisableEvents)
-                    {
-                        seasonalEvent.ForceSeasonalEvent(SeasonalEventType.Halloween);
-                    }
-                    eventsLoad.EventsSection();
-
-                }
-                if (svmcfg.Quests.EnableQuests) questsLoad.QuestSection();
-                if (svmcfg.Bots.EnableBots) botload.BotsSection();
-                if (svmcfg.CSM.EnableCSM) csmLoad.CSMSection();
-                if (svmcfg.Scav.EnableScav) scavload.ScavSection();
-                if (svmcfg.PMC.EnablePMC) pmcload.PMCSection();
-
-                string[] funnitext = System.IO.File.ReadAllText(System.IO.Path.Combine(ffolder, "Misc", "MOTD.txt")).Split("\n");
-                Random rnd = new Random();
-                logger.LogWithColor("[SVM] Initialization complete. " + funnitext[rnd.Next(0, funnitext.Length)], Spectre.Console.Color.Blue);
-                logger.LogWithColor("[SVM] Preset - " + new SVMConfig(modhelper).ServerMessage()!["CurrentlySelectedPreset"] + " - successfully loaded", Spectre.Console.Color.Blue);
-            }
-            catch (FileNotFoundException)
-            {
-                logger.Error("[SVM] Initialization cancelled: Preset or/and Loader is not found or null\nBe sure you clicked Save and Apply in Greed.exe\nMod is disabled");
-            }
-            catch (Exception ex)
-            {
-                logger.Error("[SVM] Initialization failed. Check the error: " + ex);
-            }
-            return Task.CompletedTask;
-        }
-    }
-    [Injectable(TypePriority = OnLoadOrder.HandbookCallbacks +1)]
+    [Injectable(TypePriority = OnLoadOrder.Preload+1000)]
     public class SVMPostLoad(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig ragfairConfig, TraderConfig traderConfig, TradersTable traderstable, ModHelper modhelper, ICloner _cloner) : IOnLoad
     {
         public Task OnLoadAsync(CancellationToken cancellationToken) //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
@@ -357,20 +291,9 @@ namespace ServerValueModifier
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
                 Sections.Advanced advLoad = new(logger, templateTable, coreConfig, chatConfig, ragfairConfig, traderConfig, traderstable, svmcfg, _cloner);
-                if (svmcfg.Items.EnableItems)
-                {
-                    var handbook = templateTable.Handbook.Items;
-                    foreach (var ele in handbook)
-                    {
-                        if (ele.ParentId != "5b5f78b786f77447ed5636af" && ele.Price != null)
-                        {
-                            ele.Price = ele.Price * svmcfg.Items.ItemPriceMult;
-                        }
-                    }
-                }
                 if (svmcfg.Custom.EnableCustom)
                 {
-                    logger.LogWithColor("[SVM] Advanced Section is enabled, loads pre-init to affect handbook", Spectre.Console.Color.Magenta);
+                    logger.LogWithColor("[SVM] Advanced Section is enabled", Spectre.Console.Color.Magenta);
                     advLoad.ItemChangerSection();
                 }
                 return Task.CompletedTask;

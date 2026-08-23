@@ -87,6 +87,13 @@ Everyone else who provided any kind of support to the project, whether bug repor
  Removed experimental thing from aidrops, didn’t expect it to break them altogether.
  In raid states - count as raid never happened.
      
+ 2.2.3 for SPT 4.1.3+
+ Reworked:
+ Traders section > Traders LV4 turned into separate fields for each requirements
+ Fixed:
+ Airdrops
+ UA Locale error
+ Updated CSM plugin to work with 4.1.3 and above
      
  </System:String>
  <!--MessageBoxes and/or Exception handlers-->
@@ -312,8 +319,10 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
  <System:String x:Key="FIRTrade">Items sold by traders are "Found in Raid"</System:String>
  <System:String x:Key="AllQuestsAvailable">All quests available</System:String>
  <System:String x:Key="RemoveTimeCondition">Remove timer for new quests</System:String>
- <System:String x:Key="TradersLvl4">All traders are LV4</System:String>
- <System:String x:Key="FIRRestrictsQuests">No "Found in Raid" requirements in quests</System:String>
+    <System:String x:Key="TradersLevel">Disable trader level requirement</System:String>
+    <System:String x:Key="TradersStanding">Disable trader standing requirement</System:String>
+    <System:String x:Key="TradersCurrency">Disable trader currency requirement</System:String>
+    <System:String x:Key="FIRRestrictsQuests">No "Found in Raid" requirements in quests</System:String>
  <System:String x:Key="RandomizeAssort">Randomize Stock Assort</System:String>
  <System:String x:Key="RemoveTradeLimits">Remove all trade limits</System:String>
  <System:String x:Key="QuestRedeemTime">Quest reward redeem time in hours:</System:String>

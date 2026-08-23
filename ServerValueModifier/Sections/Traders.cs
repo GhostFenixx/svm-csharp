@@ -135,16 +135,25 @@ namespace ServerValueModifier.Sections
                 questid.Value.Conditions.AvailableForFinish = finishcondition;
             }
             //}
-            if (svmcfg.Traders.TradersLvl4)
+            if (svmcfg.Traders.TradersStanding || svmcfg.Traders.TradersCurrency || svmcfg.Traders.TradersLevel)
             {
                 foreach (KeyValuePair<MongoId, Trader> traderid in traders)
                 {
                     List<TraderLoyaltyLevel>? traderloyalty = traderid.Value.Base.LoyaltyLevels;
                     foreach (TraderLoyaltyLevel loyalty in traderloyalty)
                     {
-                        loyalty.MinLevel = 1;
-                        loyalty.MinSalesSum = 0;
-                        loyalty.MinStanding = 0;
+                        if (svmcfg.Traders.TradersLevel)
+                        {
+                            loyalty.MinLevel = 1;
+                        }
+                        if (svmcfg.Traders.TradersCurrency)
+                        {
+                            loyalty.MinSalesSum = 0;
+                        }
+                        if (svmcfg.Traders.TradersStanding)
+                        {
+                            loyalty.MinStanding = 0;
+                        }
                     }
                 }
             }

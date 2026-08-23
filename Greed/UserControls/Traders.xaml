@@ -69,7 +69,9 @@
                         <CheckBox Content="{DynamicResource FIRTrade}" IsChecked="{Binding Traders.FIRTrade}"/>
                         <CheckBox Content="{DynamicResource AllQuestsAvailable}" ToolTip="{DynamicResource AllQuestsAvailable_TT}" Foreground="#FFFF3B3B"  IsChecked="{Binding Traders.AllQuestsAvailable}"/>
                         <CheckBox Content="{DynamicResource RemoveTimeCondition}"  IsChecked="{Binding Traders.RemoveTimeCondition}" ToolTip="{DynamicResource RemoveTimeCondition_TT}"/>
-                        <CheckBox Content="{DynamicResource TradersLvl4}"  IsChecked="{Binding Traders.TradersLvl4}"/>
+                        <CheckBox Content="{DynamicResource TradersLevel}"  IsChecked="{Binding Traders.TradersLevel}"/>
+                        <CheckBox Content="{DynamicResource TradersCurrency}"  IsChecked="{Binding Traders.TradersCurrency}"/>
+                        <CheckBox Content="{DynamicResource TradersStanding}"  IsChecked="{Binding Traders.TradersStanding}"/>
                         <CheckBox Content="{DynamicResource FIRRestrictsQuests}" IsChecked="{Binding Traders.FIRRestrictsQuests}"/>
                         <CheckBox Content="{DynamicResource UnlockQuestAssort}" Foreground="#FFFFA73B"  ToolTip="{DynamicResource UnlockQuestAssort_TT}" IsChecked="{Binding Traders.UnlockQuestAssort}"/>
                     </StackPanel>

@@ -18,7 +18,10 @@
         public bool UnlockQuestAssort { get; set; }
         public bool EnableTraders { get; set; }
         public bool FIRRestrictsQuests { get; set; }
-        public bool TradersLvl4 { get; set; }
+        //public bool TradersLvl4 { get; set; }
+        public bool TradersStanding { get; set; }
+        public bool TradersLevel { get; set; }
+        public bool TradersCurrency { get; set; }
         public bool FIRTrade { get; set; }
         public double PlantingTime { get; set; } = 1;
         public bool UnlockJaeger { get; set; }

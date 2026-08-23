@@ -33,6 +33,14 @@ namespace ServerValueModifier.Sections
             globals.Configuration.BaseUnloadTime *= svmconfig.Items.AmmoUnLoadSpeed;
             globals.Configuration.BaseLoadTime *= svmconfig.Items.AmmoLoadSpeed;
             globals.Configuration.ItemsCommonSettings.MaxBackpackInserting = svmconfig.Items.BackpackStacking;
+            var handbook = templateTable.Handbook.Items;
+            foreach (var ele in handbook)
+            {
+                if (ele.ParentId != "5b5f78b786f77447ed5636af" && ele.Price != null)
+                {
+                    ele.Price = ele.Price * svmconfig.Items.ItemPriceMult;
+                }
+            }
             //Remove raid restrictions.
             if (svmconfig.Items.RemoveRaidRestr)
             {

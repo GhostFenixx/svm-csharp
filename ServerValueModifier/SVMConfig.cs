@@ -11,8 +11,6 @@ namespace ServerValueModifier
     public class SVMConfig(ModHelper modhelper)
     {
        public MainClass.MainConfig cf { get; set; } = new();
-       
-        //string pathToMod = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         string folder = modhelper.GetAbsolutePathToModFolder(Assembly.GetExecutingAssembly());
         public MainClass.MainConfig CallConfig()
         {

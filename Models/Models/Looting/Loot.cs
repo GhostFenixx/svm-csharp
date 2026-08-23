@@ -2,6 +2,7 @@
 {
     public class Loot
     {
+        public bool EnableAirdrops { get; set; }
         public Airdrops Airdrops { get; set; }
         public bool EnableLoot { get; set; }
         public Locations Locations { get; set; }

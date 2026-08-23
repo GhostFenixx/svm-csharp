@@ -23,6 +23,7 @@ namespace ServerValueModifier.Sections
             //Insurance section
             if (svmcfg.Services.EnableInsurance)
             {
+                insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
                 insurance.ReturnChancePercent[TraderID.PRAPOR] = svmcfg.Services.ReturnChancePrapor;
                 if (svmcfg.Services.ReturnChanceTherapist == 0 && svmcfg.Services.ReturnChancePrapor == 0)//Convoluted system, if no traders with insurance enabled - game acts wonky,
                                                                                                           //inserting default_trader object, which by interacting with you cause server to hang.
@@ -46,7 +47,7 @@ namespace ServerValueModifier.Sections
                 {
                     traders[TraderID.PRAPOR].Base.Insurance.Availability = false;
                 }
-                insurance.ReturnChancePercent[TraderID.THERAPIST] = svmcfg.Services.ReturnChanceTherapist;
+
                 TraderInsurance? praporinsurance = traders[TraderID.PRAPOR].Base.Insurance;
                 TraderInsurance? therapistinsurance = traders[TraderID.THERAPIST].Base.Insurance;
                 praporinsurance.MaxStorageTime = svmcfg.Services.PraporStorageTime;

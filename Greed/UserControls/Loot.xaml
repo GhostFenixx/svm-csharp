@@ -103,7 +103,10 @@
         <StackPanel Grid.Column="1" Grid.Row="0">
             <Expander>
                 <Expander.Header>
-                    <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Airdrops}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    <DockPanel>
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Airdrops}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
+                    <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Loot.EnableAirdrops}"/>
+                    </DockPanel>
                 </Expander.Header>
                 <StackPanel Margin="10">
                     <DockPanel Margin="5,5,0,5">
