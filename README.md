@@ -12,7 +12,7 @@ If you utilised CSM plugin - delete HideSpecialIcon.dll from BepInEx/Plugins
 ### Compiling:
 Simply build ServerValueModifier.dll and Greed (Either via Release or Publish if you want it to be a single file)
 Follow same path as archive does:
-Greed into game executable folder, ServerValueModifier into 'SPT/user/mods/[SVM] ServerValueModifier' in case of 4.0 and 'SPT_Runtime/user/mods/[SVM] ServerValueModifier' in case of 4.1
+Greed into game executable folder, ServerValueModifier into 'SPT_Runtime/user/mods/[SVM] ServerValueModifier'
 
 Exact path is important for Greed to operate.
 
