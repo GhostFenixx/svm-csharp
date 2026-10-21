@@ -28,8 +28,8 @@
                             <TextBox MinHeight="100"  MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDDefault}"/>
                             <TextBlock  Text="{DynamicResource IDParent}" VerticalAlignment="Center" />
                             <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True"  Text="{Binding Custom.IDParent}"/>
-                            <!--<TextBlock Text="{DynamicResource IDFilter}" VerticalAlignment="Center"  />
-                                    <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDFilter}"/>-->
+                            <TextBlock Text="{DynamicResource GlobalEditor}" VerticalAlignment="Center"  />
+                                    <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.GlobalEditor}"/>
                             <TextBlock  Text="{DynamicResource IDPrice}" VerticalAlignment="Center"/>
                     <TextBox MinHeight="100" MaxHeight="200" TextWrapping="Wrap" AcceptsReturn="True" Text="{Binding Custom.IDPrice}"/>
 

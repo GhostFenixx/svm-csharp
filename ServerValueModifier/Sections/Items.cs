@@ -11,6 +11,7 @@ using SPTarkov.Server.Core.Servers;
 using SPTarkov.Server.Core.Services;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Spt.Tables;
+using SPTarkov.Common.Extensions;
 
 namespace ServerValueModifier.Sections
 {
@@ -20,11 +21,11 @@ namespace ServerValueModifier.Sections
         //private  MongoId KEYCARD_PARENT = "5c164d2286f774194c5e69fa"; can be only string if used with const TODO
         private readonly MongoId[] WeaponTypesID = ["5447b5cf4bdc2d65278b4567", "5447b6254bdc2dc3278b4568", "5447b5f14bdc2d61278b4567", "5447bed64bdc2d97278b4568", "5447b6094bdc2dc3278b4567", "5447b5e04bdc2d62278b4567", "5447b6194bdc2d67278b4567"];
         private readonly MongoId[] KeyTypes = ["5c99f98d86f7745c314214b3", "5c164d2286f774194c5e69fa", "543be5e94bdc2df1348b4568"];
-        private readonly string[] Pistol = ["9x19", "9x18pm", "9x21", "762x25tt", "46x30", "57x28", "1143x23", "127x33", "9x33r", "10MM", "40SW", "357SIG", "9MM", "45ACP", "50AE", "380AUTO"];
-        private readonly string[] ARifle = ["762x39", "545x39", "556x45", "9x39", "366", "762x35", "300blk", "ATL15", "GRENDEL", "50WLF", "KURZ"];
+        private readonly string[] Pistol = ["9x19", "9x18pm", "9x21", "762x25tt", "46x30", "57x28", "1143x23", "9x33r", "127x33"];
+        private readonly string[] ARifle = ["762x39", "545x39", "556x45", "9x39", "366", "762x35", "300blk", "58x42"];
         private readonly string[] Shotgun = ["12x70", "20x70", "23x75"];
-        private readonly string[] MRifle = ["762x51", "68x51", "762х54R", "762x54", "762x54r", "277"];
-        private readonly string[] LCRifle = ["127x55", "127x99", "86x70", "BMG"];
+        private readonly string[] MRifle = ["762x51", "68x51", "762х54R", "762x54", "762x54r", "784x49", "277",];
+        private readonly string[] LCRifle = ["127x55", "127x99", "86x70", "93x64", "BMG"];
         private readonly MongoId[] OddKeys = ["5448ba0b4bdc2d02308b456c", "63a399193901f439517cafb6", "63a39fc0af870e651d58e6ae", "63a39fdf1e21260da44a0256", "6582dbf0b8d7830efc45016f", "664d3db6db5dea2bad286955", "664d3dd590294949fe2d81b7", "664d3ddfdda2e85aca370d75", "664d3de85f2355673b09aed5", "664d4b0103ef2c61246afb56", "6761a6ccd9bbb27ad703c48a", "6761a6f90575f25e020816a4"];
         private readonly MongoId[] MarkedKeys = ["5780cf7f2459777de4559322", "5d80c60f86f77440373c4ece", "5d80c62a86f7744036212b3f", "5ede7a8229445733cb4c18e2", "63a3a93f8a56922e82001f5d", "64ccc25f95763a1ae376e447", "62987dfc402c7f69bf010923"];
         public void ItemsSection()
@@ -90,7 +91,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.Grids = gridsfilters;
                 }
                 //Time multiplier required to examine an item
-                if (basetemplate.Type == "Item" && basetemplate.Properties.ExamineTime is not null)
+                if (basetemplate.Type == "Item" && basetemplate.Properties.ContainsJsonProperty("ExamineTime")) // 5.0
                 {
                     basetemplate.Properties.ExamineTime = svmconfig.Items.ExamineTime;
                 }
@@ -115,7 +116,7 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.HeatFactorByShot = basetemplate.Properties.HeatFactorByShot * svmconfig.Items.HeatFactor;
                 }
                 //Remove in-raid restrictions
-                if (basetemplate.Type == "Item" && basetemplate.Properties.DiscardLimit is not null && svmconfig.Items.RaidDrop)
+                if (basetemplate.Type == "Item" && basetemplate.Properties.ContainsJsonProperty("DiscardLimit") && svmconfig.Items.RaidDrop) //5.0
                 {
                     basetemplate.Properties.DiscardLimit = -1;
                 }
@@ -142,12 +143,12 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.MisfireChance *= svmconfig.Items.MisfireChance;
                 }
                 //Examine all items
-                if (basetemplate.Properties.ExaminedByDefault is not null && svmconfig.Items.AllExaminedItems && svmconfig.Items.ExamineKeys)
+                if (basetemplate.Properties.ContainsJsonProperty("ExaminedByDefault") && svmconfig.Items.AllExaminedItems && svmconfig.Items.ExamineKeys)
                 {
                     basetemplate.Properties.ExaminedByDefault = true;
                 }
                 //If ExamineKeys was off - examine everything except key types, mechanical and keycards.
-                else if (basetemplate.Properties.ExaminedByDefault is not null && SimpleFilter(KeyTypes, basetemplate.Parent) && svmconfig.Items.ExamineKeys) //basetemplate.Parent.Equals(KeyTypes)
+                else if (basetemplate.Properties.ContainsJsonProperty("ExaminedByDefault") && SimpleFilter(KeyTypes, basetemplate.Parent) && svmconfig.Items.ExamineKeys) //basetemplate.Parent.Equals(KeyTypes)
                 {
                     basetemplate.Properties.ExaminedByDefault = true;
                 }
@@ -186,6 +187,15 @@ namespace ServerValueModifier.Sections
                     if (SimpleFilter(Pistol, basetemplate.Name))
                     {
                         basetemplate.Properties.StackMaxSize = svmconfig.Items.AmmoStacks.PistolRound;
+                        //Additional balancing editing for ammo, not the best way to handle it.
+                        if (basetemplate.Name.Contains("127x33"))
+                        {
+                            basetemplate.Properties.StackMaxSize = (int)Math.Round((double)svmconfig.Items.AmmoStacks.PistolRound / 2);//(double) is to remove ambiguity, don't ask.
+                        }
+                        if (basetemplate.Name.Contains("9x33r"))
+                        {
+                            basetemplate.Properties.StackMaxSize = (int)Math.Round(svmconfig.Items.AmmoStacks.PistolRound / 1.8);
+                        }
                     }
                     if (SimpleFilter(Shotgun, basetemplate.Name))
                     {
@@ -197,7 +207,7 @@ namespace ServerValueModifier.Sections
                     }
                 }
                 //Change currency stacks, Euro,Dollars,GPCoins,Roubles.
-                if (basetemplate.Parent == "543be5dd4bdc2deb348b4569" && basetemplate.Properties.StackMaxSize is not null && svmconfig.Items.EnableCurrency)
+                if (basetemplate.Parent == "543be5dd4bdc2deb348b4569" && basetemplate.Properties.ContainsJsonProperty("StackMaxSize") && svmconfig.Items.EnableCurrency)
                 {
                     switch (basetemplate.Id)
                     {
@@ -253,12 +263,12 @@ namespace ServerValueModifier.Sections
                     basetemplate.Properties.Grids = gridsfilters;
                 }
                 //Multiplier of loot experience (picking up in raid)
-                if (basetemplate.Properties.LootExperience is not null)
+                if (basetemplate.Properties.ContainsJsonProperty("LootExperience"))
                 {
                     basetemplate.Properties.LootExperience = Math.Max((int)(basetemplate.Properties.LootExperience * svmconfig.Items.LootExp),1); //I think it's redundant here, but for sanity purposes we don't want it to be 0
                 }
                 //Multiplier of examination experience
-                if (basetemplate.Properties.ExamineExperience is not null)
+                if (basetemplate.Properties.ContainsJsonProperty("ExamineExperience"))
                 {
                     basetemplate.Properties.ExamineExperience = Math.Max((int)(int)(basetemplate.Properties.ExamineExperience * svmconfig.Items.ExamineExp),1);
                 }

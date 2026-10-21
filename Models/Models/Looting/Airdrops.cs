@@ -1,21 +1,21 @@
 ﻿namespace Greed.Models.Looting
 {
-    public class Airdrops
+    public class Airdrops : Clamper
     {
         public AirdropContents Mixed { get; set; }
         public AirdropContents Medical { get; set; }
         public AirdropContents Barter { get; set; }
         public AirdropContents Weapon { get; set; }
-        public int Sandbox_air { get; set; } = 13;
-        public int Streets_air { get; set; } = 13;
-        public int AirtimeMin { get; set; } = 5;
-        public int AirtimeMax { get; set; } = 15;
-        public int Lighthouse_air { get; set; } = 20;
-        public int Bigmap_air { get; set; } = 20;
-        public int Interchange_air { get; set; } = 20;
-        public int Shoreline_air { get; set; } = 20;
-        public int Reserve_air { get; set; } = 10;
-        public int Woods_air { get; set; } = 25;
+        public int Sandbox_air { get; set => SetClamped(ref field, value, 0, 100); } = 13;
+        public int Streets_air { get; set => SetClamped(ref field, value, 0, 100); } = 13;
+        public int AirtimeMin { get; set => SetClamped(ref field, value, 0, 120); } = 5;
+        public int AirtimeMax { get; set => SetClamped(ref field, value, 0, 120); } = 15;
+        public int Lighthouse_air { get; set => SetClamped(ref field, value, 0, 100); } = 20;
+        public int Bigmap_air { get; set => SetClamped(ref field, value, 0, 100); } = 20;
+        public int Interchange_air { get; set => SetClamped(ref field, value, 0, 100); } = 20;
+        public int Shoreline_air { get; set => SetClamped(ref field, value, 0, 100); } = 20;
+        public int Reserve_air { get; set => SetClamped(ref field, value, 0, 100); } = 10;
+        public int Woods_air { get; set => SetClamped(ref field, value, 0, 100); } = 25;
 
         public Airdrops()
         {

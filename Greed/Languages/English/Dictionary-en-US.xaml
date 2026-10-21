@@ -757,7 +757,7 @@ Something went wrong, is there incorrect type in the field or it is empty?</Syst
   <System:String x:Key="IDDefault">Default IIC:</System:String>
   <System:String x:Key="IDParent">Change everything by Parent ID:</System:String>
   <System:String x:Key="IDPrice">Change/Add price in the handbook:</System:String>
-  <System:String x:Key="IDFilter">Push an ID into Filter:</System:String>
+  <System:String x:Key="GlobalEditor">Global editor:</System:String>
     <System:String x:Key="FleaMultID">Add multiplier to the item’s price:</System:String>
     <!--Unified name of Game objects-->
  <System:String x:Key="FleaWeapons">Weapons:</System:String>

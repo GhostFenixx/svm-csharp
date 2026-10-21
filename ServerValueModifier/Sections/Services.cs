@@ -1,4 +1,5 @@
 ﻿using Greed.Models;
+using SPTarkov.Common.Extensions;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
@@ -33,7 +34,7 @@ namespace ServerValueModifier.Sections
                     //var baseitem = templateTable.Items;
                     foreach (var item in templateTable.Items)
                     {
-                        if (item.Value.Properties.InsuranceDisabled is not null)
+                        if (item.Value.Properties.ContainsJsonProperty("InsuranceDisabled"))
                         {
                             item.Value.Properties.InsuranceDisabled = true;
                         }

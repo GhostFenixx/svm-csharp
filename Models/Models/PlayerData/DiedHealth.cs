@@ -1,10 +1,9 @@
 ﻿namespace Greed.Models.PlayerData
 {
-    public class DiedHealth
+    public class DiedHealth : Clamper
     {
         public bool Saveeffects { get; set; } = true;
         public bool Savehealth { get; set; } = true;
-        public double Health_blacked { get; set; } = 0.1;
-        public double Health_death { get; set; } = 0.3;
+        public double Health_blacked { get; set => SetClamped(ref field, value, 0, 1); } = 0.1;
     }
 }

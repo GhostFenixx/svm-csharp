@@ -37,7 +37,7 @@
                     <CheckBox Content="{DynamicResource WeaponHeatOff}" IsChecked="{Binding Items.WeaponHeatOff}"/>
                     <CheckBox Content="{DynamicResource SurvCMSToSpec}" IsChecked="{Binding Items.SurvCMSToSpec}"/>
                     <CheckBox Content="{DynamicResource SurvCMSSecConBlock}" IsChecked="{Binding Items.SurvCMSSecConBlock}"/>
-                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Minimum="2" Maximum="25" Value="{Binding Items.BackpackStacking}">
+                    <ui:NumberBox Style="{StaticResource MinMaxOne}" Value="{Binding Items.BackpackStacking}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource BackpackStacking}"/>
                         </ui:NumberBox.Header>
@@ -53,27 +53,27 @@
                         </DockPanel>
                     </Expander.Header>
                     <StackPanel Margin="10" IsEnabled="{Binding Items.AmmoSwitch}">
-                        <ui:NumberBox Value="{Binding Items.AmmoStacks.PistolRound}" Minimum="5" Maximum="1500" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource PistolRound_TT}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.PistolRound}" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource PistolRound_TT}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource PistolRound}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Items.AmmoStacks.ShotgunRound}" Minimum="2" Maximum="400" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource ShotgunRound_TT}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.ShotgunRound}" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource ShotgunRound_TT}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource ShotgunRound}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Items.AmmoStacks.RifleRound}" Minimum="5" Maximum="1400" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource RifleRound_TT}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.RifleRound}" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource RifleRound_TT}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource RifleRound}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Items.AmmoStacks.MarksmanRound}" Minimum="5" Maximum="1200" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource MarksmanRound_TT}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.MarksmanRound}" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource MarksmanRound_TT}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource MarksmanRound}"/>
                             </ui:NumberBox.Header>
                         </ui:NumberBox>
-                        <ui:NumberBox Value="{Binding Items.AmmoStacks.LargeCaliberRound}" Minimum="5" Maximum="800" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource LargeCaliberRound_TT}">
+                        <ui:NumberBox Value="{Binding Items.AmmoStacks.LargeCaliberRound}" Style="{StaticResource FlatsSmall}"  ToolTip="{DynamicResource LargeCaliberRound_TT}">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource LargeCaliberRound}"/>
                             </ui:NumberBox.Header>
@@ -91,7 +91,7 @@
                     </Expander.Header>
                     <StackPanel Margin="10" IsEnabled="{Binding Items.EnableCurrency}">
                         <!--<CheckBox Content="{DynamicResource DisableDefaultCashStack}" ToolTip="{DynamicResource DisableDefaultCashStack_TT}" IsChecked="{Binding Items.BSGCashStack}"/>-->
-                        <ui:NumberBox Value="{Binding Items.RubStack}" Minimum="50000" Style="{StaticResource FlatsBig}" SmallChange="50000">
+                        <ui:NumberBox Value="{Binding Items.RubStack}" Style="{StaticResource FlatsBig}" SmallChange="50000">
                             <ui:NumberBox.Header>
                                 <TextBlock Text="{DynamicResource RoublesOrDefault}"/>
                             </ui:NumberBox.Header>
@@ -121,12 +121,12 @@
                     <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Multipliers}" VerticalAlignment="Center" Foreground="White" FontSize="20"/>
                 </Expander.Header>
                 <StackPanel Margin="10" Cursor="">
-                    <ui:NumberBox Style="{StaticResource Mults}" Maximum="5" Value="{Binding Items.ItemPriceMult}">
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.ItemPriceMult}">
                         <ui:NumberBox.Header>
                             <TextBlock  Text="{DynamicResource ItemPriceMult}" ToolTip="{DynamicResource ItemPriceMult_TT}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
-                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0" Maximum="5" Value="{Binding Items.WeightChanger}">
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.WeightChanger}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource WeightChanger}"/>
                         </ui:NumberBox.Header>
@@ -146,12 +146,12 @@
                             <TextBlock Text="{DynamicResource MalfunctChanceMult}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
-                    <ui:NumberBox Style="{StaticResource Mults}"   Value="{Binding Items.MisfireChance}">
+                    <ui:NumberBox Style="{StaticResource Mults}"  Value="{Binding Items.MisfireChance}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource MisfireChance}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
-                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0"   Value="{Binding Items.FragmentMult}">
+                    <ui:NumberBox Style="{StaticResource Mults}"  Value="{Binding Items.FragmentMult}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource FragmentMult}"/>
                         </ui:NumberBox.Header>
@@ -171,7 +171,7 @@
                             <TextBlock Text="{DynamicResource ExamineTime}"/>
                         </ui:NumberBox.Header>
                     </ui:NumberBox>
-                    <ui:NumberBox Style="{StaticResource Mults}" Minimum="0" Value="{Binding Items.HeatFactor}">
+                    <ui:NumberBox Style="{StaticResource Mults}" Value="{Binding Items.HeatFactor}">
                         <ui:NumberBox.Header>
                             <TextBlock Text="{DynamicResource HeatFactor}"/>
                         </ui:NumberBox.Header>

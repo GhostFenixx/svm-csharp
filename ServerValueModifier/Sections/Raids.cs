@@ -85,7 +85,7 @@ namespace ServerValueModifier.Sections
 
             if (svmconfig.Raids.NoRunThrough)
             {
-                globals.Configuration.Exp.MatchEnd.SurvivedExperienceRequirement = 0;
+                globals.Configuration.Exp.MatchEnd.SurvivedExpRequirement = 0;
                 globals.Configuration.Exp.MatchEnd.SurvivedSecondsRequirement = 0;
             }
             if (svmconfig.Raids.Removelabkey)

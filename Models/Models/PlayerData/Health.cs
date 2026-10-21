@@ -1,13 +1,13 @@
 ﻿namespace Greed.Models.PlayerData
 {
-    public class Health
+    public class Health : Clamper
     {
-        public int LeftArm { get; set; }
-        public int RightArm { get; set; }
-        public int Head { get; set; }
-        public int Chest { get; set; }
-        public int Stomach { get; set; }
-        public int LeftLeg { get; set; }
-        public int RightLeg { get; set; }
+        public int LeftArm { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int RightArm { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int Head { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int Chest { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int Stomach { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int LeftLeg { get; set => SetClamped(ref field, value, 5, 1000); }
+        public int RightLeg { get; set => SetClamped(ref field, value, 5, 1000); }
     }
 }

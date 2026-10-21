@@ -11,6 +11,8 @@ using Greed.Models.Raiding;
 using Greed.Models.ScavData;
 using Greed.Models.TraderServices;
 using Greed.Models.Trading;
+using System.ComponentModel;
+using System.Runtime.CompilerServices;
 
 namespace Greed.Models
 {
@@ -33,6 +35,8 @@ namespace Greed.Models
             public Bots Bots { get; set; }
             public PMC PMC { get; set; }
             public Custom Custom { get; set; }
+
+            public Prestige Prestige { get; set; }
             public MainConfig()
             {
                 Items = new Items();
@@ -48,6 +52,7 @@ namespace Greed.Models
                 Scav = new Scav();
                 Bots = new Bots();
                 PMC = new PMC();
+                Prestige = new Prestige();
                 Custom = new Custom();
             }
         }

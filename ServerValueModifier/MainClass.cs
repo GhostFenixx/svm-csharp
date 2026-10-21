@@ -1,41 +1,22 @@
 ﻿using Greed.Models;
-using Greed.Models.AI;
-using Greed.Models.Flea;
-using HarmonyLib;
-using Spectre.Console;
 using SPTarkov.Common.Models.Logging;
 using SPTarkov.DI.Annotations;
 using SPTarkov.Reflection.Patching;
 using SPTarkov.Server.Core.DI;
-using SPTarkov.Server.Core.Helpers;
 using SPTarkov.Server.Core.Helpers.Server;
 using SPTarkov.Server.Core.Models.Common;
 using SPTarkov.Server.Core.Models.Eft.Common;
 using SPTarkov.Server.Core.Models.Eft.Common.Tables;
-using SPTarkov.Server.Core.Models.Eft.Hideout;
-using SPTarkov.Server.Core.Models.Eft.Profile;
-using SPTarkov.Server.Core.Models.Eft.Weather;
 using SPTarkov.Server.Core.Models.Enums;
 using SPTarkov.Server.Core.Models.Spt.Config;
-using SPTarkov.Server.Core.Models.Spt.Repeatable;
 using SPTarkov.Server.Core.Models.Spt.Tables;
-using SPTarkov.Server.Core.Models.Utils;
-using SPTarkov.Server.Core.Servers;
-using SPTarkov.Server.Core.Services;
 using SPTarkov.Server.Core.Services.Server;
 using SPTarkov.Server.Core.Utils.Cloners;
-using System.Drawing;
-using System.Globalization;
-using System.Reflection;
-using System.Runtime.InteropServices;
-using System.Runtime.Intrinsics.Arm;
-using System.Xml;
-using static System.Net.WebRequestMethods;
 using TraderID = SPTarkov.Server.Core.Models.Enums.Traders;
 
 namespace ServerValueModifier
 {
-   [Injectable(TypePriority = OnLoadOrder.Preload + 5)]
+   [Injectable(TypePriority = OnLoadOrder.Preload + 10)]
     public class SVM(ISptLogger<SVM> logger, ModHelper modhelper, TemplateTable templateTable, HideoutConfig hideoutConfig, WeatherConfig weatherConfig, LocaleTable localeTable, RagfairConfig ragfairConfig, SeasonalEventConfig eventConfig, SeasonalEventService seasonalEvent, BotTable botTable, PmcConfig pmcConfig, InRaidConfig inRaidConfig, RagfairConfig fleaconfig, LostOnDeathConfig midcore, AirdropConfig airdropConfig, HealthConfig healthConfig, BotConfig botConfig, LocationConfig locationConfig, LocationTable locationTable, TraderConfig traderConfig, InsuranceConfig insurance, RepairConfig repair, TradersTable tradersTable, QuestConfig questConfig, HideoutTable hideoutTable, GlobalTable globals, ICloner cloner, IEnumerable<IRuntimePatch> patches) : IOnLoad
     {
         public Task OnLoadAsync(CancellationToken cancellationToken)
@@ -55,8 +36,6 @@ namespace ServerValueModifier
             }
             try
             {
-
-
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
 
@@ -89,7 +68,7 @@ namespace ServerValueModifier
                 Sections.Bots botload = new(logger, locationTable, botConfig, botTable, svmcfg);
                 Sections.Player playerLoad = new(logger, globals, healthConfig, templateTable, svmcfg);
                 Sections.Raids raidsload = new(logger, globals, inRaidConfig, midcore, locationTable, traderConfig, templateTable, svmcfg);
-                Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, svmcfg);
+                Sections.Fleamarket fleamarketLoad = new(logger, globals, fleaconfig, templateTable, svmcfg);
                 Sections.Quests questsLoad = new(logger, templateTable, questConfig, svmcfg);
                 Sections.CSM csmLoad = new(logger, templateTable, insurance, svmcfg, cloner);
                 Sections.Events eventsLoad = new(logger, templateTable, locationTable, botConfig, svmcfg, modhelper);
@@ -283,7 +262,7 @@ namespace ServerValueModifier
     }
 
     [Injectable(TypePriority = OnLoadOrder.Preload+1000)]
-    public class SVMPostLoad(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig ragfairConfig, TraderConfig traderConfig, TradersTable traderstable, ModHelper modhelper, ICloner _cloner) : IOnLoad
+    public class SVMPostLoad(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig ragfairConfig, TraderConfig traderConfig, TradersTable traderstable, GlobalConfig globalConfig, ModHelper modhelper, ICloner _cloner) : IOnLoad
     {
         public Task OnLoadAsync(CancellationToken cancellationToken) //Separation of custom section for sake to load last in attempt to work with any possible values (including modded ones) after all changes.
         {
@@ -292,7 +271,7 @@ namespace ServerValueModifier
 
                 //Load Preset
                 MainClass.MainConfig svmcfg = new SVMConfig(modhelper).CallConfig();
-                Sections.Advanced advLoad = new(logger, templateTable, coreConfig, chatConfig, ragfairConfig, traderConfig, traderstable, svmcfg, _cloner);
+                Sections.Advanced advLoad = new(logger, templateTable, coreConfig, chatConfig, ragfairConfig, traderConfig, traderstable,globalConfig, svmcfg, _cloner);
                 if (svmcfg.Custom.EnableCustom)
                 {
                     logger.LogWithColor("[SVM] Advanced Section is enabled", Spectre.Console.Color.Magenta);

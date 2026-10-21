@@ -2,12 +2,12 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net9.0-windows7.0</TargetFramework>
+    <TargetFramework>net10.0-windows</TargetFramework>
+	<LangVersion>14</LangVersion>
     <Nullable>disable</Nullable>
     <ImplicitUsings>enable</ImplicitUsings>
     <UseWPF>true</UseWPF>
     <ApplicationIcon>SVM.ico</ApplicationIcon>
-    <ProduceReferenceAssembly>False</ProduceReferenceAssembly>
     <Title>Greed</Title>
     <Authors>GhostFenixx</Authors>
     <Description>A .Json loader creator with a GUI for SVM (Server Value Modifier) - A mod for SPT</Description>

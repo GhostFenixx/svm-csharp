@@ -1,10 +1,10 @@
 ﻿namespace Greed.Models.TraderServices
 {
-    public class RepairBox
+    public class RepairBox : Clamper
     {
         public bool NoRandomRepair { get; set; }
         public bool OpGunRepair { get; set; }
-        public double ArmorSkillMult { get; set; } = 0.05;
+        public double ArmorSkillMult { get; set => SetClamped(ref field, value, 0, 10); } = 0.05;
         public double WeaponMaintenanceSkillMult { get; set; } = 0.6;
         public double IntellectSkillMultWeaponKit { get; set; } = 0.045;
         public double IntellectSkillMultArmorKit { get; set; } = 0.03;

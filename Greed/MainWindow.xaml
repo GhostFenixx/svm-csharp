@@ -7,7 +7,7 @@
         xmlns:views="clr-namespace:Greed.UserControls"
         mc:Ignorable="d"
         Title="Greed" ui:ThemeManager.RequestedTheme="Dark"
-        Height="700" Width="1225" MinHeight="700" MinWidth="1225"
+        Height="715" Width="1225" MinHeight="715" MinWidth="1225"
         xmlns:ui="http://schemas.modernwpf.com/2019"
         Icon="Resources/SVMLOGO.png" Closing="WindowClosing" WindowStyle="None" MouseLeftButtonDown="Dragger" AllowsTransparency="True" ResizeMode="CanResizeWithGrip" Loaded="MainGrid_Loaded">
     <Window.Resources>
@@ -155,6 +155,18 @@
                 </TabItem.Header>
                 <ScrollViewer VerticalScrollBarVisibility="Visible" Visibility="Visible">
                     <views:Hideout/>
+                </ScrollViewer>
+            </TabItem>
+            <TabItem Name="Prestige">
+                <TabItem.Header>
+                    <DockPanel Height="34" VerticalAlignment="Center">
+                        <Image Source="Resources/Icons/hideout_icon_black.png" />
+                        <TextBlock Style="{StaticResource TabText}" Text="{DynamicResource Prestige}" VerticalAlignment="Center" HorizontalAlignment="Center"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Prestige.EnablePrestige}"/>
+                    </DockPanel>
+                </TabItem.Header>
+                <ScrollViewer VerticalScrollBarVisibility="Visible" Visibility="Visible">
+                    <views:Prestige/>
                 </ScrollViewer>
             </TabItem>
             <TabItem>

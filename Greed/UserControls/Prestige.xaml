@@ -1,0 +1,90 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Greed.UserControls"
+             xmlns:ui="http://schemas.modernwpf.com/2019" x:Class="Greed.UserControls.Prestige"
+             mc:Ignorable="d">
+
+    <Grid Style="{StaticResource Enablers}" Margin="5" IsEnabled="{Binding Prestige.EnablePrestige}">
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="920"/>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="auto"/>
+            <RowDefinition Height="auto"/>
+        </Grid.RowDefinitions>
+        <StackPanel Grid.Column="0" Grid.Row="0">
+            <Expander>
+                <Expander.Header>
+                    <DockPanel>
+                        <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource Prestige_TT}" Style="{StaticResource TabText}" Text="{DynamicResource Prestige}" VerticalAlignment="Center" FontSize="20"/>
+                        <CheckBox Style="{StaticResource SectionSwitch}" IsChecked="{Binding Hideout.EnablePrestige}"/>
+                    </DockPanel>
+                </Expander.Header>
+                <StackPanel Margin="5" x:Name="PrestigeSection" IsEnabled="{Binding Hideout.EnablePrestige}">
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Hideout.PrestigeLevel}" Width="440" Margin="0,0,20,0" Minimum="0" Maximum="100" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeLevel}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeStrength}" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeStrength}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    </DockPanel>
+                    <DockPanel>
+                        <ui:NumberBox Value="{Binding Hideout.PrestigeEndurance}" Width="440" Margin="0,0,20,0" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeEndurance}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeCharisma}" Minimum="0" Maximum="50" Style="{StaticResource FlatsSmall}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeCharisma}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    </DockPanel>
+                    <ui:NumberBox Value="{Binding Hideout.PrestigeCurrency}" Minimum="0" Maximum="500000000" Style="{StaticResource FlatsBig}">
+                        <ui:NumberBox.Header>
+                            <TextBlock Text="{DynamicResource PrestigeCurrency}"/>
+                        </ui:NumberBox.Header>
+                    </ui:NumberBox>
+                    <DockPanel>
+                        <CheckBox Content="{DynamicResource PrestigeCollector}" Width="300" IsChecked="{Binding Hideout.PrestigeCollector}"/>
+                        <CheckBox Content="{DynamicResource PrestigeNewBeginnings}" Width="300" IsChecked="{Binding Hideout.PrestigeNewBeginnings}"/>
+                        <CheckBox Content="{DynamicResource PrestigeAreas}" ToolTip="{DynamicResource PrestigeAreas_TT}" IsChecked="{Binding Hideout.PrestigeAreas}"/>
+                    </DockPanel>
+
+                    <DockPanel Margin="0,5,0,5" >
+                        <TextBlock Text="{DynamicResource First}" Width="150" VerticalAlignment="Center" Padding="5,30,0,0"/>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Skills}"  Margin="0,0,10,0" Width="90" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Skill}"  ToolTip="{DynamicResource PrestigeSkill_TT}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Mastery}"  Margin="0,0,10,0" Width="90" Style="{StaticResource MinMax}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Mastery}"  ToolTip="{DynamicResource PrestigeMastery_TT}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <ui:NumberBox Value="{Binding Hideout.FirstPrestige.Height}"  Margin="0,0,10,0" Width="90" Style="{StaticResource SizesHeight}">
+                            <ui:NumberBox.Header>
+                                <TextBlock Text="{DynamicResource Size}" ToolTip="{DynamicResource PrestigeSize_TT}" HorizontalAlignment="Center"/>
+                            </ui:NumberBox.Header>
+                        </ui:NumberBox>
+                        <StackPanel>
+                            <TextBlock Foreground="#FFFFA73B" ToolTip="{DynamicResource PrestigeFilter_TT}" Text="{DynamicResource RemoveFilters}" HorizontalAlignment="Left"/>
+                            <CheckBox IsChecked="{Binding Hideout.FirstPrestige.Filter}" Margin="30,0,0,0" HorizontalAlignment="Left" VerticalAlignment="Bottom"/>
+                        </StackPanel>
+                    </DockPanel>
+                </StackPanel>
+            </Expander>
+        </StackPanel>
+    </Grid>
+</UserControl>

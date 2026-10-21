@@ -21,9 +21,8 @@ using System.Reflection;
 
 namespace ServerValueModifier.Sections
 {
-    internal class Advanced(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig fleaconfig, TraderConfig traderConfig, TradersTable traders, MainClass.MainConfig svmconfig, ICloner _cloner)
+    internal class Advanced(ISptLogger<SVM> logger, TemplateTable templateTable, CoreConfig coreConfig, PmcChatResponseConfig chatConfig, RagfairConfig fleaconfig, TraderConfig traderConfig, TradersTable traders, GlobalConfig globalConfig, MainClass.MainConfig svmconfig, ICloner _cloner)
     {
-        private List<List<BarterScheme>> barterScheme;
 
         public void ItemChangerSection()
         {
@@ -82,10 +81,11 @@ namespace ServerValueModifier.Sections
                     }
                 }
             }
-            //IIC
-            if (svmconfig.Custom.IDChanger)
+                //IIC
+                if (svmconfig.Custom.IDChanger)
             {
                 logger.Info("[SVM] Custom Properties is loading");
+                //IIC Parent - goes first, even tho in UI it is lower, so you could edit specific item after changing en-masse.
                 if (svmconfig.Custom.IDParent.Length > 0 && svmconfig.Custom.IDParent != "")
                 {
                     string[] parentlist = svmconfig.Custom.IDParent.Split("\r\n");
@@ -114,6 +114,7 @@ namespace ServerValueModifier.Sections
                         }
                     }
                 }
+                //IIC Default
                 if (svmconfig.Custom.IDDefault.Length > 0 && svmconfig.Custom.IDDefault != "")
                 {
                     string[] defaultList = svmconfig.Custom.IDDefault.Split("\r\n");
@@ -128,6 +129,22 @@ namespace ServerValueModifier.Sections
                         }
                     }
                 }
+                //GlobalEditor
+                if (svmconfig.Custom.GlobalEditor.Length > 0 && svmconfig.Custom.GlobalEditor != "")
+                {
+                    string[] defaultList = svmconfig.Custom.IDDefault.Split("\r\n");
+                    foreach (string line in defaultList)
+                    {
+                        if (!line.StartsWith("#") && !line.StartsWith("//") && line.Contains(':'))
+                        {
+                            string[] variables = line.Split(":");
+                            Fixfields(variables);
+                            logger.Info("[SVM] Global Editor: " + line);
+                            GlobalChanger(variables, globalConfig);
+                        }
+                    }
+                }
+                //Handbook Editor
                 if (svmconfig.Custom.IDPrice.Length > 0 && svmconfig.Custom.IDPrice != "")
                 {
                     string[] prices = svmconfig.Custom.IDPrice.Split("\r\n");
@@ -136,7 +153,7 @@ namespace ServerValueModifier.Sections
                         if (!line.StartsWith("#") && !line.StartsWith("//"))
                         {
                             string[] variables = line.Split(":");
-                            logger.Info("Price: " + line);
+                            logger.Info("[SVM] Handbook Price: " + line);
                             PriceChange(variables);
                         }
                     }
@@ -346,10 +363,25 @@ namespace ServerValueModifier.Sections
             }
             catch (Exception e)
             {
-                logger.Error("[SVM] INVENTORY AND ITEMS - Custom properties: failed to load, error of the code:\n" + e);
+                logger.Error("[SVM] Advanced Features - IIC: failed to load, error of the code:\n" + e);
             }
         }
 
+        public void GlobalChanger(string[] variables, GlobalConfig globals)
+        {
+            try
+            {
+                //Stripping last number as field we replace/expression with
+                string last = variables.Last();
+                //Removing first because we define ID in method
+                string[] path = variables.Skip(1).Take(variables.Length - 2).ToArray();
+                SetNestedValue(globals, path, last);
+            }
+            catch (Exception e)
+            {
+                logger.Error("[SVM] Advanced Features - Global editor: failed to load, error of the code:\n" + e);
+            }
+        }
         //This is scary
         //What is does is cycle through layers, checking whether it's operand, property or dataset/collection/dictionary/hashset, then adds stringValue on last member of Path and applies it to root which is our items
         public static void SetNestedValue(object obj, string[] path, string stringValue)
@@ -368,10 +400,6 @@ namespace ServerValueModifier.Sections
             {
                 string part = path[i];
                 bool isLast = i == path.Length - 1;
-
-                if (current == null)
-                    throw new NullReferenceException($"Null value while traversing path at '{part}'.");
-
                 Type currentType = current.GetType();
 
                 // --- Dictionaries ---
@@ -380,9 +408,6 @@ namespace ServerValueModifier.Sections
                     Type keyType = currentType.GetGenericArguments()[0];
                     Type valType = currentType.GetGenericArguments()[1];
                     object key = keyType.IsEnum ? Enum.Parse(keyType, part, true) : Convert.ChangeType(part, keyType);
-
-                    if (!dict.Contains(key))
-                        throw new KeyNotFoundException($"Key '{part}' not found in dictionary.");
 
                     if (isLast)
                     {
@@ -529,12 +554,8 @@ namespace ServerValueModifier.Sections
                         for (int j = 0; j < newElements.Count; j++) newArr.SetValue(newElements[j], arr.Length + j);
                         return newArr;
                     }
-                    else
-                    {
-                        throw new InvalidOperationException($"Cannot add elements to {existingValue.GetType()}");
-                    }
                 }
-                else if (operation == "-") // Works, yay...
+                else if (operation == "-")
                 {
                     if (existingValue == null)
                         existingValue = CreateEmptyCollection(targetType, elementType);
@@ -624,10 +645,6 @@ namespace ServerValueModifier.Sections
                 {
                     concreteType = typeof(HashSet<>).MakeGenericType(elementType);
                 }
-                else
-                {
-                    throw new InvalidOperationException($"Cannot create collection for abstract/interface type {targetType}");
-                }
             }
             return concreteType;
         }
@@ -643,7 +660,6 @@ namespace ServerValueModifier.Sections
         {
             if (member is PropertyInfo pi) pi.SetValue(obj, value);
             else if (member is FieldInfo fi) fi.SetValue(obj, value);
-            else throw new ArgumentException("Unsupported member type.");
         }
         private static object ConvertStringToType(string strValue, Type targetType)
         {
